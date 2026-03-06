@@ -55,14 +55,29 @@ namespace MI.Presentation.Pickaxe
                 return;
 
             var result = breakable.TakeDamage(_stats.Damage);
+            float bounceMultiplier = breakable.BounceMultiplier;
 
-            // 블록 파괴 시 바운스 옵션 처리
-            if (result == EBreakResult.Destroyed && _stats.BounceOnBreak)
+            if (result == EBreakResult.Destroyed)
             {
-                _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0f);
-                _rb.AddForce(Vector2.up * _stats.BreakBounceForce, ForceMode2D.Impulse);
+                if (_stats.BounceOnBreak)
+                {
+                    // 파괴 시 강화 바운스: BreakBounceForce × 타일 BounceMultiplier
+                    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0f);
+                    _rb.AddForce(Vector2.up * _stats.BreakBounceForce * bounceMultiplier, ForceMode2D.Impulse);
+                }
+                else
+                {
+                    // BounceOnBreak = false: 관통하여 그대로 낙하 (위쪽 속도 제거)
+                    if (_rb.linearVelocity.y > 0f)
+                        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -Mathf.Abs(_rb.linearVelocity.y));
+                }
             }
-            // BounceOnBreak = false 이면 PhysicsMaterial2D 바운스로 자연 처리
+            else
+            {
+                // 내구도 감소만 발생: PhysicsMaterial2D가 기본 바운스 처리 후 배율 적용
+                if (bounceMultiplier != 1f && _rb.linearVelocity.y > 0f)
+                    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _rb.linearVelocity.y * bounceMultiplier);
+            }
         }
     }
 }
