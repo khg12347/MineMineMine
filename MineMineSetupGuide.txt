@@ -1,0 +1,209 @@
+================================================================
+  MINE MINE MINE — Unity 프로토타입 씬 설정 가이드
+  대상 버전: Unity 6 (6000.3.10f1) / URP 2D
+================================================================
+
+[사전 조건]
+  - Odin Inspector & Serializer 임포트 완료
+  - New Input System 활성화 (Project Settings > Player > Active Input Handling = Both 또는 Input System Package)
+  - URP 2D 렌더러 설정 완료
+
+----------------------------------------------------------------
+STEP 1. Input Actions — C# 클래스 생성
+----------------------------------------------------------------
+1. Project 창에서 다음 파일 선택:
+     Assets/02_Scripts/Presentation/Input/MIInputActions.inputactions
+
+2. Inspector에서 체크 확인:
+     [v] Generate C# Class
+     Namespace  : (비워둠 또는 MI.Presentation.Input)
+     Class Name : MIInputActions
+
+3. [Apply] 버튼 클릭
+   → MIInputActions.cs 가 같은 폴더에 자동 생성됨
+
+----------------------------------------------------------------
+STEP 2. Layer 설정
+----------------------------------------------------------------
+Edit > Project Settings > Tags and Layers > Layers
+
+  Layer 6  →  Tile
+  (이후 Tile Prefab의 GameObject Layer를 "Tile"로 지정)
+
+----------------------------------------------------------------
+STEP 3. ScriptableObject — TileConfig 생성 (5종)
+----------------------------------------------------------------
+저장 위치: Assets/03_Resources/03_Datas/TileConfigs/
+
+Project 창 해당 폴더에서 우클릭 > Create > MI > Config > Tile
+총 5개 생성 후 아래 값 입력:
+
+  파일명              TileType  MaxDurability  DropScore
+  ─────────────────────────────────────────────────────
+  TileConfig_Dirt     Dirt       1              10
+  TileConfig_Stone    Stone      2              25
+  TileConfig_Iron     Iron       3              50
+  TileConfig_Gold     Gold       4              100
+  TileConfig_Diamond  Diamond    5              250
+
+  * Damage Sprites 슬롯: 파괴 단계별 스프라이트를 배열로 연결
+    (index 0 = 온전함, index 1 = 1회 피격, ... index N-1 = 파괴 직전)
+    스프라이트가 없으면 비워도 동작에 지장 없음 (시각만 변경 안 됨)
+
+----------------------------------------------------------------
+STEP 4. ScriptableObject — PickaxeConfig 생성 (1개)
+----------------------------------------------------------------
+저장 위치: Assets/03_Resources/03_Datas/
+
+우클릭 > Create > MI > Config > Pickaxe
+파일명: PickaxeConfig
+
+  항목                  권장 기본값
+  ─────────────────────────────────
+  Damage                1
+  Gravity Scale         3
+  Bounciness            0.6
+  Friction              0
+  Bounce On Break       ON (체크)
+  Break Bounce Force    5
+  Spawn Offset Y        2
+
+----------------------------------------------------------------
+STEP 5. Tile Prefab 생성
+----------------------------------------------------------------
+저장 위치: Assets/03_Resources/02_Prefabs/
+
+1. Hierarchy에서 빈 GameObject 생성 → 이름: "Tile"
+2. 컴포넌트 추가:
+     SpriteRenderer
+     BoxCollider2D        (Size: tileSize × tileSize, 예: 0.5 × 0.5)
+     MITileView           (02_Scripts/Presentation/Tile)
+
+3. MITileView Inspector 연결:
+     Sprite Renderer  →  위에서 추가한 SpriteRenderer 드래그
+     Damage Sprites   →  (선택) 파괴 단계 스프라이트 배열
+
+4. GameObject Layer →  "Tile" 로 변경
+
+5. Project 창으로 드래그하여 Prefab으로 저장
+6. Hierarchy에서 원본 오브젝트 삭제
+
+----------------------------------------------------------------
+STEP 6. Pickaxe Prefab 생성
+----------------------------------------------------------------
+저장 위치: Assets/03_Resources/02_Prefabs/
+
+1. Hierarchy에서 빈 GameObject 생성 → 이름: "Pickaxe"
+2. 컴포넌트 추가:
+     SpriteRenderer
+     Rigidbody2D
+       - Collision Detection : Continuous
+       - Gravity Scale       : (MIPickaxeConfig에서 런타임 설정됨, 임시 0)
+       - Constraints         : Freeze Rotation Z (체크)
+     CapsuleCollider2D       (또는 PolygonCollider2D — 스프라이트 형태에 맞게)
+     MIPickaxeController     (02_Scripts/Presentation/Pickaxe)
+
+3. MIPickaxeController Inspector 연결:
+     Config  →  PickaxeConfig SO 드래그
+
+4. Project 창으로 드래그하여 Prefab 저장
+5. Hierarchy에서 원본 삭제
+
+----------------------------------------------------------------
+STEP 7. 씬 구성 — 필수 GameObject 배치
+----------------------------------------------------------------
+씬 파일: Assets/01_Scenes/Main.unity (또는 SampleScene)
+
+[1] GameManager
+  - 빈 GameObject → 이름: "GameManager"
+  - 컴포넌트: MIGameManager (02_Scripts/Core)
+
+[2] StageInitializer
+  - 빈 GameObject → 이름: "StageInitializer"
+  - 컴포넌트: MIStageInitializer (02_Scripts/Core)
+  Inspector 연결:
+    Tile Configs     → TileConfig_Dirt ~ TileConfig_Diamond (5개, 배열 순서대로)
+    Tile Prefab      → Tile Prefab 드래그
+    Tile Parent      → TileParent GameObject (아래 [3] 참고)
+    Stage Width      → 8
+    Stage Height     → 12
+    Tile Size        → 0.5
+    Pickaxe          → Pickaxe 인스턴스 드래그 (아래 [5] 참고)
+    Main Camera      → Main Camera 드래그
+
+[3] TileParent
+  - 빈 GameObject → 이름: "TileParent"
+  - Transform 초기화 (Position 0,0,0)
+  - StageInitializer의 Tile Parent 슬롯에 연결
+
+[4] InputManager
+  - 빈 GameObject → 이름: "InputManager"
+  - 컴포넌트: MITouchBreaker (02_Scripts/Presentation/Input)
+  Inspector 연결:
+    Main Camera  →  Main Camera 드래그
+    Tile Layer   →  "Tile" 레이어 선택
+    Touch Damage →  1
+
+[5] Pickaxe (씬 인스턴스)
+  - Pickaxe Prefab을 Hierarchy로 드래그
+  - StageInitializer의 Pickaxe 슬롯에 이 인스턴스 연결
+
+----------------------------------------------------------------
+STEP 8. Camera 설정
+----------------------------------------------------------------
+Main Camera Inspector:
+
+  Projection     : Orthographic
+  Size           : 5  (세로 기준 10 유닛 = 타일 0.5 기준 20행 표시)
+  Background     : (배경색 설정)
+
+  Camera 컴포넌트 하단 Environment > Background Type:
+    Solid Color 또는 배경 스프라이트 설정
+
+----------------------------------------------------------------
+STEP 9. 최종 레퍼런스 체크리스트
+----------------------------------------------------------------
+  [ ] MIInputActions.cs 생성 확인 (STEP 1)
+  [ ] "Tile" Layer 추가 확인 (STEP 2)
+  [ ] TileConfig SO 5종 생성 및 값 입력 (STEP 3)
+  [ ] PickaxeConfig SO 생성 및 값 입력 (STEP 4)
+  [ ] Tile Prefab — MITileView + BoxCollider2D + Layer=Tile (STEP 5)
+  [ ] Pickaxe Prefab — MIPickaxeController + Rigidbody2D + Collider2D (STEP 6)
+  [ ] MIGameManager 씬 배치 (STEP 7-1)
+  [ ] MIStageInitializer 전체 슬롯 연결 (STEP 7-2)
+  [ ] MITouchBreaker — Tile Layer 설정 (STEP 7-4)
+  [ ] Camera Orthographic / Size 설정 (STEP 8)
+
+----------------------------------------------------------------
+STEP 10. Play 모드 검증 항목
+----------------------------------------------------------------
+  [ ] 곡괭이가 화면 상단 바깥에서 등장하여 낙하하는가
+  [ ] 타일에 충돌 시 통통 튀기며 계속 낙하하는가
+  [ ] 내구도가 2 이상인 타일은 여러 번 타격해야 파괴되는가
+  [ ] 파괴된 타일이 Hierarchy에서 사라지는가
+  [ ] 화면 클릭/터치로 타일이 직접 파괴되는가
+  [ ] PickaxeConfig의 BounceOnBreak OFF 시 관통 낙하하는가
+  [ ] PickaxeConfig 값을 런타임에 변경 시 즉각 반영되는가
+
+----------------------------------------------------------------
+STEP 11. 권장 타일 스프라이트 배치 구조
+----------------------------------------------------------------
+  Assets/03_Resources/01_Sprites/block/
+    soil_00.png   (흙, 온전함)
+    soil_01.png   (흙, 1회 피격)
+
+  Assets/03_Resources/01_Sprites/mineral/
+    copper_00.png
+    copper_01.png
+    copper_02.png
+
+  TileConfig SO의 Base Sprite / Damage Sprites 배열에 직접 드래그
+
+  스프라이트 Import Settings (픽셀아트):
+    Filter Mode    : Point (no filter)
+    Compression    : None
+    Pixels Per Unit: 16 또는 32
+
+================================================================
+  문의: CLAUDE.md 참조 / 코드 컨벤션 MI prefix 준수
+================================================================

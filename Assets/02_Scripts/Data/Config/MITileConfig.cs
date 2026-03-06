@@ -9,18 +9,20 @@ namespace MI.Data.Config
     public class MITileConfig : SerializedScriptableObject
     {
         [Title("타일 기본 설정")]
-        [EnumToggleButtons]
         [SerializeField] private ETileType _tileType;
 
-        [PropertyRange(1, 10)]
+        [LabelText("내구도")]
         [SerializeField] private int _maxDurability = 1;
 
+        [LabelText("점수")]
         [SerializeField] private int _dropScore = 10;
 
         [Title("스프라이트")]
         [PreviewField(50)]
+        [LabelText("Base 스프라이트")]
         [SerializeField] private Sprite _baseSprite;
 
+        [LabelText("데미지 받았을 때 스프라이트")]
         [SerializeField] private Sprite[] _damageSprites;
 
         public ETileType TileType => _tileType;

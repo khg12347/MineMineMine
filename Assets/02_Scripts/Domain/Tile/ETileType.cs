@@ -1,11 +1,28 @@
+using Sirenix.OdinInspector;
+
 namespace MI.Domain.Tile
 {
     public enum ETileType
     {
-        Dirt,       // 흙     | 내구도: 1 | 점수: 10
-        Stone,      // 돌     | 내구도: 2 | 점수: 25
-        Iron,       // 철광석 | 내구도: 3 | 점수: 50
-        Gold,       // 금광석 | 내구도: 4 | 점수: 100
-        Diamond     // 다이아 | 내구도: 5 | 점수: 250
+        None = 0,
+        [LabelText("흙 1")]
+        Soil1 = 10,       
+        [LabelText("흙 2")]
+        Soil2 = 11,      
+        [LabelText("흙 3")]
+        Soil3 = 12,      
+        [LabelText("나무 1")]
+        Wood1 = 20,      
+        [LabelText("나무 2")]
+        Wood2 = 21,      
+        [LabelText("나무 3")]
+        Wood3 = 22,
+        [LabelText("돌 1")]
+        Stone1 = 30,
+        [LabelText("돌 2")]
+        Stone2 = 31,
+        [LabelText("돌 3")]
+        Stone3 = 32,
+
     }
 }
