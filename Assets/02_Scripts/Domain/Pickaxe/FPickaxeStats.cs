@@ -9,5 +9,6 @@ namespace MI.Domain.Pickaxe
         public bool BounceOnBreak;      // 블록 파괴 시 바운스 여부
         public float BreakBounceForce;  // 파괴 시 바운스 힘
         public float SpawnOffsetY;      // 화면 상단 바깥 오프셋
+        public float WallBounciness;    // 벽 반사 탄력 (0.0 ~ 1.0)
     }
 }

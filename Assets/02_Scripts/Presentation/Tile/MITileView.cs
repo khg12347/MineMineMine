@@ -11,6 +11,7 @@ namespace MI.Presentation.Tile
         private FTileData _data;
 
         public bool IsBreakable => !_data.IsDestroyed;
+        public float BounceMultiplier => _data.BounceMultiplier;
 
         public void Initialize(FTileData data)
         {
