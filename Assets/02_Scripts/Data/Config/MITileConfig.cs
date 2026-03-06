@@ -17,6 +17,11 @@ namespace MI.Data.Config
 
         [SerializeField] private int _dropScore = 10;
 
+        [Title("바운스 배율")]
+        [InfoBox("Dirt=0.8 / Stone=1.0 / Iron=1.2 / Gold=1.5 / Diamond=2.0")]
+        [PropertyRange(0.5f, 3f)]
+        [SerializeField] private float _bounceMultiplier = 1f;
+
         [Title("스프라이트")]
         [PreviewField(50)]
         [SerializeField] private Sprite _baseSprite;
@@ -34,7 +39,8 @@ namespace MI.Data.Config
                 TileType = _tileType,
                 MaxDurability = _maxDurability,
                 CurrentDurability = _maxDurability,
-                DropScore = _dropScore
+                DropScore = _dropScore,
+                BounceMultiplier = _bounceMultiplier
             };
         }
     }
