@@ -1,9 +1,8 @@
 using MI.Data.Config;
-using MI.Domain.Pickaxe;
 using MI.Domain.Tile;
 using UnityEngine;
 
-namespace MI.Presentation.Pickaxe
+namespace MI.Domain.Pickaxe
 {
     public class MIPickaxeController : MonoBehaviour
     {

@@ -1,17 +1,7 @@
 using UnityEngine;
 namespace MI.Core
 {
-    // ── UI 컨텍스트 계약 ────────────────────────────────────────────────
-
-    public interface IMIUIContext
-    {
-        IMIHUD HUD { get; }
-    }
-
-    public interface IMIHUD
-    {
-    }
-
+    
     // ── Status 리스너 계약 ───────────────────────────────────────────────
 
     /// <summary>
@@ -39,5 +29,11 @@ namespace MI.Core
         /// </summary>
         /// <param name="newLevel">오른 후의 새 레벨</param>
         void OnLevelUp(int newLevel);
+
+        /// <summary>
+        /// 깊이(depth)가 변경될 때 호출.
+        /// </summary>
+        /// <param name="newDepth">새로운 깊이 값</param>
+        void OnDepthUpdated(int newDepth);
     }
 }

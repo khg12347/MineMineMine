@@ -2,7 +2,7 @@ using MI.Domain.Pickaxe;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MI.Presentation.Pickaxe
+namespace MI.Domain.Pickaxe
 {
     /// <summary>
     /// 곡괭이 부위별 콜라이더 컴포넌트.

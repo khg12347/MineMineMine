@@ -1,9 +1,10 @@
 using MI.Core;
 using MI.Data.Config;
 using MI.Domain.Tile;
+using MI.Presentation.World.Tile;
 using UnityEngine;
 
-namespace MI.Presentation.Tile
+namespace MI.Domain.Tile
 {
     /// <summary>
     /// 타일의 데미지 수신 / HP 관리 / 파괴 판정 담당.

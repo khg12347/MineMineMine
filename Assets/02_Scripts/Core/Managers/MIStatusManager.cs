@@ -35,8 +35,9 @@ namespace MI.Core
 
         // ── 런타임 상태 ───────────────────────────────────────────────
 
-        private int  _currentLevel = 1;
-        private int  _currentExp;
+        private int _currentLevel = 1;
+        private int _currentDepth = 0;
+        private int _currentExp;
         private long _totalExp;
 
         private readonly List<IMIStatusListener> _listeners = new();
@@ -58,6 +59,8 @@ namespace MI.Core
         /// <summary>게임 시작 이후 획득한 총 누적 EXP</summary>
         public long TotalExp => _totalExp;
 
+        public int CurrentDepth => _currentDepth; // TODO: 깊이 시스템 도입 시 구현
+
 
         // ── 공개 API ──────────────────────────────────────────────────
 
@@ -70,12 +73,17 @@ namespace MI.Core
             if (amount <= 0) return;
 
             _currentExp += amount;
-            _totalExp   += amount;
+            _totalExp += amount;
 
             ProcessLevelUp();
             NotifyExpChanged();
         }
-
+        public void UpdateDepth(int newDepth)
+        {
+            if (newDepth <= 0 || newDepth == _currentDepth) return;
+            _currentDepth = newDepth;
+            NotifyUpdateDepth(newDepth);
+        }
         /// <summary>
         /// 특정 레벨에서 다음 레벨로 진급하는 데 필요한 EXP를 반환.
         /// Config의 테이블 범위를 벗어나면 배율 계산 값을 반환.
@@ -90,8 +98,8 @@ namespace MI.Core
         public void Reset()
         {
             _currentLevel = 1;
-            _currentExp   = 0;
-            _totalExp     = 0;
+            _currentExp = 0;
+            _totalExp = 0;
             NotifyExpChanged();
         }
 
@@ -128,19 +136,25 @@ namespace MI.Core
 
         private void NotifyExpChanged()
         {
-            int   current  = _currentExp;
-            int   required = RequiredExp;
-            float ratio    = ExpRatio;
+            int current = _currentExp;
+            int required = RequiredExp;
+            float ratio = ExpRatio;
 
             // 역방향 순회: 콜백 내부에서 UnregisterListener가 호출돼도 안전
             for (int i = _listeners.Count - 1; i >= 0; i--)
                 _listeners[i].OnExpChanged(current, required, ratio);
         }
-
+        
         private void NotifyLevelUp(int newLevel)
         {
             for (int i = _listeners.Count - 1; i >= 0; i--)
                 _listeners[i].OnLevelUp(newLevel);
+        }
+
+        private void NotifyUpdateDepth(int newDepth)
+        {
+            for (int i = _listeners.Count - 1; i >= 0; i--)
+                _listeners[i].OnDepthUpdated(newDepth);
         }
 
         // ── 에디터 전용 ───────────────────────────────────────────────

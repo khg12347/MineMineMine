@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using MI.Data.Config;
-using MI.Presentation.Pickaxe;
-using MI.Presentation.Tile; // MITileModel, MITileView
+using MI.Domain.Tile;
+using MI.Domain.Pickaxe;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using MI.Utility;
 
 namespace MI.Core
 {
@@ -51,6 +52,7 @@ namespace MI.Core
         [SerializeField] private Sprite _wallSpriteTemp;
 
         // 런타임 상태
+        private int _currentDepth;       // 현재 곡괭이가 도달한 최대 깊이 (행 인덱스)
         private int _generatedRows;
         private float _stageStartX;        // 타일 배치 시작 X (카메라 왼쪽 엣지 기준)
         private float _cameraTargetY;
@@ -73,6 +75,7 @@ namespace MI.Core
 
             _cameraTargetY = _mainCamera.transform.position.y;
             _pickaxe.SpawnAtOffScreen(_mainCamera);
+            _currentDepth = 0;
         }
 
         private void Update()
@@ -160,7 +163,18 @@ namespace MI.Core
         private void CheckChunkGeneration()
         {
             int pickaxeRow = WorldYToRow(_pickaxe.transform.position.y);
-            int neededRows = pickaxeRow + _spawnAheadRows;
+            if(pickaxeRow > _currentDepth)
+            {
+                _currentDepth = pickaxeRow;
+                MIStatusManager.Instance.UpdateDepth(pickaxeRow); // 깊이 정보 업데이트
+                MILog.Log($"[StageManager] UpdateDepth Pickaxe Row: {pickaxeRow}, Current Depth: {_currentDepth}");
+            }
+            else
+            {
+                MILog.Log($"[StageManager] Pickaxe Row: {pickaxeRow}, Current Depth: {_currentDepth}");
+            }
+
+                int neededRows = pickaxeRow + _spawnAheadRows;
             if (neededRows > _generatedRows)
                 GenerateRowsUpTo(neededRows);
         }

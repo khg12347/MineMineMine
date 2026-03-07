@@ -75,22 +75,49 @@ Assets/
 
 ```
 02_Scripts/
-├── Core/                       # 게임 부트스트랩, 씬 관리, 이벤트 버스 등 핵심 인프라
-│   └── MI.Core.asmdef          # (예정)
-├── Domain/                     # 게임 규칙, 엔티티, 인터페이스 — 순수 로직 (Unity 의존 없음)
-│   ├── Pickaxe/
-│   ├── Tile/
-│   └── MI.Domain.asmdef        # (예정)
-├── Presentation/               # MonoBehaviour, UI, 입력 처리 — 화면에 보이는 것
-│   ├── Pickaxe/
-│   ├── Tile/
-│   ├── UI/
+├── Core/
+│   ├── Managers/
+│   │   ├── MIGameManager.cs
+│   │   └── MIStatusManager.cs
+│   ├── MIContracts.cs
+│   ├── MISceneContext.cs
+│   ├── MISingleton.cs
+│   ├── MIStageManager.cs
+│   └── MIUIRoot.cs
+├── Data/
+│   └── Config/
+│       ├── MIPickaxeConfig.cs
+│       ├── MIStatusConfig.cs
+│       └── MITileConfig.cs
+├── Domain/
 │   ├── Input/
-│   └── MI.Presentation.asmdef  # (예정)
-└── Data/                       # ScriptableObject, 저장/로드, 외부 API 연동
-    ├── SaveLoad/
-    ├── Config/
-    └── MI.Data.asmdef          # (예정)
+│   │   ├── MIInputActions.cs
+│   │   ├── MIInputActions.inputactions
+│   │   └── MITouchBreaker.cs
+│   ├── Pickaxe/
+│   │   ├── EPickaxePart.cs
+│   │   ├── FPickaxeStats.cs
+│   │   ├── MIPickaxeController.cs
+│   │   └── MIPickaxePartCollider.cs
+│   ├── Status/
+│   │   ├── FLevelEntry.cs
+│   │   └── FStatusSnapshot.cs
+│   └── Tile/
+│       ├── EBreakResult.cs
+│       ├── ETileType.cs
+│       ├── FTileData.cs
+│       ├── IMIBreakable.cs
+│       ├── MITileModel.cs
+│       └── MITileView.cs
+├── Presentation/
+│   └── UI/
+│       └── HUD/
+│           ├── Status/
+│           │   └── MIStatusHUD.cs
+│           └── MICanvasHUD.cs
+└── Utility/
+    ├── MIAppLifeTime.cs
+    └── MILog.cs
 ```
 
 ---
