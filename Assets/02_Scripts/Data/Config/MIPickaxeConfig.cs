@@ -8,9 +8,15 @@ namespace MI.Data.Config
     [CreateAssetMenu(fileName = "PickaxeConfig", menuName = "MI/Config/Pickaxe")]
     public class MIPickaxeConfig : SerializedScriptableObject
     {
-        [Title("공격")]
-        [PropertyRange(1, 10)]
-        [SerializeField] private int _damage = 1;
+        [Title("공격 — 머리 (Head)")]
+        [InfoBox("머리 부위 충돌 시 적용되는 데미지")]
+        [PropertyRange(1, 20)]
+        [SerializeField] private int _headDamage = 2;
+
+        [Title("공격 — 자루 (Handle)")]
+        [InfoBox("자루 부위 충돌 시 적용되는 데미지")]
+        [PropertyRange(1, 20)]
+        [SerializeField] private int _handleDamage = 1;
 
         [Title("물리")]
         [PropertyRange(0.5f, 10f)]
@@ -46,7 +52,8 @@ namespace MI.Data.Config
         {
             return new FPickaxeStats
             {
-                Damage = _damage,
+                HeadDamage = _headDamage,
+                HandleDamage = _handleDamage,
                 GravityScale = _gravityScale,
                 Bounciness = _bounciness,
                 Friction = _friction,

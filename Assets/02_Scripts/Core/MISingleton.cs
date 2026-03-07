@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace MI.Core
 {
-    public class MISingleton : MonoBehaviour
+    public class MISingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        public static MISingleton Instance { get; private set; }
+        public static T Instance { get; private set; }
         protected virtual void Awake()
         {
             if (Instance != null && Instance != this)
@@ -12,7 +12,7 @@ namespace MI.Core
                 Destroy(gameObject);
                 return;
             }
-            Instance = this;
+            Instance = this as T;
         }
     }
 }

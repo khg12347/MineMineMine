@@ -17,6 +17,11 @@ namespace MI.Data.Config
         [LabelText("점수")]
         [SerializeField] private int _dropScore = 10;
 
+        [LabelText("획득 EXP")]
+        [InfoBox("타일 파괴 시 플레이어에게 지급할 EXP")]
+        [PropertyRange(0, 9999)]
+        [SerializeField] private int _dropExp = 10;
+
         [Title("바운스 배율")]
         [InfoBox("Dirt=0.8 / Stone=1.0 / Iron=1.2 / Gold=1.5 / Diamond=2.0")]
         [PropertyRange(0.5f, 3f)]
@@ -38,11 +43,12 @@ namespace MI.Data.Config
         {
             return new FTileData
             {
-                TileType = _tileType,
-                MaxDurability = _maxDurability,
+                TileType          = _tileType,
+                MaxDurability     = _maxDurability,
                 CurrentDurability = _maxDurability,
-                DropScore = _dropScore,
-                BounceMultiplier = _bounceMultiplier
+                DropScore         = _dropScore,
+                DropExp           = _dropExp,
+                BounceMultiplier  = _bounceMultiplier
             };
         }
     }

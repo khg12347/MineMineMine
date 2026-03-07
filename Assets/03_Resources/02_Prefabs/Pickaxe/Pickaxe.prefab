@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7470762348122177655}
   - component: {fileID: 46382956233785724}
   - component: {fileID: 73642326983750945}
-  - component: {fileID: 4757758358069867609}
   - component: {fileID: 8630499677476878302}
   m_Layer: 0
   m_Name: Pickaxe
@@ -32,7 +31,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 654098034923877419}
+  - {fileID: 2480589797123310548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &46382956233785724
@@ -82,9 +83,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6efc8c0e73b45b54a9cb1a6238b1bed8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,7 +93,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!50 &73642326983750945
 Rigidbody2D:
@@ -121,13 +122,59 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &4757758358069867609
-CircleCollider2D:
+--- !u!114 &8630499677476878302
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725748073355031398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f63ee189e23592c43af1b17ca19b9e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.Pickaxe.MIPickaxeController
+  _config: {fileID: 11400000, guid: f9bf8e287bb7aca40aedd1c290f6bbc8, type: 2}
+--- !u!1 &1957325403021431239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2480589797123310548}
+  - component: {fileID: 5695532799446877736}
+  - component: {fileID: 1867159020652646992}
+  m_Layer: 0
+  m_Name: Handle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2480589797123310548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957325403021431239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: -0.305, y: -0.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7470762348122177655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+--- !u!70 &5695532799446877736
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957325403021431239}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -155,18 +202,102 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
---- !u!114 &8630499677476878302
+  m_Offset: {x: 0.1868224, y: 0.19432308}
+  m_Size: {x: 0.11226127, y: 0.90492535}
+  m_Direction: 0
+--- !u!114 &1867159020652646992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725748073355031398}
+  m_GameObject: {fileID: 1957325403021431239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f63ee189e23592c43af1b17ca19b9e94, type: 3}
+  m_Script: {fileID: 11500000, guid: f7aad3c5eea5111418cabfce4eef59e6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.Pickaxe.MIPickaxeController
-  _config: {fileID: 11400000, guid: f9bf8e287bb7aca40aedd1c290f6bbc8, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.Pickaxe.MIPickaxePartCollider
+  _part: 1
+--- !u!1 &7365974272968180709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 654098034923877419}
+  - component: {fileID: 891629256358392936}
+  - component: {fileID: 5561822096826138826}
+  m_Layer: 0
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &654098034923877419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365974272968180709}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7470762348122177655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+--- !u!70 &891629256358392936
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365974272968180709}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.17275535, y: 0.0049363934}
+  m_Size: {x: 0.27168235, y: 0.91115314}
+  m_Direction: 0
+--- !u!114 &5561822096826138826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365974272968180709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7aad3c5eea5111418cabfce4eef59e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.Pickaxe.MIPickaxePartCollider
+  _part: 0

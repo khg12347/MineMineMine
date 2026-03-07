@@ -1,0 +1,53 @@
+using DamageNumbersPro;
+using MI.Data.Config;
+using MI.Domain.Tile;
+using UnityEngine;
+
+namespace MI.Presentation.Tile
+{
+    /// <summary>
+    /// 타일의 순수 시각 표현 담당 (스프라이트, 데미지 텍스트, 파괴 이펙트).
+    /// 데미지/파괴 로직은 MITileModel에 위임.
+    /// </summary>
+    public class MITileView : MonoBehaviour
+    {
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        private Sprite[] _damageSprites;
+        [SerializeField] private DamageNumber _damageFloatingText;
+
+        public void UpdateTileData(MITileConfig config)
+        {
+            _spriteRenderer.sprite = config.BaseSprite;
+            _damageSprites = config.DamageSprites;
+        }
+
+        /// <summary>
+        /// 데미지 단계 스프라이트 교체.
+        /// spriteIndex = 0(온전함) ~ N(파괴 직전)
+        /// </summary>
+        public void UpdateVisual(int spriteIndex)
+        {
+            if (_damageSprites != null && spriteIndex < _damageSprites.Length)
+                _spriteRenderer.sprite = _damageSprites[spriteIndex];
+        }
+
+        /// <summary>
+        /// 플로팅 데미지 텍스트 진입점.
+        /// hitPoint 위치에 데미지 숫자를 표시. 실제 텍스트 오브젝트 생성은 추후 구현.
+        /// </summary>
+        public void ShowDamageText(int damage, Vector3 hitPoint)
+        {
+            // TODO: hitPoint 위치에 플로팅 데미지 텍스트 오브젝트 생성
+            _damageFloatingText.Spawn(hitPoint, damage);
+        }
+
+        /// <summary>
+        /// 파괴 시 호출. 이펙트/사운드/점수 이벤트 발행 추후 구현.
+        /// </summary>
+        public void PlayBreakEffect()
+        {
+            // TODO: 파괴 이펙트 재생, 점수 이벤트 발행
+            Destroy(gameObject);
+        }
+    }
+}

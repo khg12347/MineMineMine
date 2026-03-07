@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MI.Data.Config;
 using MI.Presentation.Pickaxe;
-using MI.Presentation.Tile;
+using MI.Presentation.Tile; // MITileModel, MITileView
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -23,7 +23,7 @@ namespace MI.Core
         [PropertyRange(1, 20)]
         [SerializeField] private int _stageWidth = 8;
         [PropertyRange(0.1f, 2f)]
-        [SerializeField] private float _tileSize = 0.5f;
+        [SerializeField] private float _tileSize = 0.75f;
 
         [Title("청크 설정")]
         [InfoBox("곡괭이 아래로 미리 생성해 둘 행 수")]
@@ -47,12 +47,18 @@ namespace MI.Core
         [SerializeField] private MIPickaxeController _pickaxe;
         [SerializeField] private MIPickaxeConfig _pickaxeConfig;
 
+        [Title("벽(임시)")]
+        [SerializeField] private Sprite _wallSpriteTemp;
+
         // 런타임 상태
         private int _generatedRows;
         private float _stageStartX;        // 타일 배치 시작 X (카메라 왼쪽 엣지 기준)
         private float _cameraTargetY;
         private GameObject _leftWall;
         private GameObject _rightWall;
+        private SpriteRenderer _leftWallRenderer;
+        private SpriteRenderer _rightWallRenderer;
+        private float _wallSpriteWidth;
 
         // 행 인덱스 → 해당 행의 타일 오브젝트 목록
         private readonly Dictionary<int, List<GameObject>> _tilesByRow = new();
@@ -102,11 +108,20 @@ namespace MI.Core
 
             float leftEdge  = _mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, 0f)).x;
             float rightEdge = _mainCamera.ViewportToWorldPoint(new Vector3(1f, 0.5f, 0f)).x;
-            const float wallThickness = 1f;
+            float wallThickness = _tileSize;
             const float wallHeight    = 200f; // 카메라 이동 범위를 커버할 높이
 
-            _leftWall  = CreateWall("LeftWall",  leftEdge  - wallThickness * 0.5f, wallThickness, wallHeight, wallMaterial);
-            _rightWall = CreateWall("RightWall", rightEdge + wallThickness * 0.5f, wallThickness, wallHeight, wallMaterial);
+            _leftWall  = CreateWall("LeftWall",  leftEdge  , wallThickness, wallHeight, wallMaterial);
+            _rightWall = CreateWall("RightWall", rightEdge , wallThickness, wallHeight, wallMaterial);
+
+            _wallSpriteWidth = _wallSpriteTemp.bounds.size.x;
+
+            // 타일 영역 좌/우 엣지
+            float tileAreaLeft  = _stageStartX - _tileSize * 0.5f;
+            float tileAreaRight = _stageStartX + (_stageWidth - 0.5f) * _tileSize;
+
+            //_leftWallRenderer  = CreateVisualWall("LeftWallVisual",  tileAreaLeft  - _wallSpriteWidth * 0.5f, _wallSpriteTemp, false);
+            //_rightWallRenderer = CreateVisualWall("RightWallVisual", tileAreaRight + _wallSpriteWidth * 0.5f, _wallSpriteTemp, true);
         }
 
         private GameObject CreateWall(string wallName, float posX, float width, float height, PhysicsMaterial2D material)
@@ -120,6 +135,24 @@ namespace MI.Core
             col.sharedMaterial = material;
 
             return wall;
+        }
+
+        /// <summary>Tiled 모드 SpriteRenderer를 가진 시각적 벽 오브젝트를 생성합니다.</summary>
+        private SpriteRenderer CreateVisualWall(string objName, float posX, Sprite sprite, bool flipX)
+        {
+            var obj = new GameObject(objName);
+            obj.transform.SetParent(transform);
+            obj.transform.position = new Vector3(posX + (flipX ? -0.5f : 0.5f), 0f, 0f);
+
+            var sr          = obj.AddComponent<SpriteRenderer>();
+            sr.sprite       = sprite;
+            sr.drawMode     = SpriteDrawMode.Tiled;
+            sr.tileMode     = SpriteTileMode.Continuous;
+            sr.flipX        = flipX;
+            sr.size         = new Vector2(_wallSpriteWidth, sprite.bounds.size.y);
+            sr.sortingOrder = 5; // 타일 레이어보다 앞에
+
+            return sr;
         }
 
         // ── 청크 생성 / 제거 ──────────────────────────────────────────
@@ -142,7 +175,7 @@ namespace MI.Core
                     var config = SelectTileConfig(row);
                     var pos    = new Vector3(_stageStartX + x * _tileSize, -row * _tileSize, 0f);
                     var obj    = Instantiate(_tilePrefab, pos, Quaternion.identity, _tileParent);
-                    obj.GetComponent<MITileView>().Initialize(config.CreateTileData());
+                    obj.GetComponent<MITileModel>().Initialize(config);
                     rowTiles.Add(obj);
                 }
                 _tilesByRow[row] = rowTiles;
@@ -182,10 +215,27 @@ namespace MI.Core
 
         private void UpdateWallPositions()
         {
-            // 벽을 카메라 Y에 맞춰 이동 (항상 화면을 커버하도록)
             float camY = _mainCamera.transform.position.y;
+
+            // 물리 벽: 카메라 Y에 맞춰 이동 (항상 화면을 커버하도록)
             if (_leftWall  != null) _leftWall.transform.position  = new Vector3(_leftWall.transform.position.x,  camY, 0f);
             if (_rightWall != null) _rightWall.transform.position = new Vector3(_rightWall.transform.position.x, camY, 0f);
+
+            // 시각적 벽: 맵 최상단(y=0)부터 카메라 하단+여유분까지 늘려 무한 확장처럼 보이게
+            if (_leftWallRenderer == null || _rightWallRenderer == null) return;
+
+            float topY    = 0f; // 맵 시작점 고정
+            float bottomY = camY - _mainCamera.orthographicSize - _tileSize * _spawnAheadRows;
+            float height  = Mathf.Max(topY - bottomY, _wallSpriteWidth);
+            float centerY = (topY + bottomY) * 0.5f;
+
+            var leftPos  = _leftWallRenderer.transform.position;
+            var rightPos = _rightWallRenderer.transform.position;
+            _leftWallRenderer.transform.position  = new Vector3(leftPos.x,  centerY, 0f);
+            _rightWallRenderer.transform.position = new Vector3(rightPos.x, centerY, 0f);
+
+            _leftWallRenderer.size  = new Vector2(_wallSpriteWidth, height);
+            _rightWallRenderer.size = new Vector2(_wallSpriteWidth, height);
         }
 
         // ── 헬퍼 ─────────────────────────────────────────────────────

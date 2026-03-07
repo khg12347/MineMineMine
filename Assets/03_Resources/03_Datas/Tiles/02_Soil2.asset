@@ -24,6 +24,8 @@ MonoBehaviour:
   _tileType: 11
   _maxDurability: 2
   _dropScore: 10
+  _dropExp: 20
+  _bounceMultiplier: 1
   _baseSprite: {fileID: 21300000, guid: 8ef149414fa14fb4c9703aa107c55a8d, type: 3}
   _damageSprites:
   - {fileID: 21300000, guid: 8ef149414fa14fb4c9703aa107c55a8d, type: 3}
