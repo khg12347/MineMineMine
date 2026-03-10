@@ -42,11 +42,12 @@ namespace MI.Presentation.World.Tile
 
         /// <summary>
         /// 파괴 시 호출. 이펙트/사운드/점수 이벤트 발행 추후 구현.
+        /// 오브젝트 비활성화는 호출자(MITileModel.Break)가 MIPoolManager를 통해 처리.
         /// </summary>
         public void PlayBreakEffect()
         {
-            // TODO: 파괴 이펙트 재생, 점수 이벤트 발행
-            Destroy(gameObject);
+            // TODO: 파괴 이펙트 재생, 사운드 재생
+            // Destroy(gameObject) 제거 — 오브젝트 파괴 대신 MIPoolManager 풀로 반환하여 재사용
         }
     }
 }

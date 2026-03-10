@@ -138,7 +138,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
 --- !u!114 &7248650235895983781
 MonoBehaviour:
@@ -153,8 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.Tile.MITileView
   _spriteRenderer: {fileID: 4615899694012589150}
-  _damageSprites:
-  - {fileID: 21300000, guid: 9936521a492d8304982e816f943811e3, type: 3}
   _damageFloatingText: {fileID: 1075371804263254469, guid: c20834aaea70dae47b24b7d21a656a01, type: 3}
 --- !u!114 &6327152307391151466
 MonoBehaviour:
@@ -168,3 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311b5b9492dee704b998b4f6aa7b0ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.Tile.MITileModel
+  _data:
+    TileType: 0
+    MaxDurability: 0
+    CurrentDurability: 0
+    DropScore: 0
+    DropExp: 0
+    BounceMultiplier: 0

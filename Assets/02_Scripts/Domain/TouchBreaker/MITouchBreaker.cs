@@ -51,12 +51,12 @@ namespace MI.Domain.TouchBreaker
             Vector2 worldPos = _mainCamera.ScreenToWorldPoint(screenPos);
             var hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, _tileLayer);
 
-            MILog.Log($"Tap at screen {screenPos}, world {worldPos} - Hit: {hit.collider?.name ?? "None"}");
+            //MILog.Log($"Tap at screen {screenPos}, world {worldPos} - Hit: {hit.collider?.name ?? "None"}");
 
             if (hit.collider == null ||
                 !hit.collider.TryGetComponent(out IMIBreakable breakable))
             {
-                MILog.Log($"No breakable tile at {worldPos}");
+                //MILog.Log($"No breakable tile at {worldPos}");
                 return;
             }
 

@@ -282,6 +282,10 @@ PrefabInstance:
       propertyPath: _config
       value: 
       objectReference: {fileID: 11400000, guid: 8be89c4ae5d631a46985e05d839891bd, type: 2}
+    - target: {fileID: 8630499677476878302, guid: 55e43e05bdd80e4458b5fe1ae2df5a43, type: 3}
+      propertyPath: _autoRotateSpeed
+      value: 360
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -465,6 +469,53 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &360996285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 360996287}
+  - component: {fileID: 360996286}
+  m_Layer: 0
+  m_Name: Pool Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &360996286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360996285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7dd66967d44c64296fcf66f8892095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MI.Core.Pool.MIPoolManager
+  _initialPoolSize: 256
+  _maxPoolSize: 2048
+  _autoExpand: 1
+--- !u!4 &360996287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360996285}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.27511, y: -361.92023, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &481343327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,7 +1558,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 221, y: 442}
+  m_ReferenceResolution: {x: 221, y: 390}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -4895,3 +4946,4 @@ SceneRoots:
   - {fileID: 164254016}
   - {fileID: 1718370101}
   - {fileID: 1994098374}
+  - {fileID: 360996287}

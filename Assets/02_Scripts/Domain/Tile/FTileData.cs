@@ -1,5 +1,6 @@
 namespace MI.Domain.Tile
 {
+    [System.Serializable]
     public struct FTileData
     {
         public ETileType TileType;

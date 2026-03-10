@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using MI.Core.Pool;
 using MI.Data.Config;
-using MI.Domain.Tile;
-using MI.Domain.Pickaxe;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using MI.Utility;
+using MI.Presentation.World.Pickaxe;
+using MI.Presentation.World.Tile;
 
 namespace MI.Core
 {
@@ -62,8 +63,8 @@ namespace MI.Core
         private SpriteRenderer _rightWallRenderer;
         private float _wallSpriteWidth;
 
-        // 행 인덱스 → 해당 행의 타일 오브젝트 목록
-        private readonly Dictionary<int, List<GameObject>> _tilesByRow = new();
+        // 행 인덱스 → 해당 행의 타일 모델 목록 (풀 반환 시 MITileModel 직접 참조)
+        private readonly Dictionary<int, List<MITileModel>> _tilesByRow = new();
 
         private void Start()
         {
@@ -114,8 +115,8 @@ namespace MI.Core
             float wallThickness = _tileSize;
             const float wallHeight    = 200f; // 카메라 이동 범위를 커버할 높이
 
-            _leftWall  = CreateWall("LeftWall",  leftEdge  , wallThickness, wallHeight, wallMaterial);
-            _rightWall = CreateWall("RightWall", rightEdge , wallThickness, wallHeight, wallMaterial);
+            _leftWall  = CreateWall("LeftWall",  leftEdge + _tileSize , wallThickness, wallHeight, wallMaterial);
+            _rightWall = CreateWall("RightWall", rightEdge - _tileSize,  wallThickness, wallHeight, wallMaterial);
 
             _wallSpriteWidth = _wallSpriteTemp.bounds.size.x;
 
@@ -167,11 +168,11 @@ namespace MI.Core
             {
                 _currentDepth = pickaxeRow;
                 MIStatusManager.Instance.UpdateDepth(pickaxeRow); // 깊이 정보 업데이트
-                MILog.Log($"[StageManager] UpdateDepth Pickaxe Row: {pickaxeRow}, Current Depth: {_currentDepth}");
+                //MILog.Log($"[StageManager] UpdateDepth Pickaxe Row: {pickaxeRow}, Current Depth: {_currentDepth}");
             }
             else
             {
-                MILog.Log($"[StageManager] Pickaxe Row: {pickaxeRow}, Current Depth: {_currentDepth}");
+                //MILog.Log($"[StageManager] Pickaxe Row: {pickaxeRow}, Current Depth: {_currentDepth}");
             }
 
                 int neededRows = pickaxeRow + _spawnAheadRows;
@@ -183,14 +184,16 @@ namespace MI.Core
         {
             for (int row = _generatedRows; row < targetRow; row++)
             {
-                var rowTiles = new List<GameObject>(_stageWidth);
+                var rowTiles = new List<MITileModel>(_stageWidth);
                 for (int x = 0; x < _stageWidth; x++)
                 {
                     var config = SelectTileConfig(row);
                     var pos    = new Vector3(_stageStartX + x * _tileSize, -row * _tileSize, 0f);
-                    var obj    = Instantiate(_tilePrefab, pos, Quaternion.identity, _tileParent);
-                    obj.GetComponent<MITileModel>().Initialize(config);
-                    rowTiles.Add(obj);
+                    // Instantiate 대신 풀에서 꺼냄 (타일 도메인 초기화는 아래 ResetTile에서 직접 수행)
+                    var model  = MIPoolManager.Instance.Get<MITileModel>(_tilePrefab, pos, Quaternion.identity, _tileParent);
+                    model.ResetTile(config);
+                    rowTiles.Add(model);
+                    model.SetParent(this);
                 }
                 _tilesByRow[row] = rowTiles;
             }
@@ -207,11 +210,24 @@ namespace MI.Core
             {
                 if (kv.Key >= cullBefore) continue;
                 foreach (var tile in kv.Value)
-                    if (tile != null) Destroy(tile);
+                {
+                    // Destroy 대신 풀에 반환 (이미 Break()로 반환된 타일은 내부에서 중복 처리 방지)
+                    if (tile.gameObject.activeSelf) MIPoolManager.Instance.Return(tile);
+                }
                 toRemove.Add(kv.Key);
             }
             foreach (int row in toRemove)
                 _tilesByRow.Remove(row);
+        }
+
+        public void OnDestroyTileInTilesByRow(MITileModel tile)
+        {
+            // 타일이 파괴될 때 해당 행에서 참조 제거 (선택적, 풀 반환 시 중복 방지 로직으로 충분할 수 있음)
+            foreach (var kv in _tilesByRow)
+            {
+                if (kv.Value.Remove(tile))
+                    break;
+            }
         }
 
         // ── 카메라 / 벽 추적 ─────────────────────────────────────────

@@ -1,10 +1,11 @@
 using MI.Core;
+using MI.Core.Pool;
 using MI.Data.Config;
 using MI.Domain.Tile;
-using MI.Presentation.World.Tile;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MI.Domain.Tile
+namespace MI.Presentation.World.Tile
 {
     /// <summary>
     /// 타일의 데미지 수신 / HP 관리 / 파괴 판정 담당.
@@ -22,10 +23,11 @@ namespace MI.Domain.Tile
     [RequireComponent(typeof(MITileView))]
     public class MITileModel : MonoBehaviour, IMIBreakable
     {
-        private FTileData _data;
+        [SerializeField, ReadOnly] private FTileData _data;
+        private MIStageManager _parent;
         private MITileView _view;
 
-        public bool IsBreakable    => !_data.IsDestroyed;
+        public bool IsBreakable       => !_data.IsDestroyed;
         public float BounceMultiplier => _data.BounceMultiplier;
 
         private void Awake()
@@ -33,13 +35,20 @@ namespace MI.Domain.Tile
             _view = GetComponent<MITileView>();
         }
 
-        /// <summary>스테이지 생성 시 MIStageManager에서 호출</summary>
-        public void Initialize(MITileConfig tileConfig)
+        /// <summary>스테이지 생성 시 MIStageManager에서 호출 (내부적으로 ResetTile 위임)</summary>
+        public void Initialize(MITileConfig tileConfig) => ResetTile(tileConfig);
+
+        /// <summary>
+        /// 풀에서 꺼낼 때 타일 상태를 초기화합니다.
+        /// HP, 스프라이트, 데미지 단계를 모두 초기값으로 되돌립니다.
+        /// </summary>
+        public void ResetTile(MITileConfig tileConfig)
         {
             _data = tileConfig.CreateTileData();
             _view.UpdateTileData(tileConfig);
             _view.UpdateVisual(0); // 초기 상태: 온전한 스프라이트
         }
+        public void SetParent(MIStageManager parent) => _parent = parent;
 
         public EBreakResult TakeDamage(int damage, Vector3 hitPoint = default)
         {
@@ -61,7 +70,12 @@ namespace MI.Domain.Tile
             // EXP 연동: MIStatusManager에 타일 파괴 EXP 전달
             MIStatusManager.Instance.AddExp(_data.DropExp);
 
-            _view.PlayBreakEffect(); // 이펙트 재생 후 오브젝트 파괴
+            // 파괴 이펙트 재생 (비주얼만, 오브젝트 파괴 없음)
+            _view.PlayBreakEffect();
+
+            // Destroy 대신 풀에 반환하여 GC 부담 제거
+            MIPoolManager.Instance.Return(this);
+            _parent.OnDestroyTileInTilesByRow(this);
         }
     }
 }

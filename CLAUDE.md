@@ -82,18 +82,18 @@ Assets/
 │   ├── MIContracts.cs
 │   ├── MISceneContext.cs
 │   ├── MISingleton.cs
-│   ├── MIStageManager.cs
-│   └── MIUIRoot.cs
+│   └── MIStageManager.cs
 ├── Data/
-│   └── Config/
-│       ├── MIPickaxeConfig.cs
-│       ├── MIStatusConfig.cs
-│       └── MITileConfig.cs
+│   ├── Config/
+│   │   ├── MIPickaxeConfig.cs
+│   │   ├── MIStatusConfig.cs
+│   │   └── MITileConfig.cs
+│   ├── UIRes/
+│   │   └── MIUINumberResources.cs
+│   ├── Cloud/                          # 예정
+│   ├── Save/                           # 예정
+│   └── Table/                          # 예정
 ├── Domain/
-│   ├── Input/
-│   │   ├── MIInputActions.cs
-│   │   ├── MIInputActions.inputactions
-│   │   └── MITouchBreaker.cs
 │   ├── Pickaxe/
 │   │   ├── EPickaxePart.cs
 │   │   ├── FPickaxeStats.cs
@@ -102,19 +102,33 @@ Assets/
 │   ├── Status/
 │   │   ├── FLevelEntry.cs
 │   │   └── FStatusSnapshot.cs
-│   └── Tile/
-│       ├── EBreakResult.cs
-│       ├── ETileType.cs
-│       ├── FTileData.cs
-│       ├── IMIBreakable.cs
-│       ├── MITileModel.cs
-│       └── MITileView.cs
+│   ├── Tile/
+│   │   ├── EBreakResult.cs
+│   │   ├── ETileType.cs
+│   │   ├── FTileData.cs
+│   │   ├── IMIBreakable.cs
+│   │   └── MITileModel.cs
+│   └── TouchBreaker/
+│       └── MITouchBreaker.cs
+├── Infrastructure/
+│   └── Input/
+│       ├── IMIInputListener.cs
+│       ├── MIInputActions.cs
+│       ├── MIInputActions.inputactions
+│       └── MIInputHandler.cs
 ├── Presentation/
-│   └── UI/
-│       └── HUD/
-│           ├── Status/
-│           │   └── MIStatusHUD.cs
-│           └── MICanvasHUD.cs
+│   ├── UI/
+│   │   ├── Common/
+│   │   │   └── MIButton.cs
+│   │   ├── HUD/
+│   │   │   ├── Status/
+│   │   │   │   └── MIStatusHUD.cs
+│   │   │   └── MICanvasHUD.cs
+│   │   ├── IMIUIContext.cs
+│   │   └── MIUIRoot.cs
+│   └── World/
+│       └── Tile/
+│           └── MITileView.cs
 └── Utility/
     ├── MIAppLifeTime.cs
     └── MILog.cs
