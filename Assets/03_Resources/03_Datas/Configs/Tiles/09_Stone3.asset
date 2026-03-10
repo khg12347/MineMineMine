@@ -22,10 +22,11 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _tileType: 32
-  _maxDurability: 9
+  _maxDurability: 900
   _dropScore: 10
   _dropExp: 500
   _bounceMultiplier: 1
   _baseSprite: {fileID: 21300000, guid: 5faed5c2facd75946a1b3d3f7e1fe970, type: 3}
   _damageSprites:
   - {fileID: 21300000, guid: 5faed5c2facd75946a1b3d3f7e1fe970, type: 3}
+  _crackLevelDurability: 84030000ee020000c201000096000000

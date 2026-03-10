@@ -1,6 +1,7 @@
 using MI.Domain.Tile;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MI.Data.Config
@@ -35,6 +36,9 @@ namespace MI.Data.Config
         [LabelText("데미지 받았을 때 스프라이트")]
         [SerializeField] private Sprite[] _damageSprites;
 
+        [LabelText("균열 단계별 내구도")]
+        [SerializeField] private List<int> _crackLevelDurability = new List<int>();
+
         public ETileType TileType => _tileType;
         public Sprite BaseSprite => _baseSprite;
         public Sprite[] DamageSprites => _damageSprites;
@@ -48,7 +52,8 @@ namespace MI.Data.Config
                 CurrentDurability = _maxDurability,
                 DropScore         = _dropScore,
                 DropExp           = _dropExp,
-                BounceMultiplier  = _bounceMultiplier
+                BounceMultiplier  = _bounceMultiplier,
+                CrackLevelDurability = new List<int>(_crackLevelDurability)
             };
         }
     }

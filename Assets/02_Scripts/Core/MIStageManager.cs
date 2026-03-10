@@ -39,7 +39,6 @@ namespace MI.Core
         [InfoBox("깊이 N행마다 다음 티어 타일로 전환")]
         [PropertyRange(5, 50)]
         [SerializeField] private int _tierDepthStep = 20;
-
         [Title("카메라")]
         [SerializeField] private Camera _mainCamera;
         [PropertyRange(1f, 10f)]

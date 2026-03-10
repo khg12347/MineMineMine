@@ -13,7 +13,11 @@ namespace MI.Presentation.World.Tile
         [SerializeField] private SpriteRenderer _spriteRenderer;
         private Sprite[] _damageSprites;
         [SerializeField] private DamageNumber _damageFloatingText;
-
+        private Animator _animator;
+        private void Awake()
+        {
+            _animator = GetComponentInChildren<Animator>();
+        }
         public void UpdateTileData(MITileConfig config)
         {
             _spriteRenderer.sprite = config.BaseSprite;
@@ -39,7 +43,10 @@ namespace MI.Presentation.World.Tile
             // TODO: hitPoint 위치에 플로팅 데미지 텍스트 오브젝트 생성
             _damageFloatingText.Spawn(hitPoint, damage);
         }
-
+        public void SetCrackParameter(int crackLevel)
+        {
+            _animator.SetInteger("icrack", crackLevel);
+        }
         /// <summary>
         /// 파괴 시 호출. 이펙트/사운드/점수 이벤트 발행 추후 구현.
         /// 오브젝트 비활성화는 호출자(MITileModel.Break)가 MIPoolManager를 통해 처리.
