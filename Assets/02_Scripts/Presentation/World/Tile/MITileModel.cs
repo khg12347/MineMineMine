@@ -56,6 +56,7 @@ namespace MI.Presentation.World.Tile
 
             // 데미지 텍스트는 결과에 관계없이 표시
             _view.ShowDamageText(damage, hitPoint);
+            _view.SetShakeParameter();
             _view.SetCrackParameter(_data.GetCrackLevel());
 
             if (result == EBreakResult.Destroyed)

@@ -50,26 +50,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!114 &-7315209938269407929
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fee1bd0ab028c2240b36b565cd4d53f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MI.Core.StateMachine.MITileStateMahcine
-  onEnterStateEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onExitStateEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  enableDebugLog: 1
-  searchParent: 1
 --- !u!1101 &-6748467253278909260
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -170,46 +150,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!114 &-2434819404435911904
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fee1bd0ab028c2240b36b565cd4d53f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MI.Core.StateMachine.MITileStateMahcine
-  onEnterStateEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onExitStateEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  enableDebugLog: 1
-  searchParent: 1
---- !u!114 &-1138486787467820497
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fee1bd0ab028c2240b36b565cd4d53f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MI.Core.StateMachine.MITileStateMahcine
-  onEnterStateEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onExitStateEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  enableDebugLog: 1
-  searchParent: 1
 --- !u!1102 &-1109563110334068823
 AnimatorState:
   serializedVersion: 6
@@ -224,8 +164,7 @@ AnimatorState:
   - {fileID: -3037743438530950435}
   - {fileID: 8564738452416212088}
   - {fileID: -6748467253278909260}
-  m_StateMachineBehaviours:
-  - {fileID: -2434819404435911904}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -292,7 +231,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 120, y: 130, z: 0}
+  m_EntryPosition: {x: 140, y: 160, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 919982163821418361}
@@ -302,7 +241,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tile State Machine
+  m_Name: Animator Crack
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: icrack
@@ -338,8 +277,7 @@ AnimatorState:
   - {fileID: -7729389417366664551}
   - {fileID: -3820441702911129967}
   - {fileID: 7842567742227931700}
-  m_StateMachineBehaviours:
-  - {fileID: 2369290383571789405}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -379,26 +317,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!114 &2369290383571789405
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fee1bd0ab028c2240b36b565cd4d53f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MI.Core.StateMachine.MITileStateMahcine
-  onEnterStateEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onExitStateEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  enableDebugLog: 1
-  searchParent: 1
 --- !u!1101 &3560581408629851419
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -438,8 +356,7 @@ AnimatorState:
   - {fileID: 1414770808870495385}
   - {fileID: -8776182077979003675}
   - {fileID: -865968914526266797}
-  m_StateMachineBehaviours:
-  - {fileID: -7315209938269407929}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -518,8 +435,7 @@ AnimatorState:
   - {fileID: -6031188171763525678}
   - {fileID: 3560581408629851419}
   - {fileID: 6639214571264251822}
-  m_StateMachineBehaviours:
-  - {fileID: -1138486787467820497}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

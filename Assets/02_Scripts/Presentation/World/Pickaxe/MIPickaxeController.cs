@@ -8,7 +8,7 @@ namespace MI.Presentation.World.Pickaxe
     public class MIPickaxeController : MonoBehaviour
     {
         [SerializeField] private MIPickaxeConfig _config;
-        
+        [SerializeField] private Vector2 _minimumForce = new Vector2(0, 1f);
         [SerializeField] private float _autoRotateSpeed = 180f; // 초당 회전 속도 (도 단위)
         [SerializeField] private bool _flipRotationDir = false; // 회전 방향 반전 여부 (시계/반시계)
 
@@ -107,7 +107,7 @@ namespace MI.Presentation.World.Pickaxe
             {
                 // 내구도 감소만 발생: PhysicsMaterial2D가 기본 바운스 처리 후 배율 적용
                 if (bounceMultiplier != 1f && _rb.linearVelocity.y > 0f)
-                    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _rb.linearVelocity.y * bounceMultiplier);
+                    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _rb.linearVelocity.y * bounceMultiplier) + _minimumForce;
             }
         }
     }
