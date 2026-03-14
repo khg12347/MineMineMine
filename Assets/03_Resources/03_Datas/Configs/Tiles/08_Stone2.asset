@@ -30,3 +30,4 @@ MonoBehaviour:
   _damageSprites:
   - {fileID: 21300000, guid: 824f77d4fe7e111459ac0f7a74347807, type: 3}
   _crackLevelDurability: 200300005802000090010000c8000000
+  _prefabFxTileDebris: {fileID: 3087789122344719233, guid: 37fdba862df47074db5d7577c8cc9d5d, type: 3}

@@ -16,6 +16,8 @@ namespace MI.Presentation.World.Tile
         [SerializeField] private Animator _animatorCrack;
         [SerializeField] private Animator _animatorTile;
 
+        private GameObject _fxDebris;
+
         private void Awake()
         {
         }
@@ -24,6 +26,7 @@ namespace MI.Presentation.World.Tile
         {
             _spriteRenderer.sprite = config.BaseSprite;
             _damageSprites = config.DamageSprites;
+            _fxDebris = config.PrefabFxTileDebris;
         }
 
         /// <summary>
@@ -62,6 +65,11 @@ namespace MI.Presentation.World.Tile
         public void PlayBreakEffect()
         {
             // TODO: 파괴 이펙트 재생, 사운드 재생
+            if(_fxDebris != null)
+            {
+                GameObject fxInstance = Instantiate(_fxDebris, transform.position, Quaternion.identity);
+                //Destroy(fxInstance, 2f); // 2초 후 파괴 (예시) - 실제로는 이펙트 오브젝트 자체에서 자동 파괴 처리하는 것이 좋음
+            }
             // Destroy(gameObject) 제거 — 오브젝트 파괴 대신 MIPoolManager 풀로 반환하여 재사용
         }
     }

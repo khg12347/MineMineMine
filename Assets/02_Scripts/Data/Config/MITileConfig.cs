@@ -39,10 +39,15 @@ namespace MI.Data.Config
         [LabelText("균열 단계별 내구도")]
         [SerializeField] private List<int> _crackLevelDurability = new List<int>();
 
+        [Title("파괴 시 효과")]
+        [LabelText("타일 파편 프리팹")]
+        [SerializeField] private GameObject _prefabFxTileDebris;
+        //사운드 필요
+
         public ETileType TileType => _tileType;
         public Sprite BaseSprite => _baseSprite;
         public Sprite[] DamageSprites => _damageSprites;
-
+        public GameObject PrefabFxTileDebris => _prefabFxTileDebris;
         public FTileData CreateTileData()
         {
             return new FTileData
