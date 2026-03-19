@@ -62,7 +62,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 67b97cbc22c81704ba17e1f42749744c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,6 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.Pickaxe.MIPickaxeController
   _config: {fileID: 11400000, guid: f9bf8e287bb7aca40aedd1c290f6bbc8, type: 2}
+  _minimumForce: {x: 0, y: 1}
+  _autoRotateSpeed: 180
+  _flipRotationDir: 0
 --- !u!1 &1957325403021431239
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,8 +205,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.1868224, y: 0.19432308}
-  m_Size: {x: 0.11226127, y: 0.90492535}
+  m_Offset: {x: 0.1868224, y: 0.2}
+  m_Size: {x: 0.11226127, y: 0.96}
   m_Direction: 0
 --- !u!114 &1867159020652646992
 MonoBehaviour:
@@ -285,8 +288,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.17275535, y: 0.0049363934}
-  m_Size: {x: 0.27168235, y: 0.91115314}
+  m_Offset: {x: 0.16, y: 0}
+  m_Size: {x: 0.27, y: 0.9}
   m_Direction: 0
 --- !u!114 &5561822096826138826
 MonoBehaviour:

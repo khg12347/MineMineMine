@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eedc8125ce49784eb456f9ef357d5a8, type: 3}
+  m_Name: StageConfig
+  m_EditorClassIdentifier: Assembly-CSharp::MI.Data.Config.MIStageConfig
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _gridWidth: 8
+  _rowHeight: 0.75
+  _chunkRows: 16
+  _levels:
+  - {fileID: 11400000, guid: 9d873b844b64ee845ba0a33436bf1ce0, type: 2}
+  - {fileID: 11400000, guid: 9d873b844b64ee845ba0a33436bf1ce0, type: 2}
+  - {fileID: 11400000, guid: 9d873b844b64ee845ba0a33436bf1ce0, type: 2}

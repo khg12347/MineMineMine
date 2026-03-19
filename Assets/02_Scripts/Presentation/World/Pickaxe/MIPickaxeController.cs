@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace MI.Presentation.World.Pickaxe
 {
+    using Camera = UnityEngine.Camera;
+
     public class MIPickaxeController : MonoBehaviour
     {
         [SerializeField] private MIPickaxeConfig _config;
@@ -103,11 +105,17 @@ namespace MI.Presentation.World.Pickaxe
                         _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -Mathf.Abs(_rb.linearVelocity.y));
                 }
             }
-            else
+            else if(result == EBreakResult.Damaged)
             {
                 // 내구도 감소만 발생: PhysicsMaterial2D가 기본 바운스 처리 후 배율 적용
                 if (bounceMultiplier != 1f && _rb.linearVelocity.y > 0f)
                     _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _rb.linearVelocity.y * bounceMultiplier) + _minimumForce;
+            }
+            else if (result == EBreakResult.DestroyWithOneHit)
+            {
+                // 한 방에 파괴: 바운스 없음
+                if (_rb.linearVelocity.y > 0f)
+                    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -Mathf.Abs(_rb.linearVelocity.y));
             }
         }
     }
