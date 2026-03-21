@@ -1,16 +1,16 @@
 using System.Collections.Generic;
-using MI.Core.Pool;
-using MI.Core.Stage;
+using MI.Core;
 using MI.Data.Config;
+using MI.Domain.Stage;
 using MI.Domain.Tile;
 using MI.Presentation.World.Camera;
 using MI.Presentation.World.Pickaxe;
-using MI.Presentation.World.Tile;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MI.Core
+namespace MI.Presentation.World.Stage
 {
+    using Camera = UnityEngine.Camera;
     /// <summary>
     /// 무한 하강 스테이지를 총괄하는 오케스트라 MonoBehaviour.
     /// 각 책임은 전담 모듈에 위임합니다:

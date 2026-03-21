@@ -1,7 +1,7 @@
 using MI.Data.Config;
 using UnityEngine;
 
-namespace MI.Core.Stage
+namespace MI.Domain.Stage
 {
     /// <summary>
     /// 스테이지 좌우 물리 벽을 생성하고, 카메라 Y 위치에 맞춰 벽 위치를 업데이트합니다.

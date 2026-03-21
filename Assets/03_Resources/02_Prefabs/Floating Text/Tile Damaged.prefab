@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   permanent: 0
-  lifetime: 1
+  lifetime: 0.2
   unscaledTime: 0
   enable3DGame: 0
   faceCameraView: 1
@@ -208,16 +208,16 @@ MonoBehaviour:
   enableShakeFadeIn: 0
   shakeOffsetFadeIn: {x: 0, y: 1.5}
   shakeFrequencyFadeIn: 4
-  durationFadeOut: 0.2
+  durationFadeOut: 0.5
   enableOffsetFadeOut: 0
   offsetFadeOut: {x: 0.5, y: 0}
-  enableScaleFadeOut: 1
-  scaleFadeOut: {x: 0.6, y: 1.4}
+  enableScaleFadeOut: 0
+  scaleFadeOut: {x: 0.4, y: 0.4}
   enableCrossScaleFadeOut: 0
   crossScaleFadeOut: {x: 1, y: 1.5}
-  enableShakeFadeOut: 1
-  shakeOffsetFadeOut: {x: 0, y: -1}
-  shakeFrequencyFadeOut: 2
+  enableShakeFadeOut: 0
+  shakeOffsetFadeOut: {x: 0, y: 1.5}
+  shakeFrequencyFadeOut: 4
   enableLerp: 0
   lerpSettings:
     speed: 5
@@ -471,7 +471,7 @@ MonoBehaviour:
   pushSettings:
     radius: 3
     pushOffset: 1
-  updateDelay: 0.0125
+  updateDelay: 0.01667
   enablePooling: 1
   poolSize: 50
   disableOnSceneLoad: 1
@@ -525,7 +525,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 4, y: 2}
+  m_SizeDelta: {x: 3, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1347026879752037623
 MeshRenderer:
@@ -605,8 +605,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282436659
-  m_fontColor: {r: 0.2, g: 0.8, b: 0.24999996, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -623,8 +623,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 3
+  m_fontSizeBase: 3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

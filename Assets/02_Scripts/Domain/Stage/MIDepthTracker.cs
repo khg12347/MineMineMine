@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MI.Core.Stage
+namespace MI.Domain.Stage
 {
     /// <summary>
     /// 곡괭이의 월드 Y 좌표를 행 인덱스로 변환하고,

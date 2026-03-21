@@ -1,7 +1,7 @@
 using MI.Data.Config;
 using UnityEngine;
 
-namespace MI.Core.Stage
+namespace MI.Domain.Stage
 {
     /// <summary>
     /// 절대 행 인덱스를 레벨 정보로 변환하는 정적 유틸 클래스.

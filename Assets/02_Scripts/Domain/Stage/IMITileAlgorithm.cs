@@ -1,7 +1,7 @@
 using MI.Data.Config;
 using MI.Domain.Tile;
 
-namespace MI.Core
+namespace MI.Domain.Stage
 {
     /// <summary>
     /// 타일 청크 생성 알고리즘의 계약 인터페이스.

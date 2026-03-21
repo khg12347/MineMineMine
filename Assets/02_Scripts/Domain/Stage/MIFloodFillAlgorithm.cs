@@ -4,7 +4,7 @@ using MI.Data.Config;
 using MI.Domain.Tile;
 using UnityEngine;
 
-namespace MI.Core.Stage
+namespace MI.Domain.Stage
 {
     using Random = System.Random;
     /// <summary>

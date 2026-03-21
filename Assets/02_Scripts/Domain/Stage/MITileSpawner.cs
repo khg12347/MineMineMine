@@ -6,7 +6,7 @@ using MI.Domain.Tile;
 using MI.Presentation.World.Tile;
 using UnityEngine;
 
-namespace MI.Core.Stage
+namespace MI.Domain.Stage
 {
     /// <summary>
     /// MIChunkBuffer 에서 행 데이터를 소비하여 MITileModel 인스턴스를 스폰/제거합니다.

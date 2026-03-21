@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MI.Domain.Tile;
 
-namespace MI.Core.Stage
+namespace MI.Domain.Stage
 {
     /// <summary>
     /// 알고리즘이 생성한 FChunkData 를 큐로 관리하고,

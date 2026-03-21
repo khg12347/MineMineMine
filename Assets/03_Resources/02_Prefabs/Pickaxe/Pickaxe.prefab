@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 46382956233785724}
   - component: {fileID: 73642326983750945}
   - component: {fileID: 8630499677476878302}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pickaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 2480589797123310548}
   - component: {fileID: 5695532799446877736}
   - component: {fileID: 1867159020652646992}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0.1868224, y: 0.2}
-  m_Size: {x: 0.11226127, y: 0.96}
+  m_Size: {x: 0.11226127, y: 0.92}
   m_Direction: 0
 --- !u!114 &1867159020652646992
 MonoBehaviour:
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 654098034923877419}
   - component: {fileID: 891629256358392936}
   - component: {fileID: 5561822096826138826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,8 +288,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.16, y: 0}
-  m_Size: {x: 0.27, y: 0.9}
+  m_Offset: {x: 0.15, y: 0}
+  m_Size: {x: 0.3, y: 0.9}
   m_Direction: 0
 --- !u!114 &5561822096826138826
 MonoBehaviour:
