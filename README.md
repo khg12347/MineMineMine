@@ -1,6 +1,7 @@
 # Mine Mine Mine
 
 > 광물을 캐고 곡괭이를 성장시켜 최강의 곡괭이를 만드는 모바일 캐주얼 게임
+> 
 > **개발 중인 개인 프로젝트입니다.**
 
 ![gameplay](docs/gameplay.gif)
