@@ -14,7 +14,7 @@
 | 엔진 | Unity 6 (6000.3.10f1) |
 | 언어 | C# |
 | 플랫폼 | Android / iOS |
-| 개발 인원 | 2인(프로그램/아트) |
+| 개발 인원 | 1인 |
 | 상태 | 개발 중 |
 
 ---
@@ -34,6 +34,24 @@ MI
 ├── Utility       // 수학, 확장 메서드 등 순수 유틸
 └── Editor        // 에디터 전용 툴링
 ```
+
+**의존 방향**
+
+```
+Presentation
+    │
+    ▼
+Domain  ◀──  Infrastructure
+    │
+    ▼
+Data
+    │
+    ▼
+Core
+```
+
+상위 레이어가 하위 레이어를 참조합니다. 역방향 참조는 허용하지 않습니다.
+`Utility`와 `Editor`는 어느 레이어에서도 참조 가능한 횡단 레이어입니다.
 
 **설계 의도**
 
@@ -116,6 +134,11 @@ private void OnTileDestroyed(MITileModel tile)
 
 데이터 기반 설정(`MITileConfig`)과 Flood Fill 알고리즘을 결합하여 매 스테이지마다 다른 광물 배치를 생성합니다.
 
+Unity 구현 전에 HTML/JS로 알고리즘을 시각적으로 검증하는 프로토타입을 먼저 제작했습니다.
+파라미터(광물 비율, 클러스터 크기 등)를 실시간으로 조정하며 결과를 확인할 수 있습니다.
+
+→ [타일 생성 시뮬레이터 (HTML 프로토타입)](docs/tile_generation_simulator.html)
+
 ---
 
 ### 3. Input Abstraction — `MI.Presentation`
@@ -145,11 +168,3 @@ InputHandler (입력 소스 감지)
 
 ---
 
-## Getting Started
-
-```bash
-# Unity 6 (6000.3.10f1) 이상 필요
-git clone https://github.com/YOUR_USERNAME/MineMineMine.git
-```
-
-Unity Hub에서 프로젝트를 열어 `Assets/Scenes/Main.unity`를 실행합니다.
