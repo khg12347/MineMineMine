@@ -41,5 +41,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1709361007
+    locked: 0
+  - name: Tile
+    uniqueID: 506465249
+    locked: 0
+  - name: Pickaxe
+    uniqueID: 1427894167
+    locked: 0
+  - name: Wall
+    uniqueID: 1052214297
+    locked: 0
+  - name: Touch
+    uniqueID: 2779029347
+    locked: 0
   m_RenderingLayers:
   - Default

@@ -36,7 +36,9 @@ namespace MI.Presentation.World.Tile
         public void UpdateVisual(int spriteIndex)
         {
             if (_damageSprites != null && spriteIndex < _damageSprites.Length)
+            {
                 _spriteRenderer.sprite = _damageSprites[spriteIndex];
+            }
         }
 
         /// <summary>

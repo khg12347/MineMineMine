@@ -27,6 +27,7 @@
 - **타일맵**: Tilemap + Extras (`com.unity.2d.tilemap`, `com.unity.2d.tilemap.extras`)
 - **스프라이트**: 2D Animation / Aseprite / PSD Importer
 - **에디터 확장**: Odin Inspector (`Assets/Plugins/Sirenix/`) — `[ShowInInspector]`, `[Button]` 등 활용
+- **세이브/로드**: Easy Save 3 (`Assets/Plugins/`) — `.es3` 파일 기반 저장
 - **테스트**: Unity Test Framework 1.6.0 — PlayMode / EditMode 테스트
 - **언어**: C# (.NET 기반)
 
@@ -65,7 +66,8 @@ Assets/
 ├── Settings/                   # URP 렌더러 설정 에셋
 ├── Editor/                     # 에디터 전용 스크립트 (번호 없음)
 └── Plugins/                    # 서드파티 플러그인 (번호 없음)
-    └── Sirenix/                # Odin Inspector (수정 금지)
+    ├── Sirenix/                # Odin Inspector (수정 금지)
+    └── Easy Save 3/            # Easy Save 3 (수정 금지)
 ```
 
 ### 스크립트 폴더 구조 (`02_Scripts/`)
@@ -214,6 +216,16 @@ namespace MI.Data.Config { }
 | iOS | iOS | Xcode 필요, MacBook에서 빌드 |
 
 `Library/`, `Temp/`, `Logs/`, `obj/`, `Build/` 는 `.gitignore` 에 포함되어 있으며 Unity가 자동 재생성합니다.
+
+---
+
+## 💾 세이브/로드 시스템
+
+- 세이브/로드 시스템은 **Easy Save 3** 애셋을 기반으로 사용한다
+- Easy Save 3 플러그인 위치: `Assets/Plugins/Easy Save 3/` (Odin Inspector와 동일 레벨)
+- 세이브 파일 확장자: `.sav`
+- 세이브 파일 경로: `Application.persistentDataPath` 사용
+- 공식 문서: https://docs.moodkie.com/product/easy-save-3/
 
 ---
 

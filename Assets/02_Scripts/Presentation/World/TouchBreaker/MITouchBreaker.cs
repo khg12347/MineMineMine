@@ -1,10 +1,11 @@
 using MI.Domain.Tile;
+using MI.Domain.World.TouchBreaker;
 using MI.Infrastructure.Input;
-using MI.Utility;
 using UnityEngine;
 
-namespace MI.Domain.TouchBreaker
+namespace MI.Presentation.World.TouchBreaker
 {
+    using Camera = UnityEngine.Camera;
     /// <summary>
     /// <see cref="MIInputHandler"/>로부터 탭 의도를 전달받아 타일 파괴를 수행합니다.
     /// 입력 감지에는 관여하지 않으며, MIInputHandler에 단방향으로 의존합니다.
@@ -21,7 +22,8 @@ namespace MI.Domain.TouchBreaker
         [SerializeField] private LayerMask      _tileLayer;
         [SerializeField] private int            _touchDamage = 1;
 
-        // ── Unity 생명주기 ─────────────────────────────────────────────
+        private MITouchObjectSpawner _renderController;
+        #region Unity Events 
 
         private void Awake()
         {
@@ -36,6 +38,7 @@ namespace MI.Domain.TouchBreaker
         private void OnEnable()  => _inputHandler.RegisterListener(this);
         private void OnDisable() => _inputHandler.UnregisterListener(this);
 
+        #endregion Unity Events 
         // ── IMIInputListener 구현 ──────────────────────────────────────
 
         /// <summary>
