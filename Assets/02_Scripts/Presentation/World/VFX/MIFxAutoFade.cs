@@ -1,5 +1,6 @@
 using MI.Utility;
 using System.Collections;
+using MI.Core.Pool;
 using UnityEngine;
 
 namespace MI.Presentation.World.VFX
@@ -11,13 +12,16 @@ namespace MI.Presentation.World.VFX
         [SerializeField] private AnimationCurve _fadeCurve = AnimationCurve.Linear(0, 1, 1, 0);
         [SerializeField] private ParticleSystemRenderer _renderer;
 
-        private void Start()
+        private void OnEnable()
         {
             StartCoroutine(FadeOutAndDestroy());
         }
 
         private IEnumerator FadeOutAndDestroy() 
         {
+            Color init = _renderer.material.color;
+            init.a = 1.0f;
+            _renderer.material.color = init;
             yield return new WaitForSeconds(_initialDelay);
             
             float elapsed = 0f;
@@ -30,10 +34,9 @@ namespace MI.Presentation.World.VFX
                 _renderer.material.color = c;
                 yield return null;
             }
-
-
-
-            Destroy(gameObject);
+            
+            gameObject.SetActive(false);
+            MIPoolManager.Instance.Return(this);
         }
 
     }

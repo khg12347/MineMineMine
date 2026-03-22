@@ -13,6 +13,8 @@ namespace MI.Core
                 return;
             }
             Instance = this as T;
+            
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MI.Core;
+using MI.Core.Pool;
 using MI.Data.Config;
 using MI.Domain.Stage;
 using MI.Domain.Tile;
@@ -60,6 +61,8 @@ namespace MI.Presentation.World.Stage
         [PropertyRange(4, 32)]
         [SerializeField] private int _cullRowsAbove = 8;
 
+        private FPoolConfig _tilePoolConfig = new FPoolConfig() {InitialSize = 256, GrowSize = 128};
+
         // ── 런타임 모듈 ────────────────────────────────────────────────────
 
         private MIDepthTracker  _depthTracker;
@@ -72,7 +75,9 @@ namespace MI.Presentation.World.Stage
         private int _lastReportedDepth = -1;
 
         // ── Unity 생명주기 ─────────────────────────────────────────────────
-
+        private void Awake()
+        {
+        }
         private void Start()
         {
             // 타일 배치 시작 X 계산
@@ -88,7 +93,7 @@ namespace MI.Presentation.World.Stage
             _tileSpawner  = new MITileSpawner(
                 _tilePrefab, _tileParent,
                 _stageConfig.RowHeight, stageStartX, _stageConfig.GridWidth,
-                tileConfigLookup);
+                tileConfigLookup, _tilePoolConfig);
             _wallSpawner  = new MIWallSpawner(
                 _pickaxeConfig, _mainCamera,
                 _stageConfig.RowHeight, stageStartX, _stageConfig.GridWidth);
