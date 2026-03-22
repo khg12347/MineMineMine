@@ -137,7 +137,7 @@ private void OnTileDestroyed(MITileModel tile)
 Unity 구현 전에 HTML/JS로 알고리즘을 시각적으로 검증하는 프로토타입을 먼저 제작했습니다.
 파라미터(광물 비율, 클러스터 크기 등)를 실시간으로 조정하며 결과를 확인할 수 있습니다.
 
-→ [타일 생성 시뮬레이터 (HTML 프로토타입)](docs/tile_generation_simulator.html)
+→ [타일 생성 시뮬레이터 (HTML 프로토타입)](https://YOUR_USERNAME.github.io/MineMineMine/docs/tile_generation_simulator.html)
 
 ---
 
