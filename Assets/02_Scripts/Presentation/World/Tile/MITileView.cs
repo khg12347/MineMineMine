@@ -28,19 +28,7 @@ namespace MI.Presentation.World.Tile
             _fxDebris = config.PrefabFxTileDebris;
             
         }
-
-        /// <summary>
-        /// 데미지 단계 스프라이트 교체.
-        /// spriteIndex = 0(온전함) ~ N(파괴 직전)
-        /// </summary>
-        public void UpdateVisual(int spriteIndex)
-        {
-            if (_damageSprites != null && spriteIndex < _damageSprites.Length)
-            {
-                _spriteRenderer.sprite = _damageSprites[spriteIndex];
-            }
-        }
-
+        
         /// <summary>
         /// 플로팅 데미지 텍스트 진입점.
         /// hitPoint 위치에 데미지 숫자를 표시. 실제 텍스트 오브젝트 생성은 추후 구현.

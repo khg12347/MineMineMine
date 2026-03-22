@@ -3125,7 +3125,7 @@ MonoBehaviour:
   _tileLayer:
     serializedVersion: 2
     m_Bits: 64
-  _touchDamage: 1
+  _touchDamage: 100
   _prefabTouchObj: {fileID: 2072259725216936989, guid: 84a9b0affed464928ab27fd4e4447b33, type: 3}
 --- !u!4 &1994098374
 Transform:

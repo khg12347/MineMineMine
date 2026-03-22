@@ -53,7 +53,6 @@ namespace MI.Presentation.World.Tile
             _data        = tileConfig.CreateTileData();
             _onDestroyed = null;
             _view.UpdateTileData(tileConfig);
-            _view.UpdateVisual(0);
         }
 
         /// <summary>
@@ -65,7 +64,6 @@ namespace MI.Presentation.World.Tile
             _data        = data;
             _onDestroyed = null;
             _view.UpdateTileData(tileConfig);
-            _view.UpdateVisual(0);
         }
 
         /// <summary>파괴 시 호출될 콜백을 등록합니다 (MITileSpawner 에서 주입).</summary>
@@ -84,8 +82,6 @@ namespace MI.Presentation.World.Tile
 
             if (result == EBreakResult.Destroyed || result == EBreakResult.DestroyWithOneHit)
                 Break();
-            else
-                _view.UpdateVisual(_data.MaxDurability - _data.CurrentDurability);
 
             return result;
         }
