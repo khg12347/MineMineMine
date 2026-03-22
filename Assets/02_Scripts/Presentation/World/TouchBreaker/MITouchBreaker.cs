@@ -21,8 +21,8 @@ namespace MI.Presentation.World.TouchBreaker
         [SerializeField] private Camera         _mainCamera;
         [SerializeField] private LayerMask      _tileLayer;
         [SerializeField] private int            _touchDamage = 1;
-
-        private MITouchObjectSpawner _renderController;
+        [SerializeField] private GameObject _prefabTouchObj;
+        private MITouchObjectSpawner _touchObjectSpawner;
         #region Unity Events 
 
         private void Awake()
@@ -33,6 +33,8 @@ namespace MI.Presentation.World.TouchBreaker
 
             if (_mainCamera == null)
                 _mainCamera = Camera.main;
+            
+            _touchObjectSpawner = new MITouchObjectSpawner(_prefabTouchObj, transform);
         }
 
         private void OnEnable()  => _inputHandler.RegisterListener(this);
@@ -55,7 +57,8 @@ namespace MI.Presentation.World.TouchBreaker
             var hit = Physics2D.Raycast(worldPos, Vector2.zero, 0f, _tileLayer);
 
             //MILog.Log($"Tap at screen {screenPos}, world {worldPos} - Hit: {hit.collider?.name ?? "None"}");
-
+            _touchObjectSpawner.Spawn(worldPos);
+            
             if (hit.collider == null ||
                 !hit.collider.TryGetComponent(out IMIBreakable breakable))
             {

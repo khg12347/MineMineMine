@@ -56,5 +56,8 @@ TagManager:
   - name: Touch
     uniqueID: 2779029347
     locked: 0
+  - name: FloatingText
+    uniqueID: 2128968577
+    locked: 0
   m_RenderingLayers:
   - Default

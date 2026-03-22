@@ -39,7 +39,8 @@ namespace MI.Domain.Stage
         public MITileSpawner(
             GameObject tilePrefab, Transform tileParent,
             float tileSize, float stageStartX, int stageWidth,
-            Dictionary<ETileType, MITileConfig> configLookup)
+            Dictionary<ETileType, MITileConfig> configLookup,
+            FPoolConfig tilePoolConfig)
         {
             _tilePrefab   = tilePrefab;
             _tileParent   = tileParent;
@@ -47,6 +48,8 @@ namespace MI.Domain.Stage
             _stageStartX  = stageStartX;
             _stageWidth   = stageWidth;
             _configLookup = configLookup;
+            
+            MIPoolManager.Instance.InitPool<MITileModel>(_tilePrefab, tilePoolConfig);
         }
 
         // ── 스폰 ─────────────────────────────────────────────────────────
