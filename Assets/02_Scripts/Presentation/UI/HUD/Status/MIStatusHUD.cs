@@ -1,5 +1,5 @@
-using MI.Core;
 using MI.Data.UIRes;
+using MI.Domain.Status;
 using MI.Utility;
 using UnityEngine;
 using UnityEngine.UI;

@@ -10,6 +10,7 @@ namespace MI.Core.Pool
     public class MIObjectPool<T> where T : Component
     {
         private readonly Queue<T> _pool;
+        private readonly HashSet<T> _inPool;
         private readonly T _prefab;
         private readonly Transform _parent;
         private readonly bool _autoExpand;
@@ -40,6 +41,7 @@ namespace MI.Core.Pool
             _growSize = growSize;
             _initialSize = initialSize;
             _pool = new Queue<T>(initialSize);
+            _inPool = new HashSet<T>();
 
             // 초기 풀 채우기
             for (int i = 0; i < initialSize; i++)
@@ -47,6 +49,7 @@ namespace MI.Core.Pool
                 var obj = CreateNew();
                 obj.gameObject.SetActive(false);
                 _pool.Enqueue(obj);
+                _inPool.Add(obj);
             }
         }
 
@@ -60,16 +63,19 @@ namespace MI.Core.Pool
             if (_pool.Count > 0)
             {
                 obj = _pool.Dequeue();
+                _inPool.Remove(obj);
             }
             else if (_autoExpand && _totalCreated < _maxSize)
             {
-                for(int i = 0; i < _growSize && _totalCreated < _maxSize; i++)
+                for (int i = 0; i < _growSize - 1 && _totalCreated < _maxSize; i++)
                 {
                     var newObj = CreateNew();
                     newObj.gameObject.SetActive(false);
                     _pool.Enqueue(newObj);
+                    _inPool.Add(newObj);
                 }
-                obj = _pool.Dequeue();
+
+                obj = CreateNew();//바로 쓸 오브젝트는 바로 반환
             }
             else
             {
@@ -93,11 +99,12 @@ namespace MI.Core.Pool
             if (obj == null) return;
 
             // 이미 비활성화된 경우 중복 반환 방지
-            if (_pool.Contains(obj)) return;
-
-            obj.gameObject.SetActive(false);
-            obj.transform.SetParent(_parent);
-            _pool.Enqueue(obj);
+            if (_inPool.Add(obj))
+            {
+                obj.gameObject.SetActive(false);
+                obj.transform.SetParent(_parent);
+                _pool.Enqueue(obj);
+            }
         }
 
         private T CreateNew()

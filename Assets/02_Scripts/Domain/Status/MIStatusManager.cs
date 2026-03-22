@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using MI.Core;
 using MI.Data.Config;
-using MI.Domain.Status;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MI.Core
+namespace MI.Domain.Status
 {
     /// <summary>
     /// 플레이어의 EXP / 레벨을 관리하는 싱글톤 매니저.

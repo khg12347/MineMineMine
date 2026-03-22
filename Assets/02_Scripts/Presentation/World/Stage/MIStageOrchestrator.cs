@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using MI.Core;
 using MI.Core.Pool;
 using MI.Data.Config;
 using MI.Domain.Stage;
+using MI.Domain.Status;
 using MI.Domain.Tile;
 using MI.Presentation.World.Camera;
 using MI.Presentation.World.Pickaxe;
@@ -36,7 +36,11 @@ namespace MI.Presentation.World.Stage
         [Title("타일")]
         [Required]
         [SerializeField] private GameObject _tilePrefab;
-        [SerializeField] private Transform  _tileParent;
+        [SerializeField] private Transform _tileParent;
+
+        //[Title("광물")]
+        //[Required]
+        //[SerializeField]
 
         [Title("곡괭이")]
         [Required]

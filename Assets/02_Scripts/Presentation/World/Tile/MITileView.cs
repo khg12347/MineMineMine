@@ -1,6 +1,7 @@
 using DamageNumbersPro;
 using MI.Core.Pool;
 using MI.Data.Config;
+using MI.Domain.Tile;
 using MI.Presentation.World.VFX;
 using UnityEngine;
 
@@ -12,8 +13,8 @@ namespace MI.Presentation.World.Tile
     /// </summary>
     public class MITileView : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer;
-        private Sprite[] _damageSprites;
+        [SerializeField] private SpriteRenderer _tileRenderer;
+        [SerializeField] private SpriteRenderer _mineralRenderer;
         [SerializeField] private DamageNumber _damageFloatingText;
         [SerializeField] private Animator _animatorCrack;
         [SerializeField] private Animator _animatorTile;
@@ -21,10 +22,10 @@ namespace MI.Presentation.World.Tile
         private GameObject _fxDebris;
         
 
-        public void UpdateTileData(MITileConfig config)
+        public void UpdateTileData(MITileConfig config, FTileData tileData)
         {
-            _spriteRenderer.sprite = config.BaseSprite;
-            _damageSprites = config.DamageSprites;
+            //_tileRenderer.sprite = config.GetMinenralSlotSprites(tileData.MineralType);
+            _tileRenderer.sprite = config.BaseSprite;
             _fxDebris = config.PrefabFxTileDebris;
             
         }
@@ -57,7 +58,6 @@ namespace MI.Presentation.World.Tile
             // TODO: 파괴 이펙트 재생, 사운드 재생
             if(_fxDebris != null)
             {
-                //GameObject fxInstance = Instantiate(_fxDebris);
                 MIPoolManager.Instance.Get<MIFxAutoFade>(_fxDebris, transform.position, Quaternion.identity);
             }
         }

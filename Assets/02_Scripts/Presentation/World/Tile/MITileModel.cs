@@ -1,7 +1,7 @@
 using System;
-using MI.Core;
 using MI.Core.Pool;
 using MI.Data.Config;
+using MI.Domain.Status;
 using MI.Domain.Tile;
 using MI.Utility;
 using Sirenix.OdinInspector;
@@ -28,9 +28,10 @@ namespace MI.Presentation.World.Tile
         [SerializeField, ReadOnly] private FTileData _data;
 
         // 파괴 시 호출되는 콜백 (MITileSpawner 에서 주입)
-        private Action<MITileModel> _onDestroyed;
+        private Action<MITileModel> _onBroken;
         private MITileView          _view;
 
+        public int CurrentRow { get; set; } // 스포너가 관리하는 현재 행 인덱스, 파괴 시 O(n) 탐색 방지용
         public bool  IsBreakable     => !_data.IsDestroyed;
         public float BounceMultiplier => _data.BounceMultiplier;
 
@@ -39,8 +40,7 @@ namespace MI.Presentation.World.Tile
             _view = GetComponent<MITileView>();
         }
 
-        // ── 초기화 ────────────────────────────────────────────────────────
-
+        #region Initialization
         /// <summary>스테이지 생성 시 호출 (내부적으로 ResetTile 위임)</summary>
         public void Initialize(MITileConfig tileConfig) => ResetTile(tileConfig);
 
@@ -51,8 +51,8 @@ namespace MI.Presentation.World.Tile
         public void ResetTile(MITileConfig tileConfig)
         {
             _data        = tileConfig.CreateTileData();
-            _onDestroyed = null;
-            _view.UpdateTileData(tileConfig);
+            _onBroken = null;
+            _view.UpdateTileData(tileConfig, _data);
         }
 
         /// <summary>
@@ -62,15 +62,16 @@ namespace MI.Presentation.World.Tile
         public void ResetTile(MITileConfig tileConfig, FTileData data)
         {
             _data        = data;
-            _onDestroyed = null;
-            _view.UpdateTileData(tileConfig);
+            _onBroken = null;
+            _view.UpdateTileData(tileConfig, _data);
         }
 
         /// <summary>파괴 시 호출될 콜백을 등록합니다 (MITileSpawner 에서 주입).</summary>
-        public void SetDestroyedCallback(Action<MITileModel> callback) => _onDestroyed = callback;
+        public void SetBrokenCallback(Action<MITileModel> callback) => _onBroken = callback;
+        #endregion
 
-        // ── 데미지 / 파괴 ────────────────────────────────────────────────
-
+        #region Damage Handling
+        //추후 Take Damage Domain으로 분리 고려
         public EBreakResult TakeDamage(int damage, Vector3 hitPoint = default)
         {
             var result = _data.ApplyDamage(damage);
@@ -88,7 +89,8 @@ namespace MI.Presentation.World.Tile
 
         public void Break()
         {
-            // EXP 지급
+            // 현재는 EXP만 처리하지만
+            // 향후 아이템 드랍 및 재화 획득 추가되면 별도의 시스템으로 분리예정
             MIStatusManager.Instance.AddExp(_data.DropExp);
 
             // 파괴 이펙트
@@ -98,9 +100,10 @@ namespace MI.Presentation.World.Tile
             MIPoolManager.Instance.Return(this);
 
             // 스포너에 파괴 알림 → _tilesByRow 에서 참조 제거
-            var cb = _onDestroyed;
-            _onDestroyed = null; // 재호출 방지
+            var cb = _onBroken;
+            _onBroken = null; // 재호출 방지
             cb?.Invoke(this);
         }
+        #endregion Damage Handling
     }
 }

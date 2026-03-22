@@ -31,8 +31,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2552467511183810724}
   - {fileID: 8458229389112378123}
+  - {fileID: 2552467511183810724}
   m_Father: {fileID: 674640340047454946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4431964498137074528
@@ -81,10 +81,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 506465249
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 9936521a492d8304982e816f943811e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91ea88e5f24483f4dacd6031f878a4e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -196,7 +196,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 506465249
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 20
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 0da7a183ee3e8204c8c21dc5083d8f96, type: 3}
@@ -296,7 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a463cbb3eed1c6468a0360deea1820b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.Tile.MITileView
-  _spriteRenderer: {fileID: 4431964498137074528}
+  _tileRenderer: {fileID: 4431964498137074528}
+  _mineralRenderer: {fileID: 2552303468724486014}
   _damageFloatingText: {fileID: 1075371804263254469, guid: c20834aaea70dae47b24b7d21a656a01, type: 3}
   _animatorCrack: {fileID: 5666545910687034347}
   _animatorTile: {fileID: 1137488587411272720}
@@ -660,7 +661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8458229389112378123
 Transform:
   m_ObjectHideFlags: 0
@@ -722,7 +723,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 506465249
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 1f8144773cca4c04891d5e41a124135a, type: 3}

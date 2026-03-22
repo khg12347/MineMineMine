@@ -52,8 +52,7 @@ namespace MI.Domain.Stage
             MIPoolManager.Instance.InitPool<MITileModel>(_tilePrefab, tilePoolConfig);
         }
 
-        // ── 스폰 ─────────────────────────────────────────────────────────
-
+        #region Spawning
         /// <summary>
         /// buffer 에서 행 데이터를 소비하여 targetRow 행까지 타일을 스폰합니다.
         /// </summary>
@@ -85,15 +84,16 @@ namespace MI.Domain.Stage
                 var model = MIPoolManager.Instance.Get<MITileModel>(_tilePrefab, pos, Quaternion.identity, _tileParent);
 
                 model.ResetTile(config, data);
-                model.SetDestroyedCallback(OnTileDestroyed);
+                model.CurrentRow = row;
+                model.SetBrokenCallback(OnTileBroken);
                 rowTiles.Add(model);
             }
 
             _tilesByRow[row] = rowTiles;
         }
+        #endregion Spawning
 
-        // ── 제거 ─────────────────────────────────────────────────────────
-
+        #region Culling
         /// <summary>
         /// cullBeforeRow 보다 위에 있는 행의 타일을 풀에 반환합니다.
         /// </summary>
@@ -106,25 +106,34 @@ namespace MI.Domain.Stage
                 if (kv.Key >= cullBeforeRow) continue;
 
                 foreach (var tile in kv.Value)
+                {
                     if (tile != null && tile.gameObject.activeSelf)
+                    {
+                        tile.CurrentRow = -1; // 안전하게 초기화
                         MIPoolManager.Instance.Return(tile);
+                    }
+                }
 
                 toRemove.Add(kv.Key);
             }
 
             foreach (int row in toRemove)
-                _tilesByRow.Remove(row);
+            { 
+                _tilesByRow.Remove(row); 
+            }
         }
+        #endregion Culling
 
-        // ── 콜백 ─────────────────────────────────────────────────────────
-
+        
         /// <summary>타일이 파괴(Break)될 때 MITileModel 에서 호출됩니다.</summary>
-        private void OnTileDestroyed(MITileModel tile)
+        private void OnTileBroken(MITileModel tile)
         {
-            foreach (var kv in _tilesByRow)
+            if (tile == null) return;
+
+            if (_tilesByRow.TryGetValue(tile.CurrentRow, out var rowTiles))
             {
-                if (kv.Value.Remove(tile))
-                    break;
+                rowTiles.Remove(tile);
+                tile.CurrentRow = -1; // 안전하게 초기화
             }
         }
     }

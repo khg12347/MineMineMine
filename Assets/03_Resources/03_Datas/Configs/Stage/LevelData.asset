@@ -60,7 +60,7 @@ MonoBehaviour:
       Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: Weight
       Entry: 4
       Data: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
       Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: Weight
       Entry: 4
       Data: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
       Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: Weight
       Entry: 4
       Data: 0

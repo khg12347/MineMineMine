@@ -33,8 +33,9 @@ namespace MI.Data.Config
         [LabelText("Base 스프라이트")]
         [SerializeField] private Sprite _baseSprite;
 
-        [LabelText("데미지 받았을 때 스프라이트")]
-        [SerializeField] private Sprite[] _damageSprites;
+        [LabelText("광물별로 달라지는 타일 스프라이트")]
+        [DictionaryDrawerSettings(KeyLabel = "광물 타입", ValueLabel = "타일 스프라이트")]
+        [SerializeField] private Dictionary<EMineralDensity, Sprite> _mineralSlotSprites = new Dictionary<EMineralDensity, Sprite>();
 
         [LabelText("균열 단계별 내구도")]
         [SerializeField] private List<int> _crackLevelDurability = new List<int>();
@@ -46,8 +47,21 @@ namespace MI.Data.Config
 
         public ETileType TileType => _tileType;
         public Sprite BaseSprite => _baseSprite;
-        public Sprite[] DamageSprites => _damageSprites;
         public GameObject PrefabFxTileDebris => _prefabFxTileDebris;
+
+        public Sprite GetMinenralSlotSprites(EMineralDensity mineralDensity)
+        {
+            if (_mineralSlotSprites.TryGetValue(mineralDensity, out Sprite sprite))
+            {
+                return sprite;
+            }
+            else
+            {
+                Debug.LogWarning($"광물 타입 {mineralDensity}에 대한 스프라이트가 설정되지 않았습니다.");
+                return _baseSprite; // 또는 기본 스프라이트 반환
+            }
+        }
+
         public FTileData CreateTileData()
         {
             return new FTileData

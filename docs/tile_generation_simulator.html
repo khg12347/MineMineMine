@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mine Mine Mine — 타일 생성 시뮬레이션</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+  :root {
+    --bg: #0c0e13;
+    --surface: #161920;
+    --surface2: #1e222d;
+    --border: #2a2f3d;
+    --text: #e0e4ef;
+    --text-dim: #6b7394;
+    --accent: #4ecdc4;
+    --accent-glow: rgba(78,205,196,0.15);
+    --soil1: #8B6D4B;
+    --soil2: #6B5036;
+    --soil3: #4E3A28;
+    --wood1: #A0784A;
+    --wood2: #7A5C35;
+    --wood3: #5C4428;
+    --stone1: #7A7D85;
+    --stone2: #5E6068;
+    --stone3: #45474D;
+    --stone4: #2F3035;
+    --iron: #B0B8C8;
+    --copper: #D4845A;
+    --silver: #C8D0E0;
+    --gold: #F5D442;
+    --empty: #1a1d26;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .header h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--accent), #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+
+  .header p {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  /* ── Layout ── */
+  .main-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 860px) {
+    .main-layout { grid-template-columns: 1fr; }
+  }
+
+  /* ── Panel ── */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .panel-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-title::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* ── Controls ── */
+  .control-group {
+    margin-bottom: 14px;
+  }
+
+  .control-group label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .control-group label span.val {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 8px var(--accent-glow);
+    transition: transform 0.15s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 0;
+  }
+
+  /* ── Section Editor ── */
+  .section-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .section-tab {
+    flex: 1;
+    padding: 6px 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .section-tab.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+
+  .weight-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .weight-row .color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .weight-row .wlabel {
+    font-size: 11px;
+    color: var(--text-dim);
+    width: 42px;
+    flex-shrink: 0;
+  }
+
+  .weight-row input[type="range"] {
+    flex: 1;
+  }
+
+  .weight-row .wval {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    width: 28px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #3ba89f);
+    color: var(--bg);
+    box-shadow: 0 4px 16px var(--accent-glow);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(78,205,196,0.25);
+  }
+
+  .btn-secondary {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-row .btn { margin-top: 0; }
+
+  /* ── Canvas Area ── */
+  .canvas-area {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .canvas-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 500px;
+    overflow: auto;
+    position: relative;
+  }
+
+  canvas {
+    border-radius: 4px;
+    image-rendering: pixelated;
+  }
+
+  /* ── Legend ── */
+  .legend-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ── Stats ── */
+  .stats-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .stat-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .stat-chip .sv {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── Phase indicator ── */
+  .phase-indicator {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 10px;
+    background: rgba(78,205,196,0.12);
+    border: 1px solid rgba(78,205,196,0.3);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .phase-indicator.visible { opacity: 1; }
+
+  /* ── Speed control ── */
+  .speed-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .speed-control label {
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .speed-btn {
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .speed-btn.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  /* ── Section markers ── */
+  .section-marker {
+    position: absolute;
+    left: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--accent);
+    opacity: 0.6;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <h1>⛏ Flood-Fill Seed Simulator</h1>
+    <p>Mine Mine Mine — 랜덤 타일 생성 알고리즘 시뮬레이션</p>
+  </div>
+
+  <div class="main-layout">
+    <!-- ── Left Panel ── -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="panel">
+        <div class="panel-title">글로벌 설정</div>
+        <div class="control-group">
+          <label>가로 폭 (GridWidth) <span class="val" id="vGridWidth">8</span></label>
+          <input type="range" id="gridWidth" min="5" max="16" value="8">
+        </div>
+        <div class="control-group">
+          <label>청크 높이 (ChunkRows) <span class="val" id="vChunkRows">60</span></label>
+          <input type="range" id="chunkRows" min="20" max="120" value="60" step="5">
+        </div>
+        <div class="control-group">
+          <label>셀 크기 (px) <span class="val" id="vCellSize">20</span></label>
+          <input type="range" id="cellSize" min="8" max="40" value="20" step="2">
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">섹션 설정</div>
+        <div class="section-tabs" id="sectionTabs"></div>
+        <div id="sectionEditor"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">실행</div>
+        <div class="speed-control">
+          <label>애니메이션 속도</label>
+          <button class="speed-btn" data-speed="0">즉시</button>
+          <button class="speed-btn active" data-speed="1">보통</button>
+          <button class="speed-btn" data-speed="2">느림</button>
+        </div>
+        <div class="btn-row" style="margin-top:12px;">
+          <button class="btn btn-primary" id="btnGenerate" style="flex:2;">▶ 생성</button>
+          <button class="btn btn-secondary" id="btnReset" style="flex:1;">초기화</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Right Area ── -->
+    <div class="canvas-area">
+      <div class="stats-bar" id="statsBar"></div>
+      <div class="legend-bar" id="legendBar"></div>
+      <div class="canvas-wrapper">
+        <div class="phase-indicator" id="phaseIndicator"></div>
+        <canvas id="canvas"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// 데이터 정의
+// ═══════════════════════════════════════
+const TILE_TYPES = ['Soil', 'Wood', 'Stone'];
+const MINERAL_TYPES = ['Iron', 'Copper', 'Silver', 'Gold'];
+
+const TILE_COLORS = {
+  Soil:   ['#8B6D4B','#6B5036','#4E3A28'],
+  Wood:   ['#A0784A','#7A5C35','#5C4428'],
+  Stone:  ['#7A7D85','#5E6068','#45474D','#2F3035'],
+};
+
+const MINERAL_COLORS = {
+  Iron:   '#B0B8C8',
+  Copper: '#D4845A',
+  Silver: '#C8D0E0',
+  Gold:   '#F5D442',
+};
+
+const EMPTY_COLOR = '#1a1d26';
+
+// 기본 섹션 데이터
+let sections = [
+  {
+    name: '표토층', startRow: 0, endRow: 19, blendRows: 4,
+    tileWeights: { Soil: 70, Wood: 25, Stone: 5 },
+    mineralWeights: { Iron: 80, Copper: 20, Silver: 0, Gold: 0 },
+    clusterMin: 4, clusterMax: 12, seedDensity: 0.3,
+    mineralClusterMin: 1, mineralClusterMax: 3,
+  },
+  {
+    name: '암반층', startRow: 20, endRow: 39, blendRows: 5,
+    tileWeights: { Soil: 20, Wood: 20, Stone: 60 },
+    mineralWeights: { Iron: 40, Copper: 30, Silver: 25, Gold: 5 },
+    clusterMin: 6, clusterMax: 16, seedDensity: 0.25,
+    mineralClusterMin: 2, mineralClusterMax: 5,
+  },
+  {
+    name: '심층', startRow: 40, endRow: 59, blendRows: 0,
+    tileWeights: { Soil: 5, Wood: 10, Stone: 85 },
+    mineralWeights: { Iron: 20, Copper: 25, Silver: 35, Gold: 20 },
+    clusterMin: 8, clusterMax: 20, seedDensity: 0.2,
+    mineralClusterMin: 3, mineralClusterMax: 7,
+  },
+];
+
+let animSpeed = 1; // 0=instant, 1=normal, 2=slow
+let generating = false;
+let cancelToken = { cancelled: false };
+
+// ═══════════════════════════════════════
+// UI 헬퍼
+// ═══════════════════════════════════════
+const $ = id => document.getElementById(id);
+const canvas = $('canvas');
+const ctx = canvas.getContext('2d');
+
+function getVal(id) { return +$(id).value; }
+
+function syncSlider(id, displayId) {
+  const el = $(id);
+  el.addEventListener('input', () => {
+    $(displayId).textContent = el.value;
+  });
+}
+
+syncSlider('gridWidth', 'vGridWidth');
+syncSlider('chunkRows', 'vChunkRows');
+syncSlider('cellSize', 'vCellSize');
+
+// 섹션 행 범위 자동 분배
+function redistributeSections() {
+  const total = getVal('chunkRows');
+  const n = sections.length;
+  const rowsPer = Math.floor(total / n);
+  sections.forEach((s, i) => {
+    s.startRow = i * rowsPer;
+    s.endRow = (i === n - 1) ? total - 1 : (i + 1) * rowsPer - 1;
+  });
+}
+
+$('chunkRows').addEventListener('input', () => {
+  redistributeSections();
+  renderSectionEditor(activeSectionIdx);
+});
+
+// ── Speed buttons ──
+document.querySelectorAll('.speed-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    animSpeed = +btn.dataset.speed;
+  });
+});
+
+// ═══════════════════════════════════════
+// 섹션 에디터
+// ═══════════════════════════════════════
+let activeSectionIdx = 0;
+
+function renderSectionTabs() {
+  const container = $('sectionTabs');
+  container.innerHTML = '';
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'section-tab' + (i === activeSectionIdx ? ' active' : '');
+    btn.textContent = s.name;
+    btn.onclick = () => { activeSectionIdx = i; renderSectionTabs(); renderSectionEditor(i); };
+    container.appendChild(btn);
+  });
+}
+
+function renderSectionEditor(idx) {
+  const s = sections[idx];
+  const container = $('sectionEditor');
+
+  let html = `
+    <div style="font-size:11px;color:var(--text-dim);margin-bottom:10px;">
+      행 범위: ${s.startRow} ~ ${s.endRow} (${s.endRow - s.startRow + 1}행)
+    </div>
+    <div style="font-size:10px;color:var(--text-dim);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:1px;">타일 가중치</div>
+  `;
+
+  TILE_TYPES.forEach(t => {
+    const color = TILE_COLORS[t][0];
+    html += `
+      <div class="weight-row">
+        <div class="color-dot" style="background:${color}"></div>
+        <span class="wlabel">${t}</span>
+        <input type="range" min="0" max="100" value="${s.tileWeights[t]}" data-section="${idx}" data-key="tileWeights" data-type="${t}">
+        <span class="wval">${s.tileWeights[t]}</span>
+      </div>
+    `;
+  });
+
+  html += `<div style="font-size:10px;color:var(--text-dim);margin:10px 0 6px;font-weight:600;text-transform:uppercase;letter-spacing:1px;">광물 가중치</div>`;
+
+  MINERAL_TYPES.forEach(m => {
+    html += `
+      <div class="weight-row">
+        <div class="color-dot" style="background:${MINERAL_COLORS[m]}"></div>
+        <span class="wlabel">${m}</span>
+        <input type="range" min="0" max="100" value="${s.mineralWeights[m]}" data-section="${idx}" data-key="mineralWeights" data-type="${m}">
+        <span class="wval">${s.mineralWeights[m]}</span>
+      </div>
+    `;
+  });
+
+  html += `<div class="divider"></div>`;
+  html += `
+    <div class="control-group">
+      <label>군집 크기 <span class="val">${s.clusterMin} ~ ${s.clusterMax}</span></label>
+      <div style="display:flex;gap:6px;">
+        <input type="range" min="1" max="30" value="${s.clusterMin}" data-section="${idx}" data-field="clusterMin">
+        <input type="range" min="1" max="40" value="${s.clusterMax}" data-section="${idx}" data-field="clusterMax">
+      </div>
+    </div>
+    <div class="control-group">
+      <label>시드 밀도 <span class="val">${s.seedDensity}</span></label>
+      <input type="range" min="0.1" max="0.8" step="0.05" value="${s.seedDensity}" data-section="${idx}" data-field="seedDensity">
+    </div>
+    <div class="control-group">
+      <label>광물 군집 <span class="val">${s.mineralClusterMin} ~ ${s.mineralClusterMax}</span></label>
+      <div style="display:flex;gap:6px;">
+        <input type="range" min="1" max="10" value="${s.mineralClusterMin}" data-section="${idx}" data-field="mineralClusterMin">
+        <input type="range" min="1" max="15" value="${s.mineralClusterMax}" data-section="${idx}" data-field="mineralClusterMax">
+      </div>
+    </div>
+    <div class="control-group">
+      <label>블렌딩 행 수 <span class="val">${s.blendRows}</span></label>
+      <input type="range" min="0" max="15" value="${s.blendRows}" data-section="${idx}" data-field="blendRows">
+    </div>
+  `;
+
+  container.innerHTML = html;
+
+  // Attach events
+  container.querySelectorAll('input[type="range"]').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const si = +inp.dataset.section;
+      const sec = sections[si];
+      if (inp.dataset.key) {
+        sec[inp.dataset.key][inp.dataset.type] = +inp.value;
+        inp.nextElementSibling.textContent = inp.value;
+      } else if (inp.dataset.field) {
+        sec[inp.dataset.field] = +inp.value;
+      }
+      renderSectionEditor(si);
+    });
+  });
+}
+
+// ── Legend ──
+function renderLegend() {
+  const bar = $('legendBar');
+  let html = '';
+  TILE_TYPES.forEach(t => {
+    html += `<div class="legend-item"><div class="legend-color" style="background:${TILE_COLORS[t][0]}"></div>${t}</div>`;
+  });
+  MINERAL_TYPES.forEach(m => {
+    html += `<div class="legend-item"><div class="legend-color" style="background:${MINERAL_COLORS[m]}"></div>${m}</div>`;
+  });
+  html += `<div class="legend-item"><div class="legend-color" style="background:${EMPTY_COLOR}"></div>빈 셀</div>`;
+  bar.innerHTML = html;
+}
+
+// ═══════════════════════════════════════
+// 알고리즘
+// ═══════════════════════════════════════
+function getSectionForRow(row) {
+  for (const s of sections) {
+    if (row >= s.startRow && row <= s.endRow) return s;
+  }
+  return sections[sections.length - 1];
+}
+
+function getBlendedWeights(row) {
+  const sec = getSectionForRow(row);
+  const secIdx = sections.indexOf(sec);
+
+  // 블렌딩 체크: 현재 섹션의 끝 부분에서 다음 섹션으로
+  if (secIdx < sections.length - 1 && sec.blendRows > 0) {
+    const blendStart = sec.endRow - sec.blendRows + 1;
+    if (row >= blendStart) {
+      const nextSec = sections[secIdx + 1];
+      const t = (row - blendStart) / sec.blendRows;
+      const blended = {};
+      TILE_TYPES.forEach(tt => {
+        blended[tt] = sec.tileWeights[tt] * (1 - t) + nextSec.tileWeights[tt] * t;
+      });
+      return blended;
+    }
+  }
+
+  return { ...sec.tileWeights };
+}
+
+function getBlendedMineralWeights(row) {
+  const sec = getSectionForRow(row);
+  const secIdx = sections.indexOf(sec);
+
+  if (secIdx < sections.length - 1 && sec.blendRows > 0) {
+    const blendStart = sec.endRow - sec.blendRows + 1;
+    if (row >= blendStart) {
+      const nextSec = sections[secIdx + 1];
+      const t = (row - blendStart) / sec.blendRows;
+      const blended = {};
+      MINERAL_TYPES.forEach(m => {
+        blended[m] = sec.mineralWeights[m] * (1 - t) + nextSec.mineralWeights[m] * t;
+      });
+      return blended;
+    }
+  }
+
+  return { ...sec.mineralWeights };
+}
+
+function weightedRandom(weights) {
+  const entries = Object.entries(weights).filter(([,w]) => w > 0);
+  const total = entries.reduce((s, [,w]) => s + w, 0);
+  if (total === 0) return entries[0]?.[0] || 'Soil';
+  let r = Math.random() * total;
+  for (const [key, w] of entries) {
+    r -= w;
+    if (r <= 0) return key;
+  }
+  return entries[entries.length - 1][0];
+}
+
+function placeSeedsJitteredGrid(width, height, startRow) {
+  const seeds = [];
+  // 각 행의 섹션 시드 밀도를 참조
+  // 간단히: 전체 평균 밀도 사용
+  const sec = getSectionForRow(startRow + Math.floor(height / 2));
+  const cellSize = Math.max(2, Math.round(1 / sec.seedDensity));
+
+  for (let gy = 0; gy < height; gy += cellSize) {
+    for (let gx = 0; gx < width; gx += cellSize) {
+      const lx = gx + Math.floor(Math.random() * Math.min(cellSize, width - gx));
+      const ly = gy + Math.floor(Math.random() * Math.min(cellSize, height - gy));
+      if (lx < width && ly < height) {
+        seeds.push({ x: lx, y: ly });
+      }
+    }
+  }
+
+  // 셔플
+  for (let i = seeds.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [seeds[i], seeds[j]] = [seeds[j], seeds[i]];
+  }
+
+  return seeds;
+}
+
+function getShuffledNeighbors(x, y) {
+  const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
+  for (let i = dirs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [dirs[i], dirs[j]] = [dirs[j], dirs[i]];
+  }
+  return dirs.map(([dx, dy]) => ({ x: x + dx, y: y + dy }));
+}
+
+// ═══════════════════════════════════════
+// 렌더링
+// ═══════════════════════════════════════
+let grid = [];
+let mineralGrid = [];
+let gridW = 0, gridH = 0;
+
+function initCanvas() {
+  gridW = getVal('gridWidth');
+  gridH = getVal('chunkRows');
+  const cs = getVal('cellSize');
+  canvas.width = gridW * cs;
+  canvas.height = gridH * cs;
+  ctx.fillStyle = EMPTY_COLOR;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  grid = Array.from({ length: gridH }, () => Array(gridW).fill(null));
+  mineralGrid = Array.from({ length: gridH }, () => Array(gridW).fill(null));
+}
+
+function drawCell(x, y, color) {
+  const cs = getVal('cellSize');
+  ctx.fillStyle = color;
+  ctx.fillRect(x * cs, y * cs, cs, cs);
+
+  // 미세한 그리드 선
+  ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+  ctx.lineWidth = 0.5;
+  ctx.strokeRect(x * cs, y * cs, cs, cs);
+}
+
+function drawCellWithMineral(x, y, tileColor, mineralColor) {
+  const cs = getVal('cellSize');
+  ctx.fillStyle = tileColor;
+  ctx.fillRect(x * cs, y * cs, cs, cs);
+
+  // 광물 표시: 내부에 작은 다이아몬드
+  const cx = x * cs + cs / 2;
+  const cy = y * cs + cs / 2;
+  const r = cs * 0.28;
+  ctx.fillStyle = mineralColor;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - r);
+  ctx.lineTo(cx + r, cy);
+  ctx.lineTo(cx, cy + r);
+  ctx.lineTo(cx - r, cy);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+  ctx.lineWidth = 0.5;
+  ctx.strokeRect(x * cs, y * cs, cs, cs);
+}
+
+function drawSectionBorders() {
+  const cs = getVal('cellSize');
+  ctx.setLineDash([4, 4]);
+  ctx.strokeStyle = 'rgba(78,205,196,0.25)';
+  ctx.lineWidth = 1;
+  sections.forEach((s, i) => {
+    if (i > 0) {
+      const y = s.startRow * cs;
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(canvas.width, y);
+      ctx.stroke();
+    }
+  });
+  ctx.setLineDash([]);
+}
+
+function showPhase(text) {
+  const el = $('phaseIndicator');
+  el.textContent = text;
+  el.classList.add('visible');
+}
+
+function hidePhase() {
+  $('phaseIndicator').classList.remove('visible');
+}
+
+function sleep(ms) {
+  if (animSpeed === 0) return Promise.resolve();
+  const factor = animSpeed === 2 ? 3 : 1;
+  return new Promise(r => setTimeout(r, ms * factor));
+}
+
+// ═══════════════════════════════════════
+// 메인 생성
+// ═══════════════════════════════════════
+async function generate() {
+  if (generating) return;
+  generating = true;
+  cancelToken = { cancelled: false };
+  $('btnGenerate').textContent = '생성 중...';
+  $('btnGenerate').disabled = true;
+
+  redistributeSections();
+  initCanvas();
+
+  const startRow = 0;
+  const W = gridW;
+  const H = gridH;
+
+  // ── Phase 1: 기본 타일 ──
+  showPhase('PHASE 1: 시드 배치');
+  const seeds = placeSeedsJitteredGrid(W, H, startRow);
+
+  // 시드 포인트 표시
+  for (const seed of seeds) {
+    if (cancelToken.cancelled) break;
+    drawCell(seed.x, seed.y, 'rgba(78,205,196,0.6)');
+    await sleep(8);
+  }
+
+  await sleep(300);
+  if (cancelToken.cancelled) { finish(); return; }
+
+  showPhase('PHASE 1: BFS 확장');
+
+  // BFS 확장
+  for (const seed of seeds) {
+    if (cancelToken.cancelled) break;
+    if (grid[seed.y][seed.x] !== null) continue;
+
+    const weights = getBlendedWeights(startRow + seed.y);
+    const tileType = weightedRandom(weights);
+    const sec = getSectionForRow(startRow + seed.y);
+    const clusterSize = sec.clusterMin + Math.floor(Math.random() * (sec.clusterMax - sec.clusterMin + 1));
+
+    const colorVariants = TILE_COLORS[tileType];
+    const color = colorVariants[Math.floor(Math.random() * colorVariants.length)];
+
+    // BFS
+    const queue = [{ x: seed.x, y: seed.y }];
+    let filled = 0;
+
+    while (queue.length > 0 && filled < clusterSize) {
+      if (cancelToken.cancelled) break;
+      const pos = queue.shift();
+      if (pos.x < 0 || pos.x >= W || pos.y < 0 || pos.y >= H) continue;
+      if (grid[pos.y][pos.x] !== null) continue;
+
+      grid[pos.y][pos.x] = { type: tileType, color };
+      drawCell(pos.x, pos.y, color);
+      filled++;
+
+      if (animSpeed > 0 && filled % 2 === 0) await sleep(4);
+
+      const neighbors = getShuffledNeighbors(pos.x, pos.y);
+      for (const n of neighbors) {
+        if (n.x >= 0 && n.x < W && n.y >= 0 && n.y < H && grid[n.y][n.x] === null) {
+          queue.push(n);
+        }
+      }
+    }
+  }
+
+  if (cancelToken.cancelled) { finish(); return; }
+
+  // ── 빈 셀 처리 ──
+  showPhase('PHASE 1: 빈 셀 채우기');
+  await sleep(200);
+
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      if (cancelToken.cancelled) break;
+      if (grid[y][x] !== null) continue;
+
+      // 인접 셀 타입 수집
+      const neighborTypes = {};
+      [[0,-1],[0,1],[-1,0],[1,0]].forEach(([dx, dy]) => {
+        const nx = x + dx, ny = y + dy;
+        if (nx >= 0 && nx < W && ny >= 0 && ny < H && grid[ny][nx] !== null) {
+          const t = grid[ny][nx].type;
+          neighborTypes[t] = (neighborTypes[t] || 0) + 1;
+        }
+      });
+
+      let tileType;
+      if (Object.keys(neighborTypes).length > 0) {
+        const maxCount = Math.max(...Object.values(neighborTypes));
+        const candidates = Object.entries(neighborTypes).filter(([,c]) => c === maxCount).map(([t]) => t);
+        tileType = candidates[Math.floor(Math.random() * candidates.length)];
+      } else {
+        const weights = getBlendedWeights(startRow + y);
+        tileType = weightedRandom(weights);
+      }
+
+      const colorVariants = TILE_COLORS[tileType];
+      const color = colorVariants[Math.floor(Math.random() * colorVariants.length)];
+      grid[y][x] = { type: tileType, color };
+      drawCell(x, y, color);
+    }
+    if (animSpeed > 0 && y % 3 === 0) await sleep(2);
+  }
+
+  if (cancelToken.cancelled) { finish(); return; }
+
+  // ── Phase 2: 광물 오버레이 ──
+  showPhase('PHASE 2: 광물 배치');
+  await sleep(400);
+
+  // Stone 셀 수집
+  const stoneCells = [];
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      if (grid[y][x] && grid[y][x].type === 'Stone') {
+        stoneCells.push({ x, y });
+      }
+    }
+  }
+
+  // Stone 영역 내에서 시드 배치
+  if (stoneCells.length > 0) {
+    // 시드 수: Stone 셀 수에 비례
+    const avgSec = getSectionForRow(startRow + Math.floor(H / 2));
+    const mineralSeedCount = Math.max(1, Math.floor(stoneCells.length * avgSec.seedDensity * 0.3));
+
+    // 셔플 후 앞쪽에서 시드 선택
+    const shuffled = [...stoneCells];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    const mineralSeeds = shuffled.slice(0, mineralSeedCount);
+
+    // Stone 셀 집합 (빠른 조회용)
+    const stoneSet = new Set(stoneCells.map(c => `${c.x},${c.y}`));
+
+    for (const mSeed of mineralSeeds) {
+      if (cancelToken.cancelled) break;
+
+      const mWeights = getBlendedMineralWeights(startRow + mSeed.y);
+      const mineralType = weightedRandom(mWeights);
+      const sec = getSectionForRow(startRow + mSeed.y);
+      const mClusterSize = sec.mineralClusterMin + Math.floor(Math.random() * (sec.mineralClusterMax - sec.mineralClusterMin + 1));
+
+      const mineralColor = MINERAL_COLORS[mineralType];
+
+      // BFS (Stone 내에서만)
+      const queue = [{ x: mSeed.x, y: mSeed.y }];
+      let filled = 0;
+
+      while (queue.length > 0 && filled < mClusterSize) {
+        if (cancelToken.cancelled) break;
+        const pos = queue.shift();
+        const key = `${pos.x},${pos.y}`;
+        if (!stoneSet.has(key)) continue;
+        if (mineralGrid[pos.y][pos.x] !== null) continue;
+
+        mineralGrid[pos.y][pos.x] = { type: mineralType, color: mineralColor };
+        drawCellWithMineral(pos.x, pos.y, grid[pos.y][pos.x].color, mineralColor);
+        filled++;
+
+        if (animSpeed > 0) await sleep(20);
+
+        const neighbors = getShuffledNeighbors(pos.x, pos.y);
+        for (const n of neighbors) {
+          const nk = `${n.x},${n.y}`;
+          if (stoneSet.has(nk) && mineralGrid[n.y]?.[n.x] === null) {
+            queue.push(n);
+          }
+        }
+      }
+    }
+  }
+
+  // 섹션 경계선
+  drawSectionBorders();
+
+  // 통계
+  updateStats();
+
+  finish();
+}
+
+function finish() {
+  generating = false;
+  hidePhase();
+  $('btnGenerate').textContent = '▶ 생성';
+  $('btnGenerate').disabled = false;
+}
+
+function updateStats() {
+  const counts = {};
+  const mineralCounts = {};
+  let total = 0;
+
+  for (let y = 0; y < gridH; y++) {
+    for (let x = 0; x < gridW; x++) {
+      if (grid[y][x]) {
+        counts[grid[y][x].type] = (counts[grid[y][x].type] || 0) + 1;
+        total++;
+      }
+      if (mineralGrid[y][x]) {
+        mineralCounts[mineralGrid[y][x].type] = (mineralCounts[mineralGrid[y][x].type] || 0) + 1;
+      }
+    }
+  }
+
+  let html = '';
+  TILE_TYPES.forEach(t => {
+    const c = counts[t] || 0;
+    const pct = total > 0 ? (c / total * 100).toFixed(1) : 0;
+    html += `<div class="stat-chip"><div class="legend-color" style="width:10px;height:10px;border-radius:2px;background:${TILE_COLORS[t][0]}"></div>${t} <span class="sv">${pct}%</span></div>`;
+  });
+  MINERAL_TYPES.forEach(m => {
+    const c = mineralCounts[m] || 0;
+    if (c > 0) {
+      html += `<div class="stat-chip"><div class="legend-color" style="width:10px;height:10px;border-radius:2px;background:${MINERAL_COLORS[m]}"></div>${m} <span class="sv">${c}</span></div>`;
+    }
+  });
+  html += `<div class="stat-chip">총 셀 <span class="sv">${total}</span></div>`;
+  $('statsBar').innerHTML = html;
+}
+
+// ═══════════════════════════════════════
+// 이벤트
+// ═══════════════════════════════════════
+$('btnGenerate').addEventListener('click', generate);
+$('btnReset').addEventListener('click', () => {
+  cancelToken.cancelled = true;
+  setTimeout(() => {
+    initCanvas();
+    $('statsBar').innerHTML = '';
+    hidePhase();
+    finish();
+  }, 50);
+});
+
+// ── Init ──
+renderSectionTabs();
+renderSectionEditor(0);
+renderLegend();
+redistributeSections();
+initCanvas();
+</script>
+</body>
+</html>
