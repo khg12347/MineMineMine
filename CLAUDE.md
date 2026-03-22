@@ -81,13 +81,21 @@ Assets/
 │   ├── Managers/
 │   │   ├── MIGameManager.cs
 │   │   └── MIStatusManager.cs
+│   ├── Pool/
+│   │   ├── MIObjectPool.cs
+│   │   └── MIPoolManager.cs            # FPoolConfig 구조체 포함
+│   ├── StateMachine/
+│   │   ├── MIBaseStateMachineBehaviour.cs
+│   │   └── Tile/
+│   │       └── MITileStateMahcine.cs
 │   ├── MIContracts.cs
 │   ├── MISceneContext.cs
-│   ├── MISingleton.cs
-│   └── MIStageManager.cs
+│   └── MISingleton.cs
 ├── Data/
 │   ├── Config/
+│   │   ├── MILevelData.cs
 │   │   ├── MIPickaxeConfig.cs
+│   │   ├── MIStageConfig.cs
 │   │   ├── MIStatusConfig.cs
 │   │   └── MITileConfig.cs
 │   ├── UIRes/
@@ -98,20 +106,37 @@ Assets/
 ├── Domain/
 │   ├── Pickaxe/
 │   │   ├── EPickaxePart.cs
-│   │   ├── FPickaxeStats.cs
-│   │   ├── MIPickaxeController.cs
-│   │   └── MIPickaxePartCollider.cs
+│   │   └── FPickaxeStats.cs
+│   ├── Stage/
+│   │   ├── IMITileAlgorithm.cs
+│   │   ├── MIChunkBuffer.cs
+│   │   ├── MIDepthTracker.cs
+│   │   ├── MIFloodFillAlgorithm.cs
+│   │   ├── MILevelResolver.cs
+│   │   ├── MISeedPlacer.cs
+│   │   ├── MITileSpawner.cs
+│   │   └── MIWallSpawner.cs
 │   ├── Status/
 │   │   ├── FLevelEntry.cs
 │   │   └── FStatusSnapshot.cs
 │   ├── Tile/
 │   │   ├── EBreakResult.cs
+│   │   ├── EMineralType.cs
 │   │   ├── ETileType.cs
+│   │   ├── ETreasureType.cs
+│   │   ├── FChunkData.cs
+│   │   ├── FMineralAffinity.cs
+│   │   ├── FMineralWeight.cs
 │   │   ├── FTileData.cs
-│   │   ├── IMIBreakable.cs
-│   │   └── MITileModel.cs
+│   │   ├── FTileWeight.cs
+│   │   ├── FTreasurePlacement.cs
+│   │   ├── FTreasureWeight.cs
+│   │   └── IMIBreakable.cs
 │   └── TouchBreaker/
-│       └── MITouchBreaker.cs
+│       └── MITouchObjectSpawner.cs
+├── Editor/
+│   └── HotKey/
+│       └── MIHierarchyToggleActive.cs
 ├── Infrastructure/
 │   └── Input/
 │       ├── IMIInputListener.cs
@@ -129,8 +154,24 @@ Assets/
 │   │   ├── IMIUIContext.cs
 │   │   └── MIUIRoot.cs
 │   └── World/
-│       └── Tile/
-│           └── MITileView.cs
+│       ├── Camera/
+│       │   ├── IMICameraFollower.cs
+│       │   └── MICameraFollower.cs
+│       ├── Pickaxe/
+│       │   ├── MIPickaxeController.cs
+│       │   └── MIPickaxePartCollider.cs
+│       ├── Stage/
+│       │   └── MIStageOrchestrator.cs
+│       ├── Tile/
+│       │   ├── MITileModel.cs
+│       │   ├── MITileView.cs
+│       │   └── Animation/
+│       │       └── MIAnimationEvent.cs
+│       ├── TouchBreaker/
+│       │   ├── MITouchBreaker.cs
+│       │   └── MITouchObjectViewer.cs
+│       └── VFX/
+│           └── MIFxAutoFade.cs
 └── Utility/
     ├── MIAppLifeTime.cs
     └── MILog.cs

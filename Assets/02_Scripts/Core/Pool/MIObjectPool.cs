@@ -14,6 +14,7 @@ namespace MI.Core.Pool
         private readonly Transform _parent;
         private readonly bool _autoExpand;
         private readonly int _maxSize;
+        private readonly int _growSize;
         private int _totalCreated;
         private int _initialSize;
 
@@ -27,14 +28,16 @@ namespace MI.Core.Pool
         /// <param name="prefab">생성 기반 프리팹 컴포넌트</param>
         /// <param name="parent">비활성 오브젝트를 보관할 부모 Transform</param>
         /// <param name="initialSize">시작 시 미리 생성해둘 오브젝트 수</param>
+        /// <param name="growSize">autoExpand 시 한 번에 추가 생성할 단위</param>
         /// <param name="autoExpand">풀 소진 시 자동 확장 여부</param>
         /// <param name="maxSize">자동 확장 시 넘지 않을 최대 오브젝트 수</param>
-        public MIObjectPool(T prefab, Transform parent, int initialSize, bool autoExpand = true, int maxSize = 256)
+        public MIObjectPool(T prefab, Transform parent, int initialSize, int growSize, bool autoExpand = true, int maxSize = 256)
         {
             _prefab = prefab;
             _parent = parent;
             _autoExpand = autoExpand;
             _maxSize = maxSize;
+            _growSize = growSize;
             _initialSize = initialSize;
             _pool = new Queue<T>(initialSize);
 
@@ -60,7 +63,7 @@ namespace MI.Core.Pool
             }
             else if (_autoExpand && _totalCreated < _maxSize)
             {
-                for(int i = 0; i < _initialSize && _totalCreated < _maxSize; i++)
+                for(int i = 0; i < _growSize && _totalCreated < _maxSize; i++)
                 {
                     var newObj = CreateNew();
                     newObj.gameObject.SetActive(false);
