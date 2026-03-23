@@ -162,7 +162,7 @@ MIPoolManager.Instance.Return<MITileModel>(tile);
 
 기획 요구에 맞는 알고리즘을 두 가지 고안했습니다. (1) 블록 풀을 미리 생성해 랜덤 배치 후 빈 공간을 BFS로 채우는 방식, (2) Flood Fill 기반 군집 생성 방식. 두 알고리즘 모두 텍스트로는 시각적으로 와닿지 않았기 때문에, Unity 구현 전에 AI를 활용해 HTML/JS 프로토타입을 먼저 제작하고 기획자에게 시연했습니다. 기획자가 Flood Fill 결과를 선택했고, 이후 Unity 구현에 들어갔습니다.
 
-→ [타일 생성 시뮬레이터 (HTML 프로토타입)](https://khg12347.github.io/MineMineMine/docs/tile_generation_simulator.html)
+→ [타일 생성 시뮬레이터 (HTML 프로토타입)](https://khg12347.github.io/MineMineMine/tile_generation_simulator.html)
 
 **메모리를 고려한 청크 버퍼 설계**
 
