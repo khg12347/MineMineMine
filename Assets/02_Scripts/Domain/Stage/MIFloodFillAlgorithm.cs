@@ -190,39 +190,33 @@ namespace MI.Domain.Stage
                     // 타일 친화도 조회
                     if (affinities?.TryGetValue(tileType, out var tileAffinities) == true)
                     {
-                        var mineral = SelectMineral(level.MineralWeights, tileAffinities);
-                        if (mineral == EMineralType.None) continue;
-
-
-                        // 매장량 결정
-                        int depositAmount = 0;
-                        foreach (var mw in level.MineralWeights)
-                        {
-                            if (mw.MineralType != mineral) continue;
-                            depositAmount = mw.DepositMin + (mw.DepositMax > mw.DepositMin
-                                ? _rng.Next(mw.DepositMax - mw.DepositMin + 1)
-                                : 0);
-                            break;
-                        }
+                        var (mineralType, density) = SelectMineral(level.MineralWeights, tileAffinities);
+                        if (mineralType == EMineralType.None) continue;
 
                         // struct 는 값 복사이므로 수정 후 재할당
                         var cell = cells[r, c];
-                        cell.MineralType = mineral;
-                        cell.DepositAmount = depositAmount;
+                        cell.MineralDrop = new FMineralDropEntry
+                        {
+                            MineralType = mineralType,
+                            Density     = density,
+                        };
                         cells[r, c] = cell;
                     }
                 }
             }
         }
 
-        /// <summary>섹션 가중치와 타일 친화도를 곱한 복합 가중치로 광물 종류를 결정합니다.</summary>
-        private EMineralType SelectMineral(
+        /// <summary>
+        /// 섹션 가중치와 타일 친화도를 곱한 복합 가중치로 광물 종류와 밀도를 결정합니다.
+        /// 광물이 선택되지 않으면 (EMineralType.None, EMineralDensity.None)을 반환합니다.
+        /// </summary>
+        private (EMineralType Type, EMineralDensity Density) SelectMineral(
             IReadOnlyList<FMineralWeight> sectionWeights,
             List<FMineralAffinity> tileAffinities)
         {
             // 각 광물의 복합 가중치 = 섹션 가중치 × 친화도
             float combinedTotal = 0f;
-            var combined = new List<(EMineralType Type, float Weight)>(sectionWeights.Count);
+            var combined = new List<(EMineralType Type, EMineralDensity Density, float Weight)>(sectionWeights.Count);
 
             foreach (var mw in sectionWeights)
             {
@@ -237,23 +231,23 @@ namespace MI.Domain.Stage
                     }
                 }
                 float w = mw.Weight * affinity;
-                combined.Add((mw.MineralType, w));
+                combined.Add((mw.MineralType, mw.Density, w));
                 combinedTotal += w;
             }
 
-            if (combinedTotal <= 0f) return EMineralType.None;
+            if (combinedTotal <= 0f) return (EMineralType.None, EMineralDensity.None);
 
-            // combinedTotal + 1 범위에서 roll → 나머지는 None (광물 없음)
+            // combinedTotal + 1 범위에서 roll → 초과분은 None (광물 없음)
             float roll = (float)_rng.NextDouble() * (combinedTotal + 1f);
-            if (roll > combinedTotal) return EMineralType.None;
+            if (roll > combinedTotal) return (EMineralType.None, EMineralDensity.None);
 
             float cum = 0f;
-            foreach (var (type, w) in combined)
+            foreach (var (type, density, w) in combined)
             {
                 cum += w;
-                if (roll < cum) return type;
+                if (roll < cum) return (type, density);
             }
-            return EMineralType.None;
+            return (EMineralType.None, EMineralDensity.None);
         }
 
         // ── 헬퍼 ─────────────────────────────────────────────────────────

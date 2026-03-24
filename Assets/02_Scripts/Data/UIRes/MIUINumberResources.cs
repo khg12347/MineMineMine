@@ -1,6 +1,7 @@
-using UnityEngine;
+using MI.Utility;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace MI.Data.UIRes
 {
@@ -17,7 +18,7 @@ namespace MI.Data.UIRes
         {
             if (num < 0 || num > 9)
             {
-                Debug.LogError("Invalid number: " + num);
+                MILog.LogError("Invalid number: " + num);
                 return null;
             }
             return _bigNums[num];
@@ -27,7 +28,7 @@ namespace MI.Data.UIRes
         {
             if (num < 0 || num > 9)
             {
-                Debug.LogError("Invalid number: " + num);
+                MILog.LogError("Invalid number: " + num);
                 return null;
             }
             return middleNums[num];

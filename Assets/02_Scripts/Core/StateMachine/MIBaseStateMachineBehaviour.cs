@@ -1,3 +1,4 @@
+using MI.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -69,7 +70,7 @@ namespace MI.Core.StateMachine
                 _componentCache[type] = cached;
 
                 if (cached == null)
-                    Debug.LogError(
+                    MILog.LogError(
                         $"[BaseStateMachineBehaviour] '{typeof(TComponent).Name}' 컴포넌트를 찾을 수 없습니다." +
                         $" Animator: {animator.name}");
             }
@@ -163,7 +164,7 @@ namespace MI.Core.StateMachine
         private void LogCallback(string callbackName, AnimatorStateInfo stateInfo)
         {
             if (!enableDebugLog) return;
-            Debug.Log(
+            MILog.Log(
                 $"[BaseStateMachineBehaviour] {callbackName}" +
                 $" | State: {stateInfo.shortNameHash}" +
                 $" | NormalizedTime: {stateInfo.normalizedTime:F3}");
@@ -173,7 +174,7 @@ namespace MI.Core.StateMachine
         private void LogStateMachineCallback(string callbackName)
         {
             if (!enableDebugLog) return;
-            Debug.Log($"[BaseStateMachineBehaviour] {callbackName}");
+            MILog.Log($"[BaseStateMachineBehaviour] {callbackName}");
         }
 
         #endregion
@@ -233,7 +234,7 @@ namespace MI.Core.StateMachine
                 : animator.GetComponent<T>();
 
             if (Owner == null)
-                Debug.LogError(
+                MILog.LogError(
                     $"[BaseStateMachineBehaviour<{typeof(T).Name}>] 대상 컴포넌트를 찾을 수 없습니다." +
                     $" Animator: {animator.name} | searchParent: {searchParent}");
         }

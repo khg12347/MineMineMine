@@ -15,19 +15,98 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: 06a29f5074b6e0343a95297262cc8d7d, type: 3}
+    - {fileID: 21300000, guid: 91ea88e5f24483f4dacd6031f878a4e6, type: 3}
+    - {fileID: 21300000, guid: 44c77f9ce95c6ff47b71151fc64ed287, type: 3}
+    - {fileID: 21300000, guid: ccebc042f9014c446a07ad894a0ff33d, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: _mineralSlotSprites
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.EMineralDensity,
+        Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Tile.EMineralDensity,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 10
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 20
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 30
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   _tileType: 30
   _maxDurability: 700
   _dropScore: 10
   _dropExp: 100
   _bounceMultiplier: 1.05
+  _tileDropAmountRange:
+    Min: 1
+    Max: 3
   _baseSprite: {fileID: 21300000, guid: 06a29f5074b6e0343a95297262cc8d7d, type: 3}
-  _damageSprites:
-  - {fileID: 21300000, guid: 06a29f5074b6e0343a95297262cc8d7d, type: 3}
   _crackLevelDurability: bc020000f40100002c01000064000000
   _prefabFxTileDebris: {fileID: 3087789122344719233, guid: 786ee0e32cd6523479c53dfbaf4bbf40, type: 3}

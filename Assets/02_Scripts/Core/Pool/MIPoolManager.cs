@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+using MI.Utility;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MI.Core.Pool
@@ -66,7 +67,7 @@ namespace MI.Core.Pool
             int prefabId = prefab.GetInstanceID();
             if (_pools.ContainsKey(prefabId))
             {
-                Debug.LogWarning($"[MIPoolManager] '{prefab.name}' 풀이 이미 존재합니다. InitPool을 무시합니다.");
+                MILog.LogWarning($"[MIPoolManager] '{prefab.name}' 풀이 이미 존재합니다. InitPool을 무시합니다.");
                 return;
             }
             CreatePool<T>(prefab, prefabId, config.InitialSize, config.GrowSize);
@@ -105,7 +106,7 @@ namespace MI.Core.Pool
             }
             else
             {
-                Debug.LogWarning($"[MIPoolManager] '{obj.name}'에 대응하는 풀을 찾지 못했습니다. 비활성화만 처리합니다.");
+                MILog.LogWarning($"[MIPoolManager] '{obj.name}'에 대응하는 풀을 찾지 못했습니다. 비활성화만 처리합니다.");
                 obj.gameObject.SetActive(false);
             }
         }
@@ -115,7 +116,7 @@ namespace MI.Core.Pool
             var prefabComp = prefab.GetComponent<T>();
             if (prefabComp == null)
             {
-                Debug.LogError($"[MIPoolManager] '{prefab.name}' 프리팹에 {typeof(T).Name} 컴포넌트가 없습니다.");
+                MILog.LogError($"[MIPoolManager] '{prefab.name}' 프리팹에 {typeof(T).Name} 컴포넌트가 없습니다.");
                 return null;
             }
 
@@ -135,13 +136,13 @@ namespace MI.Core.Pool
         {
             if (_pools.Count == 0)
             {
-                Debug.Log("[MIPoolManager] 등록된 풀이 없습니다.");
+                MILog.Log("[MIPoolManager] 등록된 풀이 없습니다.");
                 return;
             }
             foreach (var kv in _pools)
             {
                 // CountAll/CountActive/CountInactive는 타입별로 읽기 어려우므로 이름만 출력
-                Debug.Log($"[MIPoolManager] prefabID={kv.Key} pool={kv.Value?.GetType().Name}");
+                MILog.Log($"[MIPoolManager] prefabID={kv.Key} pool={kv.Value?.GetType().Name}");
             }
         }
 #endif

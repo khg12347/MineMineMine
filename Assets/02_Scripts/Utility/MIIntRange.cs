@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace MI.Untility
 {
+    [System.Serializable]
     public class MIIntRange
     {
         public int Min;

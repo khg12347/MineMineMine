@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b0a8d9b659a5a94b966c8a28e16404b, type: 3}
-  m_Name: LevelData
+  m_Name: LevelData_StoneTest
   m_EditorClassIdentifier: Assembly-CSharp::MI.Data.Config.MILevelData
   serializationData:
     SerializedFormat: 2
@@ -41,13 +41,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 3
-      Data: 10
+      Data: 30
     - Name: $v
       Entry: 7
       Data: 2|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
@@ -75,7 +75,7 @@ MonoBehaviour:
       Data: 2
     - Name: Weight
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -93,7 +93,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 11
+      Data: 31
     - Name: $v
       Entry: 7
       Data: 3|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
@@ -121,7 +121,7 @@ MonoBehaviour:
       Data: 2
     - Name: Weight
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -139,7 +139,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 12
+      Data: 32
     - Name: $v
       Entry: 7
       Data: 4|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
@@ -159,40 +159,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 7
-      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
-    - Name: MineralType
-      Entry: 3
-      Data: 2
-    - Name: Weight
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 20
-    - Name: $v
-      Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
     - Name: 
       Entry: 7
       Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
@@ -223,19 +189,16 @@ MonoBehaviour:
   _levelName: Level
   _rowCount: 50
   _tileWeights:
-  - TileType: 10
+  - TileType: 30
     Weight: 10
-  - TileType: 11
+  - TileType: 31
     Weight: 5
-  - TileType: 12
-    Weight: 3
-  - TileType: 20
-    Weight: 1
+  - TileType: 32
+    Weight: 2
   _tileConfigs:
-  - {fileID: 11400000, guid: 04db221532f7cdb468f5de74d6bee825, type: 2}
-  - {fileID: 11400000, guid: c9faa6941147d6447a9b7e56d993255c, type: 2}
-  - {fileID: 11400000, guid: c3f4c54268209fa41949fea001f5c1d8, type: 2}
-  - {fileID: 11400000, guid: f9de8c14de1d4d7409755d98e076e64e, type: 2}
+  - {fileID: 11400000, guid: 14825acbc39661c45a982fa57c2d853a, type: 2}
+  - {fileID: 11400000, guid: d77d68da6d99dc04084e36cffaef622f, type: 2}
+  - {fileID: 11400000, guid: be492d9379ec1144a98f585022f1cf0e, type: 2}
   _clusterSizeMin: 4
   _clusterSizeMax: 16
   _seedDensity: 0.932

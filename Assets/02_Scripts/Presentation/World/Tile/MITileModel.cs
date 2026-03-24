@@ -92,6 +92,14 @@ namespace MI.Presentation.World.Tile
             // 현재는 EXP만 처리하지만
             // 향후 아이템 드랍 및 재화 획득 추가되면 별도의 시스템으로 분리예정
             MIStatusManager.Instance.AddExp(_data.DropExp);
+            
+            ////타일 재료와 광물 드랍 로그 (정상 확인 완료)
+            //MILog.Log($"[DropDataCheck]Tile destroyed! Dropping { _data.TileDrop.MinAmount } to { _data.TileDrop.MaxAmount } of { _data.TileDrop.TileType }.");
+            //if(_data.MineralDrop != null)
+            //{
+            //    var dropData = _data.MineralDrop.Value;
+            //    MILog.Log($"[DropDataCheck]Tile destroyed! Dropping {dropData.MineralType} with density {dropData.Density}.");
+            //}
 
             // 파괴 이펙트
             _view.PlayBreakEffect();

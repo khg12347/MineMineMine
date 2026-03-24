@@ -1,4 +1,5 @@
 using MI.Domain.Status;
+using MI.Utility;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -40,7 +41,7 @@ namespace MI.Data.Config
         {
             if (_levelTable == null || _levelTable.Length == 0)
             {
-                Debug.LogWarning("[MIStatusConfig] 레벨 테이블이 비어 있습니다.");
+                MILog.LogWarning("[MIStatusConfig] 레벨 테이블이 비어 있습니다.");
                 return 100;
             }
 
