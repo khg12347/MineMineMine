@@ -9,8 +9,6 @@ namespace MI.Domain.Status
     /// <summary>
     /// 플레이어의 EXP / 레벨을 관리하는 싱글톤 매니저.
     ///
-    /// ── 외부 연동 방법 ────────────────────────────────────────────────
-    ///
     ///  [EXP 추가]
     ///    MIStatusManager.Instance.AddExp(50);
     ///
@@ -26,15 +24,13 @@ namespace MI.Domain.Status
     /// </summary>
     public sealed class MIStatusManager : MISingleton<MIStatusManager>
     {
-        // ── Inspector ─────────────────────────────────────────────────
-
+        // Inspector 
         [Title("설정")]
         [Required]
         [SerializeField] private MIStatusConfig _config;
 
 
-        // ── 런타임 상태 ───────────────────────────────────────────────
-
+        // 런타임 상태 
         private int _currentLevel = 1;
         private int _currentDepth = 0;
         private int _currentExp;
@@ -42,8 +38,7 @@ namespace MI.Domain.Status
 
         private readonly List<IMIStatusListener> _listeners = new();
 
-        // ── 프로퍼티 ──────────────────────────────────────────────────
-
+        // 프로퍼티 
         /// <summary>현재 레벨</summary>
         public int CurrentLevel => _currentLevel;
 
@@ -62,8 +57,7 @@ namespace MI.Domain.Status
         public int CurrentDepth => _currentDepth; // TODO: 깊이 시스템 도입 시 구현
 
 
-        // ── 공개 API ──────────────────────────────────────────────────
-
+        #region Public API
         /// <summary>
         /// EXP를 추가하고 레벨업을 자동 처리한다.
         /// 한 번에 여러 레벨을 건너뛰는 경우도 순서대로 처리된다.
@@ -102,9 +96,9 @@ namespace MI.Domain.Status
             _totalExp = 0;
             NotifyExpChanged();
         }
+        #endregion Public API
 
-        // ── 리스너 관리 ───────────────────────────────────────────────
-
+        #region Listener Management
         /// <summary>상태 변경 알림을 수신할 리스너를 등록한다. 중복 등록은 무시.</summary>
         public void RegisterListener(IMIStatusListener listener)
         {
@@ -118,8 +112,9 @@ namespace MI.Domain.Status
             _listeners.Remove(listener);
         }
 
-        // ── 내부 처리 ─────────────────────────────────────────────────
+        #endregion Listener Management
 
+        #region Internal
         /// <summary>
         /// 현재 EXP가 RequiredExp 이상이면 레벨업을 반복 처리.
         /// 다중 레벨업(EXP 폭발적 획득)도 누락 없이 처리된다.
@@ -156,8 +151,7 @@ namespace MI.Domain.Status
             for (int i = _listeners.Count - 1; i >= 0; i--)
                 _listeners[i].OnDepthUpdated(newDepth);
         }
-
-        // ── 에디터 전용 ───────────────────────────────────────────────
+        #endregion Internal
 
 #if UNITY_EDITOR
         [Title("디버그")]

@@ -20,14 +20,46 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: _mineralSlotSprites
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.EMineralDensity,
+        Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Tile.EMineralDensity,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   _tileType: 11
   _maxDurability: 200
   _dropScore: 10
   _dropExp: 20
-  _bounceMultiplier: 1.05
-  _baseSprite: {fileID: 21300000, guid: 8ef149414fa14fb4c9703aa107c55a8d, type: 3}
-  _damageSprites:
-  - {fileID: 21300000, guid: 8ef149414fa14fb4c9703aa107c55a8d, type: 3}
   _crackLevelDurability: c8000000960000006400000032000000
+  _bounceMultiplier: 1.05
+  _tileDropAmountRange:
+    Min: 1
+    Max: 3
+  _baseSprite: {fileID: 21300000, guid: 8ef149414fa14fb4c9703aa107c55a8d, type: 3}
+  _crackLevelSprites:
+  - {fileID: 21300000, guid: 0da7a183ee3e8204c8c21dc5083d8f96, type: 3}
+  - {fileID: 21300000, guid: 987a2a8058c014e42b31d9dc8508a878, type: 3}
+  - {fileID: 21300000, guid: c1bd540127812bc4a950a5496402c23a, type: 3}
+  - {fileID: 21300000, guid: a9be845939be0bb419abe0480a9b781c, type: 3}
   _prefabFxTileDebris: {fileID: 3087789122344719233, guid: dedcd0537b16a454eaf1b68718cc6ea1, type: 3}

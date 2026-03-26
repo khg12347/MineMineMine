@@ -1,3 +1,4 @@
+using MI.Utility;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,7 +80,7 @@ namespace MI.Core.Pool
             }
             else
             {
-                Debug.LogWarning($"[MIObjectPool<{typeof(T).Name}>] 풀 최대 크기({_maxSize}) 초과. 강제 생성합니다.");
+                MILog.LogWarning($"[MIObjectPool<{typeof(T).Name}>] 풀 최대 크기({_maxSize}) 초과. 강제 생성합니다.");
                 obj = CreateNew();
             }
 

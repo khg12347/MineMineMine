@@ -78,9 +78,10 @@ Assets/
 ```
 02_Scripts/
 ├── Core/
+│   ├── BootStrap/
+│   │   └── MIBootStrap.cs
 │   ├── Managers/
-│   │   ├── MIGameManager.cs
-│   │   └── MIStatusManager.cs
+│   │   └── MIGameManager.cs
 │   ├── Pool/
 │   │   ├── MIObjectPool.cs
 │   │   └── MIPoolManager.cs            # FPoolConfig 구조체 포함
@@ -94,6 +95,7 @@ Assets/
 ├── Data/
 │   ├── Config/
 │   │   ├── MILevelData.cs
+│   │   ├── MIMineralConfig.cs
 │   │   ├── MIPickaxeConfig.cs
 │   │   ├── MIStageConfig.cs
 │   │   ├── MIStatusConfig.cs
@@ -118,16 +120,22 @@ Assets/
 │   │   └── MIWallSpawner.cs
 │   ├── Status/
 │   │   ├── FLevelEntry.cs
-│   │   └── FStatusSnapshot.cs
+│   │   ├── FStatusSnapshot.cs
+│   │   ├── IMIStatusListener.cs
+│   │   └── MIStatusManager.cs
 │   ├── Tile/
 │   │   ├── EBreakResult.cs
+│   │   ├── EMineralDensity.cs
 │   │   ├── EMineralType.cs
 │   │   ├── ETileType.cs
 │   │   ├── ETreasureType.cs
 │   │   ├── FChunkData.cs
 │   │   ├── FMineralAffinity.cs
+│   │   ├── FMineralDensityRange.cs
+│   │   ├── FMineralDropEntry.cs
 │   │   ├── FMineralWeight.cs
 │   │   ├── FTileData.cs
+│   │   ├── FTileDropEntry.cs
 │   │   ├── FTileWeight.cs
 │   │   ├── FTreasurePlacement.cs
 │   │   ├── FTreasureWeight.cs
@@ -174,6 +182,7 @@ Assets/
 │           └── MIFxAutoFade.cs
 └── Utility/
     ├── MIAppLifeTime.cs
+    ├── MIIntRange.cs
     └── MILog.cs
 ```
 
@@ -229,6 +238,23 @@ namespace MI.Data.Config { }
 - Odin Inspector 속성(`[ShowInInspector]`, `[Button]`, `[FoldoutGroup]` 등)으로 에디터 편의성 향상
 - 코루틴보다 `async/await` 우선 고려
 - 코드 주석은 **한국어**로 작성
+
+### 클래스 멤버 구역 분류
+
+클래스 내부의 멤버를 기능별로 구분할 때 주석 구분선 대신 `#region`을 사용합니다.
+`#endregion`에도 반드시 같은 이름을 명시합니다.
+
+```csharp
+// ❌ 지양
+// -- Public API --------------------------------------------
+
+// ✅ 권장
+#region Public API
+
+// ... 멤버 ...
+
+#endregion Public API
+```
 
 ---
 

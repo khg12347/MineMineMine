@@ -18,6 +18,7 @@ namespace MI.Presentation.World.Tile
     {
         [SerializeField] private SpriteRenderer _tileRenderer;
         [SerializeField] private SpriteRenderer _mineralRenderer;
+        [SerializeField] private SpriteRenderer _crackLightRenderer;
         [SerializeField] private DamageNumber   _damageFloatingText;
         [SerializeField] private Animator       _animatorCrack;
         [SerializeField] private Animator       _animatorTile;
@@ -26,7 +27,7 @@ namespace MI.Presentation.World.Tile
         [SerializeField] private MIMineralConfig _mineralConfig;
 
         private GameObject _fxDebris;
-
+        private MITileConfig _config;
 
         /// <summary>
         /// 타일 데이터를 받아 스프라이트를 갱신합니다.
@@ -36,7 +37,7 @@ namespace MI.Presentation.World.Tile
         public void UpdateTileData(MITileConfig config, FTileData tileData)
         {
             _fxDebris = config.PrefabFxTileDebris;
-
+            _config = config;
             if (tileData.MineralDrop.HasValue)
             {
                 var drop = tileData.MineralDrop.Value;
@@ -81,6 +82,7 @@ namespace MI.Presentation.World.Tile
 
         public void SetCrackParameter(int crackLevel)
         {
+            _crackLightRenderer.sprite = _config.GetCrackLevelSprite(crackLevel);
             _animatorCrack.SetInteger("icrack", crackLevel);
         }
 

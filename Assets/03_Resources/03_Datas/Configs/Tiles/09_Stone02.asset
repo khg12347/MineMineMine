@@ -103,10 +103,15 @@ MonoBehaviour:
   _maxDurability: 900
   _dropScore: 10
   _dropExp: 500
+  _crackLevelDurability: 84030000ee020000c201000096000000
   _bounceMultiplier: 1.05
   _tileDropAmountRange:
     Min: 1
     Max: 3
   _baseSprite: {fileID: 21300000, guid: 5faed5c2facd75946a1b3d3f7e1fe970, type: 3}
-  _crackLevelDurability: 84030000ee020000c201000096000000
+  _crackLevelSprites:
+  - {fileID: 21300000, guid: 0da7a183ee3e8204c8c21dc5083d8f96, type: 3}
+  - {fileID: 21300000, guid: 987a2a8058c014e42b31d9dc8508a878, type: 3}
+  - {fileID: 21300000, guid: c1bd540127812bc4a950a5496402c23a, type: 3}
+  - {fileID: 21300000, guid: a9be845939be0bb419abe0480a9b781c, type: 3}
   _prefabFxTileDebris: {fileID: 3087789122344719233, guid: 47626689f0b498f46b4e3cf081b077ca, type: 3}

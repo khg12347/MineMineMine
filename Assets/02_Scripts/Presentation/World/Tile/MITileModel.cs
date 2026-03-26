@@ -89,7 +89,7 @@ namespace MI.Presentation.World.Tile
 
         public void Break()
         {
-            // 현재는 EXP만 처리하지만
+            // TODO: 현재는 EXP만 처리하지만
             // 향후 아이템 드랍 및 재화 획득 추가되면 별도의 시스템으로 분리예정
             MIStatusManager.Instance.AddExp(_data.DropExp);
             

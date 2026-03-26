@@ -25,19 +25,18 @@ namespace MI.Data.Config
         [PropertyRange(0, 9999)]
         [SerializeField] private int _dropExp = 10;
 
+        [LabelText("균열 단계별 내구도")]
+        [SerializeField] private List<int> _crackLevelDurability = new List<int>();
+
         [Title("바운스 배율")]
         [InfoBox("Dirt=0.8 / Stone=1.0 / Iron=1.2 / Gold=1.5 / Diamond=2.0")]
         [PropertyRange(0.5f, 3f)]
         [SerializeField] private float _bounceMultiplier = 1f;
 
-        // ── 타일 재료 드랍 설정 ────────────────────────────────────────────
-
         [Title("타일 재료 드랍")]
         [InfoBox("타일 파괴 시 드랍되는 재료 수량 범위입니다.")]
         [LabelText("드랍 수량 범위 (Min / Max)")]
         [SerializeField] private MIIntRange _tileDropAmountRange = new MIIntRange(1, 3);
-
-        // ── 스프라이트 ─────────────────────────────────────────────────────
 
         [Title("스프라이트")]
         [PreviewField(50)]
@@ -49,15 +48,13 @@ namespace MI.Data.Config
         [DictionaryDrawerSettings(KeyLabel = "광물 밀도", ValueLabel = "타일 스프라이트")]
         [SerializeField] private Dictionary<EMineralDensity, Sprite> _mineralSlotSprites = new Dictionary<EMineralDensity, Sprite>();
 
-        [LabelText("균열 단계별 내구도")]
-        [SerializeField] private List<int> _crackLevelDurability = new List<int>();
+        [LabelText("균열 단계별 스프라이트")]
+        [SerializeField] private List<Sprite> _crackLevelSprites = new List<Sprite>();
 
         [Title("파괴 시 효과")]
         [LabelText("타일 파편 프리팹")]
         [SerializeField] private GameObject _prefabFxTileDebris;
         // 사운드 필요
-
-        // ── 공개 프로퍼티 ──────────────────────────────────────────────────
 
         public ETileType TileType          => _tileType;
         public Sprite    BaseSprite        => _baseSprite;
@@ -74,6 +71,15 @@ namespace MI.Data.Config
 
             MILog.LogWarning($"[MITileConfig] 광물 밀도 {mineralDensity}에 대한 스프라이트가 설정되지 않았습니다.");
             return _baseSprite;
+        }
+        public Sprite GetCrackLevelSprite(int crackLevel)
+        {
+            if (crackLevel < 0 || crackLevel >= _crackLevelSprites.Count)
+            {
+                MILog.LogWarning($"[MITileConfig] 균열 단계 {crackLevel}에 대한 스프라이트가 설정되지 않았습니다.");
+                return null;
+            }
+            return _crackLevelSprites[crackLevel];
         }
 
         /// <summary>
