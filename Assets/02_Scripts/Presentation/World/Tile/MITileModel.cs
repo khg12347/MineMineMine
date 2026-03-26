@@ -1,8 +1,10 @@
 using System;
 using MI.Core.Pool;
 using MI.Data.Config;
+using MI.Domain.Inventory;
 using MI.Domain.Status;
 using MI.Domain.Tile;
+using MI.Untility;
 using MI.Utility;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -26,6 +28,9 @@ namespace MI.Presentation.World.Tile
     public class MITileModel : MonoBehaviour, IMIBreakable
     {
         [SerializeField, ReadOnly] private FTileData _data;
+
+        /// <summary>광물 밀도 → 드랍 수량 변환용 Config (씬 또는 프리팹에서 할당)</summary>
+        [SerializeField] private MIMineralConfig _mineralConfig;
 
         // 파괴 시 호출되는 콜백 (MITileSpawner 에서 주입)
         private Action<MITileModel> _onBroken;
@@ -89,17 +94,10 @@ namespace MI.Presentation.World.Tile
 
         public void Break()
         {
-            // TODO: 현재는 EXP만 처리하지만
-            // 향후 아이템 드랍 및 재화 획득 추가되면 별도의 시스템으로 분리예정
             MIStatusManager.Instance.AddExp(_data.DropExp);
-            
-            ////타일 재료와 광물 드랍 로그 (정상 확인 완료)
-            //MILog.Log($"[DropDataCheck]Tile destroyed! Dropping { _data.TileDrop.MinAmount } to { _data.TileDrop.MaxAmount } of { _data.TileDrop.TileType }.");
-            //if(_data.MineralDrop != null)
-            //{
-            //    var dropData = _data.MineralDrop.Value;
-            //    MILog.Log($"[DropDataCheck]Tile destroyed! Dropping {dropData.MineralType} with density {dropData.Density}.");
-            //}
+
+            // 아이템 드롭 이벤트 발행
+            BroadcastDropItems();
 
             // 파괴 이펙트
             _view.PlayBreakEffect();
@@ -111,6 +109,40 @@ namespace MI.Presentation.World.Tile
             var cb = _onBroken;
             _onBroken = null; // 재호출 방지
             cb?.Invoke(this);
+        }
+
+        /// <summary>
+        /// FTileData의 드롭 정보를 파싱하여 MIItemDropEvent로 브로드캐스트합니다.
+        /// 타일 재료는 항상, 광물은 MineralDrop이 존재할 때만 발행합니다.
+        /// </summary>
+        private void BroadcastDropItems()
+        {
+            // 타일 재료 드롭 (항상 존재)
+            int tileAmount = UnityEngine.Random.Range(_data.TileDrop.MinAmount, _data.TileDrop.MaxAmount + 1);
+            if (tileAmount > 0)
+            {
+                MIItemDropEvent.Broadcast(new FDropItemData
+                {
+                    ItemType = MIItemTypeConverter.FromTileType(_data.TileDrop.TileType),
+                    Amount   = tileAmount
+                });
+            }
+
+            // 광물 드롭 (nullable)
+            if (_data.MineralDrop.HasValue && _mineralConfig != null)
+            {
+                var mineral = _data.MineralDrop.Value;
+                MIIntRange range = _mineralConfig.GetDropRange(mineral.Density);
+                if (range != null)
+                {
+                    int mineralAmount = UnityEngine.Random.Range(range.Min, range.Max + 1);
+                    MIItemDropEvent.Broadcast(new FDropItemData
+                    {
+                        ItemType = MIItemTypeConverter.FromMineralType(mineral.MineralType),
+                        Amount   = mineralAmount
+                    });
+                }
+            }
         }
         #endregion Damage Handling
     }

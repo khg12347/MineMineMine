@@ -90,6 +90,7 @@ Assets/
 │   │   └── Tile/
 │   │       └── MITileStateMahcine.cs
 │   ├── MIContracts.cs
+│   ├── MIGameRoot.cs
 │   ├── MISceneContext.cs
 │   └── MISingleton.cs
 ├── Data/
@@ -106,6 +107,12 @@ Assets/
 │   ├── Save/                           # 예정
 │   └── Table/                          # 예정
 ├── Domain/
+│   ├── Inventory/
+│   │   ├── EItemType.cs              # MIItemTypeConverter 포함
+│   │   ├── FDropItemData.cs
+│   │   ├── IMIItemDropEventListener.cs
+│   │   ├── MIItemDropEvent.cs
+│   │   └── MIUserInventory.cs
 │   ├── Pickaxe/
 │   │   ├── EPickaxePart.cs
 │   │   └── FPickaxeStats.cs
@@ -140,8 +147,10 @@ Assets/
 │   │   ├── FTreasurePlacement.cs
 │   │   ├── FTreasureWeight.cs
 │   │   └── IMIBreakable.cs
-│   └── TouchBreaker/
-│       └── MITouchObjectSpawner.cs
+│   ├── TouchBreaker/
+│   │   └── MITouchObjectSpawner.cs
+│   └── User/
+│       └── MIUserState.cs
 ├── Editor/
 │   └── HotKey/
 │       └── MIHierarchyToggleActive.cs
@@ -171,10 +180,10 @@ Assets/
 │       ├── Stage/
 │       │   └── MIStageOrchestrator.cs
 │       ├── Tile/
+│       │   ├── Animation/
+│       │   │   └── MIAnimationEvent.cs
 │       │   ├── MITileModel.cs
-│       │   ├── MITileView.cs
-│       │   └── Animation/
-│       │       └── MIAnimationEvent.cs
+│       │   └── MITileView.cs
 │       ├── TouchBreaker/
 │       │   ├── MITouchBreaker.cs
 │       │   └── MITouchObjectViewer.cs
