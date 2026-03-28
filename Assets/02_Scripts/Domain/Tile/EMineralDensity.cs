@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+ï»¿using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MI.Domain.Tile
@@ -6,13 +6,13 @@ namespace MI.Domain.Tile
     public enum EMineralDensity : byte
     {
         None   = 0,
-        [LabelText("³·Àº ¸ÅÀå·®")]
+        [LabelText("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½å·®")]
         Low = 10,
-        [LabelText("º¸Åë ¸ÅÀå·®")]
+        [LabelText("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½å·®")]
         Medium = 20,
-        [LabelText("³ôÀº ¸ÅÀå·®")]
+        [LabelText("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½å·®")]
         High = 30,
-        [LabelText("º°(Æ¯¼ö)")]
+        [LabelText("ï¿½ï¿½(Æ¯ï¿½ï¿½)")]
         Star = 50,
     }
 }

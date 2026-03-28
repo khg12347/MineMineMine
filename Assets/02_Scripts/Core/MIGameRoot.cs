@@ -1,4 +1,4 @@
-using MI.Domain.User;
+﻿using MI.Domain.User;
 using UnityEngine;
 
 namespace MI.Core

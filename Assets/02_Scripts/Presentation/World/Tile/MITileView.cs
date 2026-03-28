@@ -1,4 +1,4 @@
-using DamageNumbersPro;
+﻿using DamageNumbersPro;
 using MI.Core.Pool;
 using MI.Data.Config;
 using MI.Domain.Tile;

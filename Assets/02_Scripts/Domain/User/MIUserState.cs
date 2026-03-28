@@ -1,4 +1,4 @@
-using MI.Domain.Inventory;
+﻿using MI.Domain.Inventory;
 
 namespace MI.Domain.User
 {

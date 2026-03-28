@@ -1,4 +1,4 @@
-using MI.Domain.Tile;
+﻿using MI.Domain.Tile;
 
 namespace MI.Domain.Inventory
 {

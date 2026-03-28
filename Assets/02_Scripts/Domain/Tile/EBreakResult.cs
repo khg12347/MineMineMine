@@ -1,4 +1,4 @@
-namespace MI.Domain.Tile
+﻿namespace MI.Domain.Tile
 {
     public enum EBreakResult
     {

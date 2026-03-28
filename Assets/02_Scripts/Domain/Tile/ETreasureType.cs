@@ -1,4 +1,4 @@
-namespace MI.Domain.Tile
+﻿namespace MI.Domain.Tile
 {
     /// <summary>보물 상자 등급을 나타내는 열거형</summary>
     public enum ETreasureType

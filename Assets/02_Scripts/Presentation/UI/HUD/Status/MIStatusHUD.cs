@@ -1,4 +1,4 @@
-using MI.Data.UIRes;
+ï»¿using MI.Data.UIRes;
 using MI.Domain.Status;
 using MI.Utility;
 using UnityEngine;
@@ -11,8 +11,8 @@ namespace MI.Presentation.UI.HUD.Status
     {
         [SerializeField] private MIUINumberResources _numberResources;
         [SerializeField] private Slider _expSlider;
-        [SerializeField] private Image[] _numbers; // ·¹º§ ¼ıÀÚ ÀÌ¹ÌÁö ¹è¿­ (ÃÖ´ë 3ÀÚ¸®)
-        [SerializeField] private Image[] _depthNumbers; // ±íÀÌ ¼ıÀÚ ÀÌ¹ÌÁö ¹è¿­ (ÃÖ´ë 7ÀÚ¸®)
+        [SerializeField] private Image[] _numbers; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½è¿­ (ï¿½Ö´ï¿½ 3ï¿½Ú¸ï¿½)
+        [SerializeField] private Image[] _depthNumbers; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½è¿­ (ï¿½Ö´ï¿½ 7ï¿½Ú¸ï¿½)
 
         private void Start()
         {

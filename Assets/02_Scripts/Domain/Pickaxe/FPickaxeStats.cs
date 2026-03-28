@@ -1,4 +1,4 @@
-namespace MI.Domain.Pickaxe
+﻿namespace MI.Domain.Pickaxe
 {
     public struct FPickaxeStats
     {

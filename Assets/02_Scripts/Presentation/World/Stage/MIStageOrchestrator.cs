@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MI.Core.Pool;
 using MI.Data.Config;
 using MI.Domain.Stage;

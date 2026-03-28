@@ -1,4 +1,4 @@
-using MI.Utility;
+ï»¿using MI.Utility;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +8,10 @@ namespace MI.Data.UIRes
     [CreateAssetMenu(fileName = "StatusConfig", menuName = "MI/Data/UIRes/Numbers")]
     public class MIUINumberResources : SerializedScriptableObject
     {
-        [LabelText("Å« ¼ýÀÚ")]
+        [LabelText("Å« ï¿½ï¿½ï¿½ï¿½")]
         [SerializeField] private Sprite[] _bigNums = new Sprite[10];
 
-        [LabelText("Áß°£ ¼ýÀÚ")]
+        [LabelText("ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½")]
         [SerializeField] private Sprite[] middleNums = new Sprite[10];
     
         public Sprite GetBigNum(int num)

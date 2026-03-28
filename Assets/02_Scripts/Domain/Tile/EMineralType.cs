@@ -1,4 +1,4 @@
-namespace MI.Domain.Tile
+﻿namespace MI.Domain.Tile
 {
     /// <summary>광물 종류를 나타내는 열거형</summary>
     public enum EMineralType : byte

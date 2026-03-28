@@ -1,4 +1,4 @@
-using MI.Domain.Status;
+﻿using MI.Domain.Status;
 using MI.Utility;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;

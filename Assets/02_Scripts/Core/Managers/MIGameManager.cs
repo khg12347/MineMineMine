@@ -1,4 +1,4 @@
-using MI.Utility;
+﻿using MI.Utility;
 
 namespace MI.Core
 {

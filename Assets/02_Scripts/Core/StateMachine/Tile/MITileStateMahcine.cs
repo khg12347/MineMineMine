@@ -1,4 +1,4 @@
-using MI.Presentation.World.Tile;
+﻿using MI.Presentation.World.Tile;
 
 namespace MI.Core.StateMachine
 {

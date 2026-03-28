@@ -1,4 +1,4 @@
-using MI.Domain.Pickaxe;
+﻿using MI.Domain.Pickaxe;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;

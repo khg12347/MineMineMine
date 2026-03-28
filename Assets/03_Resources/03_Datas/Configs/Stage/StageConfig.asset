@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _gridWidth: 8
+  _gridWidth: 7
   _rowHeight: 0.75
   _chunkRows: 16
   _levels:

@@ -419,6 +419,7 @@ MonoBehaviour:
       TileType: 0
       MinAmount: 0
       MaxAmount: 0
+  _mineralConfig: {fileID: 11400000, guid: d04497af8cae7034fb20256d213266a5, type: 2}
 --- !u!61 &3852096155683995286
 BoxCollider2D:
   m_ObjectHideFlags: 0

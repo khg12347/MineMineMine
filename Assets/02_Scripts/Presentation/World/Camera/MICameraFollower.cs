@@ -1,4 +1,4 @@
-using MI.Core;
+﻿using MI.Core;
 using UnityEngine;
 
 namespace MI.Presentation.World.Camera

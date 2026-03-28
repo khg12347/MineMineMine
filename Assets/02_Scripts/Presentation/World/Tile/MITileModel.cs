@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using MI.Core.Pool;
 using MI.Data.Config;
 using MI.Domain.Inventory;

@@ -1,4 +1,4 @@
-namespace MI.Domain.Pickaxe
+﻿namespace MI.Domain.Pickaxe
 {
     /// <summary>곡괭이 부위 구분</summary>
     public enum EPickaxePart

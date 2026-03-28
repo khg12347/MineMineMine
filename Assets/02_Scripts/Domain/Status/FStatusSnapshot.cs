@@ -1,4 +1,4 @@
-namespace MI.Domain.Status
+﻿namespace MI.Domain.Status
 {
     /// <summary>
     /// 현재 EXP / 레벨 상태의 불변 스냅샷.
