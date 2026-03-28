@@ -38,6 +38,7 @@ namespace MI.Presentation.World.Tile
         {
             _fxDebris = config.PrefabFxTileDebris;
             _config = config;
+            _crackLightRenderer.sprite = _config.GetCrackLevelSprite(0);
             if (tileData.MineralDrop.HasValue)
             {
                 var drop = tileData.MineralDrop.Value;

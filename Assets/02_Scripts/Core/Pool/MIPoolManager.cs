@@ -92,6 +92,11 @@ namespace MI.Core.Pool
             return obj;
         }
 
+        public T Get<T>(GameObject prefab, Transform parent = null) where T : Component
+        {
+            return Get<T>(prefab, Vector3.zero, Quaternion.identity, parent);
+        }
+
         /// <summary>
         /// 오브젝트를 대응하는 풀에 반환.
         /// 이미 비활성화된 오브젝트(중복 반환)는 MIObjectPool 내부에서 무시됨.
