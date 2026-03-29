@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace MI.Presentation.UI.HUD.Items
 {
+    using IMIItemViewer = Interface.IMIItemViewer;
     public class MIItemDropNotifyUI : MonoBehaviour, IMIItemDropEventListener
     {
         [SerializeField] private MIItemIconDataTable _iconDataTable;
