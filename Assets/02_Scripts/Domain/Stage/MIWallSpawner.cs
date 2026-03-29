@@ -5,15 +5,6 @@ namespace MI.Domain.Stage
 {
     /// <summary>
     /// 스테이지 좌우 물리 벽을 생성하고, 카메라 Y 위치에 맞춰 벽 위치를 업데이트합니다.
-    ///
-    /// 현재 구현:
-    ///   - BoxCollider2D 를 코드로 생성 (프로토타입)
-    ///   - 벽 프리팹 준비 이후 프리팹 기반 스폰으로 교체 가능
-    ///
-    /// [사용자 작업] 향후 벽 프리팹이 준비되면 아래 스펙으로 제작 후 교체:
-    ///   - 스프라이트: 16×160 px (Pixels Per Unit 일치)
-    ///   - BoxCollider2D 포함
-    ///   - PhysicsMaterial2D 는 코드에서 생성하여 설정하거나 프리팹에 포함
     /// </summary>
     public class MIWallSpawner
     {
