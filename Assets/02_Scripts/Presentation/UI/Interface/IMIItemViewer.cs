@@ -3,7 +3,7 @@ using MI.Data.UIRes;
 using MI.Domain.Inventory;
 using UnityEngine;
 
-namespace MI.Presentation.UI.HUD.Items
+namespace MI.Presentation.UI.Interface
 {
     public interface IMIItemViewer
     {

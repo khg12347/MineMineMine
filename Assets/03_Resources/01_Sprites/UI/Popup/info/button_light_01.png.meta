@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 21fb22ee2845e9e4f9fe1c198db2864b
+guid: 1389f5bcfe7e4624a993d5e4fdeb8e26
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3850766612345315341
-    second: button_help_01_0
+      213: -4086176602556758557
+    second: button_light_01_0
+  - first:
+      213: -2991759493700404570
+    second: button_light_01_1
+  - first:
+      213: 7127816620900757173
+    second: button_light_01_2
+  - first:
+      213: 8546867784020388891
+    second: button_light_01_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,17 +118,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: button_help_01_0
+      name: button_light_01_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 12
-        height: 12
+        y: 8
+        width: 6
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +150,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d00e6c9e4dba07530800000000000000
-      internalID: 3850766612345315341
+      spriteID: 3e5871b870cfa47c0800000000000000
+      internalID: -4086176602556758557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_light_01_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aab59c67922b76d0800000000000000
+      internalID: -2991759493700404570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_light_01_2
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 8
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5be2ae0b3771be260800000000000000
+      internalID: 7127816620900757173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_light_01_3
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 0
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1ce3c067f29c9670800000000000000
+      internalID: 8546867784020388891
       vertices: []
       indices: 
       edges: []
@@ -138,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +236,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      button_help_01_0: 3850766612345315341
+      button_light_01_0: -4086176602556758557
+      button_light_01_1: -2991759493700404570
+      button_light_01_2: 7127816620900757173
+      button_light_01_3: 8546867784020388891
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
