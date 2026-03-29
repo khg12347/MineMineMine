@@ -21,10 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _headDamage: 599
-  _handleDamage: 599
+  _headDamage: 99999
+  _handleDamage: 99999
   _gravityScale: 1.5
-  _bounciness: 0.702
+  _bounciness: 0.789
   _friction: 0
   _bounceOnBreak: 0
   _breakBounceForce: 5

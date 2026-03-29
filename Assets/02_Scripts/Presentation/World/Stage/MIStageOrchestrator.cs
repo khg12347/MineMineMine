@@ -8,6 +8,7 @@ using MI.Presentation.World.Camera;
 using MI.Presentation.World.Pickaxe;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace MI.Presentation.World.Stage
 {
@@ -56,6 +57,12 @@ namespace MI.Presentation.World.Stage
         [Required]
         [SerializeField] private MICameraFollower _cameraFollower;
 
+        [Title("배경/벽")]
+        [SerializeField] private Tilemap _backgroundTilemap;
+        [SerializeField] private Tilemap _wallTilemap;
+        [SerializeField] private MIBackgroundConfig _backgroundConfig;
+        [SerializeField] private MIWallConfig _wallConfig;
+
         [Title("청크 스폰 / 컬 설정")]
         [InfoBox("곡괭이 아래 미리 생성해 둘 행 수")]
         [PropertyRange(4, 64)]
@@ -69,11 +76,13 @@ namespace MI.Presentation.World.Stage
 
         // ── 런타임 모듈 ────────────────────────────────────────────────────
 
-        private MIDepthTracker  _depthTracker;
-        private MIChunkBuffer   _chunkBuffer;
+        private MIDepthTracker   _depthTracker;
+        private MIChunkBuffer    _chunkBuffer;
         private IMITileAlgorithm _algorithm;
-        private MITileSpawner   _tileSpawner;
-        private MIWallSpawner   _wallSpawner;
+        private MITileSpawner    _tileSpawner;
+        private MIWallSpawner    _wallSpawner;
+        private MIBackgroundPainter _backgroundPainter;
+        private MIWallPainter       _wallPainter;
 
         // 깊이 변경 감지용
         private int _lastReportedDepth = -1;
@@ -105,9 +114,40 @@ namespace MI.Presentation.World.Stage
             // 카메라 추적 초기화
             _cameraFollower.Initialize(_mainCamera, _cameraFollowSpeed);
 
+            // 배경/벽 Painter 초기화
+            if (_backgroundTilemap != null && _backgroundConfig != null &&
+                _wallTilemap != null && _wallConfig != null)
+            {
+                // Grid 위치를 stageStartX 기반으로 정렬
+                // 타일맵 cell(leftColX=0)이 왼쪽 벽, cell(1)이 게임 타일 col=0과 일치하도록 설정
+                float tileSize = _stageConfig.RowHeight;
+                _backgroundTilemap.layoutGrid.transform.position =
+                    new Vector3(stageStartX - 1.5f * tileSize, -0.5f * tileSize, 0f);
+
+                int leftColX  = 1;
+                int rightColX = _stageConfig.GridWidth;
+                int totalWidth = _stageConfig.GridWidth + 2;
+
+                _backgroundPainter = new MIBackgroundPainter(
+                    _backgroundTilemap, _backgroundConfig, totalWidth, leftColX);
+                _wallPainter = new MIWallPainter(
+                    _wallTilemap, _wallConfig, leftColX, rightColX);
+
+                // 벽 타일맵 위치 오프셋 적용 (Grid 로컬 좌표 기준)
+                var wallOffset = _wallConfig.PositionOffset;
+                _wallTilemap.transform.localPosition = new Vector3(wallOffset.x, wallOffset.y, 0f);
+
+                var bgOffset = _backgroundConfig.PositionOffset;
+                _backgroundTilemap.transform.localPosition = new Vector3(bgOffset.x, bgOffset.y, 0f);
+            }
+
             // 초기 청크 생성 + 타일 스폰
             FillChunkBuffer(0);
             _tileSpawner.SpawnRowsUpTo(_spawnAheadRows, _chunkBuffer);
+
+            // 초기 배경/벽 페인팅 (타일 스폰과 동일한 범위)
+            _backgroundPainter?.PaintRows(0, _spawnAheadRows - 1);
+            _wallPainter?.PaintRows(0, _spawnAheadRows - 1);
 
             // 곡괭이 초기 스폰
             _pickaxe.SpawnAtOffScreen(_mainCamera);
@@ -126,8 +166,16 @@ namespace MI.Presentation.World.Stage
                 FillChunkBuffer(_chunkBuffer.GeneratedUpToRow);
 
             // 3. 타일 스폰 / 제거
-            _tileSpawner.SpawnRowsUpTo(currentRow + _spawnAheadRows, _chunkBuffer);
-            _tileSpawner.CullAbove(currentRow - _cullRowsAbove);
+            int targetRow  = currentRow + _spawnAheadRows;
+            int cullRow    = currentRow - _cullRowsAbove;
+            _tileSpawner.SpawnRowsUpTo(targetRow, _chunkBuffer);
+            _tileSpawner.CullAbove(cullRow);
+
+            // 배경/벽 확장 및 컬링 (타일과 동일한 규칙)
+            _backgroundPainter?.PaintRows(0, targetRow);
+            _backgroundPainter?.CullAbove(cullRow);
+            _wallPainter?.PaintRows(0, targetRow);
+            _wallPainter?.CullAbove(cullRow);
 
             // 4. 벽 업데이트
             _wallSpawner.UpdateWalls(_mainCamera.transform.position.y);

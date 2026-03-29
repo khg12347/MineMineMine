@@ -39,8 +39,8 @@ namespace MI.Domain.Stage
                 friction   = 0f
             };
 
-            float leftEdge  = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, 0f)).x;
-            float rightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0.5f, 0f)).x;
+            float leftEdge  = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, 0f)).x - 0.5f;
+            float rightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0.5f, 0f)).x + 0.5f;
 
             // 뷰포트 엣지에서 tileSize 만큼 안쪽에 벽 배치
             _leftWall  = CreateWall("LeftWall",  leftEdge  + tileSize, tileSize, 200f, wallMaterial);

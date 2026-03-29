@@ -1,5 +1,6 @@
 ﻿using MI.Data.UIRes;
 using MI.Domain.Status;
+using MI.Presentation.UI.Common;
 using MI.Utility;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +12,8 @@ namespace MI.Presentation.UI.HUD.Status
     {
         [SerializeField] private MIUINumberResources _numberResources;
         [SerializeField] private Slider _expSlider;
-        [SerializeField] private Image[] _numbers; // ���� ���� �̹��� �迭 (�ִ� 3�ڸ�)
-        [SerializeField] private Image[] _depthNumbers; // ���� ���� �̹��� �迭 (�ִ� 7�ڸ�)
+        [SerializeField] private Image[] _numbers; // 레벨 숫자 이미지 배열 (최대 3자리)
+        [SerializeField] private MINumberShaker[] _depthNumbers; // 깊이 숫자 이미지 배열 (최대 7자리)
 
         private void Start()
         {
@@ -73,7 +74,7 @@ namespace MI.Presentation.UI.HUD.Status
             for (int i = 6; i >= 0; i--)
             {
                 nums[i] = GetDigit(depth, i);
-                _depthNumbers[i].sprite = _numberResources.GetBigNum(nums[i]);
+                _depthNumbers[i].UpdateNumSprite(nums[i], _numberResources.GetBigNum(nums[i]));
 
                 if (i == 0)
                     continue;
@@ -88,6 +89,7 @@ namespace MI.Presentation.UI.HUD.Status
                 }
             }
         }
+
         private int GetDigit(int value, int digit)
         {
             int pow = (int)Mathf.Pow(10, digit);

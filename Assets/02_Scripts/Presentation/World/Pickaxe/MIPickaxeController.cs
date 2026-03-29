@@ -1,6 +1,7 @@
 ﻿using MI.Data.Config;
 using MI.Domain.Pickaxe;
 using MI.Domain.Tile;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MI.Presentation.World.Pickaxe
@@ -9,31 +10,27 @@ namespace MI.Presentation.World.Pickaxe
 
     public class MIPickaxeController : MonoBehaviour
     {
+
         [SerializeField] private MIPickaxeConfig _config;
         [SerializeField] private Vector2 _minimumForce = new Vector2(0, 1f);
-        [SerializeField] private float _autoRotateSpeed = 180f; // 초당 회전 속도 (도 단위)
-        [SerializeField] private bool _flipRotationDir = false; // 회전 방향 반전 여부 (시계/반시계)
-
+        [SerializeField] private Collider2D colliderHead;
+        [SerializeField] private Collider2D colliderHandle;
         private Rigidbody2D _rb;
         private FPickaxeStats _stats;
-        private PhysicsMaterial2D _bounceMaterial;
+        private PhysicsMaterial2D _bounceHandleMaterial;
+        private PhysicsMaterial2D _bounceHeadMaterial;
+
+        [SerializeField, ReadOnly] private Vector2 _lastLinearVelocity;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             InitializeFromConfig();
         }
-        private void Update()
-        {
-            // 자동 회전 설정 (프로토타입, 검증 후 정식 사양으로 수정 요망)
-            PROTO_RotatePickaxe();
-        }
 
-        private void PROTO_RotatePickaxe()
+        private void FixedUpdate()
         {
-            // 자동 회전: 초당 일정 각도로 회전 (예시: 180도/초)
-            float rotationThisFrame = _flipRotationDir ? -_autoRotateSpeed * Time.deltaTime : _autoRotateSpeed * Time.deltaTime;
-            transform.Rotate(0f, 0f, rotationThisFrame);
+            _lastLinearVelocity = _rb.linearVelocity;
         }
 
         private void InitializeFromConfig()
@@ -44,15 +41,30 @@ namespace MI.Presentation.World.Pickaxe
             _rb.gravityScale = _stats.GravityScale;
 
             // PhysicsMaterial2D 생성 및 탄력 적용
-            _bounceMaterial = new PhysicsMaterial2D("PickaxeBounce")
+            _bounceHandleMaterial = new PhysicsMaterial2D("PickaxeBounce")
+            {
+                bounciness = _stats.Bounciness / 2f,
+                friction = _stats.Friction
+            };
+            _bounceHeadMaterial = new PhysicsMaterial2D("PickaxeHeadBounce")
             {
                 bounciness = _stats.Bounciness,
                 friction = _stats.Friction
             };
 
             // 자식 오브젝트의 모든 콜라이더에 물리 재질 적용
-            foreach (var col in GetComponentsInChildren<Collider2D>())
-                col.sharedMaterial = _bounceMaterial;
+            if(colliderHead != null && colliderHandle != null)
+            {
+                colliderHead.sharedMaterial = _bounceHeadMaterial;
+                colliderHandle.sharedMaterial = _bounceHandleMaterial;
+            }
+            else
+            {
+                foreach(var col in GetComponentsInChildren<Collider2D>())
+                {
+                    col.sharedMaterial = _bounceHeadMaterial; // 기본적으로 머리부분 재질 적용
+                }
+            }
         }
 
         /// <summary>화면 바깥 상단에 스폰</summary>
@@ -98,11 +110,12 @@ namespace MI.Presentation.World.Pickaxe
                     _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0f);
                     _rb.AddForce(bounceDir * _stats.BreakBounceForce * bounceMultiplier, ForceMode2D.Impulse);
                 }
-                else
+                else// BounceOnBreak == false: 관통하여 그대로 낙하 (위쪽 속도 제거)
                 {
-                    // BounceOnBreak = false: 관통하여 그대로 낙하 (위쪽 속도 제거)
                     if (_rb.linearVelocity.y > 0f)
-                        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -Mathf.Abs(_rb.linearVelocity.y));
+                    {
+                        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -Mathf.Abs(_lastLinearVelocity.y) - (_stats.GravityScale * _stats.GravityScale));
+                    }
                 }
             }
             else if(result == EBreakResult.Damaged)
@@ -115,7 +128,9 @@ namespace MI.Presentation.World.Pickaxe
             {
                 // 한 방에 파괴: 바운스 없음
                 if (_rb.linearVelocity.y > 0f)
+                {
                     _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -Mathf.Abs(_rb.linearVelocity.y));
+                }
             }
         }
     }
