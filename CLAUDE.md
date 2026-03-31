@@ -95,13 +95,16 @@ Assets/
 │   └── MISingleton.cs
 ├── Data/
 │   ├── Config/
+│   │   ├── MIBackgroundConfig.cs
 │   │   ├── MILevelData.cs
 │   │   ├── MIMineralConfig.cs
 │   │   ├── MIPickaxeConfig.cs
 │   │   ├── MIStageConfig.cs
 │   │   ├── MIStatusConfig.cs
-│   │   └── MITileConfig.cs
+│   │   ├── MITileConfig.cs
+│   │   └── MIWallConfig.cs
 │   ├── UIRes/
+│   │   ├── MIItemIconDataTable.cs
 │   │   └── MIUINumberResources.cs
 │   ├── Cloud/                          # 예정
 │   ├── Save/                           # 예정
@@ -109,8 +112,6 @@ Assets/
 ├── Domain/
 │   ├── Inventory/
 │   │   ├── EItemType.cs              # MIItemTypeConverter 포함
-│   │   ├── FDropItemData.cs
-│   │   ├── IMIItemDropEventListener.cs
 │   │   ├── MIItemDropEvent.cs
 │   │   └── MIUserInventory.cs
 │   ├── Pickaxe/
@@ -118,12 +119,14 @@ Assets/
 │   │   └── FPickaxeStats.cs
 │   ├── Stage/
 │   │   ├── IMITileAlgorithm.cs
+│   │   ├── MIBackgroundPainter.cs
 │   │   ├── MIChunkBuffer.cs
 │   │   ├── MIDepthTracker.cs
 │   │   ├── MIFloodFillAlgorithm.cs
 │   │   ├── MILevelResolver.cs
 │   │   ├── MISeedPlacer.cs
 │   │   ├── MITileSpawner.cs
+│   │   ├── MIWallPainter.cs
 │   │   └── MIWallSpawner.cs
 │   ├── Status/
 │   │   ├── FLevelEntry.cs
@@ -136,6 +139,7 @@ Assets/
 │   │   ├── EMineralType.cs
 │   │   ├── ETileType.cs
 │   │   ├── ETreasureType.cs
+│   │   ├── FBackgroundVariant.cs
 │   │   ├── FChunkData.cs
 │   │   ├── FMineralAffinity.cs
 │   │   ├── FMineralDensityRange.cs
@@ -163,11 +167,24 @@ Assets/
 ├── Presentation/
 │   ├── UI/
 │   │   ├── Common/
-│   │   │   └── MIButton.cs
+│   │   │   ├── MIButton.cs
+│   │   │   └── MINumberShaker.cs
 │   │   ├── HUD/
+│   │   │   ├── Items/
+│   │   │   │   ├── MIDropItemViewer.cs
+│   │   │   │   └── MIItemDropNotifyUI.cs
 │   │   │   ├── Status/
 │   │   │   │   └── MIStatusHUD.cs
 │   │   │   └── MICanvasHUD.cs
+│   │   ├── Interface/
+│   │   │   └── IMIItemViewer.cs
+│   │   ├── Popup/
+│   │   │   ├── Inventory/
+│   │   │   │   ├── IMIInventoryViewer.cs
+│   │   │   │   ├── MIInventoryItemViewer.cs
+│   │   │   │   └── MIPopupInventory.cs
+│   │   │   ├── MICanvasPopup.cs
+│   │   │   └── MIPopupBase.cs
 │   │   ├── IMIUIContext.cs
 │   │   └── MIUIRoot.cs
 │   └── World/

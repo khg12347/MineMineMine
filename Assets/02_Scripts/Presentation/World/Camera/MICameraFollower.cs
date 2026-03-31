@@ -1,17 +1,12 @@
-﻿using MI.Core;
+using MI.Core;
 using UnityEngine;
 
 namespace MI.Presentation.World.Camera
 {
     using Camera = UnityEngine.Camera;
-    /// <summary>
-    /// IMICameraFollower 의 MonoBehaviour 구현체.
-    /// 씬의 임의 GameObject 에 배치하고, MIStageManager 의 Inspector 에서 참조합니다.
-    ///
-    /// 특성:
-    ///   - 곡괭이가 더 아래로 내려갈 때만 카메라 타깃을 갱신 (위로 튀어도 카메라는 유지)
-    ///   - Mathf.Lerp 로 부드러운 추적
-    /// </summary>
+
+    // IMICameraFollower MonoBehaviour 구현체
+    // 곡괭이가 아래로 내려갈 때만 타깃 갱신 (위로 튀어도 카메라 고정)
     public class MICameraFollower : MonoBehaviour, IMICameraFollower
     {
         private Camera _camera;
@@ -19,7 +14,7 @@ namespace MI.Presentation.World.Camera
         private float _cameraTargetY;
         private bool _initialized;
 
-        // ── IMICameraFollower 구현 ────────────────────────────────────────
+        #region IMICameraFollower
 
         public void Initialize(Camera camera, float followSpeed)
         {
@@ -40,5 +35,7 @@ namespace MI.Presentation.World.Camera
             camPos.y = Mathf.Lerp(camPos.y, _cameraTargetY, Time.deltaTime * _followSpeed);
             _camera.transform.position = camPos;
         }
+
+        #endregion IMICameraFollower
     }
 }

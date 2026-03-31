@@ -1,11 +1,8 @@
-﻿using MI.Domain.Tile;
+using MI.Domain.Tile;
 
 namespace MI.Domain.Inventory
 {
-    /// <summary>
-    /// 타일 재료와 광물을 통합하는 아이템 타입 열거형.
-    /// 대역 분리: 타일 재료 = 100번대, 광물 = 200번대.
-    /// </summary>
+    // 타일 재료(100번대) + 광물(200번대) 통합 아이템 타입 열거형
     public enum EItemType
     {
         None = 0,
@@ -21,9 +18,7 @@ namespace MI.Domain.Inventory
         Gold   = 204,
     }
 
-    /// <summary>
-    /// ETileType / EMineralType → EItemType 변환 유틸리티.
-    /// </summary>
+    // ETileType / EMineralType → EItemType 변환
     public static class MIItemTypeConverter
     {
         private const int TILE_OFFSET    = 100;

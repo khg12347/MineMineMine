@@ -1,4 +1,4 @@
-﻿using MI.Utility;
+using MI.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,27 +9,19 @@ using Debug = UnityEngine.Debug;
 
 namespace MI.Core.StateMachine
 {
-    /// <summary>
-    /// AnimatorStateInfo를 파라미터로 전달하는 직렬화 가능한 UnityEvent.
-    /// 인스펙터에서 OnEnter / OnExit 이벤트를 연결할 때 사용합니다.
-    /// </summary>
+    // AnimatorStateInfo 전달용 UnityEvent. OnEnter/OnExit 인스펙터 연결 시 사용.
     [Serializable]
     public class MIAnimatorStateInfoEvent : UnityEvent<AnimatorStateInfo> { }
 
-    /// <summary>
-    /// StateMachineBehaviour의 범용 베이스 클래스.
-    /// <para>이벤트 발행, 디버그 로깅, 다중 컴포넌트 캐싱 기능을 제공합니다.</para>
-    /// <para>캐릭터 애니메이션, 월드 오브젝트, UI 등 다양한 Animator 상태 머신의 공통 부모로 사용됩니다.</para>
-    /// </summary>
+    // StateMachineBehaviour 범용 베이스. 이벤트 발행·디버그·컴포넌트 캐싱 제공.
     public abstract class MIBaseStateMachineBehaviour : StateMachineBehaviour
     {
-        // ────────────────────────────────────────────────────────────────
-        #region 이벤트
+        #region Events
 
-        /// <summary>상태 진입 시 호출되는 C# 이벤트. AnimatorStateInfo를 인자로 전달합니다.</summary>
+        // 상태 진입 시 발생하는 C# 이벤트
         public event Action<AnimatorStateInfo> OnEnterState;
 
-        /// <summary>상태 종료 시 호출되는 C# 이벤트. AnimatorStateInfo를 인자로 전달합니다.</summary>
+        // 상태 종료 시 발생하는 C# 이벤트
         public event Action<AnimatorStateInfo> OnExitState;
 
         [SerializeField]
@@ -38,25 +30,19 @@ namespace MI.Core.StateMachine
         [SerializeField]
         private MIAnimatorStateInfoEvent onExitStateEvent = new();
 
-        #endregion
+        #endregion Events
 
-        // ────────────────────────────────────────────────────────────────
-        #region 디버그
+        #region Debug
 
         [SerializeField] private bool enableDebugLog;
 
-        #endregion
+        #endregion Debug
 
-        // ────────────────────────────────────────────────────────────────
-        #region 다중 컴포넌트 캐시
+        #region Component Cache
 
         private Dictionary<Type, Component> _componentCache;
 
-        /// <summary>
-        /// 지정 타입의 컴포넌트를 캐싱하여 반환합니다.
-        /// 첫 호출 시 Animator GameObject와 부모에서 검색하고, 이후에는 캐시를 재사용합니다.
-        /// 제네릭 버전과 비제네릭 버전 모두에서 사용 가능합니다.
-        /// </summary>
+        // 지정 타입 컴포넌트를 캐싱하여 반환. 첫 호출 시 Animator에서 탐색, 이후 캐시 재사용.
         protected TComponent GetCachedComponent<TComponent>(Animator animator)
             where TComponent : Component
         {
@@ -78,10 +64,9 @@ namespace MI.Core.StateMachine
             return cached as TComponent;
         }
 
-        #endregion
+        #endregion Component Cache
 
-        // ────────────────────────────────────────────────────────────────
-        #region StateMachineBehaviour 콜백
+        #region StateMachineBehaviour Callbacks
 
         public sealed override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -129,36 +114,34 @@ namespace MI.Core.StateMachine
             OnMachineExit(animator, stateMachinePathHash);
         }
 
-        #endregion
+        #endregion StateMachineBehaviour Callbacks
 
-        // ────────────────────────────────────────────────────────────────
-        #region 서브클래스용 가상 콜백
+        #region Virtual Callbacks
 
-        /// <summary>OnStateEnter에서 호출됩니다. 서브클래스에서 오버라이드하세요.</summary>
+        // OnStateEnter 전달 콜백. 서브클래스 오버라이드용.
         protected virtual void OnEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
 
-        /// <summary>OnStateExit에서 호출됩니다. 서브클래스에서 오버라이드하세요.</summary>
+        // OnStateExit 전달 콜백. 서브클래스 오버라이드용.
         protected virtual void OnExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
 
-        /// <summary>OnStateUpdate에서 호출됩니다. 서브클래스에서 오버라이드하세요.</summary>
+        // OnStateUpdate 전달 콜백. 서브클래스 오버라이드용.
         protected virtual void OnUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
 
-        /// <summary>OnStateMove에서 호출됩니다. 서브클래스에서 오버라이드하세요.</summary>
+        // OnStateMove 전달 콜백. 서브클래스 오버라이드용.
         protected virtual void OnMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
 
-        /// <summary>OnStateIK에서 호출됩니다. 서브클래스에서 오버라이드하세요.</summary>
+        // OnStateIK 전달 콜백. 서브클래스 오버라이드용.
         protected virtual void OnIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
 
-        /// <summary>OnStateMachineEnter에서 호출됩니다. 서브클래스에서 오버라이드하세요.</summary>
+        // OnStateMachineEnter 전달 콜백. 서브클래스 오버라이드용.
         protected virtual void OnMachineEnter(Animator animator, int stateMachinePathHash) { }
 
-        /// <summary>OnStateMachineExit에서 호출됩니다. 서브클래스에서 오버라이드하세요.</summary>
+        // OnStateMachineExit 전달 콜백. 서브클래스 오버라이드용.
         protected virtual void OnMachineExit(Animator animator, int stateMachinePathHash) { }
 
-        #endregion
+        #endregion Virtual Callbacks
 
-        // ────────────────────────────────────────────────────────────────
-        #region 디버그 로깅
+        #region Debug Logging
 
         [Conditional("UNITY_EDITOR")]
         private void LogCallback(string callbackName, AnimatorStateInfo stateInfo)
@@ -177,52 +160,36 @@ namespace MI.Core.StateMachine
             MILog.Log($"[BaseStateMachineBehaviour] {callbackName}");
         }
 
-        #endregion
+        #endregion Debug Logging
     }
 
-    // ════════════════════════════════════════════════════════════════════
-
-    /// <summary>
-    /// BaseStateMachineBehaviour의 제네릭 확장.
-    /// <para>T 타입의 MonoBehaviour를 Animator에서 자동 캐싱하여 <see cref="Owner"/> 프로퍼티로 제공합니다.</para>
-    /// <para>서브클래스에서는 <see cref="OnEnterWithOwner"/>, <see cref="OnUpdateWithOwner"/>, <see cref="OnExitWithOwner"/>를 오버라이드하여
-    /// null 체크 없이 Owner를 직접 사용할 수 있습니다.</para>
-    /// <para>⚠️ Unity는 동일한 AnimatorController를 참조하는 Animator 간에 SMB 인스턴스를 공유합니다.
-    /// 여러 Animator가 같은 컨트롤러를 사용한다면 Owner 캐시가 마지막 Animator를 참조할 수 있습니다.</para>
-    /// </summary>
-    /// <typeparam name="T">연결할 MonoBehaviour 타입. 예: <c>PlayerController</c></typeparam>
+    // BaseStateMachineBehaviour 제네릭 확장. T 타입 MonoBehaviour를 Owner로 자동 캐싱.
+    // OnEnterWithOwner 등에서 null 체크 없이 Owner 직접 사용 가능.
+    // ⚠️ 동일 AnimatorController를 공유하는 Animator 간 SMB 인스턴스가 공유됨
     public abstract class MIBaseStateMachineBehaviour<T> : MIBaseStateMachineBehaviour
         where T : MonoBehaviour
     {
-        // ────────────────────────────────────────────────────────────────
-        #region Owner 설정
+        #region Owner
 
         [Tooltip("true: GetComponentInParent로 검색 / false: GetComponent로 검색")]
         [SerializeField] private bool searchParent;
 
-        /// <summary>
-        /// 캐싱된 MonoBehaviour 참조.
-        /// OnEnterWithOwner / OnUpdateWithOwner / OnExitWithOwner 호출 시점에는 반드시 유효합니다.
-        /// </summary>
+        // 캐싱된 MonoBehaviour 참조. WithOwner 콜백 진입 시 항상 유효.
         protected T Owner { get; private set; }
 
         private bool _isCached;
 
-        /// <summary>
-        /// Owner 캐시를 초기화합니다.
-        /// Owner(MonoBehaviour)의 OnDestroy, OnDisable 등에서 호출하여 캐시를 무효화하세요.
-        /// 다음 OnStateEnter 시점에 자동으로 재캐싱됩니다.
-        /// </summary>
+        // Owner 캐시 무효화. OnDestroy/OnDisable 등에서 호출해야 함.
+        // 다음 OnStateEnter 시 자동 재캐싱.
         public void InvalidateOwnerCache()
         {
             Owner = null;
             _isCached = false;
         }
 
-        #endregion
+        #endregion Owner
 
-        // ────────────────────────────────────────────────────────────────
-        #region 캐싱 로직
+        #region Caching
 
         private void EnsureOwner(Animator animator)
         {
@@ -239,10 +206,9 @@ namespace MI.Core.StateMachine
                     $" Animator: {animator.name} | searchParent: {searchParent}");
         }
 
-        #endregion
+        #endregion Caching
 
-        // ────────────────────────────────────────────────────────────────
-        #region 베이스 콜백 오버라이드 (Owner 캐싱 + 안전 콜백 연결)
+        #region Base Callback Overrides
 
         protected override void OnEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -263,29 +229,19 @@ namespace MI.Core.StateMachine
                 OnExitWithOwner(animator, stateInfo, Owner);
         }
 
-        #endregion
+        #endregion Base Callback Overrides
 
-        // ────────────────────────────────────────────────────────────────
-        #region Owner 보장 콜백
+        #region Owner Callbacks
 
-        /// <summary>
-        /// Owner가 유효할 때만 호출되는 안전한 Enter 콜백.
-        /// null 체크 없이 <paramref name="owner"/>를 직접 사용하세요.
-        /// </summary>
+        // Owner 유효 시에만 호출. null 체크 불필요.
         protected virtual void OnEnterWithOwner(Animator animator, AnimatorStateInfo stateInfo, T owner) { }
 
-        /// <summary>
-        /// Owner가 유효할 때만 호출되는 안전한 Update 콜백.
-        /// null 체크 없이 <paramref name="owner"/>를 직접 사용하세요.
-        /// </summary>
+        // Owner 유효 시에만 호출. null 체크 불필요.
         protected virtual void OnUpdateWithOwner(Animator animator, AnimatorStateInfo stateInfo, T owner) { }
 
-        /// <summary>
-        /// Owner가 유효할 때만 호출되는 안전한 Exit 콜백.
-        /// null 체크 없이 <paramref name="owner"/>를 직접 사용하세요.
-        /// </summary>
+        // Owner 유효 시에만 호출. null 체크 불필요.
         protected virtual void OnExitWithOwner(Animator animator, AnimatorStateInfo stateInfo, T owner) { }
 
-        #endregion
+        #endregion Owner Callbacks
     }
 }

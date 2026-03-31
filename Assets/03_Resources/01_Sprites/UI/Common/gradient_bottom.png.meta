@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: a56515efe55ab6e409db9df2f5ec7fd1
+guid: 53998d1911891234db17cff6dd029843
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5457749839167917580
-    second: smoke_01_0
-  - first:
-      213: -1455925981562349666
-    second: smoke_01_1
-  - first:
-      213: 1432126181462844626
-    second: smoke_01_2
+      213: 7998327758928232810
+    second: gradient_bottom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: smoke_01_0
+      name: gradient_bottom_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 12
-        width: 10
-        height: 9
+        x: 0
+        y: 0
+        width: 221
+        height: 389
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,52 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f1737b007d2244b0800000000000000
-      internalID: -5457749839167917580
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smoke_01_1
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 18
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e97d6b998038bcbe0800000000000000
-      internalID: -1455925981562349666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: smoke_01_2
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 10
-        width: 12
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d421af9c2fefd310800000000000000
-      internalID: 1432126181462844626
+      spriteID: a61401448b4cffe60800000000000000
+      internalID: 7998327758928232810
       vertices: []
       indices: 
       edges: []
@@ -198,9 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      smoke_01_0: -5457749839167917580
-      smoke_01_1: -1455925981562349666
-      smoke_01_2: 1432126181462844626
+      gradient_bottom_0: 7998327758928232810
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

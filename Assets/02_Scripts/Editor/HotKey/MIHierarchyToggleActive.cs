@@ -1,13 +1,11 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
 namespace MI.Editor.HotKey
 {
-    /// <summary>
-    /// Hierarchy 창에서 마우스가 올라간 GameObject의 ActiveSelf를 단축키로 토글합니다.
-    /// 단축키는 Edit > Shortcuts... > "MI/Toggle Hovered Active" 에서 변경 가능합니다.
-    /// </summary>
+    // Hierarchy에서 호버 중인 GameObject의 ActiveSelf를 단축키로 토글
+    // 단축키 변경: Edit > Shortcuts > "MI/Toggle Hovered Active"
     [InitializeOnLoad]
     public static class MIHierarchyToggleActive
     {
@@ -21,10 +19,7 @@ namespace MI.Editor.HotKey
             EditorApplication.hierarchyWindowItemOnGUI += OnHierarchyItemGUI;
         }
 
-        /// <summary>
-        /// Hierarchy 각 항목이 렌더링될 때 호출됩니다.
-        /// 마우스 위치와 항목의 Rect를 비교해 현재 호버 중인 instanceID를 추적합니다.
-        /// </summary>
+        // 호버 중인 항목의 instanceID 추적
         private static void OnHierarchyItemGUI(int instanceID, Rect selectionRect)
         {
             if (Event.current == null)

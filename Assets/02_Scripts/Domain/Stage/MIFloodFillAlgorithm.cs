@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using MI.Data.Config;
 using MI.Domain.Tile;
@@ -8,17 +8,10 @@ using UnityEngine;
 namespace MI.Domain.Stage
 {
     using Random = System.Random;
-    /// <summary>
-    /// Jittered Grid 시드 기반 Flood-Fill 타일 생성 알고리즘.
-    ///
-    /// 처리 순서:
-    ///   Phase 1. 시드 배치 (MISeedPlacer) → 다중 출발점 BFS 확장 → 빈 셀 채우기
-    ///   Phase 2. 보물 상자 배치 (TreasureChance 기반)
-    ///   Phase 3. 광물 오버레이 (섹션 가중치 × 타일 친화도)
-    ///
-    /// MonoBehaviour 의존 없는 순수 C# 클래스입니다.
-    /// Mathf, Vector3 등 값 타입 Unity API 는 허용합니다.
-    /// </summary>
+
+    // Jittered Grid 시드 기반 Flood-Fill 타일 생성 알고리즘
+    // Phase 1: BFS 타일 배치 → Phase 2: 보물 배치 → Phase 3: 광물 오버레이
+    // MonoBehaviour 의존 없는 순수 C# (값 타입 Unity API는 허용)
     public class MIFloodFillAlgorithm : IMITileAlgorithm
     {
         private readonly Random _rng;
@@ -27,16 +20,13 @@ namespace MI.Domain.Stage
         private static readonly int[] DR = { -1, 1, 0, 0 };
         private static readonly int[] DC = { 0, 0, -1, 1 };
 
-        /// <summary>
-        /// 알고리즘 인스턴스를 생성합니다.
-        /// </summary>
-        /// <param name="seed">재현성을 위한 시드 값. null 이면 무작위 시드를 사용합니다.</param>
+        // seed: null이면 무작위 시드 사용
         public MIFloodFillAlgorithm(int? seed = null)
         {
             _rng = seed.HasValue ? new Random(seed.Value) : new Random();
         }
 
-        // ── IMITileAlgorithm 구현 ─────────────────────────────────────────
+        #region IMITileAlgorithm
 
         public FChunkData Generate(int startRow, int chunkRows, int gridWidth, MIStageConfig config)
         {
@@ -68,9 +58,11 @@ namespace MI.Domain.Stage
             return new FChunkData { Cells = cells, Treasures = treasures, StartRow = startRow };
         }
 
-        // ── Phase 1: Flood-Fill ────────────────────────────────────────────
+        #endregion IMITileAlgorithm
 
-        /// <summary>다중 출발점 BFS 로 각 시드의 타일 타입을 주변으로 확장합니다.</summary>
+        #region Phase 1: Flood-Fill
+
+        // 다중 출발점 BFS로 시드 타일 타입을 주변으로 확장
         private void ExpandSeeds(
             ETileType[,] grid,
             List<(int Col, int Row, ETileType Type)> seeds,
@@ -110,7 +102,7 @@ namespace MI.Domain.Stage
             }
         }
 
-        /// <summary>BFS 이후에도 미배정된 셀을 가중치 기반 무작위 타입으로 채웁니다.</summary>
+        // BFS 후 미배정 셀을 가중치 기반으로 채움
         private void FillRemaining(
             ETileType[,] grid, List<FTileWeight> weights,
             int chunkRows, int gridWidth)
@@ -123,7 +115,9 @@ namespace MI.Domain.Stage
                 }
         }
 
-        // ── Phase 2: 보물 배치 ────────────────────────────────────────────
+        #endregion Phase 1: Flood-Fill
+
+        #region Phase 2: Treasure Placement
 
         private List<FTreasurePlacement> PlaceTreasures(
             ETileType[,] typeGrid, MILevelData level,
@@ -170,7 +164,9 @@ namespace MI.Domain.Stage
             return ETreasureType.None;
         }
 
-        // ── Phase 3: 광물 오버레이 ────────────────────────────────────────
+        #endregion Phase 2: Treasure Placement
+
+        #region Phase 3: Mineral Overlay
 
         private void ApplyMinerals(
             FTileData[,] cells, ETileType[,] typeGrid, MILevelData level,
@@ -206,10 +202,7 @@ namespace MI.Domain.Stage
             }
         }
 
-        /// <summary>
-        /// 섹션 가중치와 타일 친화도를 곱한 복합 가중치로 광물 종류와 밀도를 결정합니다.
-        /// 광물이 선택되지 않으면 (EMineralType.None, EMineralDensity.None)을 반환합니다.
-        /// </summary>
+        // 섹션 가중치 × 친화도 복합 가중치로 광물 종류·밀도 결정. 미선택 시 None 반환.
         private (EMineralType Type, EMineralDensity Density) SelectMineral(
             IReadOnlyList<FMineralWeight> sectionWeights,
             List<FMineralAffinity> tileAffinities)
@@ -250,9 +243,11 @@ namespace MI.Domain.Stage
             return (EMineralType.None, EMineralDensity.None);
         }
 
-        // ── 헬퍼 ─────────────────────────────────────────────────────────
+        #endregion Phase 3: Mineral Overlay
 
-        /// <summary>타일 타입 그리드에서 FTileData 배열을 생성합니다.</summary>
+        #region Helper
+
+        // 타일 타입 그리드 → FTileData 배열 생성
         private FTileData[,] HydrateCells(
             ETileType[,] typeGrid, int chunkRows, int gridWidth,
             Dictionary<ETileType, MITileConfig> configLookup)
@@ -271,7 +266,7 @@ namespace MI.Domain.Stage
             return cells;
         }
 
-        /// <summary>레벨 블렌딩이 적용된 타일 가중치 목록을 반환합니다.</summary>
+        // 블렌딩 적용된 타일 가중치 반환
         private List<FTileWeight> BuildBlendedWeights(
             MILevelData primary, MILevelData secondary, float blendT)
         {
@@ -306,7 +301,7 @@ namespace MI.Domain.Stage
             return result;
         }
 
-        /// <summary>레벨 TileConfigs 에서 ETileType → MITileConfig 딕셔너리를 빌드합니다.</summary>
+        // TileConfigs → ETileType 딕셔너리 빌드
         private static Dictionary<ETileType, MITileConfig> BuildConfigLookup(MILevelData level)
         {
             var lookup = new Dictionary<ETileType, MITileConfig>();
@@ -322,7 +317,7 @@ namespace MI.Domain.Stage
             return lookup;
         }
 
-        /// <summary>설정이 없거나 레벨이 null 일 때 빈 청크를 반환합니다.</summary>
+        // 설정 없음 또는 레벨 null 시 빈 청크 반환
         private static FChunkData CreateEmptyChunk(int startRow, int chunkRows, int gridWidth)
         {
             return new FChunkData
@@ -332,5 +327,7 @@ namespace MI.Domain.Stage
                 StartRow = startRow
             };
         }
+
+        #endregion Helper
     }
 }

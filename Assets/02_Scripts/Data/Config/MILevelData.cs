@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MI.Domain.Tile;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -6,14 +6,11 @@ using UnityEngine;
 
 namespace MI.Data.Config
 {
-    /// <summary>
-    /// 레벨 1개의 타일 생성 규칙을 정의하는 ScriptableObject.
-    /// MIStageConfig 의 Levels 목록에 등록하여 사용합니다.
-    /// </summary>
+    // 레벨 1개의 타일 생성 규칙 정의 ScriptableObject. MIStageConfig.Levels에 등록.
     [CreateAssetMenu(fileName = "LevelData", menuName = "MI/Config/LevelData")]
     public class MILevelData : SerializedScriptableObject
     {
-        // ── 기본 정보 ────────────────────────────────────────────────────
+        #region Basic Info
 
         [FoldoutGroup("기본")]
         [LabelText("레벨 이름 (에디터 식별용)")]
@@ -24,7 +21,9 @@ namespace MI.Data.Config
         [PropertyRange(1, 500)]
         [SerializeField] private int _rowCount = 50;
 
-        // ── 타일 ────────────────────────────────────────────────────────
+        #endregion Basic Info
+
+        #region Tile
 
         [FoldoutGroup("타일")]
         [LabelText("타일 가중치")]
@@ -35,7 +34,9 @@ namespace MI.Data.Config
         [LabelText("타일 Config 참조 (타일 종류별 설정)")]
         [SerializeField] private List<MITileConfig> _tileConfigs = new();
 
-        // ── 군집 ────────────────────────────────────────────────────────
+        #endregion Tile
+
+        #region Cluster
 
         [FoldoutGroup("군집")]
         [LabelText("군집 크기 최솟값")]
@@ -53,7 +54,9 @@ namespace MI.Data.Config
         [PropertyRange(0.01f, 1f)]
         [SerializeField] private float _seedDensity = 0.3f;
 
-        // ── 광물 ────────────────────────────────────────────────────────
+        #endregion Cluster
+
+        #region Mineral
 
         [FoldoutGroup("광물")]
         [LabelText("광물 가중치 (섹션 기준)")]
@@ -67,7 +70,9 @@ namespace MI.Data.Config
         [DictionaryDrawerSettings(KeyLabel = "타일 타입", ValueLabel = "광물 친화도 목록")]
         private Dictionary<ETileType, List<FMineralAffinity>> _mineralAffinities = new();
 
-        // ── 보물 상자 ────────────────────────────────────────────────────
+        #endregion Mineral
+
+        #region Treasure
 
         [FoldoutGroup("보물 상자")]
         [LabelText("보물 상자 생성 확률 (셀당)")]
@@ -84,7 +89,9 @@ namespace MI.Data.Config
         [PropertyRange(0, 10)]
         [SerializeField] private int _maxTreasuresPerChunk = 2;
 
-        // ── 블렌딩 ────────────────────────────────────────────────────────
+        #endregion Treasure
+
+        #region Blending
 
         [FoldoutGroup("블렌딩")]
         [LabelText("다음 레벨과의 블렌딩 행 수")]
@@ -92,7 +99,9 @@ namespace MI.Data.Config
         [PropertyRange(0, 20)]
         [SerializeField] private int _blendRows = 5;
 
-        // ── 공개 프로퍼티 ────────────────────────────────────────────────
+        #endregion Blending
+
+        #region Properties
 
         public string                LevelName            => _levelName;
         public int                   RowCount             => _rowCount;
@@ -107,5 +116,7 @@ namespace MI.Data.Config
         public IReadOnlyList<FTreasureWeight> TreasureWeights     => _treasureWeights;
         public int                   MaxTreasuresPerChunk => _maxTreasuresPerChunk;
         public int                   BlendRows            => _blendRows;
+
+        #endregion Properties
     }
 }

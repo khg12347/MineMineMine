@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MI.Core.Pool;
 using MI.Data.Config;
 using MI.Domain.Stage;
@@ -13,19 +13,11 @@ using UnityEngine.Tilemaps;
 namespace MI.Presentation.World.Stage
 {
     using Camera = UnityEngine.Camera;
-    /// <summary>
-    /// 무한 하강 스테이지를 총괄하는 오케스트라 MonoBehaviour.
-    /// 각 책임은 전담 모듈에 위임합니다:
-    ///   - MIDepthTracker       : 깊이 측정
-    ///   - MIChunkBuffer        : 청크 데이터 큐 관리
-    ///   - IMITileAlgorithm     : 타일 생성 알고리즘 (MIFloodFillAlgorithm)
-    ///   - MITileSpawner        : 타일 인스턴스 생성/제거
-    ///   - MIWallSpawner        : 좌우 벽 생성/위치 업데이트
-    ///   - IMICameraFollower    : 카메라 추적 (MICameraFollower)
-    /// </summary>
+
+    // 무한 하강 스테이지 총괄. 깊이/청크/타일/벽/카메라 각 모듈에 위임.
     public class MIStageOrchestrator : MonoBehaviour
     {
-        // ── Inspector 설정 ────────────────────────────────────────────────
+        #region Inspector
 
         [Title("스테이지 설정")]
         [Required]
@@ -74,7 +66,9 @@ namespace MI.Presentation.World.Stage
 
         private FPoolConfig _tilePoolConfig = new FPoolConfig() {InitialSize = 256, GrowSize = 128};
 
-        // ── 런타임 모듈 ────────────────────────────────────────────────────
+        #endregion Inspector
+
+        #region Runtime Modules
 
         private MIDepthTracker   _depthTracker;
         private MIChunkBuffer    _chunkBuffer;
@@ -87,10 +81,14 @@ namespace MI.Presentation.World.Stage
         // 깊이 변경 감지용
         private int _lastReportedDepth = -1;
 
-        // ── Unity 생명주기 ─────────────────────────────────────────────────
+        #endregion Runtime Modules
+
+        #region Unity Lifecycle
+
         private void Awake()
         {
         }
+
         private void Start()
         {
             // 타일 배치 시작 X 계산
@@ -192,7 +190,9 @@ namespace MI.Presentation.World.Stage
             }
         }
 
-        // ── 헬퍼 ──────────────────────────────────────────────────────────
+        #endregion Unity Lifecycle
+
+        #region Helper
 
         private void FillChunkBuffer(int startRow)
         {
@@ -210,10 +210,7 @@ namespace MI.Presentation.World.Stage
             return leftEdge + (viewWidth - stageWidth) * 0.5f + _stageConfig.RowHeight * 0.5f;
         }
 
-        /// <summary>
-        /// 모든 레벨의 TileConfigs 를 취합하여 ETileType → MITileConfig 딕셔너리를 빌드합니다.
-        /// 같은 TileType 이 여러 레벨에 있으면 첫 번째 발견 기준으로 등록합니다.
-        /// </summary>
+        // 전 레벨 TileConfigs 취합 → ETileType 딕셔너리 빌드. 중복 시 첫 등록 우선.
         private Dictionary<ETileType, MITileConfig> BuildTileConfigLookup()
         {
             var lookup = new Dictionary<ETileType, MITileConfig>();
@@ -228,5 +225,7 @@ namespace MI.Presentation.World.Stage
             }
             return lookup;
         }
+
+        #endregion Helper
     }
 }

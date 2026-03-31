@@ -43,7 +43,7 @@ namespace MI.Presentation.UI.HUD.Status
         }
         public void OnDepthUpdated(int newDepth)
         {
-            UpdateDepthDisplay(newDepth);
+            MINumberShaker.UpdateNumberDisplay(_depthNumbers, newDepth, _numberResources);
         }
 
         private void UpdateLevelDisplay(int level)
@@ -64,28 +64,6 @@ namespace MI.Presentation.UI.HUD.Status
                 else
                 {
                     _numbers[i].gameObject.SetActive(nums[i] > 0 || nums[i + 1] > 0);
-                }
-            }
-        }
-        private void UpdateDepthDisplay(int depth)
-        {
-            int[] nums = new int[7];
-
-            for (int i = 6; i >= 0; i--)
-            {
-                nums[i] = GetDigit(depth, i);
-                _depthNumbers[i].UpdateNumSprite(nums[i], _numberResources.GetBigNum(nums[i]));
-
-                if (i == 0)
-                    continue;
-
-                if (i == 6)
-                {
-                    _depthNumbers[i].gameObject.SetActive(nums[i] > 0);
-                }
-                else
-                {
-                    _depthNumbers[i].gameObject.SetActive(nums[i] > 0 || nums[i + 1] > 0);
                 }
             }
         }

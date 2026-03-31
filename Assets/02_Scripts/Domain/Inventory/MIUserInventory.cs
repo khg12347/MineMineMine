@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MI.Utility;
 
 namespace MI.Domain.Inventory
@@ -11,6 +12,8 @@ namespace MI.Domain.Inventory
     public class MIUserInventory : IMIItemDropEventListener
     {
         private readonly Dictionary<EItemType, int> _items = new();
+
+        public event Action<Dictionary<EItemType, int>> OnInventoryUpdated;
 
         #region Event Listener
 
@@ -26,7 +29,16 @@ namespace MI.Domain.Inventory
 
         #region Public API
 
-        public void AddItem(EItemType type, int amount)
+        public int GetAmount(EItemType type)
+        {
+            return _items.TryGetValue(type, out int amount) ? amount : 0;
+        }
+
+        public IReadOnlyDictionary<EItemType, int> GetAll() => _items;
+
+        #endregion Public API
+
+        private void AddItem(EItemType type, int amount)
         {
             if (type == EItemType.None || amount <= 0)
                 return;
@@ -39,17 +51,9 @@ namespace MI.Domain.Inventory
             {
                 _items[type] = amount;
             }
-
+            OnInventoryUpdated?.Invoke(_items);
             MILog.Log($"[MIUserInventory] {type.ToString()} +{amount} (총 {_items[type]})");
         }
 
-        public int GetAmount(EItemType type)
-        {
-            return _items.TryGetValue(type, out int amount) ? amount : 0;
-        }
-
-        public IReadOnlyDictionary<EItemType, int> GetAll() => _items;
-
-        #endregion Public API
     }
 }

@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace MI.Presentation.UI.Popup.Inventory
 {
-    public class MIPopupInventory : MIPopupBase
+    public interface IMIInventoryViewer
     {
-
+    
     }
 }

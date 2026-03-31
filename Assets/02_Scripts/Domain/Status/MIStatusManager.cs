@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MI.Core;
 using MI.Data.Config;
 using Sirenix.OdinInspector;
@@ -6,31 +6,16 @@ using UnityEngine;
 
 namespace MI.Domain.Status
 {
-    /// <summary>
-    /// 플레이어의 EXP / 레벨을 관리하는 싱글톤 매니저.
-    ///
-    ///  [EXP 추가]
-    ///    MIStatusManager.Instance.AddExp(50);
-    ///
-    ///  [상태 조회]
-    ///    int   level    = MIStatusManager.Instance.CurrentLevel;
-    ///    int   exp      = MIStatusManager.Instance.CurrentExp;
-    ///    float ratio    = MIStatusManager.Instance.ExpRatio;
-    ///    var   snapshot = MIStatusManager.Instance.TakeSnapshot();
-    ///
-    ///  [UI 리스너 등록 (IMIStatusListener 구현 후)]
-    ///    MIStatusManager.Instance.RegisterListener(this);
-    ///    MIStatusManager.Instance.UnregisterListener(this);   // OnDestroy에서 해제
-    /// </summary>
+    // EXP/레벨 관리 싱글톤
+    // AddExp()로 EXP 추가, RegisterListener()로 UI 알림 수신
     public sealed class MIStatusManager : MISingleton<MIStatusManager>
     {
-        // Inspector 
+        // Inspector
         [Title("설정")]
         [Required]
         [SerializeField] private MIStatusConfig _config;
 
-
-        // 런타임 상태 
+        // 런타임 상태
         private int _currentLevel = 1;
         private int _currentDepth = 0;
         private int _currentExp;
@@ -38,30 +23,27 @@ namespace MI.Domain.Status
 
         private readonly List<IMIStatusListener> _listeners = new();
 
-        // 프로퍼티 
-        /// <summary>현재 레벨</summary>
+        // 프로퍼티
+        // 현재 레벨
         public int CurrentLevel => _currentLevel;
 
-        /// <summary>현재 레벨 내 누적 EXP</summary>
+        // 현재 레벨 내 누적 EXP
         public int CurrentExp => _currentExp;
 
-        /// <summary>현재 레벨에서 다음 레벨까지 필요한 EXP</summary>
+        // 다음 레벨까지 필요한 EXP
         public int RequiredExp => _config != null ? _config.GetRequiredExp(_currentLevel) : 0;
 
-        /// <summary>현재 레벨 내 EXP 진행률 [0, 1]</summary>
+        // EXP 진행률 [0, 1]
         public float ExpRatio => RequiredExp > 0 ? (float)_currentExp / RequiredExp : 1f;
 
-        /// <summary>게임 시작 이후 획득한 총 누적 EXP</summary>
+        // 게임 시작 후 총 누적 EXP
         public long TotalExp => _totalExp;
 
         public int CurrentDepth => _currentDepth; // TODO: 깊이 시스템 도입 시 구현
 
-
         #region Public API
-        /// <summary>
-        /// EXP를 추가하고 레벨업을 자동 처리한다.
-        /// 한 번에 여러 레벨을 건너뛰는 경우도 순서대로 처리된다.
-        /// </summary>
+
+        // EXP 추가 + 다중 레벨업 자동 처리
         public void AddExp(int amount)
         {
             if (amount <= 0) return;
@@ -72,23 +54,21 @@ namespace MI.Domain.Status
             ProcessLevelUp();
             NotifyExpChanged();
         }
+
         public void UpdateDepth(int newDepth)
         {
             if (newDepth <= 0 || newDepth == _currentDepth) return;
             _currentDepth = newDepth;
             NotifyUpdateDepth(newDepth);
         }
-        /// <summary>
-        /// 특정 레벨에서 다음 레벨로 진급하는 데 필요한 EXP를 반환.
-        /// Config의 테이블 범위를 벗어나면 배율 계산 값을 반환.
-        /// </summary>
+
         public int GetRequiredExp(int level) => _config.GetRequiredExp(level);
 
-        /// <summary>현재 상태의 불변 스냅샷을 반환 (UI 갱신, 저장 등에 활용).</summary>
+        // 현재 상태 불변 스냅샷 반환
         public FStatusSnapshot TakeSnapshot()
             => new FStatusSnapshot(_currentLevel, _currentExp, RequiredExp, _totalExp);
 
-        /// <summary>EXP와 레벨을 초기 상태로 되돌린다.</summary>
+        // EXP·레벨 초기화
         public void Reset()
         {
             _currentLevel = 1;
@@ -96,17 +76,19 @@ namespace MI.Domain.Status
             _totalExp = 0;
             NotifyExpChanged();
         }
+
         #endregion Public API
 
         #region Listener Management
-        /// <summary>상태 변경 알림을 수신할 리스너를 등록한다. 중복 등록은 무시.</summary>
+
+        // 리스너 등록. 중복 무시.
         public void RegisterListener(IMIStatusListener listener)
         {
             if (listener == null || _listeners.Contains(listener)) return;
             _listeners.Add(listener);
         }
 
-        /// <summary>리스너를 해제한다. OnDestroy 등에서 반드시 호출.</summary>
+        // 리스너 해제. OnDestroy에서 호출해야 함.
         public void UnregisterListener(IMIStatusListener listener)
         {
             _listeners.Remove(listener);
@@ -115,10 +97,8 @@ namespace MI.Domain.Status
         #endregion Listener Management
 
         #region Internal
-        /// <summary>
-        /// 현재 EXP가 RequiredExp 이상이면 레벨업을 반복 처리.
-        /// 다중 레벨업(EXP 폭발적 획득)도 누락 없이 처리된다.
-        /// </summary>
+
+        // RequiredExp 이상이면 레벨업 반복 처리. 다중 레벨업도 누락 없음.
         private void ProcessLevelUp()
         {
             while (_currentExp >= _config.GetRequiredExp(_currentLevel))
@@ -139,7 +119,7 @@ namespace MI.Domain.Status
             for (int i = _listeners.Count - 1; i >= 0; i--)
                 _listeners[i].OnExpChanged(current, required, ratio);
         }
-        
+
         private void NotifyLevelUp(int newLevel)
         {
             for (int i = _listeners.Count - 1; i >= 0; i--)
@@ -151,6 +131,7 @@ namespace MI.Domain.Status
             for (int i = _listeners.Count - 1; i >= 0; i--)
                 _listeners[i].OnDepthUpdated(newDepth);
         }
+
         #endregion Internal
 
 #if UNITY_EDITOR

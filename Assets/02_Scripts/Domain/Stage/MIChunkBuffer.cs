@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MI.Domain.Tile;
 
 namespace MI.Domain.Stage
 {
-    /// <summary>
-    /// 알고리즘이 생성한 FChunkData 를 큐로 관리하고,
-    /// MITileSpawner 에 행 단위로 데이터를 제공하는 버퍼 클래스.
-    ///
-    /// 내부적으로 현재 소비 중인 청크와 행 인덱스를 추적합니다.
-    /// </summary>
+    // 알고리즘 생성 청크를 큐로 관리, MITileSpawner에 행 단위로 제공
     public class MIChunkBuffer
     {
         private readonly Queue<FChunkData> _chunks = new();
@@ -17,12 +12,12 @@ namespace MI.Domain.Stage
         private FChunkData _activeChunk;
         private int        _activeChunkRow; // 현재 청크 내 다음 소비할 행 인덱스
 
-        /// <summary>데이터가 생성된 최대 절대 행 인덱스 (exclusive)</summary>
+        // 생성 완료된 최대 절대 행 인덱스 (exclusive)
         public int GeneratedUpToRow { get; private set; }
 
-        // ── 청크 관리 ────────────────────────────────────────────────────
+        #region Chunk Management
 
-        /// <summary>청크를 큐 끝에 추가합니다.</summary>
+        // 청크를 큐에 추가
         public void Enqueue(FChunkData chunk)
         {
             if (chunk == null) return;
@@ -32,13 +27,7 @@ namespace MI.Domain.Stage
                 GeneratedUpToRow = chunkEnd;
         }
 
-        /// <summary>
-        /// 지정된 절대 행 인덱스에 해당하는 행 데이터를 소비합니다.
-        /// 행이 순서대로 요청되지 않으면 false 를 반환합니다.
-        /// </summary>
-        /// <param name="row">소비할 절대 행 인덱스</param>
-        /// <param name="rowData">출력: 해당 행의 FTileData 배열 (열 순서)</param>
-        /// <param name="treasures">출력: 해당 행에 배치된 보물 목록</param>
+        // 지정 절대 행의 데이터를 소비. 순서 불일치 시 false 반환
         public bool TryDequeueRow(int row, out FTileData[] rowData, out List<FTreasurePlacement> treasures)
         {
             rowData   = null;
@@ -72,13 +61,12 @@ namespace MI.Domain.Stage
             return true;
         }
 
-        /// <summary>
-        /// 더 많은 청크를 생성해야 하는지 판단합니다.
-        /// 생성된 데이터가 (currentDepthRow + spawnAheadRows) 보다 적으면 true 를 반환합니다.
-        /// </summary>
+        // 선행 생성이 부족하면 true 반환
         public bool NeedsMoreChunks(int currentDepthRow, int spawnAheadRows)
         {
             return GeneratedUpToRow <= currentDepthRow + spawnAheadRows;
         }
+
+        #endregion Chunk Management
     }
 }

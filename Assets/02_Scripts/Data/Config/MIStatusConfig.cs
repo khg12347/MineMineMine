@@ -1,4 +1,4 @@
-﻿using MI.Domain.Status;
+using MI.Domain.Status;
 using MI.Utility;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -6,11 +6,7 @@ using UnityEngine;
 
 namespace MI.Data.Config
 {
-    /// <summary>
-    /// 레벨 진급에 필요한 EXP 테이블을 정의하는 ScriptableObject.
-    /// 테이블에 정의된 마지막 레벨 이후에는 <see cref="_overflowMultiplier"/>를
-    /// 누적 곱해 무한 레벨업을 지원한다.
-    /// </summary>
+    // 레벨 진급 EXP 테이블 ScriptableObject. 마지막 레벨 이후는 overflowMultiplier 배율로 무한 레벨업.
     [CreateAssetMenu(fileName = "StatusConfig", menuName = "MI/Config/Status")]
     public class MIStatusConfig : SerializedScriptableObject
     {
@@ -31,12 +27,9 @@ namespace MI.Data.Config
         [PropertyRange(1.0f, 5.0f)]
         [SerializeField] private float _overflowMultiplier = 1.5f;
 
-        // ── 공개 API ─────────────────────────────────────────────────
+        #region Public API
 
-        /// <summary>
-        /// 특정 레벨에서 다음 레벨로 진급하는 데 필요한 EXP를 반환.
-        /// 테이블 범위 내이면 테이블 값을, 초과이면 배율 계산 값을 반환.
-        /// </summary>
+        // 특정 레벨의 진급 필요 EXP 반환. 테이블 초과 시 배율 계산.
         public int GetRequiredExp(int level)
         {
             if (_levelTable == null || _levelTable.Length == 0)
@@ -62,7 +55,7 @@ namespace MI.Data.Config
             return Mathf.RoundToInt(result);
         }
 
-        /// <summary>테이블에 정의된 최대 레벨 번호.</summary>
+        // 테이블에 정의된 최대 레벨
         public int MaxDefinedLevel
         {
             get
@@ -71,5 +64,7 @@ namespace MI.Data.Config
                 return _levelTable[_levelTable.Length - 1].Level;
             }
         }
+
+        #endregion Public API
     }
 }
