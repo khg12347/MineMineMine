@@ -13,10 +13,10 @@ namespace MI.Data.UIRes
 
         [LabelText("중간 크기(레벨UI)")]
         [SerializeField] private Sprite[] middleNums = new Sprite[10];
-        
+
         [LabelText("작은 크기")]
         [SerializeField] private Sprite[] _smallNums = new Sprite[10];
-    
+
         public Sprite GetBigNum(int num)
         {
             if (num < 0 || num > 9)
@@ -35,6 +35,15 @@ namespace MI.Data.UIRes
                 return null;
             }
             return middleNums[num];
+        }
+        public Sprite GetSmallNum(int num)
+        {
+            if (num < 0 || num > 9)
+            {
+                MILog.LogError("Invalid number: " + num);
+                return null;
+            }
+            return _smallNums[num];
         }
     }
 }

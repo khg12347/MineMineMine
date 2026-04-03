@@ -43,7 +43,7 @@ namespace MI.Presentation.UI.Common
         }
 
 
-        public static void UpdateNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources)
+        public static void UpdateBigNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources)
         {
             int length = numShakers.Length;
             int[] nums = new int[length];
@@ -66,6 +66,52 @@ namespace MI.Presentation.UI.Common
                 }
             }
         }
+
+        public static void UpdateMidNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources)
+        {
+            int length = numShakers.Length;
+            int[] nums = new int[length];
+
+            for (int i = length - 1; i >= 0; i--)
+            {
+                nums[i] = GetDigit(targetNumber, i);
+                numShakers[i].UpdateNumSprite(nums[i], numberResources.GetMiddleNum(nums[i]));
+
+                if (i == 0)
+                    continue;
+
+                if (i == length - 1)
+                {
+                    numShakers[i].gameObject.SetActive(nums[i] > 0);
+                }
+                else
+                {
+                    numShakers[i].gameObject.SetActive(nums[i] > 0 || nums[i + 1] > 0);
+                }
+            }
+        }
+
+        public static void UpdateSmallNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources)
+        {
+            int length = numShakers.Length;
+            int[] nums = new int[length];
+            for (int i = length - 1; i >= 0; i--)
+            {
+                nums[i] = GetDigit(targetNumber, i);
+                numShakers[i].UpdateNumSprite(nums[i], numberResources.GetSmallNum(nums[i]));
+                if (i == 0)
+                    continue;
+                if (i == length - 1)
+                {
+                    numShakers[i].gameObject.SetActive(nums[i] > 0);
+                }
+                else
+                {
+                    numShakers[i].gameObject.SetActive(nums[i] > 0 || nums[i + 1] > 0);
+                }
+            }
+        }
+
         private static int GetDigit(int value, int digit)
         {
             //자리수 초과시 에러 처리

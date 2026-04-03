@@ -1,0 +1,10 @@
+{
+  "active": true,
+  "started_at": "2026-04-02T13:37:37.662Z",
+  "original_prompt": "/autopilot MIButtonBottomElement는 5개의 버튼 요소다.\n이 버튼이 지금은 누르면 on/off가 되는 토글 형식으로 되어있는데\n상위에 컨트롤러 클래스를 하나 둬서 항상 하나만 on되어있도록 구현해줘\n예를들어 1번이 OnClick으로 Select된 상태에서 3번을 누르면 1번이 Deselect, 3번이 Select되고\n3번을 누른 상태에서 다시 3번을 누르면 3번이 Deselect가 되는 방식",
+  "session_id": "75d1f5e7-2b24-4606-91b1-4c3f65467954",
+  "project_path": "D:\\GitHub\\MineMineMine\\MineMineMine",
+  "reinforcement_count": 0,
+  "awaiting_confirmation": true,
+  "last_checked_at": "2026-04-02T13:37:37.664Z"
+}

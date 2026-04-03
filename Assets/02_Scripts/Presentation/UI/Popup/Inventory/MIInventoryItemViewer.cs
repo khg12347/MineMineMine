@@ -17,14 +17,19 @@ namespace MI.Presentation.UI.Popup.Inventory
         private MIUINumberResources _numberResources;
         private MIItemIconDataTable _itemIconDataTable;
 
-        public void InitializeData(MIUINumberResources numberResources)
+        /// <summary>
+        /// 리소스 초기화. 인벤토리 팝업에서 주입받음
+        /// </summary>
+        /// <param name="numberResources"></param>
+        /// <param name="dataTable"></param>
+        public void InitializeData(MIUINumberResources numberResources, MIItemIconDataTable dataTable)
         {
             _numberResources = numberResources;
+            SetIconDataTable(dataTable);
         }
 
         #region IMIItemViewer Implementation
         public event Action<GameObject> OnHideAction;
-
         public void SetIconDataTable(MIItemIconDataTable dataTable)
         {
             _itemIconDataTable = dataTable;
@@ -33,7 +38,9 @@ namespace MI.Presentation.UI.Popup.Inventory
         public void UpdateItemViewer(EItemType itemType, int amount)
         {
             _imageItemIcon.sprite = _itemIconDataTable.GetItemIcon(itemType);
-            MINumberShaker.UpdateNumberDisplay(_amountNumbers, amount, _numberResources);
+            MINumberShaker.UpdateSmallNumberDisplay(_amountNumbers, amount, _numberResources);
+
+            _amountNumbers[0].gameObject.SetActive(amount > 0);
         }
         #endregion IMIItemViewer Implementation
     }

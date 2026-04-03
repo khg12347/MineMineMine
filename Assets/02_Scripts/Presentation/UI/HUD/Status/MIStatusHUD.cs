@@ -43,7 +43,7 @@ namespace MI.Presentation.UI.HUD.Status
         }
         public void OnDepthUpdated(int newDepth)
         {
-            MINumberShaker.UpdateNumberDisplay(_depthNumbers, newDepth, _numberResources);
+            MINumberShaker.UpdateBigNumberDisplay(_depthNumbers, newDepth, _numberResources);
         }
 
         private void UpdateLevelDisplay(int level)

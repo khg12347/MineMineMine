@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Animator Num Shaker Copy
+  m_Controller: {fileID: 9100000, guid: 443eb60d2300dbb46831b79b51226bd5, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 751e4c1d0f4c53b439aecffbe3752e31, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ea250fdfa7c1bbf42bedf851192b9b87, type: 2}

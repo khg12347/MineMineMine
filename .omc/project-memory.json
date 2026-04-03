@@ -1,0 +1,224 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1775137051941,
+  "projectRoot": "D:\\GitHub\\MineMineMine\\MineMineMine",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "Assets": {
+      "path": "Assets",
+      "purpose": "Static assets",
+      "fileCount": 12,
+      "lastAccessed": 1775137051855,
+      "keyFiles": [
+        "01_Scenes.meta",
+        "02_Scripts.meta",
+        "03_Resources.meta",
+        "DamageNumbersPro.meta",
+        "DefaultVolumeProfile.asset"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 2,
+      "lastAccessed": 1775137051855,
+      "keyFiles": [
+        "gameplay.gif",
+        "tile_generation_simulator.html"
+      ]
+    },
+    "Library": {
+      "path": "Library",
+      "purpose": null,
+      "fileCount": 29,
+      "lastAccessed": 1775137051856,
+      "keyFiles": [
+        "AnnotationManager",
+        "ArtifactDB",
+        "ArtifactDB-lock",
+        "BuildPlayer.prefs",
+        "BuildProfileContext.asset"
+      ]
+    },
+    "Logs": {
+      "path": "Logs",
+      "purpose": null,
+      "fileCount": 18,
+      "lastAccessed": 1775137051857,
+      "keyFiles": [
+        "AssetImportWorker0-prev.log",
+        "AssetImportWorker0.log",
+        "AssetImportWorker1-prev.log",
+        "AssetImportWorker1.log",
+        "AssetImportWorker2-prev.log"
+      ]
+    },
+    "obj": {
+      "path": "obj",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1775137051858,
+      "keyFiles": []
+    },
+    "Packages": {
+      "path": "Packages",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1775137051858,
+      "keyFiles": [
+        "manifest.json",
+        "packages-lock.json"
+      ]
+    },
+    "ProjectSettings": {
+      "path": "ProjectSettings",
+      "purpose": null,
+      "fileCount": 26,
+      "lastAccessed": 1775137051859,
+      "keyFiles": [
+        "AudioManager.asset",
+        "ClusterInputManager.asset",
+        "DynamicsManager.asset",
+        "EditorBuildSettings.asset",
+        "EditorSettings.asset"
+      ]
+    },
+    "Temp": {
+      "path": "Temp",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1775137051859,
+      "keyFiles": [
+        "FSTimeGet-460a8fe254ed9624183c22671e51c6d3",
+        "FSTimeGet-47dc60bca01a20040b9b35cc9aa7d7c0",
+        "FSTimeGet-9c2c06c160d201c4687c8ce3e6968fac",
+        "FSTimeGet-b5ff2a6d62895be4f9c37e24b1aa0083",
+        "FSTimeGet-ef0abeec90f6ab047894eff65baec16b"
+      ]
+    },
+    "UIElementsSchema": {
+      "path": "UIElementsSchema",
+      "purpose": null,
+      "fileCount": 32,
+      "lastAccessed": 1775137051860,
+      "keyFiles": [
+        "UIElements.xsd",
+        "Unity.Multiplayer.PlayMode.Editor.xsd",
+        "Unity.Profiling.Editor.UI.xsd",
+        "Unity.Profiling.Editor.xsd",
+        "Unity.UI.Builder.xsd"
+      ]
+    },
+    "UserSettings": {
+      "path": "UserSettings",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1775137051861,
+      "keyFiles": [
+        "EditorUserSettings.asset",
+        "Search.index",
+        "Search.settings"
+      ]
+    },
+    "Temp\\bin": {
+      "path": "Temp\\bin",
+      "purpose": "Executable scripts",
+      "fileCount": 0,
+      "lastAccessed": 1775137051864,
+      "keyFiles": []
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "",
+      "accessCount": 10,
+      "lastAccessed": 1775137104203,
+      "type": "directory"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Bottom\\MIButtonBottomElement.cs",
+      "accessCount": 4,
+      "lastAccessed": 1775137450986,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\01_Scenes\\Main.unity",
+      "accessCount": 2,
+      "lastAccessed": 1775137271365,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Bottom\\MIButtonBottomController.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775137449575,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\03_Resources\\02_Prefabs\\UI\\HUD\\Bottom\\Button_Bottom.prefab",
+      "accessCount": 1,
+      "lastAccessed": 1775137083975,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD",
+      "accessCount": 1,
+      "lastAccessed": 1775137097249,
+      "type": "directory"
+    },
+    {
+      "path": "Assets\\02_Scripts",
+      "accessCount": 1,
+      "lastAccessed": 1775137108366,
+      "type": "directory"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\MICanvasHUD.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775137266169,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Status\\MIStatusHUD.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775137266391,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Bottom\\MIButtonBottomElement.cs.meta",
+      "accessCount": 1,
+      "lastAccessed": 1775137405363,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
