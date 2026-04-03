@@ -82,6 +82,36 @@ Presentation
 - 플랫폼 입력 변경(터치 → 키보드 등)이 `Infrastructure/Input`만 수정하면 됨
 - 새 기능의 추가 위치를 레이어 기준으로 즉시 판단 가능
 
+### 서비스 로케이터 패턴
+
+**도입 배경**
+
+이전 프로젝트에서 싱글톤을 여러 시스템에서 직접 참조하다 씬 전환 시 초기화 순서가 보장되지 않아 `NullReferenceException`이 빈발했습니다. DI 패턴으로 전면 개편하여 문제를 해결한 경험이 있지만, 현재 프로젝트는 초기 단계라 DI Container(VContainer 등)를 도입하기엔 이릅니다.
+
+대신 서비스 로케이터 패턴으로 **초기화 순서를 명시적으로 제어**하되, 나중에 DI Container로 전환할 수 있도록 등록/조회 구조를 맞춰 설계했습니다. `ServiceLocator.Register<T>()`는 VContainer의 `builder.Register<T>()`와 1:1 대응되므로 전환 비용이 낮습니다.
+
+**구조**
+
+```
+MIGameRoot (부트스트랩 씬)
+  → MIServiceLocator.Register<T>()     ← 서비스 등록 (유일한 등록 지점)
+
+MIServiceLocator (static)
+  → Dictionary<Type, object>           ← 타입 기반 저장소
+
+MISceneContext (게임 씬)
+  → MIServiceLocator.Get<T>()          ← 서비스 조회
+  → _popupInventory.Init(inventory)    ← 씬 내 컴포넌트에 주입
+```
+
+**핵심 규칙**
+
+- **등록은 `MIGameRoot`에서만** — 부트스트랩 씬에서 생성되는 영속 객체가 서비스를 등록합니다.
+- **조회는 `MISceneContext`에서만** — 각 씬의 컨텍스트가 필요한 서비스를 꺼내 씬 내 컴포넌트에 주입합니다.
+- **UI 컴포넌트는 직접 조회 금지** — `Init()` 메서드를 통해 필요한 의존성을 외부에서 주입받습니다. `ServiceLocator.Get<T>()`를 직접 호출하지 않습니다.
+
+이 규칙으로 의존 방향이 `GameRoot(등록) → ServiceLocator(저장) → SceneContext(조회) → UI(소비)` 단방향으로 유지되며, Unity `Awake` 호출 순서에 의존하지 않습니다.
+
 ---
 
 ## 핵심 시스템
