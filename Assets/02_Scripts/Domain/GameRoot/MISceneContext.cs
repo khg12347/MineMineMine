@@ -1,5 +1,5 @@
 ﻿using MI.Core.ServiceLocator;
-using MI.Domain.Inventory;
+using MI.Domain.UserState.Inventory;
 using MI.Presentation.UI;
 using MI.Presentation.UI.Popup.Inventory;
 using UnityEngine;

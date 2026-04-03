@@ -231,6 +231,7 @@ Assets/
 ### 네임스페이스
 
 게임 이름 **Mine Mine Mine**에서 따온 `MI`를 사용하며, 폴더 경로를 그대로 따라갑니다.
+모든 클래스 파일에는 반드시 네임스페이스를 선언합니다.
 
 ```csharp
 namespace MI.Core { }
@@ -251,10 +252,31 @@ namespace MI.Data.Config { }
 | **열거형** | `E` + PascalCase | `ETileType`, `EBreakResult` |
 | **메서드** | PascalCase | `HandleBreak()`, `ApplyGravity()` |
 | **공개 프로퍼티** | PascalCase | `public int Health { get; private set; }` |
-| **비공개 변수** | `_` + camelCase | `private float _fallSpeed;` |
+| **비공개 인스턴스 변수** | `_` + camelCase | `private float _fallSpeed;` |
+| **비공개 static 변수** | `s_` + camelCase | `private static readonly int s_bSelected;` |
 | **상수** | SCREAMING_SNAKE_CASE | `const int MAX_BREAK_COUNT = 5;` |
 
 > `MI` 접두사는 프로젝트에서 정의하는 모든 외부 노출 타입(클래스, 인터페이스, 구조체, Enum)에 붙입니다.
+
+### 변수 네이밍 상세
+
+```csharp
+// 인스턴스 필드 — _camelCase
+private float _fallSpeed;
+[SerializeField] private GameObject _goPopup;
+
+// static 필드 — s_camelCase
+private static readonly Dictionary<int, int> s_pow;
+private static readonly List<IMIInputListener> s_listeners;
+
+// Animator 파라미터 해시 캐시 — static readonly + s_ 접두사
+private static readonly int s_bSelected = Animator.StringToHash("bSelected");
+private static readonly int s_tShake = Animator.StringToHash("tShake");
+
+// 상수 — SCREAMING_SNAKE_CASE
+private const string ROOT_SCENE_NAME = "BootStrap";
+private const int TILE_OFFSET = 100;
+```
 
 ### 코딩 기본 원칙
 
@@ -264,11 +286,101 @@ namespace MI.Data.Config { }
 - Odin Inspector 속성(`[ShowInInspector]`, `[Button]`, `[FoldoutGroup]` 등)으로 에디터 편의성 향상
 - 코루틴보다 `async/await` 우선 고려
 - 코드 주석은 **한국어**로 작성
+- access modifier(`private`, `public`, `protected`)는 항상 명시적으로 작성
+
+### 주석 스타일
+
+- **클래스 / 인터페이스 / 메서드**: `/// <summary>` XML doc 주석 사용
+- **필드 / 변수 인라인 설명**: `//` 한 줄 주석 사용
+- XML doc 주석의 `<param>`, `<returns>` 태그도 필요 시 사용
+- 주석 내용은 **한국어**로 작성
+
+```csharp
+/// <summary>
+/// 타일을 생성한다.
+/// </summary>
+/// <param name="config">타일 설정 데이터</param>
+public void SpawnTile(MITileConfig config) { }
+
+// ❌ 클래스/메서드에 // 단독 주석 사용 지양
+// 타일을 생성한다.
+public void SpawnTile() { }
+```
+
+```csharp
+// 비활성 오브젝트를 보관할 부모 Transform
+[SerializeField] private Transform _parent;
+
+// 풀 소진 시 자동 확장 여부
+private readonly bool _autoExpand;
+```
+
+### 중괄호 및 포맷팅
+
+- **Allman 스타일** (여는 중괄호를 새 줄에 배치)
+- 단일행 가드 절에서는 중괄호 생략 허용 (`if (...) return;`)
+- 메서드 사이에 빈 줄 1개
+
+```csharp
+// ✅ Allman 스타일
+if (condition)
+{
+    DoSomething();
+}
+
+// ✅ 단일행 가드 절 — 중괄호 생략 허용
+if (obj == null) return;
+if (index < 0 || index >= length) continue;
+```
+
+### Expression Body (`=>`)
+
+1줄로 표현 가능한 단순 메서드, 속성에서는 `=>`를 적극 사용합니다.
+
+```csharp
+// ✅ 단순 속성
+public int GridWidth => _gridWidth;
+public bool IsDestroyed => CurrentDurability <= 0;
+
+// ✅ 단순 메서드
+public int GetAmount(EItemType type) => _items.TryGetValue(type, out var v) ? v : 0;
+private void OnEnable() => _inputHandler.RegisterListener(this);
+
+// ❌ 여러 줄이 필요한 메서드에서는 사용하지 않음
+```
+
+### SerializeField 패턴
+
+`[SerializeField]`는 필드와 같은 줄에 작성합니다.
+Odin Inspector 속성(`[Title]`, `[Required]`, `[InfoBox]` 등)은 별도 줄에 배치합니다.
+
+```csharp
+// ✅ 기본
+[SerializeField] private int _gridWidth = 8;
+[SerializeField] private MITileConfig _tileConfig;
+
+// ✅ Odin 속성 조합
+[Title("스테이지 설정")]
+[Required]
+[SerializeField] private MIStageConfig _stageConfig;
+
+// ✅ 복합 속성
+[SerializeField, ReadOnly] private FTileData _data;
+```
+
+### Property 패턴
+
+| 용도 | 패턴 | 예시 |
+|------|------|------|
+| Config/SO 읽기 전용 노출 | `[SerializeField]` + `=>` getter | `public int GridWidth => _gridWidth;` |
+| 런타임 상태 | auto-property | `public int CurrentRow { get; private set; }` |
+| 외부 쓰기 허용 (드물게) | auto-property | `public int CurrentRow { get; set; }` |
 
 ### 클래스 멤버 구역 분류
 
 클래스 내부의 멤버를 기능별로 구분할 때 주석 구분선 대신 `#region`을 사용합니다.
 `#endregion`에도 반드시 같은 이름을 명시합니다.
+짧은 클래스(enum, struct, 50줄 이하)에서는 `#region`을 생략해도 됩니다.
 
 ```csharp
 // ❌ 지양
@@ -280,6 +392,87 @@ namespace MI.Data.Config { }
 // ... 멤버 ...
 
 #endregion Public API
+```
+
+### 클래스 멤버 배치 순서
+
+```
+1. [SerializeField] 필드  (#region Inspector / #region Fields)
+2. private 런타임 필드
+3. 프로퍼티
+4. Unity Lifecycle      (#region Unity Lifecycle / #region Unity Events)
+   → Awake → Start → OnEnable → OnDisable → Update → FixedUpdate → OnDestroy
+5. Public API           (#region Public API)
+6. Private 헬퍼         (#region Helper / #region Internal)
+7. #if UNITY_EDITOR     (에디터 전용 디버그)
+```
+
+### using 지시문 순서
+
+```csharp
+// 1. System 계열
+using System;
+using System.Collections.Generic;
+
+// 2. 프로젝트 내부 (MI.*)
+using MI.Core;
+using MI.Domain.Tile;
+
+// 3. 서드파티 (Odin 등)
+using Sirenix.OdinInspector;
+
+// 4. Unity 계열
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+// ※ using alias는 namespace 블록 내부에 배치
+namespace MI.Presentation.World.Stage
+{
+    using Camera = UnityEngine.Camera;
+    // ...
+}
+```
+
+### 이벤트/콜백 패턴
+
+| 용도 | 패턴 |
+|------|------|
+| UI/단순 알림 | `event Action<T>` |
+| 핵심 시스템 리스너 | `Register/Unregister` + `List<IListener>` (역방향 순회) |
+| 인스펙터 바인딩 | `UnityEvent<T>` |
+
+이벤트 호출 시에는 null-conditional `?.Invoke()`를 사용합니다.
+
+```csharp
+OnInventoryUpdated?.Invoke(_items);
+```
+
+### 문자열 사용
+
+- 문자열 보간 `$""` 사용 (concatenation `+` 지양)
+- Animator 파라미터는 반드시 `Animator.StringToHash()`로 캐시하여 사용
+
+```csharp
+// ✅
+MILog.Log($"[MIObjectPool<{typeof(T).Name}>] 풀 최대 크기({_maxSize}) 초과.");
+private static readonly int s_tShake = Animator.StringToHash("tShake");
+
+// ❌
+_animator.SetTrigger("tShake");  // 문자열 직접 사용 금지
+```
+
+### Null 체크
+
+- 일반 null 체크: `== null` / `!= null` 직접 비교
+- 이벤트/콜백 호출: `?.Invoke()` null-conditional
+- nullable struct: `.HasValue` 사용
+- 컴포넌트 탐색: `TryGetComponent` 패턴 권장
+
+```csharp
+if (_controller == null) return;                     // 일반 null 체크
+OnEnterState?.Invoke(stateInfo);                      // 이벤트 호출
+if (_data.MineralDrop.HasValue) { }                   // nullable struct
+collision.gameObject.TryGetComponent(out IMIBreakable breakable);  // 컴포넌트
 ```
 
 ---

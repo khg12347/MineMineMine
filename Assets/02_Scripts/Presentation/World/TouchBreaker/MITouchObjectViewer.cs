@@ -11,7 +11,7 @@ namespace MI.Presentation.World.TouchBreaker
     {
         [SerializeField] private Animator _animator;
         
-        private readonly int s_tTouch = Animator.StringToHash("tTouch");
+        private static readonly int s_tTouch = Animator.StringToHash("tTouch");
         public void Activate()
         {
             _animator.SetTrigger(s_tTouch);

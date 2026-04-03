@@ -23,12 +23,12 @@ namespace MI.Data.Config
         [SerializeField] private TileBase _wallTempTile;
 
         [Title("위치 오프셋")]
-        [InfoBox("벽 타일맵 전체를 Grid 기준으로 이동합니다. 단위: 월드 좌표")]
-        [LabelText("타일맵 오프셋 (X / Y)")]
-        [SerializeField] private Vector2 _positionOffset = Vector2.zero;
+        [InfoBox("벽 타일맵 전체를 Grid 기준으로 이동합니다. Y축만 적용됩니다.")]
+        [LabelText("타일맵 Y 오프셋")]
+        [SerializeField] private float _positionOffsetY = 0f;
 
-        public Vector2  PositionOffset => _positionOffset;
-        public TileBase WallTempTile   => _wallTempTile;
+        public float    PositionOffsetY => _positionOffsetY;
+        public TileBase WallTempTile    => _wallTempTile;
 
         /// <summary>행 인덱스에 맞는 왼쪽 벽 타일 반환 (순환)</summary>
         public TileBase GetLeftWallTile(int row)  => _leftWallTiles[row % _leftWallTiles.Length];

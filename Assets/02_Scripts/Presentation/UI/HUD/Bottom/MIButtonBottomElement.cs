@@ -12,7 +12,7 @@ namespace MI.Presentation.UI.HUD.Bottom
 
         private Animator _animator;
         private MIButtonBottomController _controller;
-        private readonly int s_bSelected = Animator.StringToHash("bSelected");
+        private static readonly int s_bSelected = Animator.StringToHash("bSelected");
 
         public bool IsSelected { get; private set; }
 

@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using MI.Utility;
 
-namespace MI.Domain.Inventory
+namespace MI.Domain.UserState.Inventory
 {
-    /// <summary>
-    /// 플레이어 인벤토리.
-    /// 드랍한 재료를 누적하여 보관하는 기능 담당.
-    /// TODO: Save/Load 기능 구현 예정
-    /// </summary>
+    // 플레이어 인벤토리.
+    // 드랍한 재료를 누적하여 보관하는 기능 담당.
+    // TODO: Save/Load 기능 구현 예정
     public class MIUserInventory : IMIItemDropEventListener
     {
         private readonly Dictionary<EItemType, int> _items = new();

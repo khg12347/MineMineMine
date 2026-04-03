@@ -4,10 +4,6 @@ using UnityEngine;
 
 namespace MI.Domain.World.TouchBreaker
 {
-    /// <summary>
-    /// ��ġ �Է��� ��ġ ������ ������� Ǯ���� ��ġ ������Ʈ��
-    /// ��ġ�� �̵����� �ִϸ��̼��� ����ϴ� ������ ����մϴ�.
-    /// </summary>
     public class MITouchObjectSpawner
     {
         private GameObject _prefabTouchObj;

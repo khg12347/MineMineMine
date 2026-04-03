@@ -64,19 +64,19 @@ namespace MI.Presentation.World.Stage
         [PropertyRange(4, 32)]
         [SerializeField] private int _cullRowsAbove = 8;
 
-        private FPoolConfig _tilePoolConfig = new FPoolConfig() {InitialSize = 256, GrowSize = 128};
+        private FPoolConfig _tilePoolConfig = new FPoolConfig() { InitialSize = 256, GrowSize = 128 };
 
         #endregion Inspector
 
         #region Runtime Modules
 
-        private MIDepthTracker   _depthTracker;
-        private MIChunkBuffer    _chunkBuffer;
+        private MIDepthTracker _depthTracker;
+        private MIChunkBuffer _chunkBuffer;
         private IMITileAlgorithm _algorithm;
-        private MITileSpawner    _tileSpawner;
-        private MIWallSpawner    _wallSpawner;
+        private MITileSpawner _tileSpawner;
+        private MIWallSpawner _wallSpawner;
         private MIBackgroundPainter _backgroundPainter;
-        private MIWallPainter       _wallPainter;
+        private MIWallPainter _wallPainter;
 
         // 깊이 변경 감지용
         private int _lastReportedDepth = -1;
@@ -99,14 +99,14 @@ namespace MI.Presentation.World.Stage
 
             // 모듈 초기화
             _depthTracker = new MIDepthTracker(_stageConfig.RowHeight);
-            _chunkBuffer  = new MIChunkBuffer();
-            _algorithm    = new MIFloodFillAlgorithm(_randomSeed == 0 ? (int?)null : _randomSeed);
-            _tileSpawner  = new MITileSpawner(
+            _chunkBuffer = new MIChunkBuffer();
+            _algorithm = new MIFloodFillAlgorithm(_randomSeed == 0 ? (int?)null : _randomSeed);
+            _tileSpawner = new MITileSpawner(
                 _tilePrefab, _tileParent,
                 _stageConfig.RowHeight, stageStartX, _stageConfig.GridWidth,
                 tileConfigLookup, _tilePoolConfig);
-            _wallSpawner  = new MIWallSpawner(
-                _pickaxeConfig, _mainCamera,
+            _wallSpawner = new MIWallSpawner(
+                _pickaxeConfig,
                 _stageConfig.RowHeight, stageStartX, _stageConfig.GridWidth);
 
             // 카메라 추적 초기화
@@ -122,7 +122,7 @@ namespace MI.Presentation.World.Stage
                 _backgroundTilemap.layoutGrid.transform.position =
                     new Vector3(stageStartX - 1.5f * tileSize, -0.5f * tileSize, 0f);
 
-                int leftColX  = 1;
+                int leftColX = 1;
                 int rightColX = _stageConfig.GridWidth;
                 int totalWidth = _stageConfig.GridWidth + 2;
 
@@ -131,9 +131,8 @@ namespace MI.Presentation.World.Stage
                 _wallPainter = new MIWallPainter(
                     _wallTilemap, _wallConfig, leftColX, rightColX);
 
-                // 벽 타일맵 위치 오프셋 적용 (Grid 로컬 좌표 기준)
-                var wallOffset = _wallConfig.PositionOffset;
-                _wallTilemap.transform.localPosition = new Vector3(wallOffset.x, wallOffset.y, 0f);
+                // 벽 타일맵: X는 타일 좌표 기반이므로 Y 오프셋만 적용
+                _wallTilemap.transform.localPosition = new Vector3(0f, _wallConfig.PositionOffsetY, 0f);
 
                 var bgOffset = _backgroundConfig.PositionOffset;
                 _backgroundTilemap.transform.localPosition = new Vector3(bgOffset.x, bgOffset.y, 0f);
@@ -161,11 +160,13 @@ namespace MI.Presentation.World.Stage
 
             // 2. 청크 버퍼 보충
             if (_chunkBuffer.NeedsMoreChunks(currentRow, _spawnAheadRows))
+            {
                 FillChunkBuffer(_chunkBuffer.GeneratedUpToRow);
+            }
 
             // 3. 타일 스폰 / 제거
-            int targetRow  = currentRow + _spawnAheadRows;
-            int cullRow    = currentRow - _cullRowsAbove;
+            int targetRow = currentRow + _spawnAheadRows;
+            int cullRow = currentRow - _cullRowsAbove;
             _tileSpawner.SpawnRowsUpTo(targetRow, _chunkBuffer);
             _tileSpawner.CullAbove(cullRow);
 
@@ -203,7 +204,7 @@ namespace MI.Presentation.World.Stage
 
         private float CalculateStageStartX()
         {
-            float leftEdge  = _mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, 0f)).x;
+            float leftEdge = _mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, 0f)).x;
             float rightEdge = _mainCamera.ViewportToWorldPoint(new Vector3(1f, 0.5f, 0f)).x;
             float viewWidth = rightEdge - leftEdge;
             float stageWidth = _stageConfig.GridWidth * _stageConfig.RowHeight;

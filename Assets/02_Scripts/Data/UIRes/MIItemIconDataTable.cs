@@ -1,6 +1,6 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using MI.Domain.Inventory;
+using MI.Domain.UserState.Inventory;
 using UnityEngine;
 
 namespace MI.Data.UIRes

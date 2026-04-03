@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MI.Domain.Inventory
+namespace MI.Domain.UserState.Inventory
 {
     [Serializable]
     public struct FDropItemData
@@ -22,21 +22,21 @@ namespace MI.Domain.Inventory
     /// </summary>
     public static class MIItemDropEvent
     {
-        private static readonly List<IMIItemDropEventListener> _listeners = new();
+        private static readonly List<IMIItemDropEventListener> s_listeners = new();
 
         #region Public API
 
         public static void Register(IMIItemDropEventListener listener)
         {
-            if (listener == null || _listeners.Contains(listener))
+            if (listener == null || s_listeners.Contains(listener))
                 return;
 
-            _listeners.Add(listener);
+            s_listeners.Add(listener);
         }
 
         public static void Unregister(IMIItemDropEventListener listener)
         {
-            _listeners.Remove(listener);
+            s_listeners.Remove(listener);
         }
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace MI.Domain.Inventory
         /// </summary>
         public static void Broadcast(FDropItemData data)
         {
-            for (int i = _listeners.Count - 1; i >= 0; i--)
-                _listeners[i].OnItemDropped(data);
+            for (int i = s_listeners.Count - 1; i >= 0; i--)
+                s_listeners[i].OnItemDropped(data);
 
             MILog.Log($"[MIItemDropEvent] Broadcast: {data.ItemType.ToString()} x{data.Amount}");
         }

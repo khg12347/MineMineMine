@@ -10,7 +10,7 @@ namespace MI.Domain.Stage
         private GameObject _rightWall;
 
         public MIWallSpawner(
-            MIPickaxeConfig pickaxeConfig, Camera mainCamera,
+            MIPickaxeConfig pickaxeConfig,
             float tileSize, float stageStartX, int stageWidth)
         {
             var stats = pickaxeConfig.CreateStats();
@@ -20,12 +20,14 @@ namespace MI.Domain.Stage
                 friction   = 0f
             };
 
-            float leftEdge  = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, 0f)).x - 0.5f;
-            float rightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0.5f, 0f)).x + 0.5f;
+            // 타일 그리드 바로 옆에 벽 배치
+            // 왼쪽: 그리드 왼쪽 엣지(stageStartX - tileSize*0.5) 바깥 한 칸
+            // 오른쪽: 그리드 오른쪽 엣지(stageStartX + stageWidth*tileSize - tileSize*0.5) 바깥 한 칸
+            float leftX  = stageStartX - tileSize;
+            float rightX = stageStartX + stageWidth * tileSize;
 
-            // 뷰포트 엣지에서 tileSize 만큼 안쪽에 벽 배치
-            _leftWall  = CreateWall("LeftWall",  leftEdge  + tileSize, tileSize, 200f, wallMaterial);
-            _rightWall = CreateWall("RightWall", rightEdge - tileSize, tileSize, 200f, wallMaterial);
+            _leftWall  = CreateWall("LeftWall",  leftX,  tileSize, 200f, wallMaterial);
+            _rightWall = CreateWall("RightWall", rightX, tileSize, 200f, wallMaterial);
         }
 
         #region Update

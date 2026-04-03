@@ -12,7 +12,7 @@ namespace MI.Editor.HotKey
         private const string SHORTCUT_ID = "MI/Toggle Hovered Active";
 
         // 마우스가 현재 올라가 있는 Hierarchy 항목의 instanceID
-        private static int _hoveredInstanceID;
+        private static int s_hoveredInstanceID;
 
         static MIHierarchyToggleActive()
         {
@@ -24,19 +24,19 @@ namespace MI.Editor.HotKey
         {
             if (Event.current == null)
             {
-                _hoveredInstanceID = 0;
+                s_hoveredInstanceID = 0;
                 return;
             }
 
             if (selectionRect.Contains(Event.current.mousePosition))
-                _hoveredInstanceID = instanceID;
+                s_hoveredInstanceID = instanceID;
         }
 
         [Shortcut(SHORTCUT_ID, KeyCode.A)]
         private static void ToggleHoveredObjectActive()
         {
             // 1순위: 호버 중인 오브젝트
-            GameObject go = EditorUtility.InstanceIDToObject(_hoveredInstanceID) as GameObject;
+            GameObject go = EditorUtility.InstanceIDToObject(s_hoveredInstanceID) as GameObject;
 
             // 2순위: 현재 선택된 오브젝트
             if (go == null)

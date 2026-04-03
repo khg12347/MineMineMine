@@ -1,6 +1,6 @@
 using System;
 using MI.Data.UIRes;
-using MI.Domain.Inventory;
+using MI.Domain.UserState.Inventory;
 using UnityEngine;
 
 namespace MI.Presentation.UI.Interface

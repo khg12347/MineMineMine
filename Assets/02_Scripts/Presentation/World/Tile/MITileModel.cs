@@ -1,9 +1,9 @@
 ﻿using System;
 using MI.Core.Pool;
 using MI.Data.Config;
-using MI.Domain.Inventory;
 using MI.Domain.Status;
 using MI.Domain.Tile;
+using MI.Domain.UserState.Inventory;
 using MI.Untility;
 using MI.Utility;
 using Sirenix.OdinInspector;

@@ -1,7 +1,7 @@
 using MI.Data.UIRes;
 using System.Collections.Generic;
 using MI.Core.Pool;
-using MI.Domain.Inventory;
+using MI.Domain.UserState.Inventory;
 using UnityEngine;
 
 namespace MI.Presentation.UI.HUD.Items

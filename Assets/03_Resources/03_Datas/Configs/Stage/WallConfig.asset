@@ -64,4 +64,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b93489e91325c5947ba5d3e530529c81, type: 2}
   - {fileID: 11400000, guid: 00002907becd35044b026d1f371a5b1f, type: 2}
   _wallTempTile: {fileID: 11400000, guid: 8b54a3e1aebd11b45b97a4b484492843, type: 2}
-  _positionOffset: {x: 0, y: 7.5}
+  _positionOffsetY: 10

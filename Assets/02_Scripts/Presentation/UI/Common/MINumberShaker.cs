@@ -27,7 +27,7 @@ namespace MI.Presentation.UI.Common
         [SerializeField] private Animator _animator;
         private int _currentNum;
 
-        private readonly int s_tShake = Animator.StringToHash("tShake");
+        private static readonly int s_tShake = Animator.StringToHash("tShake");
 
         public void UpdateNumSprite(int num, Sprite sprite)
         {

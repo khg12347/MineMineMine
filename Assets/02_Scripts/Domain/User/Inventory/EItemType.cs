@@ -1,6 +1,6 @@
 using MI.Domain.Tile;
 
-namespace MI.Domain.Inventory
+namespace MI.Domain.UserState.Inventory
 {
     // 타일 재료(100번대) + 광물(200번대) 통합 아이템 타입 열거형
     public enum EItemType

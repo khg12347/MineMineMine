@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using MI.Data.UIRes;
-using MI.Domain.Inventory;
+using MI.Domain.UserState.Inventory;
 using MI.Presentation.UI.Interface;
 using TMPro;
 using UnityEngine;

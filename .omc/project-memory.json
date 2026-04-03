@@ -161,14 +161,110 @@
   "hotPaths": [
     {
       "path": "",
-      "accessCount": 10,
-      "lastAccessed": 1775137104203,
+      "accessCount": 12,
+      "lastAccessed": 1775213363608,
       "type": "directory"
     },
     {
+      "path": "Assets\\02_Scripts",
+      "accessCount": 9,
+      "lastAccessed": 1775214981815,
+      "type": "directory"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Tile\\MITileModel.cs",
+      "accessCount": 8,
+      "lastAccessed": 1775213409165,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIWallConfig.cs",
+      "accessCount": 8,
+      "lastAccessed": 1775215137593,
+      "type": "file"
+    },
+    {
       "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Bottom\\MIButtonBottomElement.cs",
+      "accessCount": 7,
+      "lastAccessed": 1775213367313,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\Pool\\MIPoolManager.cs",
+      "accessCount": 7,
+      "lastAccessed": 1775213395478,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\MITileSpawner.cs",
+      "accessCount": 7,
+      "lastAccessed": 1775213474416,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\Pool\\MIObjectPool.cs",
+      "accessCount": 7,
+      "lastAccessed": 1775213670443,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Stage\\MIStageOrchestrator.cs",
+      "accessCount": 7,
+      "lastAccessed": 1775215147572,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\MISeedPlacer.cs",
+      "accessCount": 5,
+      "lastAccessed": 1775213494362,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Bottom\\MIButtonBottomController.cs",
       "accessCount": 4,
-      "lastAccessed": 1775137450986,
+      "lastAccessed": 1775213367501,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MITileConfig.cs",
+      "accessCount": 4,
+      "lastAccessed": 1775213415351,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\ServiceLocator\\MIServiceLocator.cs",
+      "accessCount": 4,
+      "lastAccessed": 1775213905025,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Tile\\FTileData.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775213366117,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Tile\\FChunkData.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775213373512,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIStageConfig.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775213401372,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIBackgroundConfig.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775213422224,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\IMITileAlgorithm.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775213444240,
       "type": "file"
     },
     {
@@ -178,9 +274,27 @@
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Bottom\\MIButtonBottomController.cs",
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\MICanvasHUD.cs",
       "accessCount": 2,
-      "lastAccessed": 1775137449575,
+      "lastAccessed": 1775208662441,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Status\\MIStatusHUD.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775208662876,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Tile\\MITileView.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775213349509,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Pickaxe\\MIPickaxeController.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775213350411,
       "type": "file"
     },
     {
@@ -196,27 +310,153 @@
       "type": "directory"
     },
     {
-      "path": "Assets\\02_Scripts",
-      "accessCount": 1,
-      "lastAccessed": 1775137108366,
-      "type": "directory"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\MICanvasHUD.cs",
-      "accessCount": 1,
-      "lastAccessed": 1775137266169,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Status\\MIStatusHUD.cs",
-      "accessCount": 1,
-      "lastAccessed": 1775137266391,
-      "type": "file"
-    },
-    {
       "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Bottom\\MIButtonBottomElement.cs.meta",
       "accessCount": 1,
       "lastAccessed": 1775137405363,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\MISingleton.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208606847,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\BootStrap\\MIBootStrap.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208607761,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\Managers\\MIGameManager.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208608130,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\StateMachine\\MIBaseStateMachineBehaviour.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208609925,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\StateMachine\\Tile\\MITileStateMahcine.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208610965,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIPickaxeConfig.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208618567,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIMineralConfig.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208620204,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MILevelData.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208620803,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIStatusConfig.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208621455,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\UIRes\\MIItemIconDataTable.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208621708,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\UIRes\\MIUINumberResources.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208622358,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\MIFloodFillAlgorithm.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208628178,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\MIChunkBuffer.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208628771,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\MIDepthTracker.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208629578,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Tile\\IMIBreakable.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208632840,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Inventory\\EItemType.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208633161,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Camera\\MICameraFollower.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208641538,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Infrastructure\\Input\\MIInputHandler.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208641998,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Utility\\MILog.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208642440,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Utility\\MIAppLifeTime.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208643344,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Utility\\MIIntRange.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208643812,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Status\\MIStatusManager.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208644272,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Inventory\\MIUserInventory.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208649546,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Inventory\\MIItemDropEvent.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775208650447,
       "type": "file"
     }
   ],
