@@ -38,6 +38,11 @@ namespace MI.Data.Config
         [LabelText("드랍 수량 범위 (Min / Max)")]
         [SerializeField] private MIIntRange _tileDropAmountRange = new MIIntRange(1, 3);
 
+        [Title("골드 드랍")]
+        [InfoBox("타일 파괴 시 드랍되는 골드 수량 범위입니다. 0이면 드랍하지 않습니다.")]
+        [LabelText("골드 드랍 수량 범위 (Min / Max)")]
+        [SerializeField] private MIIntRange _goldDropAmountRange = new MIIntRange(0, 0);
+
         [Title("스프라이트")]
         [PreviewField(50)]
         [LabelText("Base 스프라이트")]
@@ -105,6 +110,8 @@ namespace MI.Data.Config
                     MinAmount = _tileDropAmountRange?.Min ?? 1,
                     MaxAmount = _tileDropAmountRange?.Max ?? 1,
                 },
+                GoldDropMin          = _goldDropAmountRange?.Min ?? 0,
+                GoldDropMax          = _goldDropAmountRange?.Max ?? 0,
             };
         }
     }

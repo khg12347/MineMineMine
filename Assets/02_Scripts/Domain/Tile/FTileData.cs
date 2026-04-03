@@ -31,6 +31,10 @@ namespace MI.Domain.Tile
         /// </summary>
         public FTileDropEntry TileDrop;
 
+        // 골드 드랍 수량 범위 (Min ~ Max). 0이면 골드 드랍 없음.
+        public int GoldDropMin;
+        public int GoldDropMax;
+
         public bool IsDestroyed => CurrentDurability <= 0;
 
         public EBreakResult ApplyDamage(int damage)

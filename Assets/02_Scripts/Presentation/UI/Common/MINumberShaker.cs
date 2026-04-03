@@ -1,14 +1,22 @@
 using MI.Data.UIRes;
-using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace MI.Presentation.UI.Common
 {
+
     [RequireComponent(typeof(Animator))]
     public class MINumberShaker : MonoBehaviour
     {
+        private enum ENumberSize : byte
+        {
+            Big,
+            Middle,
+            Small
+        }
+
         private static Dictionary<int, int> s_pow = new Dictionary<int, int>
         {
             { 0, 1 },
@@ -22,6 +30,27 @@ namespace MI.Presentation.UI.Common
             { 8, 100000000 },
             { 9, 1000000000}
         };
+
+        private static Func<ENumberSize, int, MIUINumberResources, Sprite> _getNumberSprite
+        {
+            get
+            {
+                return (size, num, numberResources) =>
+                {
+                    switch (size)
+                    {
+                        case ENumberSize.Big:
+                            return numberResources.GetBigNum(num);
+                        case ENumberSize.Middle:
+                            return numberResources.GetMiddleNum(num);
+                        case ENumberSize.Small:
+                            return numberResources.GetSmallNum(num);
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(size), size, null);
+                    }
+                };
+            }
+        }
 
         [SerializeField] private Image _imageNum;
         [SerializeField] private Animator _animator;
@@ -43,72 +72,46 @@ namespace MI.Presentation.UI.Common
         }
 
 
-        public static void UpdateBigNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources)
+        public static void UpdateBigNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources, bool enableLastNum = false)
         {
-            int length = numShakers.Length;
-            int[] nums = new int[length];
-
-            for (int i = length - 1; i >= 0; i--)
-            {
-                nums[i] = GetDigit(targetNumber, i);
-                numShakers[i].UpdateNumSprite(nums[i], numberResources.GetBigNum(nums[i]));
-
-                if (i == 0)
-                    continue;
-
-                if (i == length - 1)
-                {
-                    numShakers[i].gameObject.SetActive(nums[i] > 0);
-                }
-                else
-                {
-                    numShakers[i].gameObject.SetActive(nums[i] > 0 || nums[i + 1] > 0);
-                }
-            }
+            UpdateNumberDisplay(numShakers, targetNumber, numberResources, _getNumberSprite, ENumberSize.Big, enableLastNum);
         }
 
-        public static void UpdateMidNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources)
+        public static void UpdateMidNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources, bool enableLastNum = false)
         {
-            int length = numShakers.Length;
-            int[] nums = new int[length];
-
-            for (int i = length - 1; i >= 0; i--)
-            {
-                nums[i] = GetDigit(targetNumber, i);
-                numShakers[i].UpdateNumSprite(nums[i], numberResources.GetMiddleNum(nums[i]));
-
-                if (i == 0)
-                    continue;
-
-                if (i == length - 1)
-                {
-                    numShakers[i].gameObject.SetActive(nums[i] > 0);
-                }
-                else
-                {
-                    numShakers[i].gameObject.SetActive(nums[i] > 0 || nums[i + 1] > 0);
-                }
-            }
+            UpdateNumberDisplay(numShakers, targetNumber, numberResources, _getNumberSprite, ENumberSize.Middle, enableLastNum);
         }
 
-        public static void UpdateSmallNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources)
+        public static void UpdateSmallNumberDisplay(MINumberShaker[] numShakers, int targetNumber, MIUINumberResources numberResources, bool enableLastNum = false)
+        {
+            UpdateNumberDisplay(numShakers, targetNumber, numberResources, _getNumberSprite, ENumberSize.Small, enableLastNum);
+        }
+
+        private static void UpdateNumberDisplay(MINumberShaker[] numShakers, int targetNumber,
+            MIUINumberResources numberResources,
+            Func<ENumberSize, int, MIUINumberResources, Sprite> getSpriteFunc,
+            ENumberSize size, bool enableLastNum)
         {
             int length = numShakers.Length;
-            int[] nums = new int[length];
+
+            int msb = -1;
             for (int i = length - 1; i >= 0; i--)
             {
-                nums[i] = GetDigit(targetNumber, i);
-                numShakers[i].UpdateNumSprite(nums[i], numberResources.GetSmallNum(nums[i]));
-                if (i == 0)
-                    continue;
-                if (i == length - 1)
+                int digit = GetDigit(targetNumber, i);
+                if (digit > 0)
                 {
-                    numShakers[i].gameObject.SetActive(nums[i] > 0);
+                    msb = i; 
+                    break;
                 }
-                else
-                {
-                    numShakers[i].gameObject.SetActive(nums[i] > 0 || nums[i + 1] > 0);
-                }
+            }
+
+            for (int i = length - 1; i >= 0; i--)
+            {
+                int digit = GetDigit(targetNumber, i);
+                numShakers[i].UpdateNumSprite(digit, getSpriteFunc(size, digit, numberResources));
+
+                bool active = (i == 0) ? (enableLastNum || targetNumber > 0) : i <= msb;
+                numShakers[i].gameObject.SetActive(active);
             }
         }
 

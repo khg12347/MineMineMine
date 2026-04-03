@@ -12,7 +12,7 @@ namespace MI.Presentation.UI.HUD.Status
     {
         [SerializeField] private MIUINumberResources _numberResources;
         [SerializeField] private Slider _expSlider;
-        [SerializeField] private Image[] _numbers; // 레벨 숫자 이미지 배열 (최대 3자리)
+        [SerializeField] private MINumberShaker[] _numbers; // 레벨 숫자 이미지 배열 (최대 3자리)
         [SerializeField] private MINumberShaker[] _depthNumbers; // 깊이 숫자 이미지 배열 (최대 7자리)
 
         private void Start()
@@ -48,31 +48,7 @@ namespace MI.Presentation.UI.HUD.Status
 
         private void UpdateLevelDisplay(int level)
         {
-            int[] nums = new int[3];
-
-            for (int i = 2; i >= 0; i--)
-            {
-                nums[i] = GetDigit(level, i);
-                _numbers[i].sprite = _numberResources.GetMiddleNum(nums[i]);
-
-                if (i == 0)
-                    continue;
-                if(i == 2)
-                {
-                    _numbers[i].gameObject.SetActive(nums[i] > 0);
-                }
-                else
-                {
-                    _numbers[i].gameObject.SetActive(nums[i] > 0 || nums[i + 1] > 0);
-                }
-            }
+            MINumberShaker.UpdateMidNumberDisplay(_numbers, level, _numberResources);
         }
-
-        private int GetDigit(int value, int digit)
-        {
-            int pow = (int)Mathf.Pow(10, digit);
-            return (value / pow) % 10;
-        }
-
     }
 }

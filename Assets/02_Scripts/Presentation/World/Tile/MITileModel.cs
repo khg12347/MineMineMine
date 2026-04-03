@@ -4,6 +4,7 @@ using MI.Data.Config;
 using MI.Domain.Status;
 using MI.Domain.Tile;
 using MI.Domain.UserState.Inventory;
+using MI.Domain.UserState.Wallet;
 using MI.Untility;
 using MI.Utility;
 using Sirenix.OdinInspector;
@@ -99,6 +100,9 @@ namespace MI.Presentation.World.Tile
             // 아이템 드롭 이벤트 발행
             BroadcastDropItems();
 
+            // 골드 드롭 이벤트 발행
+            BroadcastGoldDrop();
+
             // 파괴 이펙트
             _view.PlayBreakEffect();
 
@@ -144,6 +148,17 @@ namespace MI.Presentation.World.Tile
                 }
             }
         }
+        // 골드 드랍 정보를 파싱하여 MIGoldDropEvent로 브로드캐스트
+        private void BroadcastGoldDrop()
+        {
+            if (_data.GoldDropMax <= 0) return;
+
+            int goldAmount = UnityEngine.Random.Range(_data.GoldDropMin, _data.GoldDropMax + 1);
+            if (goldAmount <= 0) return;
+
+            MIGoldDropEvent.Broadcast(new FGoldDropData { Amount = goldAmount });
+        }
+
         #endregion Damage Handling
     }
 }

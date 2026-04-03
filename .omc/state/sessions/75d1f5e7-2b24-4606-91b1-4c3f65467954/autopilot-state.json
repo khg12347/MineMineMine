@@ -1,0 +1,10 @@
+{
+  "active": true,
+  "started_at": "2026-04-03T11:26:04.340Z",
+  "original_prompt": "/autopilot 재화 시스템 구현\n1. 골드(Gold), 다이아(Diamond) 두 타입으로 존재\n2. 타일을 부수면 골드 획득할 수 있도록 타일에 골드 드랍 정보 기입\n3. MITileModel의 Break시점에 드랍됨\n4. Domain\\UserState\\Wallet에 관련 함수 구현\n5. UserState가 소유하도록 구현(Inventory와 유사하게)\n6. 획득 시 UI 등에 발생시킬 수 있는 이벤트 선언(event Action과 같은)",
+  "session_id": "75d1f5e7-2b24-4606-91b1-4c3f65467954",
+  "project_path": "D:\\GitHub\\MineMineMine\\MineMineMine",
+  "reinforcement_count": 0,
+  "awaiting_confirmation": true,
+  "last_checked_at": "2026-04-03T11:26:04.343Z"
+}

@@ -7,8 +7,8 @@ namespace MI.Presentation.UI.Popup.Inventory
 {
     public class MIPopupInventory : MIPopupBase
     {
-        [SerializeField] private MIUINumberResources _numberResources;
-        [SerializeField] private MIItemIconDataTable _itemIconDataTable;
+        private MIUINumberResources _numberResources;
+        private MIItemIconDataTable _itemIconDataTable;
 
         [SerializeField] private List<MIInventoryItemViewer> _itemViewerList;
         private Dictionary<EItemType, MIInventoryItemViewer> _itemViewers = new();
@@ -89,6 +89,17 @@ namespace MI.Presentation.UI.Popup.Inventory
                     Debug.LogWarning($"[MIPopupInventory] Slot index {slotIndex} for item type {itemType} exceeds the viewer list count.");
                 }
             }
+        }
+
+        /// <summary>
+        /// SceneContext에서 MIUINumberResources, MIItemIconDataTable 인스턴스를 주입받음
+        /// </summary>
+        /// <param name="numberResources"></param>
+        /// <param name="itemIconDataTable"></param>
+        public void InjectResources(MIUINumberResources numberResources, MIItemIconDataTable itemIconDataTable)
+        {
+            _numberResources = numberResources;
+            _itemIconDataTable = itemIconDataTable;
         }
 
         /// <summary>
