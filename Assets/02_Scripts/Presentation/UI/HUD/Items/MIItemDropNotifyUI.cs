@@ -55,7 +55,7 @@ namespace MI.Presentation.UI.HUD.Items
 
         public void OnItemDropped(FDropItemData data)
         {
-            if (_cachedList.Count > _maxCacheSize)
+            if (_cachedList.Count >= _maxCacheSize)
             {
                 var first = _cachedList[0];
                 _cachedList.RemoveAt(0);

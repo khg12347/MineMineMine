@@ -19,10 +19,10 @@ MonoBehaviour:
     - {fileID: 21300000, guid: bb532db3913df944082db467c78a9125, type: 3}
     - {fileID: 21300000, guid: 3d5b8912aa63b8342998a5538b61685f, type: 3}
     - {fileID: 21300000, guid: 26651296feade994f8b0faba6b40d3b5, type: 3}
-    - {fileID: 21300000, guid: e225dff9bd567284091d470889cdb6eb, type: 3}
-    - {fileID: 21300000, guid: 518698169a47b5e42bc8bbb3f76fa56e, type: 3}
-    - {fileID: 21300000, guid: f3138da158db0624ea6769c93c0a588a, type: 3}
-    - {fileID: 21300000, guid: 27e2b132eb0f63943839ed1f1d327d55, type: 3}
+    - {fileID: 21300000, guid: 3d1006e56c5565241af74faec098ce94, type: 3}
+    - {fileID: 21300000, guid: 57ed57adee4a62c4d83bd747b03fd5c1, type: 3}
+    - {fileID: 21300000, guid: e2272cd02e612cc47bdfc152475e7d55, type: 3}
+    - {fileID: 21300000, guid: c00414934d1730f41b93c4f32fadda16, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -30,11 +30,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _dataTable
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.Inventory.EItemType,
+      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.UserState.Inventory.EItemType,
         Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Inventory.EItemType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.UserState.Inventory.EItemType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
