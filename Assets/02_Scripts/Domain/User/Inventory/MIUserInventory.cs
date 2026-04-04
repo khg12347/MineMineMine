@@ -34,6 +34,26 @@ namespace MI.Domain.UserState.Inventory
 
         public IReadOnlyDictionary<EItemType, int> GetAll() => _items;
 
+        /// <summary>아이템 보유량이 충분한지 확인.</summary>
+        public bool HasEnough(EItemType type, int amount) => GetAmount(type) >= amount;
+
+        /// <summary>
+        /// 아이템 수량 차감. 보유량 부족 시 false 반환, 차감하지 않음.
+        /// </summary>
+        public bool TryConsume(EItemType type, int amount)
+        {
+            if (type == EItemType.None || amount <= 0) return false;
+
+            int current = GetAmount(type);
+            if (current < amount) return false;
+
+            _items[type] = current - amount;
+            if (_items[type] <= 0) _items.Remove(type);
+            OnInventoryUpdated?.Invoke(_items);
+            MILog.Log($"[MIUserInventory] {type} -{amount} (총 {GetAmount(type)})");
+            return true;
+        }
+
         #endregion Public API
 
         private void AddItem(EItemType type, int amount)

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2aa5a78fc0e48b18b954b48ba40c08, type: 3}
+  m_Name: PickaxeCraftConfig
+  m_EditorClassIdentifier: Assembly-CSharp::MI.Data.Config.MIPickaxeCraftConfig
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _craftCosts:
+  - PickaxeType: 1
+    Materials:
+    - ItemType: 120
+      Amount: 1
+    Currencies: []
+  - PickaxeType: 2
+    Materials:
+    - ItemType: 120
+      Amount: 1
+    - ItemType: 130
+      Amount: 1
+    Currencies: []
+  - PickaxeType: 3
+    Materials:
+    - ItemType: 120
+      Amount: 1
+    - ItemType: 201
+      Amount: 1
+    Currencies: []
+  - PickaxeType: 4
+    Materials:
+    - ItemType: 120
+      Amount: 1
+    - ItemType: 202
+      Amount: 1
+    Currencies: []

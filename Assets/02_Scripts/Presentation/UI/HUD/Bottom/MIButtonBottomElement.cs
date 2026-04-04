@@ -1,3 +1,4 @@
+using MI.Presentation.UI.Popup;
 using MI.Utility;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace MI.Presentation.UI.HUD.Bottom
     /// </summary>
     public class MIButtonBottomElement : MonoBehaviour
     {
-        [SerializeField] private GameObject _goPopup;
+        [SerializeField] private MIPopupBase _popup;
 
         private Animator _animator;
         private MIButtonBottomController _controller;
@@ -39,20 +40,14 @@ namespace MI.Presentation.UI.HUD.Bottom
         {
             IsSelected = true;
             _animator.SetBool(s_bSelected, true);
-            if (_goPopup != null)
-            {
-                _goPopup.SetActive(true);
-            }
+            _popup?.OnOpenPopup();
         }
 
         public void Deselect()
         {
             IsSelected = false;
             _animator.SetBool(s_bSelected, false);
-            if(_goPopup != null)
-            {
-                _goPopup.SetActive(false);
-            }
+            _popup?.OnClosePopup();
         }
     }
 }
