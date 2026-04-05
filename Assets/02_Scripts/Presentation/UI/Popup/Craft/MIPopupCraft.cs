@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using MI.Data.Config;
 using MI.Data.UIRes;
 using MI.Domain.Pickaxe;
 using MI.Domain.Pickaxe.Craft;
 using MI.Domain.Pickaxe.Equipment;
+using MI.Domain.UserState.Inventory;
 using MI.Presentation.UI.Popup;
+using MI.Utility;
 using UnityEngine;
 
 namespace MI.Presentation.UI.Popup.Craft
@@ -26,6 +29,7 @@ namespace MI.Presentation.UI.Popup.Craft
         private IMIPickaxeInventory _pickaxeInventory;
         private IMIPickaxeEquipment _pickaxeEquipment;
         private MIPickaxeCraftConfig _craftConfig;
+        private MIUserInventory _inventory;
         private MIPickaxeUIDataTable _pickaxeIconTable;
         private MIItemIconDataTable _itemIconTable;
         private MIUINumberResources _uiNumberResources;
@@ -52,12 +56,14 @@ namespace MI.Presentation.UI.Popup.Craft
             IMIPickaxeCraftService craftService,
             IMIPickaxeInventory pickaxeInventory,
             IMIPickaxeEquipment pickaxeEquipment,
-            MIPickaxeCraftConfig craftConfig)
+            MIPickaxeCraftConfig craftConfig,
+            MIUserInventory inventory)
         {
             _craftService = craftService;
             _pickaxeInventory = pickaxeInventory;
             _pickaxeEquipment = pickaxeEquipment;
             _craftConfig = craftConfig;
+            _inventory = inventory;
 
             InitCraftSlots();
             InitEquipSlots();
@@ -65,14 +71,19 @@ namespace MI.Presentation.UI.Popup.Craft
 
             _pickaxeInventory.OnPickaxeAdded += HandlePickaxeAdded;
             _pickaxeInventory.OnEquipChanged += HandleEquipChanged;
+            _inventory.OnInventoryUpdated += HandleInventoryUpdated;
         }
 
         private void OnDestroy()
         {
-            if (_pickaxeInventory == null) return;
+            if (_pickaxeInventory != null)
+            {
+                _pickaxeInventory.OnPickaxeAdded -= HandlePickaxeAdded;
+                _pickaxeInventory.OnEquipChanged -= HandleEquipChanged;
+            }
 
-            _pickaxeInventory.OnPickaxeAdded -= HandlePickaxeAdded;
-            _pickaxeInventory.OnEquipChanged -= HandleEquipChanged;
+            if (_inventory != null)
+                _inventory.OnInventoryUpdated -= HandleInventoryUpdated;
         }
 
         #endregion Initialization
@@ -88,7 +99,7 @@ namespace MI.Presentation.UI.Popup.Craft
                     // Pickaxe01~10 (index 0은 사용하지 않음, 1부터 시작)
                     var type = (EPickaxeType)(i + 1);
                     bool isOwned = _pickaxeInventory.IsOwned(type);
-                    _craftSlots[i].Setup(_pickaxeIconTable, type, isOwned, OnSlotClicked, OnEnhanceClicked);
+                    _craftSlots[i].Setup(_pickaxeIconTable, type, isOwned, OnSlotClicked);
                 }
                 else
                 {
@@ -99,9 +110,9 @@ namespace MI.Presentation.UI.Popup.Craft
 
         private void InitEquipSlots()
         {
-            _equipSlots[0].Setup(_pickaxeIconTable, EEquipSlot.Main, _pickaxeInventory.GetEquipped(EEquipSlot.Main));
-            _equipSlots[1].Setup(_pickaxeIconTable, EEquipSlot.Sub1, _pickaxeInventory.GetEquipped(EEquipSlot.Sub1));
-            _equipSlots[2].Setup(_pickaxeIconTable, EEquipSlot.Sub2, _pickaxeInventory.GetEquipped(EEquipSlot.Sub2));
+            _equipSlots[0].Setup(_pickaxeIconTable, EEquipSlot.Main, _pickaxeInventory.GetEquipped(EEquipSlot.Main), OnEquipSlotSelected);
+            _equipSlots[1].Setup(_pickaxeIconTable, EEquipSlot.Sub1, _pickaxeInventory.GetEquipped(EEquipSlot.Sub1), OnEquipSlotSelected);
+            _equipSlots[2].Setup(_pickaxeIconTable, EEquipSlot.Sub2, _pickaxeInventory.GetEquipped(EEquipSlot.Sub2), OnEquipSlotSelected);
         }
 
         #endregion Slot Setup
@@ -116,7 +127,7 @@ namespace MI.Presentation.UI.Popup.Craft
 
             if (isOwned)
             {
-                _detailPanel.ShowEquipMode(type, OnEquipClicked, OnInfoClicked, OnEnhanceClicked);
+                _detailPanel.ShowEquipMode(type, OnEquipClicked, OnInfoClicked);
             }
             else
             {
@@ -144,8 +155,11 @@ namespace MI.Presentation.UI.Popup.Craft
         /// </summary>
         private void OnEquipClicked()
         {
-            // TODO: Main/Sub1/Sub2 선택 UI 표시
-            // 선택 완료 시 → OnEquipSlotSelected(slot) 호출
+            MILog.Log($"[MIPopupCraft] Equip clicked for {_selectedType}");
+            foreach(var equipSlot in _equipSlots)
+            {
+                equipSlot.SetSelected(true);
+            }
         }
 
         /// <summary>
@@ -156,19 +170,12 @@ namespace MI.Presentation.UI.Popup.Craft
         {
             if (_selectedType == EPickaxeType.None) return;
             _pickaxeEquipment.Equip(_selectedType, slot);
-        }
 
-        /// <summary>
-        /// 강화 버튼 클릭 → 강화 팝업으로 전환.
-        /// 향후 강화 시스템 구현 시 이 메서드에서 강화 팝업을 열거나
-        /// IMIPickaxeEnhanceService를 호출한다.
-        /// </summary>
-        private void OnEnhanceClicked(EPickaxeType type = EPickaxeType.None)
-        {
-            var targetType = type != EPickaxeType.None ? type : _selectedType;
-            if (targetType == EPickaxeType.None) return;
-
-            // TODO: 강화 시스템 — IMIPickaxeEnhanceService 또는 강화 팝업 연동
+            // 선택 완료 후 UI 갱신
+            foreach (var equipSlot in _equipSlots)
+            {
+                equipSlot.SetSelected(false);
+            }
         }
 
         /// <summary>정보 버튼 클릭 — 현재 미구현</summary>
@@ -194,6 +201,15 @@ namespace MI.Presentation.UI.Popup.Craft
             {
                 OnSlotClicked(type); // 상세 패널을 장착 모드로 전환
             }
+        }
+
+        /// <summary>인벤토리 변경 → 제작 모드 상세 패널 재료 수량 갱신</summary>
+        private void HandleInventoryUpdated(Dictionary<EItemType, int> items)
+        {
+            if (_selectedType == EPickaxeType.None) return;
+            if (_pickaxeInventory.IsOwned(_selectedType)) return;
+
+            OnSlotClicked(_selectedType);
         }
 
         /// <summary>장착 슬롯 변경 → 상단 장착 슬롯 UI 갱신</summary>

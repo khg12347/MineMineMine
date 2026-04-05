@@ -79,7 +79,7 @@ namespace MI.Presentation.UI.Popup.Craft
                     _materialSlots[i].SetActive(true);
                     var mat = c.Materials[i];
 
-                    // TODO: 아이콘 설정
+                    // 아이콘 설정
                     _materialIcons[i].sprite = _itemIconDataTable.GetItemIcon(mat.ItemType);
 
                     bool enough = craftService.HasEnoughMaterial(mat);
@@ -132,19 +132,20 @@ namespace MI.Presentation.UI.Popup.Craft
         public void ShowEquipMode(
             EPickaxeType type,
             Action onEquipClicked,
-            Action onInfoClicked,
-            Action<EPickaxeType> onEnhanceClicked = null)
+            Action onInfoClicked)
         {
             _craftModeRoot.SetActive(false);
             _equipModeRoot.SetActive(true);
 
-            // TODO: 곡괭이 이름/아이콘 설정
-            // _pickaxeName.text = ...;
-            // _pickaxeIcon.sprite = ...;
+            // 곡괭이 이름/아이콘 설정
+            _pickaxeName.text = _pickaxeIconDataTable.GetPickaxeName(type);
+            _pickaxeIcon.sprite = _pickaxeIconDataTable.GetPickaxeIcon(type);
 
+            //장착 버튼 콜백 설정
             _equipButton.onClick.RemoveAllListeners();
             _equipButton.onClick.AddListener(() => onEquipClicked?.Invoke());
 
+            // 정보 버튼 콜백 설정
             _infoButton.onClick.RemoveAllListeners();
             _infoButton.onClick.AddListener(() => onInfoClicked?.Invoke());
         }

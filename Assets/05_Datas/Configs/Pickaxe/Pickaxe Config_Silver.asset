@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 923e3cd2990d72147b5fdbe2266bc96d, type: 3}
-  m_Name: Pickaxe Config_Wood
+  m_Name: Pickaxe Config_Silver
   m_EditorClassIdentifier: Assembly-CSharp::MI.Data.Config.MIPickaxeConfig
   serializationData:
     SerializedFormat: 2
@@ -21,12 +21,12 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _headDamage: 20
-  _handleDamage: 10
-  _gravityScale: 1
-  _bounciness: 0.278
+  _headDamage: 160
+  _handleDamage: 80
+  _gravityScale: 1.5
+  _bounciness: 0.7
   _friction: 0
   _bounceOnBreak: 0
   _breakBounceForce: 5
-  _wallBounciness: 0.786
+  _wallBounciness: 0.8
   _spawnOffsetY: 2

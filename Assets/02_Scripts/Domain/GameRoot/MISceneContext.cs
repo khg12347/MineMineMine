@@ -63,7 +63,7 @@ namespace MI.Domain.GameRoot
             {
                 _popupCraft.InjectResources(_numberResources, _pickaxeIconDataTable, _itemIconDataTable);
                 var craftService = MIServiceLocator.Get<IMIPickaxeCraftService>();
-                _popupCraft.Initialize(craftService, userState.PickaxeInventory, userState.PickaxeInventory, _pickaxeCraftConfig);
+                _popupCraft.Initialize(craftService, userState.PickaxeInventory, userState.PickaxeInventory, _pickaxeCraftConfig, userState.Inventory);
             }
         }
     }

@@ -8,6 +8,9 @@ namespace MI.Data.Config
     [CreateAssetMenu(fileName = "PickaxeConfig", menuName = "MI/Config/Pickaxe")]
     public class MIPickaxeConfig : SerializedScriptableObject
     {
+        [Title("뷰어 설정")]
+        [SerializeField] private Sprite _spritePickaxe;
+
         [Title("공격 — 머리 (Head)")]
         [InfoBox("머리 부위 충돌 시 적용되는 데미지")]
         [SerializeField] private int _headDamage = 2;
@@ -45,6 +48,8 @@ namespace MI.Data.Config
         [InfoBox("화면 상단 바깥으로부터의 오프셋 (월드 유닛)")]
         [PropertyRange(0.5f, 5f)]
         [SerializeField] private float _spawnOffsetY = 2f;
+
+        public Sprite SpritePickaxe => _spritePickaxe;
 
         public FPickaxeStats CreateStats()
         {

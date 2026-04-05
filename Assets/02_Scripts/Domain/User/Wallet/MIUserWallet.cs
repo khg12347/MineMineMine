@@ -45,7 +45,7 @@ namespace MI.Domain.UserState.Wallet
                 _currencies[type] = amount;
 
             OnCurrencyUpdated?.Invoke(type, amount, _currencies[type]);
-            MILog.Log($"[MIUserWallet] {type} +{amount} (총 {_currencies[type]})");
+            //MILog.Log($"[MIUserWallet] {type} +{amount} (총 {_currencies[type]})");
         }
 
         public bool Spend(ECurrencyType type, long amount)
@@ -57,7 +57,7 @@ namespace MI.Domain.UserState.Wallet
 
             _currencies[type] = current - amount;
             OnCurrencyUpdated?.Invoke(type, -amount, _currencies[type]);
-            MILog.Log($"[MIUserWallet] {type} -{amount} (총 {_currencies[type]})");
+            //MILog.Log($"[MIUserWallet] {type} -{amount} (총 {_currencies[type]})");
             return true;
         }
 

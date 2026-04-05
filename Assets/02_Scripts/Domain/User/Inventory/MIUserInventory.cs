@@ -70,7 +70,7 @@ namespace MI.Domain.UserState.Inventory
                 _items[type] = amount;
             }
             OnInventoryUpdated?.Invoke(_items);
-            MILog.Log($"[MIUserInventory] {type.ToString()} +{amount} (총 {_items[type]})");
+            //MILog.Log($"[MIUserInventory] {type.ToString()} +{amount} (총 {_items[type]})");
         }
 
     }
