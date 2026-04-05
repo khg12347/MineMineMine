@@ -21,6 +21,7 @@ namespace MI.Domain.GameRoot
         [Header("Resources")]
         [SerializeField] private MIUINumberResources _numberResources;
         [SerializeField] private MIItemIconDataTable _itemIconDataTable;
+        [SerializeField] private MIPickaxeUIDataTable _pickaxeIconDataTable;
 
         [Header("Config")]
         [SerializeField] private MIPickaxeCraftConfig _pickaxeCraftConfig;
@@ -60,12 +61,9 @@ namespace MI.Domain.GameRoot
             // 제작 팝업
             if (_popupCraft != null)
             {
+                _popupCraft.InjectResources(_numberResources, _pickaxeIconDataTable, _itemIconDataTable);
                 var craftService = MIServiceLocator.Get<IMIPickaxeCraftService>();
-                _popupCraft.Initialize(
-                    craftService,
-                    _pickaxeCraftConfig,
-                    userState.PickaxeInventory,
-                    userState.PickaxeInventory);
+                _popupCraft.Initialize(craftService, userState.PickaxeInventory, userState.PickaxeInventory, _pickaxeCraftConfig);
             }
         }
     }

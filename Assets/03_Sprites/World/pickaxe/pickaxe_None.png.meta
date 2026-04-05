@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 10e687d66c718034cba1d2d4a062a692
+guid: 4274f4b7b31f7204ea184f60b67a59ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6863841792587458423
-    second: pickaxe_07_0
+      213: 816732408686666124
+    second: pickaxe_None_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pickaxe_07_0
+      name: pickaxe_None_0
       rect:
         serializedVersion: 2
         x: 3
         y: 3
-        width: 27
-        height: 27
+        width: 26
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 988185e714cbeb0a0800000000000000
-      internalID: -6863841792587458423
+      spriteID: c8161586ccd955b00800000000000000
+      internalID: 816732408686666124
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pickaxe_07_0: -6863841792587458423
+      pickaxe_None_0: 816732408686666124
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

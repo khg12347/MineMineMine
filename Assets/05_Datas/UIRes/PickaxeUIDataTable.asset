@@ -1,0 +1,271 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ab3aeb8d7c11b4085872fd27275518, type: 3}
+  m_Name: PickaxeUIDataTable
+  m_EditorClassIdentifier: Assembly-CSharp::MI.Data.UIRes.MIPickaxeIconDataTable
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: 6efc8c0e73b45b54a9cb1a6238b1bed8, type: 3}
+    - {fileID: 21300000, guid: 67dd4b9eb02d527439589d75eda0ff2d, type: 3}
+    - {fileID: 21300000, guid: f6e2e445d0d255945a86513995c28a0d, type: 3}
+    - {fileID: 21300000, guid: 848ddd6b0bc482c41a457b3cea801847, type: 3}
+    - {fileID: 21300000, guid: b81a4373461e0f548a580557bc307785, type: 3}
+    - {fileID: 21300000, guid: 4343b3c48a8cae3439d978e628c1f275, type: 3}
+    - {fileID: 21300000, guid: b3307958e89b7234f97763db66da50ec, type: 3}
+    - {fileID: 21300000, guid: 10e687d66c718034cba1d2d4a062a692, type: 3}
+    - {fileID: 21300000, guid: 479799ce1e88ffd41a1990f920518f2b, type: 3}
+    - {fileID: 21300000, guid: bf2b8430f2f2d8946b42be4af99f9f40, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _dataTable
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.Pickaxe.EPickaxeType,
+        Assembly-CSharp],[MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Pickaxe.EPickaxeType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 2|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Wood Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 3|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Stone Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 4|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Steel Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 5|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Copper Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 7
+      Data: 6|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Silver Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 6
+    - Name: $v
+      Entry: 7
+      Data: 7|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Gold Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 7
+    - Name: $v
+      Entry: 7
+      Data: 8|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Platinum Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 8
+    - Name: $v
+      Entry: 7
+      Data: 9|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Emerald Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 9
+    - Name: $v
+      Entry: 7
+      Data: 10|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Rubby Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 10
+    - Name: $v
+      Entry: 7
+      Data: 11|MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: Diamond Pickaxe
+    - Name: Icon
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _blank: {fileID: 21300000, guid: 0da7a183ee3e8204c8c21dc5083d8f96, type: 3}

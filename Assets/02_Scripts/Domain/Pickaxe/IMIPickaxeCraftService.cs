@@ -21,7 +21,7 @@ namespace MI.Domain.Pickaxe
 
         /// <summary>재화 충분 여부 확인.</summary>
         bool HasEnoughCurrency(FCurrencyCost currency);
-
+        int GetMaterialAmount(FMaterialCost material);
         /// <summary>
         /// 제작 완료 시 발행.
         /// 강화 시스템은 이 이벤트를 구독하여 새 곡괭이 등장 시 초기 데이터를 세팅한다. (OCP 확장 포인트)

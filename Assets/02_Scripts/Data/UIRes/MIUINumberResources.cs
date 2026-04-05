@@ -17,6 +17,9 @@ namespace MI.Data.UIRes
         [LabelText("작은 크기")]
         [SerializeField] private Sprite[] _smallNums = new Sprite[10];
 
+        [DictionaryDrawerSettings(KeyLabel = "character", ValueLabel = "Sprite")]
+        [SerializeField] private Dictionary<char, Sprite> _charToSpriteMap = new Dictionary<char, Sprite>();
+
         public Sprite GetBigNum(int num)
         {
             if (num < 0 || num > 9)
@@ -44,6 +47,16 @@ namespace MI.Data.UIRes
                 return null;
             }
             return _smallNums[num];
+        }
+
+        public Sprite GetCharSprite(char c)
+        {
+            if (_charToSpriteMap.TryGetValue(c, out Sprite sprite))
+            {
+                return sprite;
+            }
+            MILog.LogError("Character not found in map: " + c);
+            return null;
         }
     }
 }

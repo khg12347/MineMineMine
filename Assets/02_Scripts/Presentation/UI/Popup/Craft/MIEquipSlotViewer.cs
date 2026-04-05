@@ -1,3 +1,4 @@
+using MI.Data.UIRes;
 using MI.Domain.Pickaxe;
 using TMPro;
 using UnityEngine;
@@ -12,19 +13,14 @@ namespace MI.Presentation.UI.Popup.Craft
     {
         [SerializeField] private Image _icon;
 
-        // "MAIN", "SUB1", "SUB2" 레이블
-        [SerializeField] private TextMeshProUGUI _slotLabel;
-
-        // 빈 슬롯 상태 표시
-        [SerializeField] private GameObject _emptyState;
-
+        private MIPickaxeUIDataTable _iconTable;
         private EEquipSlot _slot;
 
         /// <summary>슬롯 초기화</summary>
-        public void Setup(EEquipSlot slot, EPickaxeType equipped)
+        public void Setup(MIPickaxeUIDataTable iconTable, EEquipSlot slot, EPickaxeType equipped)
         {
+            _iconTable = iconTable;
             _slot = slot;
-            _slotLabel.text = slot.ToString().ToUpper();
             Refresh(equipped);
         }
 
@@ -32,14 +28,9 @@ namespace MI.Presentation.UI.Popup.Craft
         public void Refresh(EPickaxeType equipped)
         {
             bool isEmpty = equipped == EPickaxeType.None;
-            _emptyState.SetActive(isEmpty);
-            _icon.gameObject.SetActive(!isEmpty);
 
-            if (!isEmpty)
-            {
-                // TODO: 곡괭이 타입에 맞는 스프라이트 설정
-                // _icon.sprite = ...;
-            }
+            _icon.sprite = _iconTable.GetPickaxeIcon(equipped);
+
         }
     }
 }

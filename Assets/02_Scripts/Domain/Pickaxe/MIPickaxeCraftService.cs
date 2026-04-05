@@ -71,10 +71,13 @@ namespace MI.Domain.Pickaxe
         /// <inheritdoc/>
         public bool HasEnoughMaterial(FMaterialCost material)
             => _inventory.HasEnough(material.ItemType, material.Amount);
+        public int GetMaterialAmount(FMaterialCost material)
+            => _inventory.GetAmount(material.ItemType);
 
         /// <inheritdoc/>
         public bool HasEnoughCurrency(FCurrencyCost currency)
             => _wallet.HasEnough(currency.CurrencyType, currency.Amount);
+
 
         #endregion IMIPickaxeCraftService Implementation — Validation
 

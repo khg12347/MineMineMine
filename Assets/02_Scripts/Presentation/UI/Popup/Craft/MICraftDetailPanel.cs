@@ -1,4 +1,5 @@
 using System;
+using MI.Data.UIRes;
 using MI.Domain.Pickaxe;
 using MI.Presentation.UI.Common;
 using TMPro;
@@ -22,7 +23,7 @@ namespace MI.Presentation.UI.Popup.Craft
 
         // 재료 슬롯 (최대 2개)
         [SerializeField] private GameObject[] _materialSlots;
-        [SerializeField] private TextMeshProUGUI[] _materialAmounts;
+        [SerializeField] private MIImageGroups[] _materialAmountImageGroups; // 재료 수량 표기하는 이미지 그룹
         [SerializeField] private Image[] _materialIcons;
 
         // 재화 비용 영역 (없으면 숨김)
@@ -35,10 +36,17 @@ namespace MI.Presentation.UI.Popup.Craft
         [SerializeField] private MIButton _equipButton;
         [SerializeField] private MIButton _infoButton;
 
-        // 강화 시스템 연동: 보유 곡괭이 대상 강화 버튼
-        [SerializeField] private MIButton _enhanceButton;
-
+        private MIPickaxeUIDataTable _pickaxeIconDataTable;
+        private MIItemIconDataTable _itemIconDataTable;
+        private MIUINumberResources _uiNumberResources;
         #region Craft Mode
+
+        public void InitDataTable(MIPickaxeUIDataTable iconDataTable, MIItemIconDataTable itemIconDataTable, MIUINumberResources uiNumberResources)
+        {
+            _pickaxeIconDataTable = iconDataTable;
+            _itemIconDataTable = itemIconDataTable;
+            _uiNumberResources = uiNumberResources;
+        }
 
         /// <summary>
         /// 제작 모드로 전환. 재료/재화 정보 표시.
@@ -50,12 +58,13 @@ namespace MI.Presentation.UI.Popup.Craft
             IMIPickaxeCraftService craftService,
             Action onCraftClicked)
         {
+            // 일단 제작 모드로 시작, 첫 포커스 슬롯의 제작 여부에 따라 달라짐
             _craftModeRoot.SetActive(true);
             _equipModeRoot.SetActive(false);
 
-            // TODO: 곡괭이 이름/아이콘 설정
-            // _pickaxeName.text = ...;
-            // _pickaxeIcon.sprite = ...;
+            // 곡괭이 이름/아이콘 설정
+            _pickaxeName.text = _pickaxeIconDataTable.GetPickaxeName(type);
+            _pickaxeIcon.sprite = _pickaxeIconDataTable.GetPickaxeIcon(type);
 
             if (!cost.HasValue) return;
 
@@ -70,11 +79,13 @@ namespace MI.Presentation.UI.Popup.Craft
                     var mat = c.Materials[i];
 
                     // TODO: 아이콘 설정
-                    // _materialIcons[i].sprite = ...;
+                    _materialIcons[i].sprite = _itemIconDataTable.GetItemIcon(mat.ItemType);
 
                     bool enough = craftService.HasEnoughMaterial(mat);
-                    _materialAmounts[i].text = mat.Amount.ToString();
-                    _materialAmounts[i].color = enough ? Color.white : Color.red;
+                    var requiredAmount = mat.Amount;
+                    var currentAmount = craftService.GetMaterialAmount(mat);
+                    string amountText = $"{currentAmount}/{requiredAmount}";
+                    MITextSprite.SetTextSprite(amountText, _materialAmountImageGroups[i].ImageList, _uiNumberResources);
                 }
                 else
                 {
@@ -82,23 +93,23 @@ namespace MI.Presentation.UI.Popup.Craft
                 }
             }
 
-            // 재화 비용 — 없으면 영역 자체 숨김
-            if (c.Currencies != null && c.Currencies.Length > 0)
-            {
-                _currencyRoot.SetActive(true);
-                var cur = c.Currencies[0];
+            //// 재화 비용 — 없으면 영역 자체 숨김
+            //if (c.Currencies != null && c.Currencies.Length > 0)
+            //{
+            //    _currencyRoot.SetActive(true);
+            //    var cur = c.Currencies[0];
 
-                // TODO: 재화 아이콘 설정
-                // _currencyIcon.sprite = ...;
+            //    // TODO: 재화 아이콘 설정
+            //    // _currencyIcon.sprite = ...;
 
-                bool enough = craftService.HasEnoughCurrency(cur);
-                _currencyAmount.text = cur.Amount.ToString();
-                _currencyAmount.color = enough ? Color.white : Color.red;
-            }
-            else
-            {
-                _currencyRoot.SetActive(false);
-            }
+            //    bool enough = craftService.HasEnoughCurrency(cur);
+            //    _currencyAmount.text = cur.Amount.ToString();
+            //    _currencyAmount.color = enough ? Color.white : Color.red;
+            //}
+            //else
+            //{
+            //    _currencyRoot.SetActive(false);
+            //}
 
             // 제작 버튼
             _craftButton.interactable = canCraft;
@@ -135,19 +146,6 @@ namespace MI.Presentation.UI.Popup.Craft
 
             _infoButton.onClick.RemoveAllListeners();
             _infoButton.onClick.AddListener(() => onInfoClicked?.Invoke());
-
-            // 강화 버튼: 콜백이 있을 때만 활성화
-            if (_enhanceButton != null)
-            {
-                bool hasEnhance = onEnhanceClicked != null;
-                _enhanceButton.gameObject.SetActive(hasEnhance);
-
-                if (hasEnhance)
-                {
-                    _enhanceButton.onClick.RemoveAllListeners();
-                    _enhanceButton.onClick.AddListener(() => onEnhanceClicked?.Invoke(EPickaxeType.None));
-                }
-            }
         }
 
         #endregion Equip Mode

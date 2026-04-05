@@ -1,4 +1,5 @@
 using System;
+using MI.Data.UIRes;
 using MI.Domain.Pickaxe;
 using MI.Presentation.UI.Common;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace MI.Presentation.UI.Popup.Craft
         // 강화 시스템 연동: 보유 시 강화 버튼 노출
         [SerializeField] private GameObject _enhanceButtonRoot;
 
+        private MIPickaxeUIDataTable _iconDataTable;
+
         private EPickaxeType _type;
         private bool _isOwned;
         private Action<EPickaxeType> _onClick;
@@ -35,11 +38,13 @@ namespace MI.Presentation.UI.Popup.Craft
         /// <param name="onClick">슬롯 클릭 콜백</param>
         /// <param name="onEnhanceClicked">강화 버튼 클릭 콜백 (null이면 버튼 숨김)</param>
         public void Setup(
+            MIPickaxeUIDataTable iconDataTable,
             EPickaxeType type,
             bool isOwned,
             Action<EPickaxeType> onClick,
             Action<EPickaxeType> onEnhanceClicked = null)
         {
+            _iconDataTable = iconDataTable;
             _type = type;
             _isOwned = isOwned;
             _onClick = onClick;
@@ -51,8 +56,7 @@ namespace MI.Presentation.UI.Popup.Craft
             _button.onClick.RemoveAllListeners();
             _button.onClick.AddListener(() => _onClick?.Invoke(_type));
 
-            // TODO: 곡괭이 타입에 맞는 스프라이트 설정
-            // _icon.sprite = ...;
+            _icon.sprite = _iconDataTable.GetPickaxeIcon(_type);
 
             RefreshVisual();
         }
@@ -61,10 +65,11 @@ namespace MI.Presentation.UI.Popup.Craft
         public void SetupLocked()
         {
             _lockedOverlay.SetActive(true);
-            _button.interactable = false;
 
             if (_enhanceButtonRoot != null)
+            {
                 _enhanceButtonRoot.SetActive(false);
+            }
         }
 
         #endregion Setup
@@ -81,9 +86,11 @@ namespace MI.Presentation.UI.Popup.Craft
         private void RefreshVisual()
         {
             if (_enhanceButtonRoot != null)
+            {
                 _enhanceButtonRoot.SetActive(_isOwned && _onEnhanceClicked != null);
-
+            }
             // TODO: 보유/미보유 시각 차이 (밝기, 테두리 등)
+            _lockedOverlay.SetActive(_isOwned);
         }
 
         #endregion Visual State

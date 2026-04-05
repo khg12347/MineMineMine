@@ -48,3 +48,17 @@ MonoBehaviour:
     - ItemType: 202
       Amount: 1
     Currencies: []
+  - PickaxeType: 5
+    Materials:
+    - ItemType: 120
+      Amount: 1
+    - ItemType: 203
+      Amount: 1
+    Currencies: []
+  - PickaxeType: 6
+    Materials:
+    - ItemType: 120
+      Amount: 1
+    - ItemType: 204
+      Amount: 1
+    Currencies: []

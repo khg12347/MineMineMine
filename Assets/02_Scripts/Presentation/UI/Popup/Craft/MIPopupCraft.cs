@@ -1,4 +1,5 @@
 using MI.Data.Config;
+using MI.Data.UIRes;
 using MI.Domain.Pickaxe;
 using MI.Presentation.UI.Popup;
 using UnityEngine;
@@ -20,30 +21,45 @@ namespace MI.Presentation.UI.Popup.Craft
         [SerializeField] private MICraftDetailPanel _detailPanel;
 
         private IMIPickaxeCraftService _craftService;
-        private MIPickaxeCraftConfig _craftConfig;
         private IMIPickaxeInventory _pickaxeInventory;
         private IMIPickaxeEquipment _pickaxeEquipment;
+        private MIPickaxeCraftConfig _craftConfig;
+        private MIPickaxeUIDataTable _pickaxeIconTable;
+        private MIItemIconDataTable _itemIconTable;
+        private MIUINumberResources _uiNumberResources;
 
         private EPickaxeType _selectedType = EPickaxeType.None;
 
         #region Initialization
+
+        public void InjectResources(
+            MIUINumberResources uiNumberResources,
+            MIPickaxeUIDataTable pickaxeIconDataTable,
+            MIItemIconDataTable itemIconDataTable)
+        {
+            _uiNumberResources = uiNumberResources;
+            _pickaxeIconTable = pickaxeIconDataTable;
+            _itemIconTable = itemIconDataTable;
+        }
+
 
         /// <summary>
         /// 의존성 주입. MISceneContext.InitializeSceneContext()에서 호출.
         /// </summary>
         public void Initialize(
             IMIPickaxeCraftService craftService,
-            MIPickaxeCraftConfig craftConfig,
             IMIPickaxeInventory pickaxeInventory,
-            IMIPickaxeEquipment pickaxeEquipment)
+            IMIPickaxeEquipment pickaxeEquipment,
+            MIPickaxeCraftConfig craftConfig)
         {
             _craftService = craftService;
-            _craftConfig = craftConfig;
             _pickaxeInventory = pickaxeInventory;
             _pickaxeEquipment = pickaxeEquipment;
+            _craftConfig = craftConfig;
 
             InitCraftSlots();
             InitEquipSlots();
+            _detailPanel.InitDataTable(_pickaxeIconTable, _itemIconTable, _uiNumberResources);
 
             _pickaxeInventory.OnPickaxeAdded += HandlePickaxeAdded;
             _pickaxeInventory.OnEquipChanged += HandleEquipChanged;
@@ -65,12 +81,12 @@ namespace MI.Presentation.UI.Popup.Craft
         {
             for (int i = 0; i < _craftSlots.Length; i++)
             {
-                if (i < 10)
+                if (i < 1)
                 {
                     // Pickaxe01~10 (index 0은 사용하지 않음, 1부터 시작)
                     var type = (EPickaxeType)(i + 1);
                     bool isOwned = _pickaxeInventory.IsOwned(type);
-                    _craftSlots[i].Setup(type, isOwned, OnSlotClicked, OnEnhanceClicked);
+                    _craftSlots[i].Setup(_pickaxeIconTable, type, isOwned, OnSlotClicked, OnEnhanceClicked);
                 }
                 else
                 {
@@ -81,9 +97,9 @@ namespace MI.Presentation.UI.Popup.Craft
 
         private void InitEquipSlots()
         {
-            _equipSlots[0].Setup(EEquipSlot.Main, _pickaxeInventory.GetEquipped(EEquipSlot.Main));
-            _equipSlots[1].Setup(EEquipSlot.Sub1, _pickaxeInventory.GetEquipped(EEquipSlot.Sub1));
-            _equipSlots[2].Setup(EEquipSlot.Sub2, _pickaxeInventory.GetEquipped(EEquipSlot.Sub2));
+            _equipSlots[0].Setup(_pickaxeIconTable, EEquipSlot.Main, _pickaxeInventory.GetEquipped(EEquipSlot.Main));
+            _equipSlots[1].Setup(_pickaxeIconTable, EEquipSlot.Sub1, _pickaxeInventory.GetEquipped(EEquipSlot.Sub1));
+            _equipSlots[2].Setup(_pickaxeIconTable, EEquipSlot.Sub2, _pickaxeInventory.GetEquipped(EEquipSlot.Sub2));
         }
 
         #endregion Slot Setup
