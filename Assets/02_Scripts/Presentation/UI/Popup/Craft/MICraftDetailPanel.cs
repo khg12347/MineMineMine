@@ -1,6 +1,7 @@
 using System;
 using MI.Data.UIRes;
 using MI.Domain.Pickaxe;
+using MI.Domain.Pickaxe.Craft;
 using MI.Presentation.UI.Common;
 using TMPro;
 using UnityEngine;

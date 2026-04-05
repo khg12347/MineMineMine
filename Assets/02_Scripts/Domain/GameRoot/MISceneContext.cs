@@ -1,7 +1,7 @@
 ﻿using MI.Core.ServiceLocator;
 using MI.Data.Config;
 using MI.Data.UIRes;
-using MI.Domain.Pickaxe;
+using MI.Domain.Pickaxe.Craft;
 using MI.Presentation.UI;
 using MI.Presentation.UI.HUD.Wallet;
 using MI.Presentation.UI.Popup.Craft;

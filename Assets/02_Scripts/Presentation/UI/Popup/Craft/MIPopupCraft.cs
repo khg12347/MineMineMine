@@ -1,6 +1,8 @@
 using MI.Data.Config;
 using MI.Data.UIRes;
 using MI.Domain.Pickaxe;
+using MI.Domain.Pickaxe.Craft;
+using MI.Domain.Pickaxe.Equipment;
 using MI.Presentation.UI.Popup;
 using UnityEngine;
 
@@ -81,7 +83,7 @@ namespace MI.Presentation.UI.Popup.Craft
         {
             for (int i = 0; i < _craftSlots.Length; i++)
             {
-                if (i < 1)
+                if (i < 10)
                 {
                     // Pickaxe01~10 (index 0은 사용하지 않음, 1부터 시작)
                     var type = (EPickaxeType)(i + 1);

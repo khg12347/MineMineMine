@@ -41,7 +41,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 7
       Data: 
@@ -198,10 +198,44 @@ MonoBehaviour:
       Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: Weight
       Entry: 4
       Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 21
+    - Name: $v
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
+    - Name: MineralType
+      Entry: 3
+      Data: 0
+    - Name: Weight
+      Entry: 4
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -230,27 +264,27 @@ MonoBehaviour:
   - TileType: 12
     Weight: 3
   - TileType: 20
-    Weight: 1
+    Weight: 5
   _tileConfigs:
   - {fileID: 11400000, guid: 04db221532f7cdb468f5de74d6bee825, type: 2}
   - {fileID: 11400000, guid: c9faa6941147d6447a9b7e56d993255c, type: 2}
   - {fileID: 11400000, guid: c3f4c54268209fa41949fea001f5c1d8, type: 2}
   - {fileID: 11400000, guid: f9de8c14de1d4d7409755d98e076e64e, type: 2}
-  _clusterSizeMin: 4
-  _clusterSizeMax: 16
-  _seedDensity: 0.932
+  _clusterSizeMin: 8
+  _clusterSizeMax: 20
+  _seedDensity: 0.616
   _mineralWeights:
   - MineralType: 2
-    Weight: 0.1
+    Weight: 0
     Density: 10
   - MineralType: 2
-    Weight: 0.05
+    Weight: 0
     Density: 20
   - MineralType: 2
-    Weight: 0.01
+    Weight: 0
     Density: 30
   - MineralType: 0
-    Weight: 0.84
+    Weight: 1
     Density: 0
   _treasureChance: 0.005
   _treasureWeights:

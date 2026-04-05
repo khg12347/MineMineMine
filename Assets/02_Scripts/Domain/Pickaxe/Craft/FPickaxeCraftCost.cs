@@ -1,6 +1,7 @@
 using System;
+using MI.Domain.Pickaxe;
 
-namespace MI.Domain.Pickaxe
+namespace MI.Domain.Pickaxe.Craft
 {
     /// <summary>
     /// 곡괭이 1종의 전체 제작 비용.

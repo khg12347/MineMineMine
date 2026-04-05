@@ -1,10 +1,12 @@
 using System;
 using MI.Data.Config;
+using MI.Domain.Pickaxe;
+using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.UserState.Inventory;
 using MI.Domain.UserState.Wallet;
 using MI.Utility;
 
-namespace MI.Domain.Pickaxe
+namespace MI.Domain.Pickaxe.Craft
 {
     /// <summary>
     /// 곡괭이 제작 조건 검증 + 재료/재화 소모 + 보유 등록.

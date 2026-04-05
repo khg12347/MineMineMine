@@ -1,4 +1,4 @@
-﻿using MI.Domain.Pickaxe;
+﻿using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.UserState.Inventory;
 using MI.Domain.UserState.Wallet;
 

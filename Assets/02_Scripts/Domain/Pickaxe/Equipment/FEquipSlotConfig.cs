@@ -1,6 +1,6 @@
 using System;
 
-namespace MI.Domain.Pickaxe
+namespace MI.Domain.Pickaxe.Equipment
 {
     /// <summary>
     /// 장착 슬롯별 설정값.

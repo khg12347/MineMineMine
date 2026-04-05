@@ -1,7 +1,7 @@
 using System;
 using MI.Domain.UserState.Inventory;
 
-namespace MI.Domain.Pickaxe
+namespace MI.Domain.Pickaxe.Craft
 {
     /// <summary>
     /// 제작 재료 1건. 아이템 타입과 필요 수량.

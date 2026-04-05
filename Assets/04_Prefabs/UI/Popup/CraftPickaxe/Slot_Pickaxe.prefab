@@ -182,8 +182,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3683967930093685822}
-  - {fileID: 5404232519116435455}
   - {fileID: 5306449161177928602}
+  - {fileID: 5404232519116435455}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -269,7 +269,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.UI.Popup.Craft.MICraftSlotViewer
   _icon: {fileID: 5575844927077014639}
-  _lockedOverlay: {fileID: 962186523401783766}
   _button: {fileID: 6377078882788815819}
   _enhanceButtonRoot: {fileID: 0}
 --- !u!1 &3547921015995686355

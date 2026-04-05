@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using MI.Domain.Pickaxe;
 
-namespace MI.Domain.Pickaxe
+namespace MI.Domain.Pickaxe.Equipment
 {
     /// <summary>
     /// 곡괭이 보유/장착 상태 조회 전용 인터페이스. (ISP — 조회와 명령 분리)

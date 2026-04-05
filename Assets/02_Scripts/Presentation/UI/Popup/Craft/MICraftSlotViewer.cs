@@ -15,9 +15,6 @@ namespace MI.Presentation.UI.Popup.Craft
     {
         [SerializeField] private Image _icon;
 
-        // ??? 표시용 오버레이 (미해금 슬롯)
-        [SerializeField] private GameObject _lockedOverlay;
-
         [SerializeField] private MIButton _button;
 
         // 강화 시스템 연동: 보유 시 강화 버튼 노출
@@ -49,8 +46,8 @@ namespace MI.Presentation.UI.Popup.Craft
             _isOwned = isOwned;
             _onClick = onClick;
             _onEnhanceClicked = onEnhanceClicked;
-
-            _lockedOverlay.SetActive(false);
+            
+            _icon.gameObject.SetActive(_isOwned);
             _button.interactable = true;
 
             _button.onClick.RemoveAllListeners();
@@ -64,12 +61,8 @@ namespace MI.Presentation.UI.Popup.Craft
         /// <summary>미해금 슬롯 초기화 (??? 표시)</summary>
         public void SetupLocked()
         {
-            _lockedOverlay.SetActive(true);
-
-            if (_enhanceButtonRoot != null)
-            {
-                _enhanceButtonRoot.SetActive(false);
-            }
+            _icon.gameObject.SetActive(false);
+            _type = EPickaxeType.None;
         }
 
         #endregion Setup
@@ -89,8 +82,9 @@ namespace MI.Presentation.UI.Popup.Craft
             {
                 _enhanceButtonRoot.SetActive(_isOwned && _onEnhanceClicked != null);
             }
+
             // TODO: 보유/미보유 시각 차이 (밝기, 테두리 등)
-            _lockedOverlay.SetActive(_isOwned);
+            _icon.gameObject.SetActive(_isOwned);
         }
 
         #endregion Visual State

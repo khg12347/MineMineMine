@@ -1,5 +1,6 @@
 using MI.Data.UIRes;
 using MI.Domain.Pickaxe;
+using MI.Domain.Pickaxe.Equipment;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

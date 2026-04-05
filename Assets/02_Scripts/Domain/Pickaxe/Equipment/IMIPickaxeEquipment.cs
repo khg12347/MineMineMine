@@ -1,4 +1,6 @@
-namespace MI.Domain.Pickaxe
+using MI.Domain.Pickaxe;
+
+namespace MI.Domain.Pickaxe.Equipment
 {
     /// <summary>
     /// 곡괭이 장착/해제 명령 인터페이스. (ISP — 조회 IMIPickaxeInventory와 분리)

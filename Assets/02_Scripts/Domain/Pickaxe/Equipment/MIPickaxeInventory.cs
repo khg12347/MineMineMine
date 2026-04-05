@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using MI.Domain.Pickaxe;
 
-namespace MI.Domain.Pickaxe
+namespace MI.Domain.Pickaxe.Equipment
 {
     /// <summary>
     /// 곡괭이 보유 목록 + 장착 슬롯 관리.

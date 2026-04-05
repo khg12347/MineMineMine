@@ -1,7 +1,7 @@
 using System;
 using MI.Domain.UserState.Wallet;
 
-namespace MI.Domain.Pickaxe
+namespace MI.Domain.Pickaxe.Craft
 {
     /// <summary>
     /// 제작 재화 비용 1건. 재화 타입과 필요 수량.

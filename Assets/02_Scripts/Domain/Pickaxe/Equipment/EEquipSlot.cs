@@ -1,4 +1,4 @@
-namespace MI.Domain.Pickaxe
+namespace MI.Domain.Pickaxe.Equipment
 {
     /// <summary>
     /// 곡괭이 장착 슬롯. Main은 주력, Sub1/Sub2는 보조.

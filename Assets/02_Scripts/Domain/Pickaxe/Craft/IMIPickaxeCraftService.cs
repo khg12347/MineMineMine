@@ -1,6 +1,7 @@
 using System;
+using MI.Domain.Pickaxe;
 
-namespace MI.Domain.Pickaxe
+namespace MI.Domain.Pickaxe.Craft
 {
     /// <summary>
     /// 곡괭이 제작 조건 검증 및 실행 인터페이스.
