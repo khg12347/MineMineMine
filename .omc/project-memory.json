@@ -160,21 +160,303 @@
   },
   "hotPaths": [
     {
+      "path": "Assets\\02_Scripts\\Domain\\GameRoot\\MISceneContext.cs",
+      "accessCount": 15,
+      "lastAccessed": 1775399344841,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts",
+      "accessCount": 9,
+      "lastAccessed": 1775398132974,
+      "type": "directory"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Stage\\MIStageOrchestrator.cs",
+      "accessCount": 9,
+      "lastAccessed": 1775399335230,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Pickaxe\\MIPickaxeController.cs",
+      "accessCount": 9,
+      "lastAccessed": 1775399335566,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\Popup\\Craft\\MIPopupCraft.cs",
+      "accessCount": 7,
+      "lastAccessed": 1775385644444,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\GameRoot\\MIGameRoot.cs",
+      "accessCount": 7,
+      "lastAccessed": 1775398096572,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIPickaxeSpecDataTable.cs",
+      "accessCount": 6,
+      "lastAccessed": 1775399179473,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIPickaxeConfig.cs",
+      "accessCount": 5,
+      "lastAccessed": 1775398088238,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\FPickaxeInstance.cs",
+      "accessCount": 5,
+      "lastAccessed": 1775398089683,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\MIPickaxeInventory.cs",
+      "accessCount": 5,
+      "lastAccessed": 1775398115427,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\IMIPickaxeInventory.cs",
+      "accessCount": 5,
+      "lastAccessed": 1775398115956,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\EPickaxeType.cs",
+      "accessCount": 4,
+      "lastAccessed": 1775398089788,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\EEquipSlot.cs",
+      "accessCount": 4,
+      "lastAccessed": 1775398116680,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\User\\MIUserState.cs",
+      "accessCount": 4,
+      "lastAccessed": 1775398117154,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\IMIPickaxeEquipment.cs",
+      "accessCount": 4,
+      "lastAccessed": 1775398117298,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\MIPickaxeCraftService.cs",
+      "accessCount": 4,
+      "lastAccessed": 1775398140907,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Camera\\MICameraFollower.cs",
+      "accessCount": 4,
+      "lastAccessed": 1775398622817,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\FPickaxeStats.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775398098258,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Pickaxe\\MIPickaxePartCollider.cs",
+      "accessCount": 3,
+      "lastAccessed": 1775398124626,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\User\\Inventory\\MIUserInventory.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775385373860,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\Popup\\Craft\\MICraftDetailPanel.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775385433054,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\IMIPickaxeCraftService.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775385444276,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\khg\\.claude\\plans\\melodic-launching-perlis.md",
+      "accessCount": 2,
+      "lastAccessed": 1775385488532,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIPickaxeCraftConfig.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775388511107,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\ServiceLocator\\MIServiceLocator.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775398097760,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\EPickaxePart.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775398098695,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\04_Prefabs",
+      "accessCount": 2,
+      "lastAccessed": 1775398131576,
+      "type": "directory"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\BootStrap\\MIBootStrap.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775398139969,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\MIWallSpawner.cs",
+      "accessCount": 2,
+      "lastAccessed": 1775398635129,
+      "type": "file"
+    },
+    {
       "path": "Assets\\02_Scripts\\Data\\UIRes\\MIUINumberResources.cs",
       "accessCount": 1,
       "lastAccessed": 1775359709638,
       "type": "file"
     },
     {
-      "path": "C:\\Users\\khg\\.claude\\plans\\melodic-launching-perlis.md",
-      "accessCount": 1,
-      "lastAccessed": 1775359725508,
-      "type": "file"
-    },
-    {
       "path": "Assets\\02_Scripts\\Presentation\\UI\\Common\\MITextSprite.cs",
       "accessCount": 1,
       "lastAccessed": 1775359825834,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\FPickaxeCraftCost.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775385366092,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\Popup\\Craft\\MICraftSlotViewer.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775385370579,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\User\\Inventory\\MIItemDropEvent.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775385374149,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Status\\MIStatusHUD.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775385374976,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Items\\MIItemDropNotifyUI.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775385375594,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\FMaterialCost.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775385378602,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\FCurrencyCost.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775385378703,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\User\\Wallet\\MIUserWallet.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775385386134,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\UI\\HUD\\Wallet\\MIWalletHUD.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775385386351,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\UIRes\\MIPickaxeUIDataTable.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775388511213,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Camera\\IMICameraFollower.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775397256072,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\MISingleton.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775397256122,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Tile\\MITileModel.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775397260562,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 1,
+      "lastAccessed": 1775397354606,
+      "type": "directory"
+    },
+    {
+      "path": "Assets",
+      "accessCount": 1,
+      "lastAccessed": 1775398071770,
+      "type": "directory"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\GameRoot\\MIContracts.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775398096907,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\FEquipSlotConfig.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775398123870,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIEquipSlotConfig.cs",
+      "accessCount": 1,
+      "lastAccessed": 1775398125699,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\khg\\.claude\\plans\\fuzzy-dancing-castle-agent-a0080f73526743a09.md",
+      "accessCount": 1,
+      "lastAccessed": 1775398586169,
       "type": "file"
     }
   ],

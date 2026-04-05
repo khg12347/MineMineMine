@@ -135,12 +135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63ee189e23592c43af1b17ca19b9e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.Pickaxe.MIPickaxeController
+  _pickaxeRenderer: {fileID: 46382956233785724}
   _config: {fileID: 11400000, guid: 8be89c4ae5d631a46985e05d839891bd, type: 2}
   _minimumForce: {x: 0, y: 1}
-  _autoRotateSpeed: 0
-  _flipRotationDir: 0
   colliderHead: {fileID: 891629256358392936}
   colliderHandle: {fileID: 5695532799446877736}
+  _lastLinearVelocity: {x: 0, y: 0}
 --- !u!1 &1957325403021431239
 GameObject:
   m_ObjectHideFlags: 0

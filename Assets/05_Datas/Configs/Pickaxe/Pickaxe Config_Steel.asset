@@ -21,6 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  _spritePickaxe: {fileID: 21300000, guid: f6e2e445d0d255945a86513995c28a0d, type: 3}
   _headDamage: 80
   _handleDamage: 40
   _gravityScale: 1.5

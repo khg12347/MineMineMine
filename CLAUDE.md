@@ -85,37 +85,54 @@ Assets/
 │   ├── Pool/
 │   │   ├── MIObjectPool.cs
 │   │   └── MIPoolManager.cs            # FPoolConfig 구조체 포함
+│   ├── ServiceLocator/
+│   │   └── MIServiceLocator.cs
 │   ├── StateMachine/
 │   │   ├── MIBaseStateMachineBehaviour.cs
 │   │   └── Tile/
 │   │       └── MITileStateMahcine.cs
-│   ├── MIContracts.cs
-│   ├── MIGameRoot.cs
-│   ├── MISceneContext.cs
 │   └── MISingleton.cs
 ├── Data/
 │   ├── Config/
 │   │   ├── MIBackgroundConfig.cs
+│   │   ├── MIEquipSlotConfig.cs
 │   │   ├── MILevelData.cs
 │   │   ├── MIMineralConfig.cs
 │   │   ├── MIPickaxeConfig.cs
+│   │   ├── MIPickaxeCraftConfig.cs
+│   │   ├── MIPickaxeSpecDataTable.cs
 │   │   ├── MIStageConfig.cs
 │   │   ├── MIStatusConfig.cs
 │   │   ├── MITileConfig.cs
 │   │   └── MIWallConfig.cs
 │   ├── UIRes/
 │   │   ├── MIItemIconDataTable.cs
+│   │   ├── MIPickaxeUIDataTable.cs
 │   │   └── MIUINumberResources.cs
 │   ├── Cloud/                          # 예정
 │   ├── Save/                           # 예정
 │   └── Table/                          # 예정
 ├── Domain/
-│   ├── Inventory/
-│   │   ├── EItemType.cs              # MIItemTypeConverter 포함
-│   │   ├── MIItemDropEvent.cs
-│   │   └── MIUserInventory.cs
+│   ├── GameRoot/
+│   │   ├── MIContracts.cs
+│   │   ├── MIGameRoot.cs
+│   │   └── MISceneContext.cs
 │   ├── Pickaxe/
+│   │   ├── Craft/
+│   │   │   ├── FCurrencyCost.cs
+│   │   │   ├── FMaterialCost.cs
+│   │   │   ├── FPickaxeCraftCost.cs
+│   │   │   ├── IMIPickaxeCraftService.cs
+│   │   │   └── MIPickaxeCraftService.cs
+│   │   ├── Equipment/
+│   │   │   ├── EEquipSlot.cs
+│   │   │   ├── FEquipSlotConfig.cs
+│   │   │   ├── IMIPickaxeEquipment.cs
+│   │   │   ├── IMIPickaxeInventory.cs
+│   │   │   └── MIPickaxeInventory.cs
 │   │   ├── EPickaxePart.cs
+│   │   ├── EPickaxeType.cs
+│   │   ├── FPickaxeInstance.cs
 │   │   └── FPickaxeStats.cs
 │   ├── Stage/
 │   │   ├── IMITileAlgorithm.cs
@@ -154,6 +171,14 @@ Assets/
 │   ├── TouchBreaker/
 │   │   └── MITouchObjectSpawner.cs
 │   └── User/
+│       ├── Inventory/
+│       │   ├── EItemType.cs
+│       │   ├── MIItemDropEvent.cs
+│       │   └── MIUserInventory.cs
+│       ├── Wallet/
+│       │   ├── ECurrencyType.cs
+│       │   ├── MIGoldDropEvent.cs
+│       │   └── MIUserWallet.cs
 │       └── MIUserState.cs
 ├── Editor/
 │   └── HotKey/
@@ -162,23 +187,34 @@ Assets/
 │   └── Input/
 │       ├── IMIInputListener.cs
 │       ├── MIInputActions.cs
-│       ├── MIInputActions.inputactions
 │       └── MIInputHandler.cs
 ├── Presentation/
 │   ├── UI/
 │   │   ├── Common/
 │   │   │   ├── MIButton.cs
-│   │   │   └── MINumberShaker.cs
+│   │   │   ├── MIImageGroups.cs
+│   │   │   ├── MINumberShaker.cs
+│   │   │   └── MITextSprite.cs
 │   │   ├── HUD/
+│   │   │   ├── Bottom/
+│   │   │   │   ├── MIButtonBottomController.cs
+│   │   │   │   └── MIButtonBottomElement.cs
 │   │   │   ├── Items/
 │   │   │   │   ├── MIDropItemViewer.cs
 │   │   │   │   └── MIItemDropNotifyUI.cs
 │   │   │   ├── Status/
 │   │   │   │   └── MIStatusHUD.cs
+│   │   │   ├── Wallet/
+│   │   │   │   └── MIWalletHUD.cs
 │   │   │   └── MICanvasHUD.cs
 │   │   ├── Interface/
 │   │   │   └── IMIItemViewer.cs
 │   │   ├── Popup/
+│   │   │   ├── Craft/
+│   │   │   │   ├── MICraftDetailPanel.cs
+│   │   │   │   ├── MICraftSlotViewer.cs
+│   │   │   │   ├── MIEquipSlotViewer.cs
+│   │   │   │   └── MIPopupCraft.cs
 │   │   │   ├── Inventory/
 │   │   │   │   ├── IMIInventoryViewer.cs
 │   │   │   │   ├── MIInventoryItemViewer.cs
@@ -193,6 +229,7 @@ Assets/
 │       │   └── MICameraFollower.cs
 │       ├── Pickaxe/
 │       │   ├── MIPickaxeController.cs
+│       │   ├── MIPickaxeEquipController.cs
 │       │   └── MIPickaxePartCollider.cs
 │       ├── Stage/
 │       │   └── MIStageOrchestrator.cs

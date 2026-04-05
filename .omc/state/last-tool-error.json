@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"python3 << 'PYEOF'\\nimport os\\npath = os.path.join(\\\"C:\\\", os.sep, \\\"Users\\\", \\\"khg\\\", \\\".claude\\\", \\\"plans\\\", \\\"fuzzy-dancing-castle-agent-a0080f73526743a09.md\\\")\\nlines = []\\nlines.appen...",
+  "error": "Exit code 49",
+  "timestamp": "2026-04-05T14:14:37.342Z",
+  "retry_count": 3
+}

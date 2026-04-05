@@ -10,7 +10,7 @@ namespace MI.Presentation.World.Pickaxe
 
     public class MIPickaxeController : MonoBehaviour
     {
-
+        [SerializeField] private SpriteRenderer _pickaxeRenderer; // 현재 스프라이트만 교체하므로 Viwer는 분리하지 않음.
         [SerializeField] private MIPickaxeConfig _config;
         [SerializeField] private Vector2 _minimumForce = new Vector2(0, 1f);
         [SerializeField] private Collider2D colliderHead;
@@ -19,12 +19,35 @@ namespace MI.Presentation.World.Pickaxe
         private FPickaxeStats _stats;
         private PhysicsMaterial2D _bounceHandleMaterial;
         private PhysicsMaterial2D _bounceHeadMaterial;
+        private Camera _camera;
 
         [SerializeField, ReadOnly] private Vector2 _lastLinearVelocity;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            if (_config != null)
+                InitializeFromConfig();
+        }
+
+        private void OnEnable()
+        {
+            if (_camera == null) return;
+            if (_rb == null) _rb = GetComponent<Rigidbody2D>();
+
+            Vector3 center = _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
+            transform.position = new Vector3(center.x, center.y, 0f);
+            _rb.linearVelocity = Vector2.zero;
+        }
+
+        /// <summary>카메라 참조를 설정한다.</summary>
+        public void SetCamera(Camera cam) => _camera = cam;
+
+        /// <summary>외부에서 Config를 주입하여 물리 설정을 재초기화한다.</summary>
+        public void ApplyConfig(MIPickaxeConfig config)
+        {
+            _config = config;
+            if (_rb == null) _rb = GetComponent<Rigidbody2D>();
             InitializeFromConfig();
         }
 
@@ -36,6 +59,7 @@ namespace MI.Presentation.World.Pickaxe
         private void InitializeFromConfig()
         {
             _stats = _config.CreateStats();
+            _pickaxeRenderer.sprite = _config.SpritePickaxe;
 
             // 중력 설정
             _rb.gravityScale = _stats.GravityScale;

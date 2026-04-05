@@ -35,11 +35,9 @@ namespace MI.Presentation.World.Stage
         //[Required]
         //[SerializeField]
 
-        [Title("곡괭이")]
-        [Required]
-        [SerializeField] private MIPickaxeController _pickaxe;
-        [Required]
-        [SerializeField] private MIPickaxeConfig _pickaxeConfig;
+        // 곡괭이 참조 — MISceneContext에서 InjectPickaxe()로 주입
+        private MIPickaxeController _pickaxe;
+        private MIPickaxeConfig _pickaxeConfig;
 
         [Title("카메라")]
         [Required]
@@ -82,6 +80,19 @@ namespace MI.Presentation.World.Stage
         private int _lastReportedDepth = -1;
 
         #endregion Runtime Modules
+
+        #region Public API
+
+        /// <summary>
+        /// MISceneContext에서 호출. 곡괭이 매니저로부터 메인 곡괭이 참조를 주입받는다.
+        /// </summary>
+        public void InjectPickaxe(MIPickaxeController mainPickaxe, MIPickaxeConfig mainConfig)
+        {
+            _pickaxe = mainPickaxe;
+            _pickaxeConfig = mainConfig;
+        }
+
+        #endregion Public API
 
         #region Unity Lifecycle
 

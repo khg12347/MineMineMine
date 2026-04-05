@@ -35,6 +35,10 @@ namespace MI.Domain.GameRoot
 
             MISceneContext.Current.InitializeSceneContext();
         }
+        private void Start()
+        {
+            
+        }
 
         private void OnDestroy()
         {
