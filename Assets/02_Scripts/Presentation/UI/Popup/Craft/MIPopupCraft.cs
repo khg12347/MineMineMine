@@ -178,6 +178,18 @@ namespace MI.Presentation.UI.Popup.Craft
             }
         }
 
+        public void OnEquipSlotSelected(EEquipSlot slot, EPickaxeType type)
+        {
+            if (type == EPickaxeType.None) return;
+            _selectedType = type;
+            _pickaxeEquipment.Equip(_selectedType, slot);
+
+            // 선택 완료 후 UI 갱신
+            foreach (var equipSlot in _equipSlots)
+            {
+                equipSlot.SetSelected(false);
+            }
+        }
         /// <summary>정보 버튼 클릭 — 현재 미구현</summary>
         private void OnInfoClicked()
         {

@@ -54,21 +54,21 @@ MonoBehaviour:
     Currencies: []
   - PickaxeType: 7
     Materials:
-    - ItemType: 0
+    - ItemType: 120
       Amount: 500
     Currencies: []
   - PickaxeType: 8
     Materials:
-    - ItemType: 0
+    - ItemType: 120
       Amount: 1000
     Currencies: []
   - PickaxeType: 9
     Materials:
-    - ItemType: 0
+    - ItemType: 120
       Amount: 5000
     Currencies: []
   - PickaxeType: 10
     Materials:
-    - ItemType: 0
+    - ItemType: 120
       Amount: 10000
     Currencies: []
