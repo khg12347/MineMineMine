@@ -37,6 +37,9 @@ namespace MI.Presentation.UI.Popup.Craft
             _equippedType = equipped;
 
             SetSelected(false);
+
+            // 리스너 초기화 (중복 등록 방지)
+            _button.onClick.RemoveAllListeners();
             _button.onClick.AddListener(() => onClickAction?.Invoke(_slot));
             _button.onClick.AddListener(() => SetSelected(false));
 

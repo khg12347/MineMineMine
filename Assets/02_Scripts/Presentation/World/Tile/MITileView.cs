@@ -2,7 +2,6 @@
 using MI.Core.Pool;
 using MI.Data.Config;
 using MI.Domain.Tile;
-using MI.Presentation.World.VFX;
 using UnityEngine;
 
 namespace MI.Presentation.World.Tile
@@ -96,7 +95,7 @@ namespace MI.Presentation.World.Tile
             // TODO: 파괴 이펙트 재생, 사운드 재생
             if (_fxDebris != null)
             {
-                MIPoolManager.Instance.Get<MIFxAutoFade>(_fxDebris, transform.position, Quaternion.identity);
+                MIPoolManager.Instance.Get<MIReturnToPoolWhenDisable>(_fxDebris, transform.position, Quaternion.identity);
             }
         }
     }

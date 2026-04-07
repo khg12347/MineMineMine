@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MI.Core.MIGameRoot
   _pickaxeCraftConfig: {fileID: 11400000, guid: 52f3f6d632f774907a628a6286ecc17d, type: 2}
+  _pickaxeSpecDataTable: {fileID: 11400000, guid: 2e0dd6e4b0141924d87925569f0bc009, type: 2}
 --- !u!4 &1011583920
 Transform:
   m_ObjectHideFlags: 0

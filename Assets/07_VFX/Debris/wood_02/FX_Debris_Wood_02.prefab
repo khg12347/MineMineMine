@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2100680340974865531}
   - component: {fileID: 2047505788765215677}
   - component: {fileID: 794816918846837513}
-  - component: {fileID: 2525974608947393002}
+  - component: {fileID: 4559416231729456323}
   m_Layer: 0
   m_Name: FX_Debris_Wood_02
   m_TagString: Untagged
@@ -44,7 +44,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 1
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -1359,7 +1359,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -1368,7 +1368,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1383,7 +1383,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 43253
         atime1: 65535
         atime2: 0
         atime3: 0
@@ -1392,7 +1392,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -4898,7 +4898,7 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
---- !u!114 &2525974608947393002
+--- !u!114 &4559416231729456323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4909,31 +4909,4 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc186c141f10ba14783da3101c11b3e8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.World.VFX.MIFxAutoFade
-  _initialDelay: 1
-  _fadeDuration: 0.5
-  _fadeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 2
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0.0038449685
-      outSlope: 0.0038449685
-      tangentMode: 0
-      weightedMode: 1
-      inWeight: 0.6192385
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _renderer: {fileID: 794816918846837513}
+  m_EditorClassIdentifier: Assembly-CSharp::MI.Core.Pool.MIReturnToPoolWhenDisable

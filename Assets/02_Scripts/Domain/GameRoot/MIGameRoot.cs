@@ -1,5 +1,6 @@
 ﻿using MI.Core.ServiceLocator;
 using MI.Data.Config;
+using MI.Domain.Pickaxe;
 using MI.Domain.Pickaxe.Craft;
 using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.User;
@@ -14,6 +15,7 @@ namespace MI.Domain.GameRoot
     public class MIGameRoot : MonoBehaviour
     {
         [SerializeField] private MIPickaxeCraftConfig _pickaxeCraftConfig;
+        [SerializeField] private MIPickaxeSpecDataTable _pickaxeSpecDataTable;
 
         private MIUserState _userState;
         private MIPickaxeCraftService _craftService;
@@ -33,11 +35,12 @@ namespace MI.Domain.GameRoot
                 _userState.PickaxeInventory);
             MIServiceLocator.Register<IMIPickaxeCraftService>(_craftService);
 
-            MISceneContext.Current.InitializeSceneContext();
-        }
-        private void Start()
-        {
-            
+            // 기본 곡괭이 지급 (Domain 로직)
+            GrantDefaultPickaxe();
+
+            // 씬 초기화 (인터페이스를 통해 Presentation에 위임)
+            var sceneInitializer = MIServiceLocator.Get<IMISceneInitializer>();
+            sceneInitializer.InitializeSceneContext();
         }
 
         private void OnDestroy()
@@ -50,5 +53,26 @@ namespace MI.Domain.GameRoot
         }
 
         #endregion Lifecycle
+
+        #region Helper
+
+        /// <summary>기본 곡괭이를 지급하고 Main 슬롯에 장착한다. 이미 보유 중이면 스킵.</summary>
+        private void GrantDefaultPickaxe()
+        {
+            if (_pickaxeSpecDataTable == null) return;
+
+            var defaultType = _pickaxeSpecDataTable.DefaultPickaxeType;
+            if (defaultType == EPickaxeType.None) return;
+            if (_userState.PickaxeInventory.IsOwned(defaultType)) return;
+
+            var stats = _pickaxeSpecDataTable.GetStats(defaultType);
+            if (!stats.HasValue) return;
+
+            var instance = FPickaxeInstance.Create(defaultType, stats.Value);
+            _userState.PickaxeInventory.AddPickaxe(instance);
+            _userState.PickaxeInventory.Equip(defaultType, EEquipSlot.Main);
+        }
+
+        #endregion Helper
     }
 }

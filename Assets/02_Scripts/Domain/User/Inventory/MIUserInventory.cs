@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using MI.Utility;
 
 namespace MI.Domain.UserState.Inventory
@@ -10,6 +11,7 @@ namespace MI.Domain.UserState.Inventory
     public class MIUserInventory : IMIItemDropEventListener
     {
         private readonly Dictionary<EItemType, int> _items = new();
+        private (EItemType Type, int Amount)? _lastConsume; // 가장 최근 드랍된 아이템 기록 (인벤토리 갱신 시 팝업 띄우기용)
 
         public event Action<Dictionary<EItemType, int>> OnInventoryUpdated;
 
@@ -21,8 +23,8 @@ namespace MI.Domain.UserState.Inventory
         public void OnItemDropped(FDropItemData data)
         {
             AddItem(data.ItemType, data.Amount);
+            
         }
-
         #endregion Event Listener
 
         #region Public API
@@ -49,9 +51,20 @@ namespace MI.Domain.UserState.Inventory
 
             _items[type] = current - amount;
             if (_items[type] <= 0) _items.Remove(type);
+
+            // 가장 최근 소비 기록 업데이트 (실패시 롤백용)
+            _lastConsume = (type, amount);
+
             OnInventoryUpdated?.Invoke(_items);
             MILog.Log($"[MIUserInventory] {type} -{amount} (총 {GetAmount(type)})");
             return true;
+        }
+
+        public void RollbackLastConsume()
+        {
+            if (_lastConsume == null) return;
+
+            AddItem(_lastConsume.Value.Type, _lastConsume.Value.Amount);
         }
 
         #endregion Public API

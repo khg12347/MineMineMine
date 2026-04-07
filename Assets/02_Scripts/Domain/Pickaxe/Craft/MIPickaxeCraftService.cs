@@ -98,6 +98,8 @@ namespace MI.Domain.Pickaxe.Craft
                 for (int i = 0; i < cost.Materials.Length; i++)
                 {
                     var mat = cost.Materials[i];
+
+                    //CanCraft에서 이미 검증했으므로 TryConsume은 실패하지 않음이 보장됨
                     _inventory.TryConsume(mat.ItemType, mat.Amount);
                 }
             }

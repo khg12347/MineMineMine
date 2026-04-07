@@ -28,6 +28,7 @@
 - **스프라이트**: 2D Animation / Aseprite / PSD Importer
 - **에디터 확장**: Odin Inspector (`Assets/Plugins/Sirenix/`) — `[ShowInInspector]`, `[Button]` 등 활용
 - **세이브/로드**: Easy Save 3 (`Assets/Plugins/`) — `.es3` 파일 기반 저장
+- **비동기**: UniTask (`com.cysharp.unitask`) — 코루틴 대신 `async/await` 기반 비동기 처리
 - **테스트**: Unity Test Framework 1.6.0 — PlayMode / EditMode 테스트
 - **언어**: C# (.NET 기반)
 
@@ -321,9 +322,131 @@ private const int TILE_OFFSET = 100;
 - `[SerializeField]`로 인스펙터 노출 (`public` 최소화)
 - ScriptableObject(`FXxxConfig` 형태)로 데이터/로직 분리 — `Assets/03_Resources/03_Datas/` 에 저장
 - Odin Inspector 속성(`[ShowInInspector]`, `[Button]`, `[FoldoutGroup]` 등)으로 에디터 편의성 향상
-- 코루틴보다 `async/await` 우선 고려
+- **코루틴(`IEnumerator`, `StartCoroutine`) 사용 금지** — 모든 비동기 처리는 **UniTask** 기반 `async UniTaskVoid` / `async UniTask` 사용
 - 코드 주석은 **한국어**로 작성
 - access modifier(`private`, `public`, `protected`)는 항상 명시적으로 작성
+
+### SOLID 원칙
+
+본 프로젝트는 SOLID 원칙을 따릅니다. Unity 환경에 맞게 실용적으로 적용합니다.
+
+#### S — 단일 책임 원칙 (Single Responsibility)
+
+한 클래스는 하나의 책임만 가집니다. "변경 이유가 2개 이상이면 분리하라."
+
+| 역할 | 클래스 | 책임 |
+|------|--------|------|
+| 재화 관리 | `MIUserWallet` | 재화 추가/소모/조회 |
+| 재료 관리 | `MIUserInventory` | 아이템 추가/소모/조회 |
+| 제작 로직 | `MIPickaxeCraftService` | 조건 검증 + 재료·재화 소모 + 보유 등록 |
+| 제작 UI | `MIPopupCraft` | 슬롯 표시 + 사용자 입력 처리 |
+
+```csharp
+// ✅ 책임 분리
+public class MIUserWallet { }            // 재화만 관리
+public class MIUserInventory { }         // 재료만 관리
+public class MIPickaxeCraftService { }   // 제작 로직만 담당
+
+// ❌ 하나의 클래스에 재화 + 재료 + 제작을 모두 넣지 않음
+```
+
+#### O — 개방-폐쇄 원칙 (Open/Closed)
+
+기존 코드를 수정하지 않고 확장할 수 있도록 설계합니다.
+확장 포인트는 **이벤트**와 **인터페이스**로 제공합니다.
+
+```csharp
+// ✅ 이벤트를 통한 확장 — 강화 시스템은 기존 코드 수정 없이 구독만 추가
+event Action<EPickaxeType> OnPickaxeCrafted;
+
+// ✅ 인터페이스를 통한 확장 — 새 알고리즘 추가 시 기존 코드 수정 불필요
+public interface IMITileAlgorithm { }
+public class MIFloodFillAlgorithm : IMITileAlgorithm { }
+// 새 알고리즘 추가: public class MIPerlinNoiseAlgorithm : IMITileAlgorithm { }
+```
+
+#### L — 리스코프 치환 원칙 (Liskov Substitution)
+
+하위 타입은 상위 타입을 대체할 수 있어야 합니다.
+`virtual`/`override` 시 부모의 계약(사전·사후 조건)을 깨지 않습니다.
+
+```csharp
+// ✅ MIPopupBase의 계약을 유지하며 확장
+public class MIPopupCraft : MIPopupBase
+{
+    protected override void OpenPopup()
+    {
+        base.OpenPopup();        // 부모 계약 유지 (gameObject 활성화)
+        RefreshSlots();          // 추가 동작
+    }
+}
+
+// ❌ 부모 동작을 무시하거나 예외를 던지지 않음
+```
+
+#### I — 인터페이스 분리 원칙 (Interface Segregation)
+
+클라이언트가 사용하지 않는 메서드에 의존하지 않도록 인터페이스를 분리합니다.
+**조회(Query)와 명령(Command)**을 분리하는 것이 기본 전략입니다.
+
+```csharp
+// ✅ 조회 전용 — Presentation 레이어에서 사용
+public interface IMIPickaxeInventory
+{
+    bool IsOwned(EPickaxeType type);
+    EPickaxeType GetEquipped(EEquipSlot slot);
+}
+
+// ✅ 명령 전용 — 장착/해제 로직에서만 사용
+public interface IMIPickaxeEquipment
+{
+    bool Equip(EPickaxeType type, EEquipSlot slot);
+    void Unequip(EEquipSlot slot);
+}
+
+// ✅ 하나의 구현체가 두 인터페이스를 동시에 구현
+public class MIPickaxeInventory : IMIPickaxeInventory, IMIPickaxeEquipment { }
+```
+
+#### D — 의존성 역전 원칙 (Dependency Inversion)
+
+상위 모듈(Domain)은 하위 모듈(Presentation)에 의존하지 않습니다.
+둘 다 **인터페이스(추상)**에 의존합니다.
+
+```
+[Domain] IMIPickaxeCraftService ← 인터페이스 정의
+[Domain] MIPickaxeCraftService  → 구현
+[Presentation] MIPopupCraft     → IMIPickaxeCraftService에 의존 (구체 클래스 모름)
+```
+
+```csharp
+// ✅ Presentation은 인터페이스에 의존
+public class MIPopupCraft : MIPopupBase
+{
+    private IMIPickaxeCraftService _craftService;    // 인터페이스
+
+    public void Initialize(IMIPickaxeCraftService craftService, ...)
+    {
+        _craftService = craftService;                // 외부에서 주입
+    }
+}
+
+// ✅ ServiceLocator를 통한 등록/조회
+MIServiceLocator.Register<IMIPickaxeCraftService>(_craftService);
+var service = MIServiceLocator.Get<IMIPickaxeCraftService>();
+```
+
+**레이어 의존 방향** (단방향):
+
+```
+Presentation → Domain → (Data 참조만)
+     ↓
+Infrastructure
+```
+
+- `Domain`은 `Presentation`을 참조하지 않음
+- `Presentation`은 `Domain`의 인터페이스에만 의존
+- `Data`(Config/SO)는 순수 데이터 컨테이너로 어디서든 참조 가능
 
 ### 주석 스타일
 
@@ -455,7 +578,8 @@ using System.Collections.Generic;
 using MI.Core;
 using MI.Domain.Tile;
 
-// 3. 서드파티 (Odin 등)
+// 3. 서드파티 (UniTask, Odin 등)
+using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 
 // 4. Unity 계열
@@ -497,6 +621,49 @@ private static readonly int s_tShake = Animator.StringToHash("tShake");
 // ❌
 _animator.SetTrigger("tShake");  // 문자열 직접 사용 금지
 ```
+
+### 비동기 패턴 (UniTask)
+
+코루틴 대신 **UniTask**를 사용합니다. `IEnumerator`, `StartCoroutine`, `StopCoroutine`, `yield return`은 사용하지 않습니다.
+
+| 코루틴 (❌ 금지) | UniTask (✅ 사용) |
+|------|------|
+| `IEnumerator Method()` | `async UniTaskVoid Method()` 또는 `async UniTask Method()` |
+| `yield return new WaitForSeconds(1f)` | `await UniTask.Delay(TimeSpan.FromSeconds(1f))` |
+| `yield return new WaitForSecondsRealtime(1f)` | `await UniTask.Delay(TimeSpan.FromSeconds(1f), ignoreTimeScale: true)` |
+| `yield return null` | `await UniTask.Yield()` |
+| `yield return new WaitUntil(() => cond)` | `await UniTask.WaitUntil(() => cond)` |
+| `yield return new WaitForEndOfFrame()` | `await UniTask.WaitForEndOfFrame()` |
+| `yield return new WaitForFixedUpdate()` | `await UniTask.WaitForFixedUpdate()` |
+| `StartCoroutine(Method())` | `Method().Forget()` |
+
+```csharp
+// ✅ UniTask — fire-and-forget (반환값 불필요)
+private async UniTaskVoid FadeOutAndDestroyAsync()
+{
+    await UniTask.Delay(TimeSpan.FromSeconds(_initialDelay));
+    // ... 페이드 처리
+    Destroy(gameObject);
+}
+
+// ✅ 호출부
+private void Start() => FadeOutAndDestroyAsync().Forget();
+
+// ✅ UniTask — 완료 대기가 필요한 경우
+private async UniTask LoadStageAsync()
+{
+    await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+    // ... 스테이지 로드
+}
+
+// ❌ 코루틴 사용 금지
+private IEnumerator FadeOutCoroutine() { yield return new WaitForSeconds(1f); }
+```
+
+- `using Cysharp.Threading.Tasks;` 네임스페이스 사용
+- 반환값이 필요 없는 fire-and-forget 패턴: `async UniTaskVoid` + `.Forget()`
+- 완료를 `await`해야 하는 경우: `async UniTask` / `async UniTask<T>`
+- `CancellationToken`은 `this.GetCancellationTokenOnDestroy()`로 GameObject 수명에 연동 권장
 
 ### Null 체크
 

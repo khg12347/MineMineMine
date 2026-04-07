@@ -17,7 +17,14 @@ MonoBehaviour:
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 090000000d000000
   supportSerializedTypes:
-  - TypeName: System.Collections.Generic.Dictionary`2[[MI.Domain.Inventory.EItemType,
+  - TypeName: System.Char, mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[System.Char, mscorlib],[UnityEngine.Sprite,
+      UnityEngine.CoreModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[MI.Domain.UserState.Inventory.EItemType,
       Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     IsCustom: 0
     Emit: 1
@@ -31,12 +38,21 @@ MonoBehaviour:
       mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[MI.Domain.Pickaxe.EPickaxeType,
+      Assembly-CSharp],[MI.Data.Config.MIPickaxeConfig, Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[MI.Domain.Pickaxe.EPickaxeType,
+      Assembly-CSharp],[MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.ETileType,
       Assembly-CSharp],[System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
       Assembly-CSharp]], mscorlib]], mscorlib
     IsCustom: 0
     Emit: 1
-  - TypeName: MI.Domain.Inventory.EItemType, Assembly-CSharp
+  - TypeName: MI.Domain.UserState.Inventory.EItemType, Assembly-CSharp
     IsCustom: 0
     Emit: 1
   - TypeName: MI.Domain.Tile.EMineralDensity, Assembly-CSharp
@@ -45,7 +61,7 @@ MonoBehaviour:
   - TypeName: MI.Domain.Tile.EMineralType, Assembly-CSharp
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Inventory.EItemType,
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.UserState.Inventory.EItemType,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
@@ -57,8 +73,15 @@ MonoBehaviour:
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Pickaxe.EPickaxeType,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Tile.ETileType,
       Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: MI.Domain.Pickaxe.EPickaxeType, Assembly-CSharp
     IsCustom: 0
     Emit: 1
   - TypeName: MI.Domain.Tile.ETileType, Assembly-CSharp
@@ -76,7 +99,15 @@ MonoBehaviour:
   - TypeName: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
     IsCustom: 0
     Emit: 1
-  - TypeName: System.Collections.Generic.IEqualityComparer`1[[MI.Domain.Inventory.EItemType,
+  - TypeName: System.Collections.Generic.GenericEqualityComparer`1[[System.Char,
+      mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[System.Char, mscorlib]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[MI.Domain.UserState.Inventory.EItemType,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
@@ -85,6 +116,10 @@ MonoBehaviour:
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.IEqualityComparer`1[[MI.Domain.Tile.EMineralType,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[MI.Domain.Pickaxe.EPickaxeType,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
@@ -99,6 +134,15 @@ MonoBehaviour:
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: MI.Data.Config.MIPickaxeConfig, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
   - TypeName: UnityEngine.Sprite, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.String, mscorlib
     IsCustom: 0
     Emit: 1

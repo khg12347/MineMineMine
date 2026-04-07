@@ -83,6 +83,8 @@ namespace MI.Presentation.UI.Popup.Craft
         public void OnBeginDrag(PointerEventData eventData)
         {
             // 고스트 아이콘 예외처리
+            if(!_isOwned) return; // 보유하지 않은 아이템은 드래그 불가
+
             if (_ghostIcon != null) Destroy(_ghostIcon);
             
             // 고스트 아이콘 생성

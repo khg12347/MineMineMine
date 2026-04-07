@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using MI.Data.UIRes;
 using MI.Domain.UserState.Inventory;
 using MI.Presentation.UI.Interface;
@@ -10,7 +11,7 @@ using UnityEngine.UI;
 namespace MI.Presentation.UI.HUD.Items
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public class MIDropItemViewer : MonoBehaviour,  IMIItemViewer
+    public class MIDropItemViewer : MonoBehaviour, IMIItemViewer
     {
         [SerializeField] private Image _imageIcon;
         [SerializeField] private TextMeshProUGUI _text;
@@ -22,42 +23,51 @@ namespace MI.Presentation.UI.HUD.Items
         private CanvasGroup _canvasGroup;
 
         public event Action<GameObject> OnHideAction;
-        
+
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
         }
         private void OnEnable()
         {
-            StartCoroutine(ShowViwerCo());
+            //StartCoroutine(ShowViwerCo());
+            ShowViewerAsync().Forget();
         }
-
-        private IEnumerator ShowViwerCo()
+        private async UniTask ShowViewerAsync()
         {
-            _canvasGroup.alpha = 1f;
-            yield return new WaitForSecondsRealtime(_hideDuration);
-            var alpha = 1f;
-            
-            while (alpha > 0f)
+            var token = this.GetCancellationTokenOnDestroy();
+
+            try
             {
-                alpha -= Time.deltaTime / _hideDuration;
-                _canvasGroup.alpha = alpha;
-                yield return null;
+                _canvasGroup.alpha = 1f;
+                await UniTask.Delay(TimeSpan.FromSeconds(_initialViewDelay), cancellationToken: token);
+                var alpha = 1f;
+
+                while (alpha > 0f)
+                {
+                    alpha -= Time.deltaTime / _hideDuration;
+                    _canvasGroup.alpha = alpha;
+                    await UniTask.Yield(cancellationToken: token);
+                }
+                OnHideAction?.Invoke(gameObject);
+                OnHideAction = null;
+
             }
-            OnHideAction?.Invoke(gameObject);
-            OnHideAction = null;
+            catch (OperationCanceledException)
+            {
+                // 파괴시 정상 취소
+            }
         }
-        
         #region IMIItemViewer Implementation
         public void SetIconDataTable(MIItemIconDataTable dataTable)
         {
             _iconDataTable = dataTable;
         }
-        
+
         public void UpdateItemViewer(EItemType itemType, int amount)
         {
             if (itemType == EItemType.None || amount <= 0) return;
-            
+
             _imageIcon.sprite = _iconDataTable.GetItemIcon(itemType);
             _text.text = string.Format(_textFormat, amount);
         }

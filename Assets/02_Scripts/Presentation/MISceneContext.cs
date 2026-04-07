@@ -1,9 +1,10 @@
 ﻿using MI.Core.ServiceLocator;
 using MI.Data.Config;
 using MI.Data.UIRes;
-using MI.Domain.Pickaxe;
+using MI.Domain.GameRoot;
 using MI.Domain.Pickaxe.Craft;
 using MI.Domain.Pickaxe.Equipment;
+using MI.Domain.User;
 using MI.Presentation.UI;
 using MI.Presentation.UI.HUD.Wallet;
 using MI.Presentation.UI.Popup.Craft;
@@ -13,9 +14,13 @@ using MI.Presentation.World.Stage;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MI.Domain.GameRoot
+namespace MI.Presentation
 {
-    public class MISceneContext : MonoBehaviour
+    /// <summary>
+    /// 씬 Composition Root. 모든 Presentation 컴포넌트에 Domain 의존성을 주입한다.
+    /// Domain 레이어의 IMISceneInitializer를 구현하여 역방향 의존을 제거한다.
+    /// </summary>
+    public class MISceneContext : MonoBehaviour, IMISceneInitializer
     {
         [Header("UI")]
         [SerializeField] private MIPopupInventory _popupInventory;
@@ -52,21 +57,26 @@ namespace MI.Domain.GameRoot
         private void Awake()
         {
             Current = this;
+            MIServiceLocator.Register<IMISceneInitializer>(this);
         }
 
         private void OnDestroy()
         {
             if (Current == this)
+            {
+                MIServiceLocator.Unregister<IMISceneInitializer>();
                 Current = null;
+            }
         }
 
         #endregion Unity Events
 
-        #region Public API
+        #region IMISceneInitializer
 
+        /// <inheritdoc/>
         public void InitializeSceneContext()
         {
-            var userState = MIServiceLocator.Get<User.MIUserState>();
+            var userState = MIServiceLocator.Get<MIUserState>();
 
             // 인벤토리 팝업
             _popupInventory.InjectResources(_numberResources, _itemIconDataTable);
@@ -83,9 +93,6 @@ namespace MI.Domain.GameRoot
                 var craftService = MIServiceLocator.Get<IMIPickaxeCraftService>();
                 _popupCraft.Initialize(craftService, userState.PickaxeInventory, userState.PickaxeInventory, _pickaxeCraftConfig, userState.Inventory);
             }
-
-            // 기본 곡괭이 지급
-            GrantDefaultPickaxe(userState);
 
             // 곡괭이 매니저 생성 + 초기화
             var mainCamera = UnityEngine.Camera.main;
@@ -106,27 +113,6 @@ namespace MI.Domain.GameRoot
             }
         }
 
-        #endregion Public API
-
-        #region Helper
-
-        /// <summary>기본 곡괭이를 지급하고 Main 슬롯에 장착한다. 이미 보유 중이면 스킵.</summary>
-        private void GrantDefaultPickaxe(User.MIUserState userState)
-        {
-            if (_pickaxeSpecDataTable == null) return;
-
-            var defaultType = _pickaxeSpecDataTable.DefaultPickaxeType;
-            if (defaultType == EPickaxeType.None) return;
-            if (userState.PickaxeInventory.IsOwned(defaultType)) return;
-
-            var stats = _pickaxeSpecDataTable.GetStats(defaultType);
-            if (!stats.HasValue) return;
-
-            var instance = FPickaxeInstance.Create(defaultType, stats.Value);
-            userState.PickaxeInventory.AddPickaxe(instance);
-            userState.PickaxeInventory.Equip(defaultType, EEquipSlot.Main);
-        }
-
-        #endregion Helper
+        #endregion IMISceneInitializer
     }
 }

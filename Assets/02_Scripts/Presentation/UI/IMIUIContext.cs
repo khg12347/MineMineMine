@@ -2,8 +2,7 @@
 
 namespace MI.Presentation.UI
 {
-    // ���� UI ���ؽ�Ʈ ��� ������������������������������������������������������������������������������������������������
-
+    //TODO: 삭제 예정
     public interface IMIUIContext
     {
         IMIHUD HUD { get; }

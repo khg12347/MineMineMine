@@ -15,20 +15,24 @@ namespace MI.Presentation.UI.HUD.Status
         [SerializeField] private MINumberShaker[] _numbers; // 레벨 숫자 이미지 배열 (최대 3자리)
         [SerializeField] private MINumberShaker[] _depthNumbers; // 깊이 숫자 이미지 배열 (최대 7자리)
 
+        private MIStatusManager _statusManager;
+
         private void Start()
         {
-            _expSlider.value = MIStatusManager.Instance.ExpRatio;
-            var level = MIStatusManager.Instance.CurrentLevel;
+            _statusManager = MIStatusManager.Instance;
+
+            _expSlider.value = _statusManager.ExpRatio;
+            var level = _statusManager.CurrentLevel;
             UpdateLevelDisplay(level);
 
-            MIStatusManager.Instance.RegisterListener(this);
+            _statusManager.RegisterListener(this);
         }
 
         private void OnDestroy()
         {
             if(MIAppLifeTime.IsQuitting) return;
 
-            MIStatusManager.Instance.UnregisterListener(this);
+            _statusManager.UnregisterListener(this);
         
         }
 
