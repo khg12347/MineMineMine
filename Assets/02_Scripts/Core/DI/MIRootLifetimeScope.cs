@@ -71,7 +71,7 @@ namespace MI.Core.DI
             var stats = _pickaxeData.SpecDataTable.GetStats(defaultType);
             if (!stats.HasValue) return;
 
-            var instance = FPickaxeInstance.Create(defaultType, stats.Value);
+            var instance = FPickaxeInstance.Create(defaultType, stats.Value, _pickaxeData.EnhanceConfig);
             userState.PickaxeInventory.AddPickaxe(instance);
             userState.PickaxeInventory.Equip(defaultType, EEquipSlot.Main);
         }

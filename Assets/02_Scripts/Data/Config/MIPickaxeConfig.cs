@@ -19,6 +19,15 @@ namespace MI.Data.Config
         [InfoBox("자루 부위 충돌 시 적용되는 데미지")]
         [SerializeField] private int _handleDamage = 1;
 
+        [Title("크리티컬")]
+        [InfoBox("치명타 확률 (0.0 ~ 1.0)")]
+        [PropertyRange(0f, 1f)]
+        [SerializeField] private float _criticalChance = 0f;
+
+        [InfoBox("치명타 데미지 배율 (1.0 이상)")]
+        [PropertyRange(1f, 10f)]
+        [SerializeField] private float _criticalDamageMultiplier = 1.5f;
+
         [Title("물리")]
         [PropertyRange(0.5f, 10f)]
         [SerializeField] private float _gravityScale = 3f;
@@ -57,6 +66,8 @@ namespace MI.Data.Config
             {
                 HeadDamage = _headDamage,
                 HandleDamage = _handleDamage,
+                CriticalChance = _criticalChance,
+                CriticalDamageMultiplier = _criticalDamageMultiplier,
                 GravityScale = _gravityScale,
                 Bounciness = _bounciness,
                 Friction = _friction,

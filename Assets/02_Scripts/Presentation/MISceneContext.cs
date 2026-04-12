@@ -1,3 +1,4 @@
+using System;
 using MI.Data.Config;
 using MI.Data.UIRes;
 using MI.Domain.Pickaxe.Craft;
@@ -9,7 +10,7 @@ using MI.Presentation.UI.Popup.Craft;
 using MI.Presentation.UI.Popup.Inventory;
 using MI.Presentation.World.Pickaxe;
 using MI.Presentation.World.Stage;
-
+using MI.Utility;
 using VContainer;
 
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace MI.Presentation
     /// </summary>
     public class MISceneContext : MonoBehaviour
     {
+        [SerializeField] private Vector2Int _testBit;
         [Header("UI")]
         [SerializeField] private MIPopupInventory _popupInventory;
         [SerializeField] private MIWalletHUD _walletHUD;
@@ -120,5 +122,6 @@ namespace MI.Presentation
         }
 
         #endregion Scene Initialization
+        
     }
 }

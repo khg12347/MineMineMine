@@ -16,7 +16,7 @@ namespace MI.Presentation.World.Pickaxe
         [SerializeField] private Collider2D colliderHead;
         [SerializeField] private Collider2D colliderHandle;
         private Rigidbody2D _rb;
-        private FPickaxeStats _stats;
+        private FResolvedPickaxeStats _resolvedStats;
         private PhysicsMaterial2D _bounceHandleMaterial;
         private PhysicsMaterial2D _bounceHeadMaterial;
         private Camera _camera;
@@ -43,7 +43,7 @@ namespace MI.Presentation.World.Pickaxe
         /// <summary>카메라 참조를 설정한다.</summary>
         public void SetCamera(Camera cam) => _camera = cam;
 
-        /// <summary>외부에서 Config를 주입하여 물리 설정을 재초기화한다.</summary>
+        /// <summary>외부에서 Config를 주입하여 물리 설정을 재초기화한다. (Inspector/StageOrchestrator 호환용)</summary>
         public void ApplyConfig(MIPickaxeConfig config)
         {
             _config = config;
@@ -51,29 +51,49 @@ namespace MI.Presentation.World.Pickaxe
             InitializeFromConfig();
         }
 
+        /// <summary>강화 적용된 최종 스탯과 스프라이트로 물리 설정을 재초기화한다.</summary>
+        public void ApplyResolvedStats(FResolvedPickaxeStats resolved, Sprite sprite)
+        {
+            _resolvedStats = resolved;
+            if (_rb == null) _rb = GetComponent<Rigidbody2D>();
+            _pickaxeRenderer.sprite = sprite;
+            ApplyPhysics();
+        }
+
         private void FixedUpdate()
         {
             _lastLinearVelocity = _rb.linearVelocity;
         }
 
+        /// <summary>Inspector에 할당된 Config 기반 초기화. BaseStats를 ResolvedStats로 래핑한다.</summary>
         private void InitializeFromConfig()
         {
-            _stats = _config.CreateStats();
-            _pickaxeRenderer.sprite = _config.SpritePickaxe;
+            var baseStats = _config.CreateStats();
+            // Config 직접 사용 시 강화 미적용 — BaseStats를 그대로 ResolvedStats로 변환
+            _resolvedStats = new MIPickaxeStatsBuilder()
+                .SetBase(FPickaxeInstance.Create(baseStats))
+                .Build();
 
+            _pickaxeRenderer.sprite = _config.SpritePickaxe;
+            ApplyPhysics();
+        }
+
+        /// <summary>현재 _resolvedStats를 물리 엔진에 반영한다.</summary>
+        private void ApplyPhysics()
+        {
             // 중력 설정
-            _rb.gravityScale = _stats.GravityScale;
+            _rb.gravityScale = _resolvedStats.GravityScale;
 
             // PhysicsMaterial2D 생성 및 탄력 적용
             _bounceHandleMaterial = new PhysicsMaterial2D("PickaxeBounce")
             {
-                bounciness = _stats.Bounciness / 2f,
-                friction = _stats.Friction
+                bounciness = _resolvedStats.Bounciness / 2f,
+                friction = _resolvedStats.Friction
             };
             _bounceHeadMaterial = new PhysicsMaterial2D("PickaxeHeadBounce")
             {
-                bounciness = _stats.Bounciness,
-                friction = _stats.Friction
+                bounciness = _resolvedStats.Bounciness,
+                friction = _resolvedStats.Friction
             };
 
             // 자식 오브젝트의 모든 콜라이더에 물리 재질 적용
@@ -96,7 +116,7 @@ namespace MI.Presentation.World.Pickaxe
         {
             float camTopY = cam.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0f)).y;
             float spawnX = cam.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0f)).x;
-            transform.position = new Vector3(spawnX, camTopY + _stats.SpawnOffsetY, 0f);
+            transform.position = new Vector3(spawnX, camTopY + _resolvedStats.SpawnOffsetY, 0f);
             _rb.linearVelocity = Vector2.zero;
         }
 
@@ -110,7 +130,7 @@ namespace MI.Presentation.World.Pickaxe
                 return;
 
             // 부위에 따라 데미지 결정
-            int damage = part == EPickaxePart.Head ? _stats.HeadDamage : _stats.HandleDamage;
+            int damage = part == EPickaxePart.Head ? _resolvedStats.HeadDamage : _resolvedStats.HandleDamage;
 
             // 충돌 지점: 첫 번째 접촉점, 없으면 충돌 오브젝트 위치로 fallback
             Vector3 hitPoint = collision.contacts.Length > 0
@@ -122,7 +142,7 @@ namespace MI.Presentation.World.Pickaxe
 
             if (result == EBreakResult.Destroyed)
             {
-                if (_stats.BounceOnBreak)
+                if (_resolvedStats.BounceOnBreak)
                 {
                     // 튕김 방향: 충돌 대상으로부터 멀어지는 방향 (없으면 위쪽 fallback)
                     Vector2 bounceDir = collision.transform != null
@@ -132,13 +152,13 @@ namespace MI.Presentation.World.Pickaxe
 
                     // 파괴 시 강화 바운스: BreakBounceForce × 타일 BounceMultiplier
                     _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0f);
-                    _rb.AddForce(bounceDir * _stats.BreakBounceForce * bounceMultiplier, ForceMode2D.Impulse);
+                    _rb.AddForce(bounceDir * _resolvedStats.BreakBounceForce * bounceMultiplier, ForceMode2D.Impulse);
                 }
                 else// BounceOnBreak == false: 관통하여 그대로 낙하 (위쪽 속도 제거)
                 {
                     if (_rb.linearVelocity.y > 0f)
                     {
-                        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -Mathf.Abs(_lastLinearVelocity.y) - (_stats.GravityScale * _stats.GravityScale));
+                        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, -Mathf.Abs(_lastLinearVelocity.y) - (_resolvedStats.GravityScale * _resolvedStats.GravityScale));
                     }
                 }
             }

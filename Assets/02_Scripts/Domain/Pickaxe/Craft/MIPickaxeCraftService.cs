@@ -15,6 +15,8 @@ namespace MI.Domain.Pickaxe.Craft
     public class MIPickaxeCraftService : IMIPickaxeCraftService
     {
         private readonly MIPickaxeCraftConfig _craftConfig;
+        private readonly MIPickaxeSpecDataTable _specDataTable;
+        private readonly MIEnhanceConfig _enhanceConfig;
         private readonly MIUserInventory _inventory;
         private readonly MIUserWallet _wallet;
         private readonly MIPickaxeInventory _pickaxeInventory;
@@ -29,6 +31,8 @@ namespace MI.Domain.Pickaxe.Craft
             MIPickaxeInventory pickaxeInventory)
         {
             _craftConfig = pickaxeData.CraftConfig;
+            _specDataTable = pickaxeData.SpecDataTable;
+            _enhanceConfig = pickaxeData.EnhanceConfig;
             _inventory = inventory;
             _wallet = wallet;
             _pickaxeInventory = pickaxeInventory;
@@ -114,8 +118,11 @@ namespace MI.Domain.Pickaxe.Craft
                 }
             }
 
-            // 기본 스탯은 빈 값으로 생성 (타입별 MIPickaxeConfig SO와의 연결은 추후 확장)
-            var instance = FPickaxeInstance.Create(type, default);
+            // SpecDataTable에서 실제 BaseStats 조회
+            var baseStats = _specDataTable.GetStats(type);
+            if (!baseStats.HasValue) return false;
+
+            var instance = FPickaxeInstance.Create(type, baseStats.Value, _enhanceConfig);
             _pickaxeInventory.AddPickaxe(instance);
 
             MILog.Log($"[MIPickaxeCraftService] {type} 제작 완료");

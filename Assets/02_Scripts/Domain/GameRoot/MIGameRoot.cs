@@ -68,7 +68,8 @@ namespace MI.Domain.GameRoot
             var stats = _pickaxeSpecDataTable.GetStats(defaultType);
             if (!stats.HasValue) return;
 
-            var instance = FPickaxeInstance.Create(defaultType, stats.Value);
+            // MIGameRoot에서는 EnhanceConfig 미사용 — 강화 미적용 기본값으로 생성
+            var instance = FPickaxeInstance.Create(defaultType, stats.Value, null);
             _userState.PickaxeInventory.AddPickaxe(instance);
             _userState.PickaxeInventory.Equip(defaultType, EEquipSlot.Main);
         }

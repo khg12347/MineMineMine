@@ -20,7 +20,12 @@ namespace MI.Data.Config
         [Required]
         [SerializeField] private MIPickaxeSpecDataTable _specDataTable;
 
+        [Title("강화 설정")]
+        [Required]
+        [SerializeField] private MIEnhanceConfig _enhanceConfig;
+
         public MIPickaxeCraftConfig CraftConfig => _craftConfig;
         public MIPickaxeSpecDataTable SpecDataTable => _specDataTable;
+        public MIEnhanceConfig EnhanceConfig => _enhanceConfig;
     }
 }

@@ -7,5 +7,6 @@ namespace MI.Data.Config
     {
         MIPickaxeCraftConfig CraftConfig { get; }
         MIPickaxeSpecDataTable SpecDataTable { get; }
+        MIEnhanceConfig EnhanceConfig { get; }
     }
 }

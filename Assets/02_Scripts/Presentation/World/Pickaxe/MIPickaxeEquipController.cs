@@ -116,7 +116,17 @@ namespace MI.Presentation.World.Pickaxe
             var config = _specDataTable.GetConfig(pickaxeType);
             if (config == null) return;
 
-            controller.ApplyConfig(config);
+            // FPickaxeInstance에서 ResolvedStats 조회 → Controller에 적용
+            var instance = _inventory.GetInstance(pickaxeType);
+            if (instance.HasValue)
+            {
+                controller.ApplyResolvedStats(instance.Value.ResolvedStats, config.SpritePickaxe);
+            }
+            else
+            {
+                // 인벤토리에 없는 경우 (기본 곡괭이 등) Config 기반 fallback
+                controller.ApplyConfig(config);
+            }
 
             if (!controller.gameObject.activeSelf)
                 controller.gameObject.SetActive(true);
