@@ -86,8 +86,8 @@ Assets/
 │   ├── Pool/
 │   │   ├── MIObjectPool.cs
 │   │   └── MIPoolManager.cs            # FPoolConfig 구조체 포함
-│   ├── ServiceLocator/
-│   │   └── MIServiceLocator.cs
+│   ├── DI/
+│   │   └── MIRootLifetimeScope.cs
 │   ├── StateMachine/
 │   │   ├── MIBaseStateMachineBehaviour.cs
 │   │   └── Tile/
@@ -431,9 +431,10 @@ public class MIPopupCraft : MIPopupBase
     }
 }
 
-// ✅ ServiceLocator를 통한 등록/조회
-MIServiceLocator.Register<IMIPickaxeCraftService>(_craftService);
-var service = MIServiceLocator.Get<IMIPickaxeCraftService>();
+// ✅ VContainer를 통한 DI 등록/조회 (MIRootLifetimeScope에서 등록)
+builder.Register<MIPickaxeCraftService>(Lifetime.Singleton)
+    .As<IMIPickaxeCraftService>();
+// Presentation에서는 [Inject] 또는 MISceneContext를 통해 주입받음
 ```
 
 **레이어 의존 방향** (단방향):

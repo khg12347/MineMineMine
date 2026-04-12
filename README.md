@@ -76,41 +76,40 @@ Presentation
 
 이전 프로젝트에서 싱글톤 기반으로 시스템을 구현하다 의존 구조가 꼬이면서, 씬 전환 시 초기화 순서 문제로 큰 버그를 겪었습니다. 데모 제출 후 의존성 주입(DI) 패턴으로 전면 개편하는 과정에서 의존 방향이 단방향으로 정리되면 DI 구조가 자연스럽게 따라온다는 것을 체감했습니다.
 
-이 프로젝트는 아직 초반이라 asmdef 분리나 DI 프레임워크를 본격 도입하지는 않았지만, 나중에 그 시점이 왔을 때 구조적으로 준비된 상태이기 위해 의존 방향을 의식적으로 관리하고 있습니다.
-
 **결과적으로:**
 - 플랫폼 입력 변경(터치 → 키보드 등)이 `Infrastructure/Input`만 수정하면 됨
 - 새 기능의 추가 위치를 레이어 기준으로 즉시 판단 가능
 
-### 서비스 로케이터 패턴
+### VContainer 기반 의존성 주입 (DI)
 
 **도입 배경**
 
-이전 프로젝트에서 싱글톤을 여러 시스템에서 직접 참조하다 씬 전환 시 초기화 순서가 보장되지 않아 `NullReferenceException`이 빈발했습니다. DI 패턴으로 전면 개편하여 문제를 해결한 경험이 있지만, 현재 프로젝트는 초기 단계라 DI Container(VContainer 등)를 도입하기엔 이릅니다.
+이전 프로젝트에서 싱글톤을 여러 시스템에서 직접 참조하다 씬 전환 시 초기화 순서가 보장되지 않아 `NullReferenceException`이 빈발했습니다. DI 패턴으로 전면 개편하여 문제를 해결한 경험이 있었고, 프로젝트 초기에는 서비스 로케이터 패턴으로 등록/조회 구조를 유지하다가, 의존 그래프가 복잡해지는 시점에서 VContainer로 전환했습니다.
 
-대신 서비스 로케이터 패턴으로 **초기화 순서를 명시적으로 제어**하되, 나중에 DI Container로 전환할 수 있도록 등록/조회 구조를 맞춰 설계했습니다. `ServiceLocator.Register<T>()`는 VContainer의 `builder.Register<T>()`와 1:1 대응되므로 전환 비용이 낮습니다.
+VContainer는 Unity에 특화된 경량 DI 컨테이너로, `LifetimeScope` 기반의 계층적 스코프 관리와 `[Inject]` 속성을 통한 자동 주입을 제공합니다.
 
 **구조**
 
 ```
-MIGameRoot (부트스트랩 씬)
-  → MIServiceLocator.Register<T>()     ← 서비스 등록 (유일한 등록 지점)
+MIRootLifetimeScope (부트스트랩 씬)
+  → builder.Register<T>(Lifetime.Singleton)    ← 서비스 등록
+  → builder.RegisterInstance(scriptableObject) ← SO 데이터 등록
 
-MIServiceLocator (static)
-  → Dictionary<Type, object>           ← 타입 기반 저장소
+MISceneContext (게임 씬, LifetimeScope 상속)
+  → Parent = MIRootLifetimeScope               ← 부모 스코프 참조
+  → builder.RegisterComponentInHierarchy<T>()  ← 씬 내 MonoBehaviour 등록
 
-MISceneContext (게임 씬)
-  → MIServiceLocator.Get<T>()          ← 서비스 조회
-  → _popupInventory.Init(inventory)    ← 씬 내 컴포넌트에 주입
+각 컴포넌트
+  → [Inject] 또는 생성자 주입                    ← 자동 의존성 해결
 ```
 
 **핵심 규칙**
 
-- **등록은 `MIGameRoot`에서만** — 부트스트랩 씬에서 생성되는 영속 객체가 서비스를 등록합니다.
-- **조회는 `MISceneContext`에서만** — 각 씬의 컨텍스트가 필요한 서비스를 꺼내 씬 내 컴포넌트에 주입합니다.
-- **UI 컴포넌트는 직접 조회 금지** — `Init()` 메서드를 통해 필요한 의존성을 외부에서 주입받습니다. `ServiceLocator.Get<T>()`를 직접 호출하지 않습니다.
+- **등록은 `LifetimeScope`에서만** — `MIRootLifetimeScope`(전역)과 `MISceneContext`(씬별)가 각각의 스코프에서 서비스를 등록합니다.
+- **인터페이스 바인딩** — `builder.Register<MIPickaxeCraftService>(Lifetime.Singleton).As<IMIPickaxeCraftService>()`처럼 구현체를 인터페이스로 바인딩하여 의존성 역전을 강제합니다.
+- **UI 컴포넌트는 `[Inject]` 또는 `Init()` 주입** — 컨테이너에서 직접 `Resolve<T>()`를 호출하지 않습니다.
 
-이 규칙으로 의존 방향이 `GameRoot(등록) → ServiceLocator(저장) → SceneContext(조회) → UI(소비)` 단방향으로 유지되며, Unity `Awake` 호출 순서에 의존하지 않습니다.
+이 구조로 의존 방향이 `RootLifetimeScope(등록) → Container(해결) → SceneContext(씬 스코프) → 컴포넌트(소비)` 단방향으로 유지되며, Unity `Awake` 호출 순서에 의존하지 않습니다. 씬 단위 스코프 분리로 씬 전환 시 해당 씬의 의존성만 자동 해제됩니다.
 
 ---
 
@@ -415,10 +414,12 @@ MIStatusConfig (SO)           — 레벨 테이블 + 오버플로 배율
 |------|------|
 | 엔진 | Unity 6 (6000.3.10f1) |
 | 렌더 파이프라인 | URP 2D |
+| DI 컨테이너 | VContainer |
 | 입력 | New Input System 1.18.0 |
 | 타일맵 | Tilemap + Tilemap Extras |
 | 에디터 확장 | Odin Inspector |
 | 세이브/로드 | Easy Save 3 (예정) |
+| 비동기 | UniTask |
 | 테스트 | Unity Test Framework 1.6.0 |
 | 빌드 백엔드 | IL2CPP · ARM64 (iOS/Android) |
 

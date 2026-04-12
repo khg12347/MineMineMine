@@ -1,4 +1,5 @@
-﻿using MI.Domain.Pickaxe.Equipment;
+using System;
+using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.UserState.Inventory;
 using MI.Domain.UserState.Wallet;
 
@@ -6,9 +7,9 @@ namespace MI.Domain.User
 {
     /// <summary>
     /// 플레이어 상태 관리. Non-MonoBehaviour, 비싱글톤.
-    /// MIGameRoot에서 직접 생성되며 MIUserInventory, MIUserWallet, MIPickaxeInventory를 소유합니다.
+    /// VContainer에서 생성자 주입으로 MIUserInventory, MIUserWallet, MIPickaxeInventory를 받는다.
     /// </summary>
-    public class MIUserState
+    public class MIUserState : IDisposable
     {
         public MIUserInventory Inventory { get; private set; }
         public MIUserWallet Wallet { get; private set; }
@@ -16,15 +17,14 @@ namespace MI.Domain.User
         /// <summary>곡괭이 보유/장착 관리</summary>
         public MIPickaxeInventory PickaxeInventory { get; private set; }
 
-        public MIUserState()
+        public MIUserState(
+            MIUserInventory inventory,
+            MIUserWallet wallet,
+            MIPickaxeInventory pickaxeInventory)
         {
-            Inventory = new MIUserInventory();
-            Inventory.Enable();
-
-            Wallet = new MIUserWallet();
-            Wallet.Enable();
-
-            PickaxeInventory = new MIPickaxeInventory();
+            Inventory = inventory;
+            Wallet = wallet;
+            PickaxeInventory = pickaxeInventory;
         }
 
         public void Dispose()

@@ -1,5 +1,0 @@
-{"t":0,"agent":"system","event":"keyword_detected","keyword":"code-review"}
-{"t":0,"agent":"a6516f5","agent_type":"Explore","event":"agent_start","parent_mode":"none"}
-{"t":0,"agent":"a6516f5","agent_type":"Explore","event":"agent_stop","success":true,"duration_ms":28086}
-{"t":0,"agent":"a8ac052","agent_type":"Explore","event":"agent_start","parent_mode":"none"}
-{"t":0,"agent":"a8ac052","agent_type":"Explore","event":"agent_stop","success":true,"duration_ms":32944}

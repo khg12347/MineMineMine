@@ -1,4 +1,4 @@
-﻿using MI.Core.ServiceLocator;
+﻿
 using MI.Data.Config;
 using MI.Domain.Pickaxe;
 using MI.Domain.Pickaxe.Craft;
@@ -22,35 +22,35 @@ namespace MI.Domain.GameRoot
 
         #region Lifecycle
 
-        private void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-            _userState = new MIUserState();
-            MIServiceLocator.Register(_userState);
+        //private void Awake()
+        //{
+        //    DontDestroyOnLoad(gameObject);
+        //    _userState = new MIUserState();
+        //    MIServiceLocator.Register(_userState);
 
-            _craftService = new MIPickaxeCraftService(
-                _pickaxeCraftConfig,
-                _userState.Inventory,
-                _userState.Wallet,
-                _userState.PickaxeInventory);
-            MIServiceLocator.Register<IMIPickaxeCraftService>(_craftService);
+        //    _craftService = new MIPickaxeCraftService(
+        //        _pickaxeCraftConfig,
+        //        _userState.Inventory,
+        //        _userState.Wallet,
+        //        _userState.PickaxeInventory);
+        //    MIServiceLocator.Register<IMIPickaxeCraftService>(_craftService);
 
-            // 기본 곡괭이 지급 (Domain 로직)
-            GrantDefaultPickaxe();
+        //    // 기본 곡괭이 지급 (Domain 로직)
+        //    GrantDefaultPickaxe();
 
-            // 씬 초기화 (인터페이스를 통해 Presentation에 위임)
-            var sceneInitializer = MIServiceLocator.Get<IMISceneInitializer>();
-            sceneInitializer.InitializeSceneContext();
-        }
+        //    // 씬 초기화 (인터페이스를 통해 Presentation에 위임)
+        //    var sceneInitializer = MIServiceLocator.Get<IMISceneInitializer>();
+        //    sceneInitializer.InitializeSceneContext();
+        //}
 
-        private void OnDestroy()
-        {
-            MIServiceLocator.Unregister<IMIPickaxeCraftService>();
-            MIServiceLocator.Unregister<MIUserState>();
-            _userState?.Dispose();
-            _userState = null;
-            _craftService = null;
-        }
+        //private void OnDestroy()
+        //{
+        //    MIServiceLocator.Unregister<IMIPickaxeCraftService>();
+        //    MIServiceLocator.Unregister<MIUserState>();
+        //    _userState?.Dispose();
+        //    _userState = null;
+        //    _craftService = null;
+        //}
 
         #endregion Lifecycle
 

@@ -14,7 +14,7 @@ namespace MI.Presentation.World.Pickaxe
     /// 곡괭이 3슬롯(Main/Sub1/Sub2) 인스턴스를 프리팹 기반으로 스폰하고 관리한다.
     /// 장착 변경 이벤트에 따라 Config 교체 + ActiveSelf 토글을 수행한다.
     /// </summary>
-    public class MIPickaxeManager : MonoBehaviour
+    public class MIPickaxeEquipController : MonoBehaviour
     {
         #region Fields
 

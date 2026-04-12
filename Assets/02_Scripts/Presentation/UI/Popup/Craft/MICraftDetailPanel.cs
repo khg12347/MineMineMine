@@ -17,6 +17,7 @@ namespace MI.Presentation.UI.Popup.Craft
         [Header("공통")]
         [SerializeField] private TextMeshProUGUI _pickaxeName;
         [SerializeField] private Image _pickaxeIcon;
+        [SerializeField] private TextMeshProUGUI _pickaxeAttackDamageText;
 
         [Header("제작 모드")]
         [SerializeField] private GameObject _craftModeRoot;

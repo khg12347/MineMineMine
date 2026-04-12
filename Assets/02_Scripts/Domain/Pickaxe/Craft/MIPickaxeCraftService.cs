@@ -23,12 +23,12 @@ namespace MI.Domain.Pickaxe.Craft
         public event Action<EPickaxeType> OnPickaxeCrafted;
 
         public MIPickaxeCraftService(
-            MIPickaxeCraftConfig craftConfig,
+            IMIPickaxeDataRegistry pickaxeData,
             MIUserInventory inventory,
             MIUserWallet wallet,
             MIPickaxeInventory pickaxeInventory)
         {
-            _craftConfig = craftConfig;
+            _craftConfig = pickaxeData.CraftConfig;
             _inventory = inventory;
             _wallet = wallet;
             _pickaxeInventory = pickaxeInventory;
