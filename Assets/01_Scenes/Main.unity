@@ -2650,6 +2650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587a30c0f97337d4296fdaf15a1ca084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MI.Domain.GameRoot.MISceneContext
+  _testBit: {x: 1, y: 4}
   _popupInventory: {fileID: 226183408}
   _walletHUD: {fileID: 852689064}
   _popupCraft: {fileID: 460031795}
