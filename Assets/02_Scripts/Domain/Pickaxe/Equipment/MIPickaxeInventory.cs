@@ -103,7 +103,7 @@ namespace MI.Domain.Pickaxe.Equipment
 
         #endregion IMIPickaxeEquipment — Commands
 
-        #region Internal — Add Pickaxe
+        #region Internal — Add / Update Pickaxe
 
         /// <summary>
         /// 곡괭이 보유 등록. 제작 완료 시 MIPickaxeCraftService에서 호출.
@@ -119,6 +119,20 @@ namespace MI.Domain.Pickaxe.Equipment
             return true;
         }
 
-        #endregion Internal — Add Pickaxe
+        /// <summary>
+        /// 강화 후 곡괭이 인스턴스를 갱신한다.
+        /// FPickaxeInstance가 struct이므로 수정 후 반드시 이 메서드로 다시 써야 원본에 반영된다.
+        /// 미보유 곡괭이 타입이면 false 반환.
+        /// </summary>
+        public bool UpdateInstance(FPickaxeInstance instance)
+        {
+            if (instance.PickaxeType == EPickaxeType.None) return false;
+            if (!_owned.ContainsKey(instance.PickaxeType)) return false;
+
+            _owned[instance.PickaxeType] = instance;
+            return true;
+        }
+
+        #endregion Internal — Add / Update Pickaxe
     }
 }

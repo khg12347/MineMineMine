@@ -23,3 +23,5 @@ MonoBehaviour:
     SerializationNodes: []
   _craftConfig: {fileID: 11400000, guid: 52f3f6d632f774907a628a6286ecc17d, type: 2}
   _specDataTable: {fileID: 11400000, guid: 2e0dd6e4b0141924d87925569f0bc009, type: 2}
+  _enhanceConfig: {fileID: 11400000, guid: e6484d080011843e3aa83909436e7553, type: 2}
+  _enhanceCostConfig: {fileID: 11400000, guid: 5680968eff0f35c449c5629acecddfcf, type: 2}

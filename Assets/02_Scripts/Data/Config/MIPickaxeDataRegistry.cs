@@ -24,8 +24,13 @@ namespace MI.Data.Config
         [Required]
         [SerializeField] private MIEnhanceConfig _enhanceConfig;
 
+        [Title("강화 비용 설정")]
+        [Required]
+        [SerializeField] private MIEnhanceCostConfig _enhanceCostConfig;
+
         public MIPickaxeCraftConfig CraftConfig => _craftConfig;
         public MIPickaxeSpecDataTable SpecDataTable => _specDataTable;
         public MIEnhanceConfig EnhanceConfig => _enhanceConfig;
+        public MIEnhanceCostConfig EnhanceCostConfig => _enhanceCostConfig;
     }
 }

@@ -1,6 +1,7 @@
 using MI.Data.Config;
 using MI.Domain.Pickaxe;
 using MI.Domain.Pickaxe.Craft;
+using MI.Domain.Pickaxe.Enhance;
 using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.User;
 using MI.Domain.UserState.Inventory;
@@ -40,6 +41,12 @@ namespace MI.Core.DI
             // Domain — Service
             builder.Register<MIPickaxeCraftService>(Lifetime.Singleton)
                 .As<IMIPickaxeCraftService>();
+
+            // Domain — Enhance
+            builder.Register<MIDefaultRandomProvider>(Lifetime.Singleton)
+                .As<IMIRandomProvider>();
+            builder.Register<MIPickaxeEnhanceService>(Lifetime.Singleton)
+                .As<IMIPickaxeEnhanceService>();
 
             // 컨테이너 빌드 후 초기화
             builder.RegisterBuildCallback(InitializeGame);

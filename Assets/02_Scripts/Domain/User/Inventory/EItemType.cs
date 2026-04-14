@@ -16,6 +16,11 @@ namespace MI.Domain.UserState.Inventory
         Copper = 202,
         Silver = 203,
         Gold   = 204,
+
+        // 강화석 (300번대)
+        EnhanceStone_Low  = 301, // 하급 강화석
+        EnhanceStone_Mid  = 302, // 중급 강화석
+        EnhanceStone_High = 303, // 상급 강화석
     }
 
     // ETileType / EMineralType → EItemType 변환
