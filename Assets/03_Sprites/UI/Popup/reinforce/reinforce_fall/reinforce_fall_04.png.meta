@@ -1,0 +1,572 @@
+fileFormatVersion: 2
+guid: c8f9d14d4ae886748a8f3e3befbbc494
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7370696019304599872
+    second: reinforce_fall_04_0
+  - first:
+      213: -8645337317426735553
+    second: reinforce_fall_04_1
+  - first:
+      213: 8342837097314658994
+    second: reinforce_fall_04_2
+  - first:
+      213: -4816989758404251894
+    second: reinforce_fall_04_3
+  - first:
+      213: -9189986418531464120
+    second: reinforce_fall_04_4
+  - first:
+      213: -3039241336034817058
+    second: reinforce_fall_04_5
+  - first:
+      213: 7436117399136555497
+    second: reinforce_fall_04_6
+  - first:
+      213: -3666861802082024795
+    second: reinforce_fall_04_7
+  - first:
+      213: 3879385991449603345
+    second: reinforce_fall_04_8
+  - first:
+      213: 3618120534547515253
+    second: reinforce_fall_04_9
+  - first:
+      213: 1352524677216717228
+    second: reinforce_fall_04_10
+  - first:
+      213: -624234970420825350
+    second: reinforce_fall_04_11
+  - first:
+      213: 490393111234168163
+    second: reinforce_fall_04_12
+  - first:
+      213: 2646722927413203891
+    second: reinforce_fall_04_13
+  - first:
+      213: 227991321116915792
+    second: reinforce_fall_04_14
+  - first:
+      213: -64395244891884841
+    second: reinforce_fall_04_15
+  - first:
+      213: 4934494690206686477
+    second: reinforce_fall_04_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: reinforce_fall_04_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 51
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 041590a5af8f94660800000000000000
+      internalID: 7370696019304599872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 58
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f36d957c387950880800000000000000
+      internalID: -8645337317426735553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 54
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ba24644326b7c370800000000000000
+      internalID: 8342837097314658994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_3
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 51
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0fae93165d962db0800000000000000
+      internalID: -4816989758404251894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_4
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 48
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84c84c00b0c967080800000000000000
+      internalID: -9189986418531464120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_5
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 48
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edb06f28b1272d5d0800000000000000
+      internalID: -3039241336034817058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_6
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 29
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e1d2a35065623760800000000000000
+      internalID: 7436117399136555497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_7
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 29
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a2c37e6e90bc1dc0800000000000000
+      internalID: -3666861802082024795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_8
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 33
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11deafe510956d530800000000000000
+      internalID: 3879385991449603345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_9
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 36
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5774040e475263230800000000000000
+      internalID: 3618120534547515253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_10
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 35
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca9c377270225c210800000000000000
+      internalID: 1352524677216717228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_11
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 29
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af2b0bb0a954657f0800000000000000
+      internalID: -624234970420825350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_12
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 29
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 365496bbfe93ec600800000000000000
+      internalID: 490393111234168163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_13
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 19
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b39853ca7c0bb420800000000000000
+      internalID: 2646722927413203891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_14
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 8
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 058bb0b06ecf92300800000000000000
+      internalID: 227991321116915792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_15
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 16
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d2befeadd83b1ff0800000000000000
+      internalID: -64395244891884841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fall_04_16
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 15
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0d12d3d6c8da7440800000000000000
+      internalID: 4934494690206686477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      reinforce_fall_04_0: 7370696019304599872
+      reinforce_fall_04_1: -8645337317426735553
+      reinforce_fall_04_10: 1352524677216717228
+      reinforce_fall_04_11: -624234970420825350
+      reinforce_fall_04_12: 490393111234168163
+      reinforce_fall_04_13: 2646722927413203891
+      reinforce_fall_04_14: 227991321116915792
+      reinforce_fall_04_15: -64395244891884841
+      reinforce_fall_04_16: 4934494690206686477
+      reinforce_fall_04_2: 8342837097314658994
+      reinforce_fall_04_3: -4816989758404251894
+      reinforce_fall_04_4: -9189986418531464120
+      reinforce_fall_04_5: -3039241336034817058
+      reinforce_fall_04_6: 7436117399136555497
+      reinforce_fall_04_7: -3666861802082024795
+      reinforce_fall_04_8: 3879385991449603345
+      reinforce_fall_04_9: 3618120534547515253
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
