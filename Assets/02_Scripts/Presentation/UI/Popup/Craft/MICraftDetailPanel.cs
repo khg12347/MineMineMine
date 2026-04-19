@@ -132,6 +132,7 @@ namespace MI.Presentation.UI.Popup.Craft
         /// <param name="onEnhanceClicked">강화 버튼 콜백 (null이면 버튼 숨김)</param>
         public void ShowEquipMode(
             EPickaxeType type,
+            int damage,
             Action onEquipClicked,
             Action onInfoClicked)
         {
@@ -141,6 +142,7 @@ namespace MI.Presentation.UI.Popup.Craft
             // 곡괭이 이름/아이콘 설정
             _pickaxeName.text = _pickaxeIconDataTable.GetPickaxeName(type);
             _pickaxeIcon.sprite = _pickaxeIconDataTable.GetPickaxeIcon(type);
+            _pickaxeAttackDamageText.text = $"+{damage}";
 
             //장착 버튼 콜백 설정
             _equipButton.onClick.RemoveAllListeners();

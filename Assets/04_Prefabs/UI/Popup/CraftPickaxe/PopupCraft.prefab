@@ -6030,7 +6030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MI.Presentation.UI.Popup.Craft.MICraftDetailPanel
   _pickaxeName: {fileID: 4755142631262296530}
   _pickaxeIcon: {fileID: 2382740043296069398}
-  _pickaxeAttackDamageText: {fileID: 0}
+  _pickaxeAttackDamageText: {fileID: 8962426351679131251}
   _craftModeRoot: {fileID: 8647804544604163970}
   _craftButton: {fileID: 4829482134207523889}
   _materialSlots:

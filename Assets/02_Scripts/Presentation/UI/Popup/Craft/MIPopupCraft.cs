@@ -127,7 +127,10 @@ namespace MI.Presentation.UI.Popup.Craft
 
             if (isOwned)
             {
-                _detailPanel.ShowEquipMode(type, OnEquipClicked, OnInfoClicked);
+                // 곡괭이 공격력 정보 파라미터로 전달 필요
+                var pickaxeInstance = _pickaxeInventory.GetInstance(type);
+                var attackDamage = pickaxeInstance.Value.ResolvedStats.HeadDamage;
+                _detailPanel.ShowEquipMode(type, attackDamage, OnEquipClicked, OnInfoClicked);
             }
             else
             {
