@@ -2,11 +2,13 @@ using System;
 using MI.Data.Config;
 using MI.Data.UIRes;
 using MI.Domain.Pickaxe.Craft;
+using MI.Domain.Pickaxe.Enhance;
 using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.User;
 using MI.Presentation.UI;
 using MI.Presentation.UI.HUD.Wallet;
 using MI.Presentation.UI.Popup.Craft;
+using MI.Presentation.UI.Popup.Enhance;
 using MI.Presentation.UI.Popup.Inventory;
 using MI.Presentation.World.Pickaxe;
 using MI.Presentation.World.Stage;
@@ -28,6 +30,7 @@ namespace MI.Presentation
         [SerializeField] private MIPopupInventory _popupInventory;
         [SerializeField] private MIWalletHUD _walletHUD;
         [SerializeField] private MIPopupCraft _popupCraft;
+        [SerializeField] private MIEnhancePopup _popupEnhance;
 
         // UI 리소스가 많아지면 데이터 컨테이너 패턴으로 리팩토링
         [Header("Resources")]
@@ -46,6 +49,7 @@ namespace MI.Presentation
         // VContainer 주입 필드
         private MIUserState _userState;
         private IMIPickaxeCraftService _craftService;
+        private IMIPickaxeEnhanceService _enhanceService;
         private IMIPickaxeDataRegistry _pickaxeData;
 
         public static MISceneContext Current { get; private set; }
@@ -75,10 +79,12 @@ namespace MI.Presentation
         public void Construct(
             MIUserState userState,
             IMIPickaxeCraftService craftService,
+            IMIPickaxeEnhanceService enhanceService,
             IMIPickaxeDataRegistry pickaxeData)
         {
             _userState = userState;
             _craftService = craftService;
+            _enhanceService = enhanceService;
             _pickaxeData = pickaxeData;
 
             InitializeSceneContext();
@@ -104,6 +110,18 @@ namespace MI.Presentation
             {
                 _popupCraft.InjectResources(_numberResources, _pickaxeIconDataTable, _itemIconDataTable);
                 _popupCraft.Initialize(_craftService, _userState.PickaxeInventory, _userState.PickaxeInventory, _pickaxeData.CraftConfig, _userState.Inventory);
+            }
+
+            // 강화 팝업
+            if (_popupEnhance != null)
+            {
+                _popupEnhance.InjectResources(_numberResources, _pickaxeIconDataTable, _itemIconDataTable);
+                _popupEnhance.Initialize(
+                    _enhanceService,
+                    _userState.PickaxeInventory,
+                    _pickaxeData.EnhanceCostConfig,
+                    _userState.Wallet,
+                    _userState.Inventory);
             }
 
             // 곡괭이 장착 컨트롤러 생성 + 초기화

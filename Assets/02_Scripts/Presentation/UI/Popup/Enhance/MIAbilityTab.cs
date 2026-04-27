@@ -1,19 +1,12 @@
 using UnityEngine;
 
-namespace MI
+namespace MI.Presentation.UI.Popup.Enhance
 {
+    /// <summary>
+    /// 잠재능력 탭 — Step 6 에서 도메인 서비스 신설 후 본격 구현.
+    /// 현 단계에선 비활성/잠금 표기용 빈 컴포넌트.
+    /// </summary>
     public class MIAbilityTab : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

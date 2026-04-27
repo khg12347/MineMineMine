@@ -131,7 +131,7 @@ namespace MI.Presentation.World.Stage
                 // 타일맵 cell(leftColX=0)이 왼쪽 벽, cell(1)이 게임 타일 col=0과 일치하도록 설정
                 float tileSize = _stageConfig.RowHeight;
                 _backgroundTilemap.layoutGrid.transform.position =
-                    new Vector3(stageStartX - 1.5f * tileSize, -0.5f * tileSize, 0f);
+                    new Vector3(stageStartX - (1.5f * tileSize), -0.5f * tileSize, 0f);
 
                 int leftColX = 1;
                 int rightColX = _stageConfig.GridWidth;
