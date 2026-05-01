@@ -27,7 +27,7 @@ MonoBehaviour:
     SuccessRate: 1
     Materials:
     - ItemType: 301
-      Amount: 1
+      Amount: 0
     Currencies:
     - CurrencyType: 1
       Amount: 100

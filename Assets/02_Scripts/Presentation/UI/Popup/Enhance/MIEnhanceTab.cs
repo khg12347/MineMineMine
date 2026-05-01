@@ -14,7 +14,7 @@ namespace MI.Presentation.UI.Popup.Enhance
 {
     /// <summary>
     /// 강화 탭 — 현재 선택된 곡괭이의 강화 비용·재화·확률을 표시한다.
-    /// Step 1 범위: 정적 표시. 보유량 비교/버튼 활성 처리는 Step 3, 강화 실행은 Step 4.
+    /// 재료/재화 부족 시 텍스트 빨간색 표기. 강화 가능 여부에 따라 버튼 활성 토글.
     /// </summary>
     public class MIEnhanceTab : MonoBehaviour
     {
@@ -87,8 +87,8 @@ namespace MI.Presentation.UI.Popup.Enhance
             RefreshCurrency(e);
             RefreshProbability(e);
 
-            // Step 1: 버튼 활성/클릭 처리는 Step 3, Step 4 에서 추가.
-            if (_btnEnhance != null) _btnEnhance.interactable = false;
+            if (_btnEnhance != null)
+                _btnEnhance.interactable = _enhanceService.CanEnhance(type);
         }
 
         #endregion Public API
@@ -124,7 +124,12 @@ namespace MI.Presentation.UI.Popup.Enhance
                         _materialIcons[i].sprite = _itemIconTable.GetItemIcon(mat.ItemType);
 
                     if (i < _materialAmountTexts.Length && _materialAmountTexts[i] != null)
-                        _materialAmountTexts[i].text = mat.Amount.ToString();
+                    {
+                        int owned = _enhanceService.GetMaterialAmount(mat);
+                        bool enough = _enhanceService.HasEnoughMaterial(mat);
+                        _materialAmountTexts[i].text = $"{owned}/{mat.Amount}";
+                        _materialAmountTexts[i].color = enough ? Color.white : Color.red;
+                    }
                 }
                 else
                 {
@@ -142,7 +147,11 @@ namespace MI.Presentation.UI.Popup.Enhance
 
             var cost = entry.Currencies[0];
             if (_currencyAmountText != null)
+            {
+                bool enough = _enhanceService.HasEnoughCurrency(cost);
                 _currencyAmountText.text = cost.Amount.ToString();
+                _currencyAmountText.color = enough ? Color.white : Color.red;
+            }
         }
 
         private void RefreshProbability(FEnhanceLevelEntry entry)

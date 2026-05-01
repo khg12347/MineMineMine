@@ -93,7 +93,6 @@ namespace MI.Presentation.UI.Popup.Enhance
         {
             base.OpenPopup();
             RefreshAll();
-            _selector.RefreshOwned();
         }
 
         #endregion MIPopupBase
@@ -116,6 +115,7 @@ namespace MI.Presentation.UI.Popup.Enhance
             if (_selector == null || _enhanceTab == null) return;
 
             _selector.RefreshVisual();
+            _selector.RefreshOwned();
             _enhanceTab.Refresh(_selector.Current);
         }
 

@@ -49,15 +49,37 @@ namespace MI.Domain.Pickaxe.Enhance
         /// <inheritdoc/>
         public bool CanEnhance(EPickaxeType type)
         {
-            if (type == EPickaxeType.None) return false;
-            if (!_pickaxeInventory.IsOwned(type)) return false;
+            if (type == EPickaxeType.None)
+            {
+                MILog.Log($"[MIPickaxeEnhanceService] CanEnhance false — type이 None");
+                return false;
+            }
+
+            if (!_pickaxeInventory.IsOwned(type))
+            {
+                MILog.Log($"[MIPickaxeEnhanceService] CanEnhance false — {type} 미보유");
+                return false;
+            }
 
             var instance = _pickaxeInventory.GetInstance(type);
-            if (!instance.HasValue) return false;
-            if (instance.Value.Level >= MaxLevel) return false;
+            if (!instance.HasValue)
+            {
+                MILog.Log($"[MIPickaxeEnhanceService] CanEnhance false — {type} 인스턴스 조회 실패");
+                return false;
+            }
+
+            if (instance.Value.Level >= MaxLevel)
+            {
+                MILog.Log($"[MIPickaxeEnhanceService] CanEnhance false — {type} 최대 레벨 도달 (Lv{instance.Value.Level}/{MaxLevel})");
+                return false;
+            }
 
             var entry = _enhanceCostConfig.GetEntry(instance.Value.Level);
-            if (!entry.HasValue) return false;
+            if (!entry.HasValue)
+            {
+                MILog.Log($"[MIPickaxeEnhanceService] CanEnhance false — {type} Lv{instance.Value.Level} 비용 데이터 없음");
+                return false;
+            }
 
             var e = entry.Value;
 
@@ -65,7 +87,12 @@ namespace MI.Domain.Pickaxe.Enhance
             {
                 for (int i = 0; i < e.Materials.Length; i++)
                 {
-                    if (!HasEnoughMaterial(e.Materials[i])) return false;
+                    if (!HasEnoughMaterial(e.Materials[i]))
+                    {
+                        int owned = GetMaterialAmount(e.Materials[i]);
+                        MILog.Log($"[MIPickaxeEnhanceService] CanEnhance false — {type} 재료 부족: {e.Materials[i].ItemType} ({owned}/{e.Materials[i].Amount})");
+                        return false;
+                    }
                 }
             }
 
@@ -73,7 +100,11 @@ namespace MI.Domain.Pickaxe.Enhance
             {
                 for (int i = 0; i < e.Currencies.Length; i++)
                 {
-                    if (!HasEnoughCurrency(e.Currencies[i])) return false;
+                    if (!HasEnoughCurrency(e.Currencies[i]))
+                    {
+                        MILog.Log($"[MIPickaxeEnhanceService] CanEnhance false — {type} 재화 부족: {e.Currencies[i].CurrencyType} (필요 {e.Currencies[i].Amount})");
+                        return false;
+                    }
                 }
             }
 
