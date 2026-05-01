@@ -1,5 +1,6 @@
 using MI.Data.Config;
 using MI.Data.UIRes;
+using MI.Domain.Pickaxe;
 using MI.Domain.Pickaxe.Enhance;
 using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.UserState.Inventory;
@@ -11,7 +12,6 @@ namespace MI.Presentation.UI.Popup.Enhance
     /// <summary>
     /// 곡괭이 강화 팝업. MIPopupBase 상속.
     /// 좌측 Pickaxe Zone(선택) + 우측 Enhance/Ability 탭으로 구성.
-    /// Step 1 범위: DI 주입 + 팝업 활성 시 강화 탭 정적 표시.
     /// </summary>
     public class MIEnhancePopup : MIPopupBase
     {
@@ -58,7 +58,10 @@ namespace MI.Presentation.UI.Popup.Enhance
             _userInventory = userInventory;
 
             if (_selector != null)
+            {
                 _selector.Initialize(_pickaxeInventory, _pickaxeIconTable);
+                _selector.OnSelectionChanged += HandleSelectionChanged;
+            }
 
             if (_enhanceTab != null)
             {
@@ -76,6 +79,12 @@ namespace MI.Presentation.UI.Popup.Enhance
                 _abilityTab.gameObject.SetActive(false);
         }
 
+        private void OnDestroy()
+        {
+            if (_selector != null)
+                _selector.OnSelectionChanged -= HandleSelectionChanged;
+        }
+
         #endregion Initialization
 
         #region MIPopupBase
@@ -84,9 +93,21 @@ namespace MI.Presentation.UI.Popup.Enhance
         {
             base.OpenPopup();
             RefreshAll();
+            _selector.RefreshOwned();
         }
 
         #endregion MIPopupBase
+
+        #region Event Handlers
+
+        /// <summary>좌/우 버튼으로 선택 곡괭이 변경 → 강화 탭 갱신.</summary>
+        private void HandleSelectionChanged(EPickaxeType type)
+        {
+            if (_enhanceTab != null)
+                _enhanceTab.Refresh(type);
+        }
+
+        #endregion Event Handlers
 
         #region Helper
 

@@ -3812,20 +3812,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3625547145524362002}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MI.Presentation.UI.HUD.Bottom.MIButtonBottomElement,
-          Assembly-CSharp
-        m_MethodName: OnClickButtonBottom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &3873139213446635043
 GameObject:
   m_ObjectHideFlags: 0
@@ -5371,20 +5358,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3343992117451367509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MI.Presentation.UI.HUD.Bottom.MIButtonBottomElement,
-          Assembly-CSharp
-        m_MethodName: OnClickButtonBottom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5902572064520096490
 GameObject:
   m_ObjectHideFlags: 0

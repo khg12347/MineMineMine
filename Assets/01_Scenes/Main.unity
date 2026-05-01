@@ -7670,10 +7670,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -57.5
       objectReference: {fileID: 0}
-    - target: {fileID: 399037037407116804, guid: 566e8587fc10e45eea2f80a7f0111d8a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 604189618}
     - target: {fileID: 1702476247745863662, guid: 566e8587fc10e45eea2f80a7f0111d8a, type: 3}
       propertyPath: m_Name
       value: Popup Enhance
@@ -7762,10 +7758,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3969477293362237294, guid: 566e8587fc10e45eea2f80a7f0111d8a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 604189618}
     - target: {fileID: 4984811543908250444, guid: 566e8587fc10e45eea2f80a7f0111d8a, type: 3}
       propertyPath: m_SizeDelta.x
       value: 125
@@ -7843,11 +7835,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 566e8587fc10e45eea2f80a7f0111d8a, type: 3}
---- !u!1 &6588248775897866923 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1702476247745863662, guid: 566e8587fc10e45eea2f80a7f0111d8a, type: 3}
-  m_PrefabInstance: {fileID: 6569064510171602369}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6601928826347350927
 GameObject:
   m_ObjectHideFlags: 0
@@ -8311,23 +8298,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5098817618385338906, guid: f11ca0890ba34ee43870afedfb4e0017, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5098817618385338906, guid: f11ca0890ba34ee43870afedfb4e0017, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 6588248775897866923}
+      objectReference: {fileID: 7112831864355286269}
     - target: {fileID: 5098817618385338906, guid: f11ca0890ba34ee43870afedfb4e0017, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5098817618385338906, guid: f11ca0890ba34ee43870afedfb4e0017, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: OnOpenPopup
       objectReference: {fileID: 0}
     - target: {fileID: 5098817618385338906, guid: f11ca0890ba34ee43870afedfb4e0017, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: MI.Presentation.UI.Popup.Enhance.MIEnhancePopup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5098817618385338906, guid: f11ca0890ba34ee43870afedfb4e0017, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -8786,7 +8773,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3391215485640273767, guid: 566e8587fc10e45eea2f80a7f0111d8a, type: 3}
   m_PrefabInstance: {fileID: 6569064510171602369}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6588248775897866923}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fd381b4a46c6804a8687dc51cdde82f, type: 3}

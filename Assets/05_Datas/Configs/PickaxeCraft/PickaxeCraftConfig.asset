@@ -30,45 +30,45 @@ MonoBehaviour:
   - PickaxeType: 2
     Materials:
     - ItemType: 120
-      Amount: 10
+      Amount: 1
     Currencies: []
   - PickaxeType: 3
     Materials:
     - ItemType: 120
-      Amount: 20
+      Amount: 1
     Currencies: []
   - PickaxeType: 4
     Materials:
     - ItemType: 120
-      Amount: 30
+      Amount: 1
     Currencies: []
   - PickaxeType: 5
     Materials:
     - ItemType: 120
-      Amount: 50
+      Amount: 1
     Currencies: []
   - PickaxeType: 6
     Materials:
     - ItemType: 120
-      Amount: 100
+      Amount: 1
     Currencies: []
   - PickaxeType: 7
     Materials:
     - ItemType: 120
-      Amount: 500
+      Amount: 1
     Currencies: []
   - PickaxeType: 8
     Materials:
     - ItemType: 120
-      Amount: 1000
+      Amount: 1
     Currencies: []
   - PickaxeType: 9
     Materials:
     - ItemType: 120
-      Amount: 5000
+      Amount: 1
     Currencies: []
   - PickaxeType: 10
     Materials:
     - ItemType: 120
-      Amount: 10000
+      Amount: 1
     Currencies: []

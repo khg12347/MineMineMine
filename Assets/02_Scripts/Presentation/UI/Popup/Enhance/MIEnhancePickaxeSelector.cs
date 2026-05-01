@@ -4,6 +4,7 @@ using MI.Data.UIRes;
 using MI.Domain.Pickaxe;
 using MI.Domain.Pickaxe.Equipment;
 using MI.Presentation.UI.Common;
+using MI.Utility;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,6 @@ namespace MI.Presentation.UI.Popup.Enhance
 {
     /// <summary>
     /// 강화 팝업 좌측 Pickaxe Zone — 보유 곡괭이 중 하나를 선택해 표시한다.
-    /// Step 1 범위: 첫 항목 표시. 좌/우 페이지 동작은 Step 2.
     /// </summary>
     public class MIEnhancePickaxeSelector : MonoBehaviour
     {
@@ -45,11 +45,29 @@ namespace MI.Presentation.UI.Popup.Enhance
 
             RebuildOwnedList();
 
-            // Step 1: 좌/우 버튼은 비활성. 동작은 Step 2 에서 구현.
-            if (_btnLeft != null) _btnLeft.interactable = false;
-            if (_btnRight != null) _btnRight.interactable = false;
+            if (_btnLeft != null)
+            {
+                _btnLeft.onClick.RemoveAllListeners();
+                _btnLeft.onClick.AddListener(OnLeftClicked);
+            }
+
+            if (_btnRight != null)
+            {
+                _btnRight.onClick.RemoveAllListeners();
+                _btnRight.onClick.AddListener(OnRightClicked);
+            }
 
             RefreshVisual();
+            RefreshNavButtons();
+        }
+
+        public void RefreshOwned()
+        {
+            _ownedList.Clear();
+            _ownedList.AddRange(_pickaxeInventory.OwnedPickaxes);
+            
+            RefreshVisual();
+            RefreshNavButtons();
         }
 
         /// <summary>현재 선택 곡괭이의 표시를 다시 그린다 (강화 후 공격력 변경 등에 사용).</summary>
@@ -83,6 +101,32 @@ namespace MI.Presentation.UI.Popup.Enhance
 
         #endregion Public API
 
+        #region Button Callbacks
+
+        private void OnLeftClicked()
+        {
+            MILog.Log($"OnLeftClicked {_index}");
+            if (_index <= 0) return;
+
+            _index--;
+            RefreshVisual();
+            RefreshNavButtons();
+            OnSelectionChanged?.Invoke(Current);
+        }
+
+        private void OnRightClicked()
+        {
+            MILog.Log($"OnRightClicked {_index}");
+            if (_index >= _ownedList.Count - 1) return;
+
+            _index++;
+            RefreshVisual();
+            RefreshNavButtons();
+            OnSelectionChanged?.Invoke(Current);
+        }
+
+        #endregion Button Callbacks
+
         #region Helper
 
         private void RebuildOwnedList()
@@ -98,6 +142,13 @@ namespace MI.Presentation.UI.Popup.Enhance
             }
 
             _index = Mathf.Clamp(_index, 0, _ownedList.Count - 1);
+        }
+
+        /// <summary>현재 인덱스에 따라 좌/우 버튼 인터랙터블을 갱신한다.</summary>
+        private void RefreshNavButtons()
+        {
+            if (_btnLeft != null) _btnLeft.interactable = _index > 0;
+            if (_btnRight != null) _btnRight.interactable = _index < _ownedList.Count - 1;
         }
 
         #endregion Helper
