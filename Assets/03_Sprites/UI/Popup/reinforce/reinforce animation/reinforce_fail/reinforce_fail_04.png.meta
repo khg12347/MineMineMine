@@ -1,25 +1,37 @@
 fileFormatVersion: 2
-guid: 168685a37f7d00c469234e40a745842f
+guid: 25281a685f419e247a126479d6f8d68f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1029105699266006768
-    second: reinforce_fail_03_0
+      213: 4046294961035823409
+    second: reinforce_fail_04_0
   - first:
-      213: 5568976484566808101
-    second: reinforce_fail_03_1
+      213: -4575956563006722627
+    second: reinforce_fail_04_1
   - first:
-      213: 7062945407247282196
-    second: reinforce_fail_03_2
+      213: -8434394416453383457
+    second: reinforce_fail_04_2
   - first:
-      213: -4815072241818655262
-    second: reinforce_fail_03_3
+      213: 3472441688092770577
+    second: reinforce_fail_04_3
   - first:
-      213: 1617075423499282617
-    second: reinforce_fail_03_4
+      213: -5033662562918681258
+    second: reinforce_fail_04_4
   - first:
-      213: 3188303191939219821
-    second: reinforce_fail_03_5
+      213: -2132829062549615384
+    second: reinforce_fail_04_5
+  - first:
+      213: -4339073041682549360
+    second: reinforce_fail_04_6
+  - first:
+      213: -2461875932847256096
+    second: reinforce_fail_04_7
+  - first:
+      213: -3699713295344107112
+    second: reinforce_fail_04_8
+  - first:
+      213: 3774010627270657029
+    second: reinforce_fail_04_9
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +64,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -61,7 +73,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -90,7 +102,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -124,16 +136,139 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: reinforce_fail_03_0
+      name: reinforce_fail_04_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 51
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1394ef034d3572830800000000000000
+      internalID: 4046294961035823409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fail_04_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 48
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbded5a10cfee70c0800000000000000
+      internalID: -4575956563006722627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fail_04_2
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 51
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda02cf27f203fa80800000000000000
+      internalID: -8434394416453383457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fail_04_3
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 48
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 111070a4157903030800000000000000
+      internalID: 3472441688092770577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fail_04_4
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 29
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 655bc0a8196d42ab0800000000000000
+      internalID: -5033662562918681258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fail_04_5
       rect:
         serializedVersion: 2
         x: 21
-        y: 49
-        width: 21
+        y: 29
+        width: 22
         height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -143,20 +278,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0fe84195e2e184e00800000000000000
-      internalID: 1029105699266006768
+      spriteID: 8ecc910944ba662e0800000000000000
+      internalID: -2132829062549615384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: reinforce_fail_03_1
+      name: reinforce_fail_04_6
       rect:
         serializedVersion: 2
-        x: 89
-        y: 49
-        width: 21
-        height: 11
+        x: 37
+        y: 39
+        width: 6
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,86 +300,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 526bb156b9af84d40800000000000000
-      internalID: 5568976484566808101
+      spriteID: 095b908de0488c3c0800000000000000
+      internalID: -4339073041682549360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: reinforce_fail_03_2
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 29
-        width: 35
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41073f24d6f940260800000000000000
-      internalID: 7062945407247282196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: reinforce_fail_03_3
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 38
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2e52e82be4d6d2db0800000000000000
-      internalID: -4815072241818655262
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: reinforce_fail_03_4
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 29
-        width: 35
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9b860b0b781017610800000000000000
-      internalID: 1617075423499282617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: reinforce_fail_03_5
+      name: reinforce_fail_04_7
       rect:
         serializedVersion: 2
         x: 88
-        y: 38
-        width: 9
-        height: 7
+        y: 39
+        width: 6
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,8 +322,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d6108c75cd02f3c20800000000000000
-      internalID: 3188303191939219821
+      spriteID: 0ed4e85f1e8a5ddd0800000000000000
+      internalID: -2461875932847256096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fail_04_8
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 29
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 891893c1c5af7acc0800000000000000
+      internalID: -3699713295344107112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: reinforce_fail_04_9
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 29
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50444018baaff5430800000000000000
+      internalID: 3774010627270657029
       vertices: []
       indices: 
       edges: []
@@ -263,7 +376,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -273,12 +386,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      reinforce_fail_03_0: 1029105699266006768
-      reinforce_fail_03_1: 5568976484566808101
-      reinforce_fail_03_2: 7062945407247282196
-      reinforce_fail_03_3: -4815072241818655262
-      reinforce_fail_03_4: 1617075423499282617
-      reinforce_fail_03_5: 3188303191939219821
+      reinforce_fail_04_0: 4046294961035823409
+      reinforce_fail_04_1: -4575956563006722627
+      reinforce_fail_04_2: -8434394416453383457
+      reinforce_fail_04_3: 3472441688092770577
+      reinforce_fail_04_4: -5033662562918681258
+      reinforce_fail_04_5: -2132829062549615384
+      reinforce_fail_04_6: -4339073041682549360
+      reinforce_fail_04_7: -2461875932847256096
+      reinforce_fail_04_8: -3699713295344107112
+      reinforce_fail_04_9: 3774010627270657029
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

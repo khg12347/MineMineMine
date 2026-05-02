@@ -28,6 +28,14 @@ namespace MI.Domain.Pickaxe.Enhance
         FEnhanceAttemptResult TryEnhance(EPickaxeType type);
 
         /// <summary>
+        /// 대성공 보너스 재도전. 재화/재료 소모 없이 무조건 레벨업한다 (실패 없음).
+        /// 결과는 Success 또는 PerfectlySuccess만 반환한다.
+        /// PerfectlySuccess면 UI에서 다시 이 메서드를 호출해 연쇄 재도전한다.
+        /// MaxLevel에 도달했으면 MaxLevel 결과를 반환한다 (예외 없음).
+        /// </summary>
+        FEnhanceAttemptResult TryEnhanceFree(EPickaxeType type);
+
+        /// <summary>
         /// 해당 곡괭이의 현재 레벨에 대한 강화 비용 엔트리를 반환한다.
         /// UI에서 비용/확률 표시에 사용.
         /// 미보유 또는 데이터 없으면 null 반환.

@@ -20,8 +20,8 @@ namespace MI.Domain.Pickaxe.Enhance
         /// <summary>강화 후 레벨 (실패 시 PreviousLevel과 동일)</summary>
         public readonly int CurrentLevel;
 
-        /// <summary>성공 여부 간편 확인</summary>
-        public bool IsSuccess => Result == EEnhanceResult.Success;
+        /// <summary>성공 여부 간편 확인 (일반 성공 + 대성공 모두 포함)</summary>
+        public bool IsSuccess => Result == EEnhanceResult.Success || Result == EEnhanceResult.PerfectlySuccess;
 
         public FEnhanceAttemptResult(
             EEnhanceResult result,

@@ -25,6 +25,7 @@ MonoBehaviour:
   _entries:
   - FromLevel: 1
     SuccessRate: 1
+    PerfectSuccessRate: 1
     Materials:
     - ItemType: 301
       Amount: 0
@@ -33,6 +34,7 @@ MonoBehaviour:
       Amount: 100
   - FromLevel: 2
     SuccessRate: 0.99
+    PerfectSuccessRate: 1
     Materials:
     - ItemType: 301
       Amount: 2
@@ -41,6 +43,7 @@ MonoBehaviour:
       Amount: 200
   - FromLevel: 3
     SuccessRate: 0.98
+    PerfectSuccessRate: 1
     Materials:
     - ItemType: 301
       Amount: 3
@@ -49,6 +52,7 @@ MonoBehaviour:
       Amount: 300
   - FromLevel: 4
     SuccessRate: 0.97
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 4
@@ -57,6 +61,7 @@ MonoBehaviour:
       Amount: 400
   - FromLevel: 5
     SuccessRate: 0.96
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 5
@@ -65,6 +70,7 @@ MonoBehaviour:
       Amount: 500
   - FromLevel: 6
     SuccessRate: 0.95
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 6
@@ -73,6 +79,7 @@ MonoBehaviour:
       Amount: 600
   - FromLevel: 7
     SuccessRate: 0.94
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 7
@@ -81,6 +88,7 @@ MonoBehaviour:
       Amount: 700
   - FromLevel: 8
     SuccessRate: 0.93
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 8
@@ -89,6 +97,7 @@ MonoBehaviour:
       Amount: 800
   - FromLevel: 9
     SuccessRate: 0.92
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 9
@@ -97,6 +106,7 @@ MonoBehaviour:
       Amount: 900
   - FromLevel: 10
     SuccessRate: 0.91
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 10
@@ -105,6 +115,7 @@ MonoBehaviour:
       Amount: 1000
   - FromLevel: 11
     SuccessRate: 0.9
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 11
@@ -113,6 +124,7 @@ MonoBehaviour:
       Amount: 1100
   - FromLevel: 12
     SuccessRate: 0.89
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 12
@@ -121,6 +133,7 @@ MonoBehaviour:
       Amount: 1200
   - FromLevel: 13
     SuccessRate: 0.88
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 13
@@ -129,6 +142,7 @@ MonoBehaviour:
       Amount: 1300
   - FromLevel: 14
     SuccessRate: 0.87
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 14
@@ -137,6 +151,7 @@ MonoBehaviour:
       Amount: 1400
   - FromLevel: 15
     SuccessRate: 0.86
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 15
@@ -145,6 +160,7 @@ MonoBehaviour:
       Amount: 1500
   - FromLevel: 16
     SuccessRate: 0.85
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 16
@@ -153,6 +169,7 @@ MonoBehaviour:
       Amount: 1600
   - FromLevel: 17
     SuccessRate: 0.84
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 17
@@ -161,6 +178,7 @@ MonoBehaviour:
       Amount: 1700
   - FromLevel: 18
     SuccessRate: 0.83
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 18
@@ -169,6 +187,7 @@ MonoBehaviour:
       Amount: 1800
   - FromLevel: 19
     SuccessRate: 0.82
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 19
@@ -177,6 +196,7 @@ MonoBehaviour:
       Amount: 1900
   - FromLevel: 20
     SuccessRate: 0.81
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 20
@@ -185,6 +205,7 @@ MonoBehaviour:
       Amount: 2000
   - FromLevel: 21
     SuccessRate: 0.8
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 21
@@ -193,6 +214,7 @@ MonoBehaviour:
       Amount: 2100
   - FromLevel: 22
     SuccessRate: 0.79
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 22
@@ -201,6 +223,7 @@ MonoBehaviour:
       Amount: 2200
   - FromLevel: 23
     SuccessRate: 0.78
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 23
@@ -209,6 +232,7 @@ MonoBehaviour:
       Amount: 2300
   - FromLevel: 24
     SuccessRate: 0.77
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 24
@@ -217,6 +241,7 @@ MonoBehaviour:
       Amount: 2400
   - FromLevel: 25
     SuccessRate: 0.76
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 25
@@ -225,6 +250,7 @@ MonoBehaviour:
       Amount: 2500
   - FromLevel: 26
     SuccessRate: 0.75
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 26
@@ -233,6 +259,7 @@ MonoBehaviour:
       Amount: 2600
   - FromLevel: 27
     SuccessRate: 0.74
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 27
@@ -241,6 +268,7 @@ MonoBehaviour:
       Amount: 2700
   - FromLevel: 28
     SuccessRate: 0.73
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 28
@@ -249,6 +277,7 @@ MonoBehaviour:
       Amount: 2800
   - FromLevel: 29
     SuccessRate: 0.71999997
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 29
@@ -257,6 +286,7 @@ MonoBehaviour:
       Amount: 2900
   - FromLevel: 30
     SuccessRate: 0.71
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 30
@@ -265,6 +295,7 @@ MonoBehaviour:
       Amount: 3000
   - FromLevel: 31
     SuccessRate: 0.7
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 31
@@ -273,6 +304,7 @@ MonoBehaviour:
       Amount: 3100
   - FromLevel: 32
     SuccessRate: 0.69
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 32
@@ -281,6 +313,7 @@ MonoBehaviour:
       Amount: 3200
   - FromLevel: 33
     SuccessRate: 0.68
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 33
@@ -289,6 +322,7 @@ MonoBehaviour:
       Amount: 3300
   - FromLevel: 34
     SuccessRate: 0.67
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 34
@@ -297,6 +331,7 @@ MonoBehaviour:
       Amount: 3400
   - FromLevel: 35
     SuccessRate: 0.66
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 35
@@ -305,6 +340,7 @@ MonoBehaviour:
       Amount: 3500
   - FromLevel: 36
     SuccessRate: 0.65
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 36
@@ -313,6 +349,7 @@ MonoBehaviour:
       Amount: 3600
   - FromLevel: 37
     SuccessRate: 0.64
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 37
@@ -321,6 +358,7 @@ MonoBehaviour:
       Amount: 3700
   - FromLevel: 38
     SuccessRate: 0.63
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 38
@@ -329,6 +367,7 @@ MonoBehaviour:
       Amount: 3800
   - FromLevel: 39
     SuccessRate: 0.62
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 39
@@ -337,6 +376,7 @@ MonoBehaviour:
       Amount: 3900
   - FromLevel: 40
     SuccessRate: 0.61
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 40
@@ -345,6 +385,7 @@ MonoBehaviour:
       Amount: 4000
   - FromLevel: 41
     SuccessRate: 0.6
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 41
@@ -353,6 +394,7 @@ MonoBehaviour:
       Amount: 4100
   - FromLevel: 42
     SuccessRate: 0.59
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 42
@@ -361,6 +403,7 @@ MonoBehaviour:
       Amount: 4200
   - FromLevel: 43
     SuccessRate: 0.58
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 43
@@ -369,6 +412,7 @@ MonoBehaviour:
       Amount: 4300
   - FromLevel: 44
     SuccessRate: 0.57
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 44
@@ -377,6 +421,7 @@ MonoBehaviour:
       Amount: 4400
   - FromLevel: 45
     SuccessRate: 0.56
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 45
@@ -385,6 +430,7 @@ MonoBehaviour:
       Amount: 4500
   - FromLevel: 46
     SuccessRate: 0.55
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 46
@@ -393,6 +439,7 @@ MonoBehaviour:
       Amount: 4600
   - FromLevel: 47
     SuccessRate: 0.54
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 47
@@ -401,6 +448,7 @@ MonoBehaviour:
       Amount: 4700
   - FromLevel: 48
     SuccessRate: 0.53
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 48
@@ -409,6 +457,7 @@ MonoBehaviour:
       Amount: 4800
   - FromLevel: 49
     SuccessRate: 0.52
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 49
@@ -417,6 +466,7 @@ MonoBehaviour:
       Amount: 4900
   - FromLevel: 50
     SuccessRate: 0.51
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 50
@@ -425,6 +475,7 @@ MonoBehaviour:
       Amount: 5000
   - FromLevel: 51
     SuccessRate: 0.5
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 51
@@ -433,6 +484,7 @@ MonoBehaviour:
       Amount: 5100
   - FromLevel: 52
     SuccessRate: 0.49
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 52
@@ -441,6 +493,7 @@ MonoBehaviour:
       Amount: 5200
   - FromLevel: 53
     SuccessRate: 0.48
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 53
@@ -449,6 +502,7 @@ MonoBehaviour:
       Amount: 5300
   - FromLevel: 54
     SuccessRate: 0.47
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 54
@@ -457,6 +511,7 @@ MonoBehaviour:
       Amount: 5400
   - FromLevel: 55
     SuccessRate: 0.46
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 55
@@ -465,6 +520,7 @@ MonoBehaviour:
       Amount: 5500
   - FromLevel: 56
     SuccessRate: 0.45
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 56
@@ -473,6 +529,7 @@ MonoBehaviour:
       Amount: 5600
   - FromLevel: 57
     SuccessRate: 0.44
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 57
@@ -481,6 +538,7 @@ MonoBehaviour:
       Amount: 5700
   - FromLevel: 58
     SuccessRate: 0.43
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 58
@@ -489,6 +547,7 @@ MonoBehaviour:
       Amount: 5800
   - FromLevel: 59
     SuccessRate: 0.42
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 59
@@ -497,6 +556,7 @@ MonoBehaviour:
       Amount: 5900
   - FromLevel: 60
     SuccessRate: 0.41
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 60
@@ -505,6 +565,7 @@ MonoBehaviour:
       Amount: 6000
   - FromLevel: 61
     SuccessRate: 0.4
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 61
@@ -513,6 +574,7 @@ MonoBehaviour:
       Amount: 6100
   - FromLevel: 62
     SuccessRate: 0.39
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 62
@@ -521,6 +583,7 @@ MonoBehaviour:
       Amount: 6200
   - FromLevel: 63
     SuccessRate: 0.38
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 63
@@ -529,6 +592,7 @@ MonoBehaviour:
       Amount: 6300
   - FromLevel: 64
     SuccessRate: 0.37
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 64
@@ -537,6 +601,7 @@ MonoBehaviour:
       Amount: 6400
   - FromLevel: 65
     SuccessRate: 0.35999998
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 65
@@ -545,6 +610,7 @@ MonoBehaviour:
       Amount: 6500
   - FromLevel: 66
     SuccessRate: 0.35
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 66
@@ -553,6 +619,7 @@ MonoBehaviour:
       Amount: 6600
   - FromLevel: 67
     SuccessRate: 0.34
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 67
@@ -561,6 +628,7 @@ MonoBehaviour:
       Amount: 6700
   - FromLevel: 68
     SuccessRate: 0.32999998
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 68
@@ -569,6 +637,7 @@ MonoBehaviour:
       Amount: 6800
   - FromLevel: 69
     SuccessRate: 0.32
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 69
@@ -577,6 +646,7 @@ MonoBehaviour:
       Amount: 6900
   - FromLevel: 70
     SuccessRate: 0.31
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 70
@@ -585,6 +655,7 @@ MonoBehaviour:
       Amount: 7000
   - FromLevel: 71
     SuccessRate: 0.29999998
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 71
@@ -593,6 +664,7 @@ MonoBehaviour:
       Amount: 7100
   - FromLevel: 72
     SuccessRate: 0.29
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 72
@@ -601,6 +673,7 @@ MonoBehaviour:
       Amount: 7200
   - FromLevel: 73
     SuccessRate: 0.28
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 73
@@ -609,6 +682,7 @@ MonoBehaviour:
       Amount: 7300
   - FromLevel: 74
     SuccessRate: 0.26999998
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 74
@@ -617,6 +691,7 @@ MonoBehaviour:
       Amount: 7400
   - FromLevel: 75
     SuccessRate: 0.26
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 75
@@ -625,6 +700,7 @@ MonoBehaviour:
       Amount: 7500
   - FromLevel: 76
     SuccessRate: 0.25
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 76
@@ -633,6 +709,7 @@ MonoBehaviour:
       Amount: 7600
   - FromLevel: 77
     SuccessRate: 0.24
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 77
@@ -641,6 +718,7 @@ MonoBehaviour:
       Amount: 7700
   - FromLevel: 78
     SuccessRate: 0.22999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 78
@@ -649,6 +727,7 @@ MonoBehaviour:
       Amount: 7800
   - FromLevel: 79
     SuccessRate: 0.22
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 79
@@ -657,6 +736,7 @@ MonoBehaviour:
       Amount: 7900
   - FromLevel: 80
     SuccessRate: 0.21
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 80
@@ -665,6 +745,7 @@ MonoBehaviour:
       Amount: 8000
   - FromLevel: 81
     SuccessRate: 0.19999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 81
@@ -673,6 +754,7 @@ MonoBehaviour:
       Amount: 8100
   - FromLevel: 82
     SuccessRate: 0.19
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 82
@@ -681,6 +763,7 @@ MonoBehaviour:
       Amount: 8200
   - FromLevel: 83
     SuccessRate: 0.17999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 83
@@ -689,6 +772,7 @@ MonoBehaviour:
       Amount: 8300
   - FromLevel: 84
     SuccessRate: 0.16999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 84
@@ -697,6 +781,7 @@ MonoBehaviour:
       Amount: 8400
   - FromLevel: 85
     SuccessRate: 0.16
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 85
@@ -705,6 +790,7 @@ MonoBehaviour:
       Amount: 8500
   - FromLevel: 86
     SuccessRate: 0.14999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 86
@@ -713,6 +799,7 @@ MonoBehaviour:
       Amount: 8600
   - FromLevel: 87
     SuccessRate: 0.13999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 87
@@ -721,6 +808,7 @@ MonoBehaviour:
       Amount: 8700
   - FromLevel: 88
     SuccessRate: 0.13
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 88
@@ -729,6 +817,7 @@ MonoBehaviour:
       Amount: 8800
   - FromLevel: 89
     SuccessRate: 0.11999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 89
@@ -737,6 +826,7 @@ MonoBehaviour:
       Amount: 8900
   - FromLevel: 90
     SuccessRate: 0.10999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 90
@@ -745,6 +835,7 @@ MonoBehaviour:
       Amount: 9000
   - FromLevel: 91
     SuccessRate: 0.099999994
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 91
@@ -753,6 +844,7 @@ MonoBehaviour:
       Amount: 9100
   - FromLevel: 92
     SuccessRate: 0.08999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 92
@@ -761,6 +853,7 @@ MonoBehaviour:
       Amount: 9200
   - FromLevel: 93
     SuccessRate: 0.07999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 93
@@ -769,6 +862,7 @@ MonoBehaviour:
       Amount: 9300
   - FromLevel: 94
     SuccessRate: 0.06999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 94
@@ -777,6 +871,7 @@ MonoBehaviour:
       Amount: 9400
   - FromLevel: 95
     SuccessRate: 0.05999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 95
@@ -785,6 +880,7 @@ MonoBehaviour:
       Amount: 9500
   - FromLevel: 96
     SuccessRate: 0.04999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 96
@@ -793,6 +889,7 @@ MonoBehaviour:
       Amount: 9600
   - FromLevel: 97
     SuccessRate: 0.03999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 97
@@ -801,6 +898,7 @@ MonoBehaviour:
       Amount: 9700
   - FromLevel: 98
     SuccessRate: 0.02999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 98
@@ -809,6 +907,7 @@ MonoBehaviour:
       Amount: 9800
   - FromLevel: 99
     SuccessRate: 0.01999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 99
@@ -817,6 +916,7 @@ MonoBehaviour:
       Amount: 9900
   - FromLevel: 100
     SuccessRate: 0.00999999
+    PerfectSuccessRate: 0
     Materials:
     - ItemType: 301
       Amount: 100

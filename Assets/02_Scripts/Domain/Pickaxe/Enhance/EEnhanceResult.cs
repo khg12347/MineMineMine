@@ -9,15 +9,18 @@ namespace MI.Domain.Pickaxe.Enhance
 
         /// <summary>강화 성공 — 레벨 상승</summary>
         Success              = 1,
-
+        
+        /// <summary>강화 대성공 - 레벨 상승 후 자동 재시도 </summary>
+        PerfectlySuccess = 2,
+        
         /// <summary>강화 실패 — 레벨 유지, 재료/재화 소모</summary>
-        Fail                 = 2,
+        Fail                 = 3,
 
         /// <summary>강화석 재료 부족</summary>
-        InsufficientMaterial = 3,
+        InsufficientMaterial = 4,
 
         /// <summary>재화(골드/다이아) 부족</summary>
-        InsufficientCurrency = 4,
+        InsufficientCurrency = 5,
 
         // 버그 방지용 (도달 시 throw InvalidOperationException)
         // UI에서 강화 버튼 자체를 차단해야 하는 상태

@@ -25,6 +25,12 @@ namespace MI.Domain.Pickaxe.Enhance
         // 강화 성공 확률 (0.0 ~ 1.0). 예: 0.9 = 90%
         public float SuccessRate;
 
+        [Title("대성공 확률")]
+        [InfoBox("성공 판정 이후 추가로 굴리는 대성공 확률. 0이면 대성공 없음.")]
+        [PropertyRange(0f, 1f)]
+        // 대성공 확률 (0.0 ~ 1.0). 성공 시에만 판정. 대성공 시 재화/재료 소모 없이 자동 재도전.
+        public float PerfectSuccessRate;
+
         [Title("재료 비용")]
         // 필요 강화석 목록 (EItemType 300번대)
         public FMaterialCost[] Materials;

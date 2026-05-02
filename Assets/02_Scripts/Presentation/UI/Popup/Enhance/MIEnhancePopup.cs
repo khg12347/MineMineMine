@@ -63,6 +63,8 @@ namespace MI.Presentation.UI.Popup.Enhance
                 _selector.OnSelectionChanged += HandleSelectionChanged;
             }
 
+            _enhanceService.OnEnhanceAttempted += HandleEnhanceAttempted;
+
             if (_enhanceTab != null)
             {
                 _enhanceTab.Initialize(
@@ -83,6 +85,9 @@ namespace MI.Presentation.UI.Popup.Enhance
         {
             if (_selector != null)
                 _selector.OnSelectionChanged -= HandleSelectionChanged;
+
+            if (_enhanceService != null)
+                _enhanceService.OnEnhanceAttempted -= HandleEnhanceAttempted;
         }
 
         #endregion Initialization
@@ -104,6 +109,13 @@ namespace MI.Presentation.UI.Popup.Enhance
         {
             if (_enhanceTab != null)
                 _enhanceTab.Refresh(type);
+        }
+
+        /// <summary>강화 완료 → selector 공격력 텍스트 갱신.</summary>
+        private void HandleEnhanceAttempted(FEnhanceAttemptResult result)
+        {
+            if (_selector != null)
+                _selector.RefreshVisual();
         }
 
         #endregion Event Handlers

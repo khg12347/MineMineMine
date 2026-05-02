@@ -214,7 +214,62 @@ namespace MI.Domain.Pickaxe.Enhance
 
             _pickaxeInventory.UpdateInstance(inst);
 
+            // 대성공 추가 판정
+            float perfectRoll = _randomProvider.NextFloat();
+            bool  isPerfect   = perfectRoll < e.PerfectSuccessRate;
+
+            if (isPerfect)
+            {
+                MILog.Log($"[MIPickaxeEnhanceService] {type} Lv{currentLevel}→{inst.Level} 강화 대성공 (대성공확률 {e.PerfectSuccessRate:P0}, 주사위 {perfectRoll:F3})");
+                return Emit(new FEnhanceAttemptResult(EEnhanceResult.PerfectlySuccess, type, currentLevel, inst.Level));
+            }
+
             MILog.Log($"[MIPickaxeEnhanceService] {type} Lv{currentLevel}→{inst.Level} 강화 성공");
+            return Emit(new FEnhanceAttemptResult(EEnhanceResult.Success, type, currentLevel, inst.Level));
+        }
+
+        /// <inheritdoc/>
+        public FEnhanceAttemptResult TryEnhanceFree(EPickaxeType type)
+        {
+            var instance = _pickaxeInventory.GetInstance(type);
+            if (!instance.HasValue)
+                throw new InvalidOperationException($"[MIPickaxeEnhanceService] TryEnhanceFree — 인스턴스 조회 실패: {type}");
+
+            int currentLevel = instance.Value.Level;
+
+            // MaxLevel 도달 시 예외 없이 정상 반환
+            if (currentLevel >= MaxLevel)
+            {
+                MILog.Log($"[MIPickaxeEnhanceService] TryEnhanceFree — {type} 이미 최대 레벨 (Lv{currentLevel}), 재도전 중단");
+                return Emit(new FEnhanceAttemptResult(EEnhanceResult.MaxLevel, type, currentLevel, currentLevel));
+            }
+
+            var entry = _enhanceCostConfig.GetEntry(currentLevel);
+            if (!entry.HasValue)
+                throw new InvalidOperationException($"[MIPickaxeEnhanceService] TryEnhanceFree — 비용 데이터 누락: {type} Lv{currentLevel}");
+
+            var e = entry.Value;
+
+            // 대성공 보너스 재도전 — 무조건 레벨업 (실패 없음)
+            // 레벨 증가
+            var inst = instance.Value;
+            inst.Level        += 1;
+            inst.EnhanceCount += 1;
+            inst.ResolveStats(_enhanceConfig);
+
+            _pickaxeInventory.UpdateInstance(inst);
+
+            // 대성공 추가 판정
+            float perfectRoll = _randomProvider.NextFloat();
+            bool  isPerfect   = perfectRoll < e.PerfectSuccessRate;
+
+            if (isPerfect)
+            {
+                MILog.Log($"[MIPickaxeEnhanceService] TryEnhanceFree — {type} Lv{currentLevel}→{inst.Level} 대성공 (주사위 {perfectRoll:F3})");
+                return Emit(new FEnhanceAttemptResult(EEnhanceResult.PerfectlySuccess, type, currentLevel, inst.Level));
+            }
+
+            MILog.Log($"[MIPickaxeEnhanceService] TryEnhanceFree — {type} Lv{currentLevel}→{inst.Level} 성공");
             return Emit(new FEnhanceAttemptResult(EEnhanceResult.Success, type, currentLevel, inst.Level));
         }
 
