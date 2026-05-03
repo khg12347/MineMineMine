@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MI.Core.Pool;
 using MI.Data.Config;
+using MI.Data.Tile;
 using MI.Domain.Tile;
 using MI.Presentation.World.Tile;
 using UnityEngine;

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Cysharp.Threading.Tasks;
 using MI.Data.UIRes;
-using MI.Domain.UserState.Inventory;
+using MI.Data.User.Inventory;
 using MI.Presentation.UI.Interface;
 using TMPro;
 using UnityEngine;
@@ -55,7 +55,7 @@ namespace MI.Presentation.UI.HUD.Items
             }
             catch (OperationCanceledException)
             {
-                // ÆÄ±«½Ã Á¤»ó Ãë¼Ò
+                // ï¿½Ä±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             }
         }
         #region IMIItemViewer Implementation

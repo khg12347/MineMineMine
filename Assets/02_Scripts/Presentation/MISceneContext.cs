@@ -3,6 +3,7 @@ using MI.Data.Config;
 using MI.Data.UIRes;
 using MI.Domain.Pickaxe.Craft;
 using MI.Domain.Pickaxe.Enhance;
+using MI.Data.Pickaxe.Equipment;
 using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.User;
 using MI.Presentation.UI;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using MI.Data.User.Inventory;
 using MI.Utility;
 
 namespace MI.Domain.UserState.Inventory

@@ -1,3 +1,4 @@
+using MI.Data.Pickaxe.Equipment;
 using MI.Domain.Pickaxe.Equipment;
 using Sirenix.OdinInspector;
 using UnityEngine;

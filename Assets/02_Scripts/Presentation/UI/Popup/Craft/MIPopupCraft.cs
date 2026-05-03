@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using MI.Data.Config;
 using MI.Data.UIRes;
-using MI.Domain.Pickaxe;
+using MI.Data.Pickaxe;
+using MI.Data.Pickaxe.Equipment;
+using MI.Data.User.Inventory;
 using MI.Domain.Pickaxe.Craft;
 using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.UserState.Inventory;

@@ -2,6 +2,8 @@
 using MI.Core.Pool;
 using MI.Data.Config;
 using MI.Domain.Status;
+using MI.Data.Tile;
+using MI.Data.User.Inventory;
 using MI.Domain.Tile;
 using MI.Domain.UserState.Inventory;
 using MI.Domain.UserState.Wallet;

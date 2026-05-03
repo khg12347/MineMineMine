@@ -1,4 +1,5 @@
-﻿using MI.Domain.Tile;
+﻿using MI.Data.Tile;
+using MI.Domain.Tile;
 using MI.Untility;
 using MI.Utility;
 using Sirenix.OdinInspector;

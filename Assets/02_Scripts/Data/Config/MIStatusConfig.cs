@@ -1,8 +1,10 @@
-using MI.Domain.Status;
+using UnityEngine;
+
 using MI.Utility;
+using MI.Data.Status;
+
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
-using UnityEngine;
 
 namespace MI.Data.Config
 {

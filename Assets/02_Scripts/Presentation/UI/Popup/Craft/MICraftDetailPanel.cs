@@ -1,11 +1,14 @@
 using System;
-using MI.Data.UIRes;
-using MI.Domain.Pickaxe;
-using MI.Domain.Pickaxe.Craft;
-using MI.Presentation.UI.Common;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
+using MI.Data.UIRes;
+using MI.Data.Pickaxe;
+using MI.Domain.Pickaxe.Craft;
+using MI.Presentation.UI.Common;
+using MI.Data.Pickaxe.Craft;
+
 
 namespace MI.Presentation.UI.Popup.Craft
 {

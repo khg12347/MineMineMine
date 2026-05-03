@@ -1,3 +1,4 @@
+using MI.Data.Tile;
 using MI.Domain.Tile;
 using MI.Untility;
 using MI.Utility;

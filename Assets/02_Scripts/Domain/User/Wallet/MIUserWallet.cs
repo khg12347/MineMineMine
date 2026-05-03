@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MI.Data.User.Wallet;
 using MI.Utility;
 
 namespace MI.Domain.UserState.Wallet

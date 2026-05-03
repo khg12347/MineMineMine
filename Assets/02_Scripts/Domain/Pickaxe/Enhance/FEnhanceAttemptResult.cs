@@ -1,4 +1,5 @@
-using MI.Domain.Pickaxe;
+using MI.Data.Pickaxe;
+using MI.Data.Pickaxe.Enhance;
 
 namespace MI.Domain.Pickaxe.Enhance
 {

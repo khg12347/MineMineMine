@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MI.Data.UIRes;
-using MI.Domain.Pickaxe;
+using MI.Data.Pickaxe;
 using MI.Domain.Pickaxe.Equipment;
 using MI.Presentation.UI.Common;
 using MI.Utility;

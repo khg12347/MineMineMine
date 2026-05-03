@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using MI.Data.Tile;
+
 namespace MI.Domain.Tile
 {
     /// <summary>

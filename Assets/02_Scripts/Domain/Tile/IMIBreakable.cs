@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MI.Data.Tile;
+using UnityEngine;
 
 namespace MI.Domain.Tile
 {

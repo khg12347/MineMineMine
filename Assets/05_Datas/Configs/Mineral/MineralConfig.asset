@@ -36,13 +36,13 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _mineralSprites
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.EMineralType,
-        Assembly-CSharp],[System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.EMineralDensity,
+      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Data.Tile.EMineralType,
+        Assembly-CSharp],[System.Collections.Generic.Dictionary`2[[MI.Data.Tile.EMineralDensity,
         Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib]],
         mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Tile.EMineralType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Data.Tile.EMineralType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -64,11 +64,11 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.EMineralDensity,
+      Data: 2|System.Collections.Generic.Dictionary`2[[MI.Data.Tile.EMineralDensity,
         Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Tile.EMineralDensity,
+      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[MI.Data.Tile.EMineralDensity,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -147,11 +147,11 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 4|System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.EMineralDensity,
+      Data: 4|System.Collections.Generic.Dictionary`2[[MI.Data.Tile.EMineralDensity,
         Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Tile.EMineralDensity,
+      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[MI.Data.Tile.EMineralDensity,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -230,7 +230,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 6|System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.EMineralDensity,
+      Data: 6|System.Collections.Generic.Dictionary`2[[MI.Data.Tile.EMineralDensity,
         Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     - Name: comparer
       Entry: 9
@@ -303,7 +303,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: 7|System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.EMineralDensity,
+      Data: 7|System.Collections.Generic.Dictionary`2[[MI.Data.Tile.EMineralDensity,
         Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     - Name: comparer
       Entry: 9

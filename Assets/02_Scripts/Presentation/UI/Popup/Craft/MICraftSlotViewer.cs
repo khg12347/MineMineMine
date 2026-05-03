@@ -1,6 +1,6 @@
 using System;
 using MI.Data.UIRes;
-using MI.Domain.Pickaxe;
+using MI.Data.Pickaxe;
 using MI.Presentation.UI.Common;
 using UnityEngine;
 using UnityEngine.EventSystems;

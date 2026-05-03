@@ -1,7 +1,8 @@
 using System;
 
-using MI.Domain.Pickaxe;
-using MI.Domain.Pickaxe.Craft;
+using MI.Data.Pickaxe;
+using MI.Data.Pickaxe.Craft;
+using MI.Data.Pickaxe.Enhance;
 
 namespace MI.Domain.Pickaxe.Enhance
 {

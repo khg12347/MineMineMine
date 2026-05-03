@@ -1,7 +1,7 @@
-﻿using MI.Domain.Pickaxe;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
+
+using MI.Data.Pickaxe;
 
 namespace MI.Data.Config
 {

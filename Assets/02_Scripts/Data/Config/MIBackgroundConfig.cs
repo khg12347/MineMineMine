@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using MI.Domain.Tile;
+using MI.Data.Tile;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Tilemaps;

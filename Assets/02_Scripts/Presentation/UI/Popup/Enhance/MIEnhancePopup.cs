@@ -1,6 +1,6 @@
 using MI.Data.Config;
 using MI.Data.UIRes;
-using MI.Domain.Pickaxe;
+using MI.Data.Pickaxe;
 using MI.Domain.Pickaxe.Enhance;
 using MI.Domain.Pickaxe.Equipment;
 using MI.Domain.UserState.Inventory;

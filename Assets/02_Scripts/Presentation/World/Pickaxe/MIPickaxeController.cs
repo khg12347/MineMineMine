@@ -1,4 +1,6 @@
 ﻿using MI.Data.Config;
+using MI.Data.Pickaxe;
+using MI.Data.Tile;
 using MI.Domain.Pickaxe;
 using MI.Domain.Tile;
 using Sirenix.OdinInspector;

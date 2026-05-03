@@ -1,4 +1,4 @@
-using MI.Domain.Pickaxe;
+using MI.Data.Pickaxe;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +8,10 @@ namespace MI.Data.UIRes
     [CreateAssetMenu(fileName = "PickaxeIconDataTable", menuName = "MI/Data/UIRes/PickaxeIconDataTable")]
     public class MIPickaxeUIDataTable : SerializedScriptableObject
     {
-        [DictionaryDrawerSettings(KeyLabel = "Å¸ÀÔ", ValueLabel = "¾ÆÀÌÄÜ")]
+        [DictionaryDrawerSettings(KeyLabel = "Å¸ï¿½ï¿½", ValueLabel = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
         [SerializeField] private Dictionary<EPickaxeType, PickaxeDataEntry> _dataTable = new();
 
-        [SerializeField] private Sprite _blank; // Å¸ÀÔÀÌ ¾øÀ» ¶§ ¹ÝÈ¯ÇÏ´Â ºó ½ºÇÁ¶óÀÌÆ®
+        [SerializeField] private Sprite _blank; // Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
         public Sprite GetPickaxeIcon(EPickaxeType itemType)
         {

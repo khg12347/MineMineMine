@@ -33,12 +33,12 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _dataTable
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.Pickaxe.EPickaxeType,
+      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Data.Pickaxe.EPickaxeType,
         Assembly-CSharp],[MI.Data.UIRes.MIPickaxeUIDataTable+PickaxeDataEntry, Assembly-CSharp]],
         mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Pickaxe.EPickaxeType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Data.Pickaxe.EPickaxeType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12

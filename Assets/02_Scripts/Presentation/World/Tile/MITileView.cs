@@ -1,7 +1,7 @@
 ﻿using DamageNumbersPro;
 using MI.Core.Pool;
 using MI.Data.Config;
-using MI.Domain.Tile;
+using MI.Data.Tile;
 using UnityEngine;
 
 namespace MI.Presentation.World.Tile

@@ -30,11 +30,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _dataTable
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.UserState.Inventory.EItemType,
+      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Data.User.Inventory.EItemType,
         Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.UserState.Inventory.EItemType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Data.User.Inventory.EItemType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+using MI.Data.Pickaxe;
 using MI.Domain.Pickaxe;
 
 using Sirenix.OdinInspector;

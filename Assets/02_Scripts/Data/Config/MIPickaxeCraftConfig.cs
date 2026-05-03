@@ -1,5 +1,5 @@
-using MI.Domain.Pickaxe;
-using MI.Domain.Pickaxe.Craft;
+using MI.Data.Pickaxe;
+using MI.Data.Pickaxe.Craft;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

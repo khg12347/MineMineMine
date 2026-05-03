@@ -1,5 +1,6 @@
 using System;
-using MI.Domain.Pickaxe;
+using MI.Data.Pickaxe;
+using MI.Data.Pickaxe.Craft;
 
 namespace MI.Domain.Pickaxe.Craft
 {

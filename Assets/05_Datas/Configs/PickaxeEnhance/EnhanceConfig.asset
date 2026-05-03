@@ -23,11 +23,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _entries
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.Pickaxe.EPickaxeType,
-        Assembly-CSharp],[MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Data.Pickaxe.EPickaxeType,
+        Assembly-CSharp],[MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Pickaxe.EPickaxeType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Data.Pickaxe.EPickaxeType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -49,7 +49,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 2|UnityEngine.AnimationCurve, UnityEngine.CoreModule
@@ -244,7 +244,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 6|UnityEngine.AnimationCurve, UnityEngine.CoreModule
@@ -439,7 +439,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 10|UnityEngine.AnimationCurve, UnityEngine.CoreModule
@@ -634,7 +634,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 14|UnityEngine.AnimationCurve, UnityEngine.CoreModule
@@ -829,7 +829,7 @@ MonoBehaviour:
       Data: 5
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 18|UnityEngine.AnimationCurve, UnityEngine.CoreModule
@@ -1024,7 +1024,7 @@ MonoBehaviour:
       Data: 6
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 22|UnityEngine.AnimationCurve, UnityEngine.CoreModule
@@ -1219,7 +1219,7 @@ MonoBehaviour:
       Data: 7
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 26|UnityEngine.AnimationCurve, UnityEngine.CoreModule
@@ -1414,7 +1414,7 @@ MonoBehaviour:
       Data: 8
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 30|UnityEngine.AnimationCurve, UnityEngine.CoreModule
@@ -1609,7 +1609,7 @@ MonoBehaviour:
       Data: 9
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 34|UnityEngine.AnimationCurve, UnityEngine.CoreModule
@@ -1804,7 +1804,7 @@ MonoBehaviour:
       Data: 10
     - Name: $v
       Entry: 7
-      Data: MI.Domain.Pickaxe.FEnhanceEntry, Assembly-CSharp
+      Data: MI.Data.Pickaxe.FEnhanceEntry, Assembly-CSharp
     - Name: _damageCurve
       Entry: 7
       Data: 38|UnityEngine.AnimationCurve, UnityEngine.CoreModule

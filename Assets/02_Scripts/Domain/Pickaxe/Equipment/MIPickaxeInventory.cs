@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using MI.Data.Pickaxe;
+using MI.Data.Pickaxe.Equipment;
 using MI.Domain.Pickaxe;
 
 namespace MI.Domain.Pickaxe.Equipment

@@ -1,7 +1,7 @@
-using MI.Domain.Pickaxe.Craft;
-using MI.Domain.Pickaxe.Enhance;
-using MI.Domain.UserState.Inventory;
-using MI.Domain.UserState.Wallet;
+using MI.Data.Pickaxe.Craft;
+using MI.Data.Pickaxe.Enhance;
+using MI.Data.User.Inventory;
+using MI.Data.User.Wallet;
 
 using Sirenix.OdinInspector;
 

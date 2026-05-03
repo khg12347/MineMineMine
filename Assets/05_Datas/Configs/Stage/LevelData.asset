@@ -23,12 +23,12 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _mineralAffinities
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Domain.Tile.ETileType,
-        Assembly-CSharp],[System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
+      Data: 0|System.Collections.Generic.Dictionary`2[[MI.Data.Tile.ETileType,
+        Assembly-CSharp],[System.Collections.Generic.List`1[[MI.Data.Tile.FMineralAffinity,
         Assembly-CSharp]], mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Domain.Tile.ETileType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[MI.Data.Tile.ETileType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -50,14 +50,14 @@ MonoBehaviour:
       Data: 10
     - Name: $v
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
+      Data: 2|System.Collections.Generic.List`1[[MI.Data.Tile.FMineralAffinity,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
+      Data: MI.Data.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
       Data: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
+      Data: MI.Data.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
       Data: 2
@@ -96,14 +96,14 @@ MonoBehaviour:
       Data: 11
     - Name: $v
       Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
+      Data: 3|System.Collections.Generic.List`1[[MI.Data.Tile.FMineralAffinity,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
+      Data: MI.Data.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
       Data: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
+      Data: MI.Data.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
       Data: 2
@@ -142,14 +142,14 @@ MonoBehaviour:
       Data: 12
     - Name: $v
       Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
+      Data: 4|System.Collections.Generic.List`1[[MI.Data.Tile.FMineralAffinity,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
+      Data: MI.Data.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
       Data: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
+      Data: MI.Data.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
       Data: 2
@@ -188,14 +188,14 @@ MonoBehaviour:
       Data: 20
     - Name: $v
       Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
+      Data: 5|System.Collections.Generic.List`1[[MI.Data.Tile.FMineralAffinity,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
+      Data: MI.Data.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
       Data: 0
@@ -222,14 +222,14 @@ MonoBehaviour:
       Data: 21
     - Name: $v
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[MI.Domain.Tile.FMineralAffinity,
+      Data: 6|System.Collections.Generic.List`1[[MI.Data.Tile.FMineralAffinity,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: MI.Domain.Tile.FMineralAffinity, Assembly-CSharp
+      Data: MI.Data.Tile.FMineralAffinity, Assembly-CSharp
     - Name: MineralType
       Entry: 3
       Data: 0

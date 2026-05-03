@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1776173087346,
+  "lastScanned": 1777716901418,
   "projectRoot": "D:\\GitHub\\MineMineMine\\MineMineMine",
   "techStack": {
     "languages": [],
@@ -37,8 +37,8 @@
     "Assets": {
       "path": "Assets",
       "purpose": "Static assets",
-      "fileCount": 19,
-      "lastAccessed": 1776173087264,
+      "fileCount": 21,
+      "lastAccessed": 1777716901326,
       "keyFiles": [
         "01_Scenes.meta",
         "02_Scripts.meta",
@@ -51,7 +51,7 @@
       "path": "docs",
       "purpose": "Documentation",
       "fileCount": 2,
-      "lastAccessed": 1776173087265,
+      "lastAccessed": 1777716901327,
       "keyFiles": [
         "gameplay.gif",
         "tile_generation_simulator.html"
@@ -60,8 +60,8 @@
     "Library": {
       "path": "Library",
       "purpose": null,
-      "fileCount": 29,
-      "lastAccessed": 1776173087265,
+      "fileCount": 27,
+      "lastAccessed": 1777716901328,
       "keyFiles": [
         "AnnotationManager",
         "ArtifactDB",
@@ -73,8 +73,8 @@
     "Logs": {
       "path": "Logs",
       "purpose": null,
-      "fileCount": 16,
-      "lastAccessed": 1776173087266,
+      "fileCount": 14,
+      "lastAccessed": 1777716901328,
       "keyFiles": [
         "AssetImportWorker0-prev.log",
         "AssetImportWorker0.log",
@@ -87,14 +87,14 @@
       "path": "obj",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1776173087266,
+      "lastAccessed": 1777716901329,
       "keyFiles": []
     },
     "Packages": {
       "path": "Packages",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1776173087266,
+      "lastAccessed": 1777716901329,
       "keyFiles": [
         "manifest.json",
         "packages-lock.json"
@@ -104,7 +104,7 @@
       "path": "ProjectSettings",
       "purpose": null,
       "fileCount": 26,
-      "lastAccessed": 1776173087267,
+      "lastAccessed": 1777716901330,
       "keyFiles": [
         "AudioManager.asset",
         "ClusterInputManager.asset",
@@ -117,20 +117,20 @@
       "path": "Temp",
       "purpose": null,
       "fileCount": 6,
-      "lastAccessed": 1776173087268,
+      "lastAccessed": 1777716901330,
       "keyFiles": [
-        "FSTimeGet-79450f830c5f7d64eaf88ffe810e10ae",
-        "FSTimeGet-840830bb9bcefd545924afc49492d0b5",
-        "FSTimeGet-9f0e9f854a6377c43b7c0fe506c002a2",
-        "FSTimeGet-ef454bad261d1c34694add5c9fddf21b",
-        "FSTimeGet-f481d5bc7a404664bafd0726eb75a80b"
+        "FSTimeGet-13698b86bacca494a9f6f170883267cf",
+        "FSTimeGet-85fcfbb78bf3e8d4a86b2debe57af1fe",
+        "FSTimeGet-a153b05bdcaada5409d7e4e0d7b2aaf6",
+        "FSTimeGet-d714084e04b1fcf43981cf5aeae05d3d",
+        "FSTimeGet-fabae6774e212f44abc928f113a047e3"
       ]
     },
     "UIElementsSchema": {
       "path": "UIElementsSchema",
       "purpose": null,
       "fileCount": 32,
-      "lastAccessed": 1776173087268,
+      "lastAccessed": 1777716901331,
       "keyFiles": [
         "UIElements.xsd",
         "Unity.Multiplayer.PlayMode.Editor.xsd",
@@ -143,7 +143,7 @@
       "path": "UserSettings",
       "purpose": null,
       "fileCount": 3,
-      "lastAccessed": 1776173087269,
+      "lastAccessed": 1777716901332,
       "keyFiles": [
         "EditorUserSettings.asset",
         "Search.index",
@@ -154,309 +154,309 @@
       "path": "Temp\\bin",
       "purpose": "Executable scripts",
       "fileCount": 0,
-      "lastAccessed": 1776173087272,
+      "lastAccessed": 1777716901335,
       "keyFiles": []
     }
   },
   "hotPaths": [
     {
-      "path": "Assets\\02_Scripts",
-      "accessCount": 24,
-      "lastAccessed": 1776173162434,
-      "type": "directory"
+      "path": "Assets\\02_Scripts\\Data\\Config\\MILevelData.cs",
+      "accessCount": 4,
+      "lastAccessed": 1777717566791,
+      "type": "file"
     },
     {
-      "path": "",
-      "accessCount": 16,
-      "lastAccessed": 1776173353352,
-      "type": "directory"
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIMineralConfig.cs",
+      "accessCount": 4,
+      "lastAccessed": 1777717567847,
+      "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Data\\Config\\IMIPickaxeDataRegistry.cs",
-      "accessCount": 5,
-      "lastAccessed": 1776174367502,
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\MITileSpawner.cs",
+      "accessCount": 4,
+      "lastAccessed": 1777717762277,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\MIPickaxeCraftService.cs",
+      "accessCount": 4,
+      "lastAccessed": 1777717778937,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Enhance\\MIPickaxeEnhanceService.cs",
+      "accessCount": 4,
+      "lastAccessed": 1777717784319,
       "type": "file"
     },
     {
       "path": "Assets\\02_Scripts\\Core\\DI\\MIRootLifetimeScope.cs",
-      "accessCount": 5,
-      "lastAccessed": 1776174572411,
+      "accessCount": 4,
+      "lastAccessed": 1777718175751,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Data\\Config\\MIPickaxeCraftConfig.cs",
+      "path": "Assets\\02_Scripts\\Domain\\Tile\\FTileData.cs",
       "accessCount": 4,
-      "lastAccessed": 1776173306120,
+      "lastAccessed": 1777719066094,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Data\\Config\\MIEnhanceConfig.cs",
-      "accessCount": 4,
-      "lastAccessed": 1776173310972,
+      "path": "Assets\\02_Scripts\\Core\\StateMachine\\Tile\\MITileStateMahcine.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777716973446,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\FCurrencyCost.cs",
-      "accessCount": 4,
-      "lastAccessed": 1776173311474,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\FMaterialCost.cs",
-      "accessCount": 4,
-      "lastAccessed": 1776173311946,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\FPickaxeCraftCost.cs",
-      "accessCount": 4,
-      "lastAccessed": 1776173312379,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\FEnhanceEntry.cs",
-      "accessCount": 4,
-      "lastAccessed": 1776173342156,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\FPickaxeStats.cs",
-      "accessCount": 4,
-      "lastAccessed": 1776173343115,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\User\\Inventory\\EItemType.cs",
-      "accessCount": 4,
-      "lastAccessed": 1776174288141,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Data\\Config\\MIPickaxeDataRegistry.cs",
-      "accessCount": 4,
-      "lastAccessed": 1776174373926,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\MIPickaxeInventory.cs",
-      "accessCount": 4,
-      "lastAccessed": 1776174468724,
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIBackgroundConfig.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777717525231,
       "type": "file"
     },
     {
       "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\FPickaxeInstance.cs",
       "accessCount": 3,
-      "lastAccessed": 1776173302474,
+      "lastAccessed": 1777717764802,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\IMIPickaxeInventory.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777717768076,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\MIPickaxeInventory.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777717771022,
       "type": "file"
     },
     {
       "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\IMIPickaxeCraftService.cs",
       "accessCount": 3,
-      "lastAccessed": 1776173303319,
+      "lastAccessed": 1777717776207,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\EPickaxeType.cs",
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Enhance\\IMIPickaxeEnhanceService.cs",
       "accessCount": 3,
-      "lastAccessed": 1776173313596,
+      "lastAccessed": 1777717781962,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Craft\\MIPickaxeCraftService.cs",
+      "path": "Assets\\02_Scripts\\Domain\\User\\Inventory\\MIUserInventory.cs",
       "accessCount": 3,
-      "lastAccessed": 1776173325827,
+      "lastAccessed": 1777717786146,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Data\\Config\\MIPickaxeSpecDataTable.cs",
+      "path": "Assets\\02_Scripts\\Domain\\User\\Wallet\\MIUserWallet.cs",
       "accessCount": 3,
-      "lastAccessed": 1776173344263,
+      "lastAccessed": 1777717789020,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Data\\Config\\MIPickaxeConfig.cs",
+      "path": "Assets\\02_Scripts\\Domain\\GameRoot\\MIGameRoot.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777717790630,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Stage\\MIStageOrchestrator.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777718125888,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\MISceneContext.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777718128859,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Pickaxe\\MIPickaxeController.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777718145102,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Pickaxe\\MIPickaxeEquipController.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777718146615,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Tile\\MITileModel.cs",
+      "accessCount": 3,
+      "lastAccessed": 1777718148190,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Core\\DI\\MIMainSceneLifetimeScope.cs",
       "accessCount": 2,
-      "lastAccessed": 1776173152453,
+      "lastAccessed": 1777716940623,
       "type": "file"
     },
     {
       "path": "Assets\\02_Scripts\\Data\\Config\\MIStatusConfig.cs",
       "accessCount": 2,
-      "lastAccessed": 1776173233034,
+      "lastAccessed": 1777716969991,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\IMIPickaxeInventory.cs",
+      "path": "Assets\\02_Scripts\\Domain\\Tile\\EBreakResult.cs",
       "accessCount": 2,
-      "lastAccessed": 1776173304805,
+      "lastAccessed": 1777717321144,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Tile\\ETileType.cs",
+      "accessCount": 2,
+      "lastAccessed": 1777717321362,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Tile\\EMineralDensity.cs",
+      "accessCount": 2,
+      "lastAccessed": 1777717322058,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Tile\\EMineralType.cs",
+      "accessCount": 2,
+      "lastAccessed": 1777717322463,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Tile\\ETreasureType.cs",
+      "accessCount": 2,
+      "lastAccessed": 1777717322826,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\EPickaxePart.cs",
+      "accessCount": 2,
+      "lastAccessed": 1777717323564,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\EPickaxeType.cs",
+      "accessCount": 2,
+      "lastAccessed": 1777717323922,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\EEquipSlot.cs",
+      "accessCount": 2,
+      "lastAccessed": 1777717324722,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Enhance\\EEnhanceResult.cs",
+      "accessCount": 2,
+      "lastAccessed": 1777717325089,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Domain\\User\\Inventory\\EItemType.cs",
+      "accessCount": 2,
+      "lastAccessed": 1777717325815,
       "type": "file"
     },
     {
       "path": "Assets\\02_Scripts\\Domain\\User\\Wallet\\ECurrencyType.cs",
       "accessCount": 2,
-      "lastAccessed": 1776173313276,
+      "lastAccessed": 1777717326103,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Domain\\User\\Inventory\\MIUserInventory.cs",
+      "path": "Assets\\02_Scripts\\Presentation\\World\\Tile\\MITileView.cs",
       "accessCount": 2,
-      "lastAccessed": 1776173327799,
+      "lastAccessed": 1777717918412,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Domain\\User\\Wallet\\MIUserWallet.cs",
+      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\FPickaxeStats.cs",
       "accessCount": 2,
-      "lastAccessed": 1776173329166,
+      "lastAccessed": 1777719070717,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\MIPickaxeStatsBuilder.cs",
-      "accessCount": 2,
-      "lastAccessed": 1776173342698,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\FResolvedPickaxeStats.cs",
-      "accessCount": 2,
-      "lastAccessed": 1776173344184,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Presentation\\UI\\Popup\\Craft\\MIPopupCraft.cs",
-      "accessCount": 2,
-      "lastAccessed": 1776173345200,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Data\\Config\\MIStageConfig.cs",
+      "path": "Assets\\02_Scripts\\Core\\BootStrap\\MIBootStrap.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173127882,
+      "lastAccessed": 1776947638196,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Data\\Config\\MITileConfig.cs",
+      "path": "Assets\\02_Scripts\\Core\\MISingleton.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173128087,
+      "lastAccessed": 1776947638743,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Data\\Config\\MIMineralConfig.cs",
+      "path": "Assets\\02_Scripts\\Core\\Managers\\MIGameManager.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173128583,
+      "lastAccessed": 1776947639527,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Data\\Config\\MILevelData.cs",
+      "path": "Assets\\02_Scripts\\Core\\Pool\\MIObjectPool.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173129093,
+      "lastAccessed": 1776947643776,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\EPickaxePart.cs",
+      "path": "Assets\\02_Scripts\\Core\\Pool\\MIPoolManager.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173129794,
+      "lastAccessed": 1776947644312,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Domain\\Status\\FLevelEntry.cs",
+      "path": "Assets\\02_Scripts\\Core\\StateMachine\\MIBaseStateMachineBehaviour.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173139133,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Tile\\FMineralDropEntry.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173139216,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Tile\\FTileDropEntry.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173139359,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Pickaxe\\Equipment\\IMIPickaxeEquipment.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173141811,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Tile\\FMineralAffinity.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173143210,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Tile\\FMineralDensityRange.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173147435,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Tile\\FMineralWeight.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173147803,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Tile\\FTileWeight.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173147961,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Utility\\MIIntRange.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173148036,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Tile\\FTreasureWeight.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173148120,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Data\\UIRes\\MIPickaxeUIDataTable.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173156251,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Data\\UIRes\\MIItemIconDataTable.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173156934,
-      "type": "file"
-    },
-    {
-      "path": "Assets\\02_Scripts\\Domain\\Tile\\FTileData.cs",
-      "accessCount": 1,
-      "lastAccessed": 1776173161157,
+      "lastAccessed": 1776947644514,
       "type": "file"
     },
     {
       "path": "Assets\\02_Scripts\\Domain\\User\\MIUserState.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173329213,
+      "lastAccessed": 1776947654922,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Presentation\\UI\\Popup\\MIPopupBase.cs",
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\MILevelResolver.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173344594,
+      "lastAccessed": 1776947668754,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Core\\DI\\MIMainSceneLifetimeScope.cs",
+      "path": "Assets\\02_Scripts\\Domain\\Stage\\MIChunkBuffer.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173350655,
+      "lastAccessed": 1776947669265,
       "type": "file"
     },
     {
-      "path": "Assets\\02_Scripts\\Presentation\\MISceneContext.cs",
+      "path": "Assets\\02_Scripts\\Domain\\Status\\MIStatusManager.cs",
       "accessCount": 1,
-      "lastAccessed": 1776173357023,
+      "lastAccessed": 1776947685536,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Infrastructure\\Input\\MIInputHandler.cs",
+      "accessCount": 1,
+      "lastAccessed": 1776947685995,
+      "type": "file"
+    },
+    {
+      "path": "interview_qa.md",
+      "accessCount": 1,
+      "lastAccessed": 1776951816761,
+      "type": "file"
+    },
+    {
+      "path": "Assets\\02_Scripts\\Data\\Config\\MIStageConfig.cs",
+      "accessCount": 1,
+      "lastAccessed": 1777716928132,
       "type": "file"
     }
   ],

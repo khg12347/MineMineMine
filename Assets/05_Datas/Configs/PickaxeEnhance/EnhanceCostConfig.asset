@@ -24,7 +24,7 @@ MonoBehaviour:
   _maxLevel: 100
   _entries:
   - FromLevel: 1
-    SuccessRate: 1
+    SuccessRate: 0.35
     PerfectSuccessRate: 1
     Materials:
     - ItemType: 301

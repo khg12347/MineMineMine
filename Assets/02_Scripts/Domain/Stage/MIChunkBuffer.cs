@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MI.Data.Tile;
 using MI.Domain.Tile;
 
 namespace MI.Domain.Stage

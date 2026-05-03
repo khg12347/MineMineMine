@@ -1,6 +1,6 @@
 using MI.Data.UIRes;
-using MI.Domain.Pickaxe;
-using MI.Domain.Pickaxe.Equipment;
+using MI.Data.Pickaxe;
+using MI.Data.Pickaxe.Equipment;
 using MI.Presentation.UI.Common;
 using MI.Utility;
 using System;

@@ -1,4 +1,5 @@
 using MI.Data.UIRes;
+using MI.Data.User.Inventory;
 using MI.Domain.UserState.Inventory;
 using System.Collections.Generic;
 using UnityEngine;

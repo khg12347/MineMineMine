@@ -1,4 +1,5 @@
 ﻿using System;
+using MI.Data.Tile;
 using MI.Untility;
 
 namespace MI.Domain.Tile

@@ -1,4 +1,5 @@
 ﻿using System;
+using MI.Data.Tile;
 
 namespace MI.Domain.Tile
 {

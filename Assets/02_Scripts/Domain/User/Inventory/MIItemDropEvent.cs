@@ -1,4 +1,5 @@
-﻿using MI.Utility;
+﻿using MI.Data.User.Inventory;
+using MI.Utility;
 using System;
 using System.Collections.Generic;
 

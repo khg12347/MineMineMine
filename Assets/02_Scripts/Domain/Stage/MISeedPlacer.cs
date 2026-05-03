@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MI.Data.Tile;
 using MI.Domain.Tile;
 using UnityEngine;
 

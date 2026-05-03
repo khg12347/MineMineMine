@@ -1,6 +1,7 @@
-using MI.Data.Config;
-
 using UnityEngine;
+
+using MI.Data.Config;
+using MI.Data.Pickaxe;
 
 namespace MI.Domain.Pickaxe
 {
